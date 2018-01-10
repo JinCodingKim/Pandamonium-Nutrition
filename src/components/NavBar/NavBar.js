@@ -11,7 +11,7 @@ class NavBar extends Component {
     return (
       <nav className="nav-main-wrapper">
         <div className="nav-top-wrapper">
-          {!this.props.user ? (
+          {!this.props.user.user_email ? (
             <a href={process.env.REACT_APP_LOGIN}>
               <img className="nav-button" src={account} alt="" />
             </a>
