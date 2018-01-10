@@ -1,32 +1,24 @@
 import React, { Component } from "react";
-import axios from "axios";
 import { connect } from "react-redux";
 import { getUser } from "../../ducks/user";
+import UserInfo from "./UserInfo/UserInfo";
+// import OrderHistory from "./OrderHistory/OrderHistory";
 
 class Profile extends Component {
-  constructor(props) {
-    super(props);
-  }
   render() {
     return (
-      <div>
-        <button onClick={this.props.getUser}>user data</button>
-        {this.props.loading ? (
-          <div>Page is Loading...</div>
-        ) : (
-          <div>{this.props.user.user_email}</div>
-        )}
+      <div className="body-main-wrapper">
+        <div className="body-header">
+          <h4 className="body-header-text">Profile</h4>
+        </div>
+
+        <div className="body-content">
+          <UserInfo />
+          {/* <OrderHistory /> */}
+        </div>
       </div>
     );
   }
 }
 
-const mapStateToProps = state => {
-  return {
-    user: state.user,
-    loading: state.loading,
-    error: state.error
-  };
-};
-
-export default connect(mapStateToProps, { getUser })(Profile);
+export default Profile;
