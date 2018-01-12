@@ -1,0 +1,76 @@
+.user-top-wrapper,
+.user-bottom-wrapper {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  margin: 10% auto;
+  width: 100%;
+}
+
+.user-image {
+  width: 80px;
+  height: 80px;
+  outline: none;
+  border-radius: 10px;
+  display: block;
+  margin: 0 auto;
+}
+
+.user-personal-wrapper {
+  display: flex;
+  flex-direction: column;
+  margin-top: 1%;
+  text-align: center;
+  color: #333333;
+}
+
+.personal-container-name {
+  font-weight: bold;
+  font-size: 18px;
+  letter-spacing: -1px;
+  padding: 5px 0 0px 0;
+}
+
+.personal-container-age {
+  font-size: 15px;
+  font-weight: lighter;
+  letter-spacing: 1px;
+}
+
+.user-bottom-wrapper {
+  height: 125px;
+  width: 290px;
+  box-shadow: 0 6px 6px 0 rgba(0, 0, 0, 1), 0 6px 6px 0 rgba(0, 0, 0, 0.25);
+  background: rgb(87, 87, 87);
+  border-radius: 2px;
+  color: rgb(235, 235, 235);
+  margin-top: 10%;
+}
+
+.user-location-wrapper {
+  display: flex;
+  justify-content: space-around;
+}
+
+.location-icon {
+  height: 25px;
+  width: 25px;
+  margin-left: 10px;
+}
+
+.email-address-container {
+  display: flex;
+  flex-direction: column;
+  width: 200px;
+}
+
+.email-address-title {
+  letter-spacing: 2px;
+  font-size: 11px;
+  font-weight: lighter;
+}
+
+.email-address-info {
+  margin-bottom: 15px;
+  font-size: 12px;
+}

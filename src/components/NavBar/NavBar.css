@@ -10,20 +10,24 @@
   display: flex;
   justify-content: flex-end;
   height: 3%;
-  padding: 5px 10px 0px 0px;
+  padding: 5px 10px 5px 0px;
   background-color: black;
 }
 
-.nav-button {
-  background-color: rgb(235, 235, 235);
+.nav-account-icon {
+  background-color: transparent;
+  text-align: center;
   border: 1px solid rgb(235, 235, 235);
-  border-radius: 50%;
-  height: 15px;
-  width: 15px;
+  border-radius: 5px;
+  height: 18px;
+  width: 18px;
+  color: rgb(235, 235, 235);
 }
 
-.nav-button:hover {
+.nav-account-icon:hover {
   cursor: pointer;
+  color: rgb(87, 87, 87);
+  border: 1px solid rgb(87, 87, 87);
 }
 
 .nav-center-wrapper {
@@ -46,4 +50,66 @@
 
 .nav-link {
   margin: 5px;
+}
+
+/* Position and sizing of burger button */
+.bm-burger-button {
+  width: 26px;
+  height: 20px;
+  left: 25px;
+  top: 48px;
+  position: fixed;
+}
+
+/* Color/shape of burger icon bars */
+.bm-burger-bars {
+  background: black;
+}
+
+/* Color/shape of close button cross */
+.bm-cross {
+  background: rgb(235, 235, 235);
+}
+
+/* General sidebar styles */
+.bm-menu {
+  background: rgb(235, 235, 235);
+  font-size: 20px;
+  width: 65%;
+  border-right: 2px solid black;
+}
+
+.menu-item-wrapper {
+  border-bottom: 1.25px solid black;
+  text-decoration: none;
+  letter-spacing: 2px;
+  font-size: 20px;
+  font-weight: lighter;
+  color: black;
+}
+.menu-item {
+  padding: 10px 0 10px 25px;
+  width: 100%;
+}
+
+.menu-item-wrapper:focus {
+  background: black;
+  color: rgb(87, 87, 87);
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.nav-cart-wrapper {
+  padding-top: 13px;
+  position: fixed;
+  margin-left: 25vw;
+}
+
+.nav-cart-icon {
+  background-color: transparent;
+  text-align: center;
+  border-radius: 5px;
+  height: 28px;
+  width: 28px;
+  color: black;
 }

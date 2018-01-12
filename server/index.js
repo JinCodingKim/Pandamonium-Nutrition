@@ -53,6 +53,7 @@ passport.use(
       scope: "openid profile"
     },
     (accessToken, refreshToken, extraParams, profile, done) => {
+      console.log(profile);
       //gets id from auth0 and passes in to the get_user_by_authid sql db
       app
         .get("db")
@@ -95,18 +96,24 @@ passport.deserializeUser((user, done) => done(null, user));
 app.get(
   "/login",
   passport.authenticate("auth0", {
-    successRedirect: "http://localhost:3002/profile",
+    successRedirect: "http://localhost:3002/profile/",
     failureRedirect: "http://localhost:3001/login"
   })
 );
 
 app.get("/me", (req, res, next) => {
+  console.log(req.user);
   if (req.user) res.json(req.user);
   else res.redirect("/login");
 });
 
-app.get("/user", userCtrl.getUser);
+// app.get("/logout", (req, res, next) => {
+//   req.logout();
+//   res.redirect("/");
+// });
+
 app.get("/users", userCtrl.getUsers);
+app.put("/profile/update", userCtrl.userInfo);
 
 app.listen(PORT || 3001, () => {
   console.log(`Port Listening On: ${PORT || 3001}`);

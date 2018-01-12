@@ -4,6 +4,7 @@ import { Route, Switch } from "react-router-dom";
 import NavBar from "./components/NavBar/NavBar";
 import Home from "./components/Home/Home";
 import Profile from "./components/Profile/Profile";
+import ProfileManager from "./components/Profile/UserInfo/ProfileManager/ProfileManager";
 import Cart from "./components/Cart/Cart";
 import Contact from "./components/Contact/Contact";
 import About from "./components/About/About";
@@ -20,11 +21,12 @@ class App extends Component {
         <NavBar />
         <Switch>
           <Route exact path="/" component={Home} />
-          <Route path="/profile" component={Profile} />
+          <Route exact path="/profile" component={Profile} />
+          <Route path="/profile/manager" component={ProfileManager} />
           {/* <Route path="/cart" component={Cart} /> */}
           {/* <Route path="/contact" component={Contact} /> */}
           {/* <Route path="/about" component={About} /> */}
-          {/* <Route path="/shop" component={Shop} /> */}
+          {/* <Route path="/cart" component={Shop} /> */}
         </Switch>
         {/* <Footer /> */}
       </div>
