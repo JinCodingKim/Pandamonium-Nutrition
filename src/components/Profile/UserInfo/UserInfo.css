@@ -3,25 +3,29 @@
   display: flex;
   justify-content: center;
   flex-direction: column;
-  margin: 10% auto;
   width: 100%;
+}
+
+.user-top-wrapper {
+  margin: 10% auto;
 }
 
 .user-image {
   width: 80px;
   height: 80px;
   outline: none;
-  border-radius: 10px;
+  border-radius: 50%;
   display: block;
   margin: 0 auto;
+  border: 1px solid rgb(235, 235, 235);
+  box-shadow: 0px 4px 8px 0px rgb(87, 87, 87), 0px 3px 3px 0px rgb(87, 87, 87);
 }
 
 .user-personal-wrapper {
   display: flex;
   flex-direction: column;
-  margin-top: 1%;
   text-align: center;
-  color: #333333;
+  color: rgb(87, 87, 87);
 }
 
 .personal-container-name {
@@ -35,16 +39,17 @@
   font-size: 15px;
   font-weight: lighter;
   letter-spacing: 1px;
+  opacity: 0.7;
 }
 
 .user-bottom-wrapper {
   height: 125px;
-  width: 290px;
-  box-shadow: 0 6px 6px 0 rgba(0, 0, 0, 1), 0 6px 6px 0 rgba(0, 0, 0, 0.25);
+  width: 90vw;
+  box-shadow: 0 4px 6px 0 rgba(0, 0, 0, 1);
   background: rgb(87, 87, 87);
   border-radius: 2px;
   color: rgb(235, 235, 235);
-  margin-top: 10%;
+  opacity: 0.4;
 }
 
 .user-location-wrapper {
@@ -71,6 +76,46 @@
 }
 
 .email-address-info {
-  margin-bottom: 15px;
+  margin: 5px;
   font-size: 12px;
+}
+
+.user-button-edit-wrapper {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 10px;
+}
+
+.user-button {
+  border: 1px solid rgb(87, 87, 87);
+  border-radius: 5px;
+  padding: 1px;
+  color: rgb(87, 87, 87);
+  background: transparent;
+  margin: 3px;
+}
+
+.edit-button {
+  height: 18px;
+  width: 18px;
+}
+
+.user-button:hover,
+.user-button:focus {
+  background: rgb(87, 87, 87);
+  opacity: 0.4;
+  color: rgb(235, 235, 235);
+}
+
+.user-button:focus {
+  border: 1px solid rgb(235, 235, 235);
+  outline: none;
+  animation: pulse 0.5s;
+  box-shadow: 0 0 0 5px rgb(87, 87, 87);
+}
+
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0 black;
+  }
 }

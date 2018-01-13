@@ -1,11 +1,17 @@
 import React, { Component } from "react";
+//React-router
 import { Link } from "react-router-dom";
+//Material-ui
+import Paper from "material-ui/Paper";
+//React-icons
 import MdEmail from "react-icons/lib/md/email";
 import MdHome from "react-icons/lib/md/home";
+import MdEdit from "react-icons/lib/md/edit";
+//Redux
 import { connect } from "react-redux";
 import { getUser } from "../../../ducks/user";
+//Local
 import ProfileManager from "./ProfileManager/ProfileManager";
-import LogOut from "./LogOut/LogOut";
 import "./UserInfo.css";
 
 class UserInfo extends Component {
@@ -17,6 +23,10 @@ class UserInfo extends Component {
     // console.log(this.props.user);
   }
   render() {
+    const squarePaper = {
+      height: 300,
+      width: 500
+    };
     return (
       <div>
         <div className="user-top-wrapper">
@@ -52,16 +62,17 @@ class UserInfo extends Component {
               <div className="email-address-title">ADDRESS</div>
               <div className="email-address-info">
                 {this.props.user.user_address}
+                500 S. Ervay St. Dallas, TX 75031
               </div>
             </div>
           </div>
         </div>
-
-        <div className="user-buttons-wrapper">
+        <div className="user-button-edit-wrapper">
           <Link to="/profile/manager">
-            <button className="bttn">Update Profile</button>
+            <button className="user-button">
+              <MdEdit className="edit-button" />
+            </button>
           </Link>
-          <LogOut />
         </div>
       </div>
     );

@@ -26,10 +26,13 @@ export function getUser() {
 export function updateUser(obj) {
   return {
     type: UPDATE_USER,
-    payload: axios.put("/profile/update", obj).then(res => {
-      console.log(res.data);
-      return res.data;
-    })
+    payload: axios
+      .put("/profile/update", obj)
+      .then(res => {
+        console.log(res.data);
+        return res.data;
+      })
+      .catch(console.log)
   };
 }
 
