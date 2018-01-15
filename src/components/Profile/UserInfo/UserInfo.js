@@ -3,10 +3,8 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 //Material-ui
 import Paper from "material-ui/Paper";
-//React-icons
-import MdEmail from "react-icons/lib/md/email";
-import MdHome from "react-icons/lib/md/home";
-import MdEdit from "react-icons/lib/md/edit";
+import CommunicationEmail from "material-ui/svg-icons/communication/email";
+import CommunicationLocationOn from "material-ui/svg-icons/communication/location-on";
 //Redux
 import { connect } from "react-redux";
 import { getUser } from "../../../ducks/user";
@@ -23,58 +21,48 @@ class UserInfo extends Component {
     // console.log(this.props.user);
   }
   render() {
-    const squarePaper = {
-      height: 300,
-      width: 500
-    };
+    const { user = { user: [] } } = this.props;
     return (
-      <div>
-        <div className="user-top-wrapper">
-          <img
-            className="user-image"
-            src={this.props.user.user_img}
-            // alt="not working"
-          />
-          <div className="user-personal-wrapper">
-            <div className="personal-container-name" placeholder="Name">
-              {this.props.user.user_name}
-            </div>
-            <div className="personal-container-age" placeholder="Age">
-              {this.props.user.user_age}
-            </div>
-          </div>
+      <div className="user-wrapper">
+        <Paper className="circle-paper" zDepth={2} circle={true}>
+          <img className="user-image" src={user.user.user_img} />
+        </Paper>
+        <div className="personal-container-name" placeholder="Name">
+          {user.user.user_name}
         </div>
-
-        <div className="user-bottom-wrapper">
-          <div className="user-location-wrapper">
-            <MdEmail className="location-icon" />
+        <div className="personal-container-age" placeholder="Age">
+          {user.user.user_age}
+        </div>
+        <Paper className="user-personal-wrapper" zDepth={2}>
+          <div className="user-location-top-wrapper">
+            <CommunicationEmail className="location-icon" />
             <div className="email-address-container" placeholder="Email">
               <div className="email-address-title">EMAIL</div>
-              <div className="email-address-info">
-                {this.props.user.user_email}
-              </div>
+              <div className="email-address-info">{user.user.user_email}</div>
             </div>
           </div>
 
-          <div className="user-location-wrapper">
-            <MdHome className="location-icon" />
+          <div className="user-location-bottom-wrapper">
+            <CommunicationLocationOn className="location-icon" />
             <div className="email-address-container" placeholder="Address">
               <div className="email-address-title">ADDRESS</div>
               <div className="email-address-info">
-                {this.props.user.user_address}
+                {user.user.user_address}
                 500 S. Ervay St. Dallas, TX 75031
               </div>
             </div>
           </div>
-        </div>
-        <div className="user-button-edit-wrapper">
-          <Link to="/profile/manager">
-            <button className="user-button">
-              <MdEdit className="edit-button" />
-            </button>
-          </Link>
-        </div>
+        </Paper>
       </div>
+
+      //   <div className="user-button-edit-wrapper">
+      //     <Link to="/profile/manager">
+      //       <button className="user-button">
+      //         <MdEdit className="edit-button" />
+      //       </button>
+      //     </Link>
+      //   </div>
+      // </div>
     );
   }
 }

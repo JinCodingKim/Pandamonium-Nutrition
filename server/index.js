@@ -11,6 +11,7 @@ const Auth0Strategy = require("passport-auth0");
 const app = express();
 
 const userCtrl = require("./controllers/user/userCtrl");
+const productCtrl = require("./controllers/product/productCtrl");
 
 const {
   PORT,
@@ -122,6 +123,7 @@ app.get(
 
 app.get("/users", userCtrl.getUsers);
 app.put("/profile/update", userCtrl.userInfo);
+app.get("/products", productCtrl.getProducts);
 
 app.listen(PORT || 3001, () => {
   console.log(`Port Listening On: ${PORT || 3001}`);

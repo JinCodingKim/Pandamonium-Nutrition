@@ -25,6 +25,7 @@ import Contact from "./components/Contact/Contact";
 import About from "./components/About/About";
 import Shop from "./components/Shop/Shop";
 import Footer from "./components/Footer/Footer";
+import ProductDetail from "./components/ProductDetail/ProductDetail";
 import logo from "./logo.svg";
 import "./App.css";
 
@@ -38,7 +39,7 @@ const muiTheme = getMuiTheme({
     accent3Color: grey500,
     textColor: darkBlack,
     alternateTextColor: darkBlack,
-    canvasColor: grey100,
+    canvasColor: grey500,
     borderColor: grey300,
     disabledColor: fade(darkBlack, 0.3),
     pickerHeaderColor: grey300,
@@ -61,7 +62,8 @@ class App extends Component {
               {/* <Route path="/cart" component={Cart} /> */}
               {/* <Route path="/contact" component={Contact} /> */}
               {/* <Route path="/about" component={About} /> */}
-              {/* <Route path="/cart" component={Shop} /> */}
+              <Route path="/shop" component={Shop} />
+              <Route path="/product/:id" component={ProductDetail} />
             </Switch>
             {/* <Footer /> */}
           </div>

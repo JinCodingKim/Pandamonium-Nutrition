@@ -15,14 +15,19 @@ module.exports = {
     console.log(req.user);
     const { auth_id } = req.user;
     const { name, age, img } = req.body;
-    db.user_info([name, age, img, auth_id]).then(user => {
-      req.session.passport.user.user_name = name;
-      req.session.passport.user.user_age = age;
-      req.session.passport.user.user_img = img;
-      req.session.save(function(err) {
-        console.log(err);
+    db
+      .user_info([name, age, img, auth_id])
+      .then(user => {
+        req.session.passport.user.user_name = name;
+        req.session.passport.user.user_age = age;
+        req.session.passport.user.user_img = img;
+        req.session.save(function(err) {
+          console.log(err);
+        });
+        res.status(200).json(user);
+      })
+      .catch(err => {
+        res.status(500).json(err);
       });
-      res.status(200).json(user);
-    });
   }
 };

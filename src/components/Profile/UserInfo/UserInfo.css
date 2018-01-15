@@ -1,66 +1,71 @@
-.user-top-wrapper,
-.user-bottom-wrapper {
+.user-wrapper {
   display: flex;
-  justify-content: center;
+  align-items: center;
   flex-direction: column;
   width: 100%;
+  height: 100%;
 }
 
-.user-top-wrapper {
-  margin: 10% auto;
-}
-
+.circle-paper,
 .user-image {
-  width: 80px;
   height: 80px;
-  outline: none;
-  border-radius: 50%;
-  display: block;
-  margin: 0 auto;
-  border: 1px solid rgb(235, 235, 235);
-  box-shadow: 0px 4px 8px 0px rgb(87, 87, 87), 0px 3px 3px 0px rgb(87, 87, 87);
+  width: 80px;
 }
 
-.user-personal-wrapper {
-  display: flex;
-  flex-direction: column;
-  text-align: center;
-  color: rgb(87, 87, 87);
+.circle-paper {
+  margin-top: 20px;
+  align-items: center;
+  display: block;
+  overflow: hidden;
+  border: 1px solid rgb(235, 235, 235);
 }
 
 .personal-container-name {
   font-weight: bold;
   font-size: 18px;
   letter-spacing: -1px;
-  padding: 5px 0 0px 0;
+  padding: 5px 0 0 0;
+  margin: 10px 0 2.5px 0;
 }
 
 .personal-container-age {
-  font-size: 15px;
+  font-size: 14px;
   font-weight: lighter;
   letter-spacing: 1px;
-  opacity: 0.7;
+  color: white;
+  margin: 2.5px 0 20px 0;
+  text-shadow: -0.7px -0.7px 0 #000, 0.7px -0.7px 0 #000, -0.7px 0.7px 0 #000,
+    0.7px 0.7px 0 #000;
 }
 
-.user-bottom-wrapper {
-  height: 125px;
-  width: 90vw;
-  box-shadow: 0 4px 6px 0 rgba(0, 0, 0, 1);
-  background: rgb(87, 87, 87);
-  border-radius: 2px;
-  color: rgb(235, 235, 235);
-  opacity: 0.4;
-}
-
-.user-location-wrapper {
+.user-personal-wrapper {
   display: flex;
-  justify-content: space-around;
+  flex-direction: column;
+  align-items: center;
+  height: 125px;
+  width: 300px;
+  border-radius: 2px;
+  padding: 25px 0 25px 0;
+}
+
+.user-location-top-wrapper,
+.user-location-bottom-wrapper {
+  display: flex;
+}
+
+.user-location-top-wrapper {
+  padding-bottom: 5px;
+}
+
+.user-location-bottom-wrapper {
+  padding-top: 5px;
 }
 
 .location-icon {
-  height: 25px;
-  width: 25px;
-  margin-left: 10px;
+  height: 23px;
+  width: 23px;
+  margin-right: 8vw;
+  color: black;
 }
 
 .email-address-container {
@@ -80,7 +85,7 @@
   font-size: 12px;
 }
 
-.user-button-edit-wrapper {
+/* .user-button-edit-wrapper {
   display: flex;
   justify-content: flex-end;
   margin-top: 10px;
@@ -118,4 +123,4 @@
   0% {
     box-shadow: 0 0 0 0 black;
   }
-}
+} */

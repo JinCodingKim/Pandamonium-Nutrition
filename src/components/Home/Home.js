@@ -1,8 +1,32 @@
 import React, { Component } from "react";
+//React-Slick (Slider)
+import Slider from "react-slick";
+//local
+import allthewhey from "./all_the_whey.png";
+import "./Home.css";
 
 class Home extends Component {
   render() {
-    return <div>Welcome to Home Page</div>;
+    const settings = {
+      dots: true,
+      infinite: true,
+      speed: 500,
+      slidesToShow: 1,
+      slidesToScroll: 1,
+      autoplay: true,
+      pauseOnHover: true
+    };
+    return (
+      <div>
+        <Slider {...settings}>
+          <a className="slider-container" href="/shop">
+            <img src={allthewhey} className="slider-image" />
+          </a>
+          <div>There</div>
+        </Slider>
+        Welcome to Home Page
+      </div>
+    );
   }
 }
 

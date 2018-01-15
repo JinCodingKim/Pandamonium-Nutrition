@@ -12,3 +12,10 @@
 .menu-item-wrapper:focus {
   cursor: pointer;
 }
+
+.nav-cart {
+  height: 23px;
+  width: 23px;
+  margin-top: 12.5px;
+  margin-right: 12px;
+}

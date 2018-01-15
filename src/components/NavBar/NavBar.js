@@ -36,6 +36,7 @@ class NavBar extends Component {
   }
 
   render() {
+    const { user = { user: [] } } = this.props;
     const img = (
       <img
         style={{ height: 50, width: 50, marginTop: 5, paddingRight: 30 }}
@@ -50,14 +51,7 @@ class NavBar extends Component {
           title={img}
           titleStyle={{ textAlign: "center" }}
           iconElementRight={
-            <ActionShoppingCart
-              style={{
-                height: 23,
-                width: 23,
-                marginTop: 13,
-                marginRight: 10
-              }}
-            >
+            <ActionShoppingCart className="nav-cart">
               <LogOut href={process.env.REACT_APP_LOGOUT} />
             </ActionShoppingCart>
           }
@@ -89,7 +83,7 @@ class NavBar extends Component {
             </NavLink>
           </MenuItem>
           <MenuItem leftIcon={<ActionAccountBox />}>
-            {!this.props.user.user_email ? (
+            {!user.user.user_email ? (
               <a
                 className="menu-item-wrapper"
                 href={process.env.REACT_APP_LOGIN}
