@@ -10,13 +10,13 @@ import ActionAccountBox from "material-ui/svg-icons/action/account-box";
 import ActionExitToApp from "material-ui/svg-icons/action/exit-to-app";
 import CommunicationPhone from "material-ui/svg-icons/communication/phone";
 import ActionHome from "material-ui/svg-icons/action/home";
+import ActionFace from "material-ui/svg-icons/action/face";
 //React-Router
 import { NavLink } from "react-router-dom";
 //Redux
 import { connect } from "react-redux";
 import { getUser } from "../../ducks/user";
 //Local
-import LogOut from "./LogOut/LogOut";
 import logo from "./Panda_Logo.png";
 import "./NavBar.css";
 
@@ -36,7 +36,7 @@ class NavBar extends Component {
   }
 
   render() {
-    const { user = { user: [] } } = this.props;
+    const { user = { user: [] } } = this.props.user;
     const img = (
       <img
         style={{ height: 50, width: 50, marginTop: 5, paddingRight: 30 }}
@@ -50,11 +50,7 @@ class NavBar extends Component {
           style={{ height: 58 }}
           title={img}
           titleStyle={{ textAlign: "center" }}
-          iconElementRight={
-            <ActionShoppingCart className="nav-cart">
-              <LogOut href={process.env.REACT_APP_LOGOUT} />
-            </ActionShoppingCart>
-          }
+          iconElementRight={<ActionShoppingCart className="nav-cart" />}
           onLeftIconButtonClick={() => this.toggleDrawer()}
         />
         <Drawer
@@ -82,25 +78,32 @@ class NavBar extends Component {
               <p className="menu-item">Contact</p>
             </NavLink>
           </MenuItem>
-          <MenuItem leftIcon={<ActionAccountBox />}>
-            {!user.user.user_email ? (
+          {!user.user_email ? (
+            <MenuItem leftIcon={<ActionAccountBox />}>
               <a
                 className="menu-item-wrapper"
                 href={process.env.REACT_APP_LOGIN}
               >
                 <p className="menu-item">Sign-In</p>
               </a>
-            ) : (
-              <NavLink className="menu-item-wrapper" to="/profile">
-                <p className="menu-item">View Profile</p>
-              </NavLink>
-            )}
-          </MenuItem>
-          <MenuItem leftIcon={<ActionExitToApp />}>
-            <NavLink className="menu-item-wrapper" to="/signout">
-              <p className="menu-item">Sign-Out</p>
-            </NavLink>
-          </MenuItem>
+            </MenuItem>
+          ) : (
+            <div>
+              <MenuItem leftIcon={<ActionFace />}>
+                <NavLink className="menu-item-wrapper" to="/profile">
+                  <p className="menu-item">View Profile</p>
+                </NavLink>
+              </MenuItem>
+              <MenuItem leftIcon={<ActionExitToApp />}>
+                <a
+                  className="menu-item-wrapper"
+                  href={process.env.REACT_APP_LOGOUT}
+                >
+                  <p className="menu-item">Sign-Out</p>
+                </a>
+              </MenuItem>
+            </div>
+          )}
         </Drawer>
       </div>
     );

@@ -5,6 +5,7 @@ const GET_PRODUCT_BY_ID = "GET_PRODUCT_BY_ID";
 
 const initialState = {
   product: [],
+  productDetail: [],
   loading: false,
   error: false
 };
@@ -58,7 +59,7 @@ export default function product(state = initialState, action) {
     case `${GET_PRODUCT_BY_ID}_FULFILLED`:
       return Object.assign({}, state, {
         loading: false,
-        product: action.payload
+        productDetail: action.payload[0]
       });
     case `${GET_PRODUCT_BY_ID}_REJECTED`:
       return Object.assign({}, state, {

@@ -108,18 +108,11 @@ app.get("/me", (req, res, next) => {
   else res.redirect("/login");
 });
 
-app.get(
-  "/logout",
-  // (req, res, next) => {
-  passport.authenticate("auth0", {
-    successRedirect: "http://localhost:3002/"
-  })
-  // req.logout();
-  // req.session.destroy(err => {
-  //   res.redirect("/");
-  // });
-  // }
-);
+app.get("/logout", (req, res, next) => {
+  req.logout();
+  req.session.destroy();
+  res.redirect("http://localhost:3002/");
+});
 
 app.get("/users", userCtrl.getUsers);
 app.put("/profile/update", userCtrl.userInfo);

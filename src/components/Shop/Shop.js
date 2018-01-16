@@ -18,15 +18,15 @@ class Shop extends Component {
   }
 
   render() {
-    const { product = { product: [] } } = this.props;
-    // console.log(product);
+    console.log(this.props.product.product);
+    const { product = { product: [] }, loading } = this.props;
 
-    let productsList = product.product.map((product, i) => {
+    let productsList = product.map(product => {
       return (
         <NavLink
           className="product-wrapper"
           to={`/product/${product.product_id}`}
-          key={i}
+          key={product.product_id}
         >
           <div className="product-img-container">
             <img className="product-img" src={product.product_img} />
@@ -38,7 +38,7 @@ class Shop extends Component {
     });
     return (
       <div className="products-main-container">
-        {this.props.isLoading ? (
+        {loading ? (
           <div>
             <h1>Loading Content...</h1>
           </div>
@@ -50,6 +50,11 @@ class Shop extends Component {
   }
 }
 
-const mapStateToProps = state => state;
+const mapStateToProps = state => {
+  return {
+    loading: state.product.loading,
+    product: state.product.product
+  };
+};
 
 export default connect(mapStateToProps, { getProducts })(Shop);

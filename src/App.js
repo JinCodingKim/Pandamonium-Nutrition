@@ -5,6 +5,7 @@ import { Route, Switch } from "react-router-dom";
 import MuiThemeProvider from "material-ui/styles/MuiThemeProvider";
 import getMuiTheme from "material-ui/styles/getMuiTheme";
 import {
+  grey50,
   grey900,
   grey500,
   grey100,
@@ -31,7 +32,7 @@ import "./App.css";
 
 const muiTheme = getMuiTheme({
   palette: {
-    primary1Color: grey300,
+    primary1Color: grey50,
     primary2Color: grey900,
     primary3Color: grey400,
     accent1Color: grey100,
