@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 //Material-ui
-import Card from "material-ui/Card";
+// import Card from "material-ui/Card";
 //React-router-dom
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 //Redux
 import { connect } from "react-redux";
 import { getProducts } from "../../ducks/product";
@@ -14,24 +14,26 @@ class Shop extends Component {
   }
 
   componentDidMount() {
-    console.log(this.props.getProducts());
+    this.props.getProducts();
   }
 
   render() {
     const { product = { product: [] } } = this.props;
-    console.log(product);
+    // console.log(product);
 
     let productsList = product.product.map((product, i) => {
       return (
-        <Link to={`/product/${product.id}`} key={i}>
-          <Card className="product-wrapper">
-            <div className="product-img-container">
-              <img className="product-img" src={product.product_img} />
-            </div>
-            <h4>{product.product_name}</h4>
-            <p>${product.product_price}</p>
-          </Card>
-        </Link>
+        <NavLink
+          className="product-wrapper"
+          to={`/product/${product.product_id}`}
+          key={i}
+        >
+          <div className="product-img-container">
+            <img className="product-img" src={product.product_img} />
+          </div>
+          <p className="product-name">{product.product_name}</p>
+          <p className="product-price">${product.product_price}</p>
+        </NavLink>
       );
     });
     return (

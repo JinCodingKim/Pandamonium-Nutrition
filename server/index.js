@@ -124,6 +124,7 @@ app.get(
 app.get("/users", userCtrl.getUsers);
 app.put("/profile/update", userCtrl.userInfo);
 app.get("/products", productCtrl.getProducts);
+app.get("/product/:product_id", productCtrl.getProductById);
 
 app.listen(PORT || 3001, () => {
   console.log(`Port Listening On: ${PORT || 3001}`);

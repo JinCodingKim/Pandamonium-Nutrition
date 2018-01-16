@@ -34,12 +34,12 @@ const muiTheme = getMuiTheme({
     primary1Color: grey300,
     primary2Color: grey900,
     primary3Color: grey400,
-    accent1Color: grey500,
+    accent1Color: grey100,
     accent2Color: grey100,
     accent3Color: grey500,
     textColor: darkBlack,
     alternateTextColor: darkBlack,
-    canvasColor: grey500,
+    canvasColor: grey100,
     borderColor: grey300,
     disabledColor: fade(darkBlack, 0.3),
     pickerHeaderColor: grey300,
@@ -63,7 +63,7 @@ class App extends Component {
               {/* <Route path="/contact" component={Contact} /> */}
               {/* <Route path="/about" component={About} /> */}
               <Route path="/shop" component={Shop} />
-              <Route path="/product/:id" component={ProductDetail} />
+              <Route path="/product/:product_id" component={ProductDetail} />
             </Switch>
             {/* <Footer /> */}
           </div>

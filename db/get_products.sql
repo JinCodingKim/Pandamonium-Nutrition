@@ -1,2 +1,1 @@
-SELECT * FROM products
-ORDER BY product_type;
+SELECT DISTINCT ON (product_type) * FROM products;
