@@ -41,7 +41,7 @@ const muiTheme = getMuiTheme({
     textColor: darkBlack,
     alternateTextColor: darkBlack,
     canvasColor: grey100,
-    borderColor: grey300,
+    borderColor: fullBlack,
     disabledColor: fade(darkBlack, 0.3),
     pickerHeaderColor: grey300,
     clockCircleColor: fade(darkBlack, 0.07),

@@ -1,0 +1,105 @@
+.detail-main-container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  background-color: #eeeeee;
+}
+
+.detail-img-container {
+  height: 425px;
+  width: 320px;
+  text-align: center;
+  margin: 0 0 75px 0;
+}
+
+.detail-img {
+  height: 475px;
+}
+
+.detail-description-container {
+  width: 320px;
+  height: 200px;
+  margin: 0 20px 0 20px;
+}
+
+.company-name,
+.detail-name {
+  letter-spacing: 1px;
+}
+
+.company-name,
+.flavor-select-title,
+.flavor-select {
+  color: #757575;
+}
+
+.company-name {
+  font-size: 10px;
+  font-weight: lighter;
+}
+
+.company-name > span,
+.detail-name,
+.detail-price {
+  color: black;
+}
+
+.company-name > span,
+.flavor-select-title {
+  font-size: 13.5px;
+}
+
+.company-name > span {
+  font-weight: bold;
+  display: block;
+}
+
+.detail-name,
+.detail-price {
+  font-weight: normal;
+}
+
+.detail-name,
+.flavor-select-title {
+  padding-left: 3px;
+}
+
+.detail-name {
+  font-size: 35px;
+  margin: 20px 0 20px 0;
+  padding-left: 3px;
+}
+
+.detail-price,
+.flavor-select-title,
+.flavor-select,
+.item-count {
+  letter-spacing: 0.5px;
+}
+
+.detail-price {
+  font-size: 22.5px;
+  margin: 0 0 20px 0;
+}
+
+.flavor-select,
+.item-count {
+  margin: 5px 0 0 0;
+}
+
+.flavor-select {
+  width: 87vw;
+  height: 45px;
+  outline: none;
+  font-size: 15px;
+  height: 45px;
+  border: 1px solid #757575;
+  color: #757575;
+  border-radius: 2px;
+}
+
+.item-count {
+  font-size: 18px;
+  height: 30px;
+}

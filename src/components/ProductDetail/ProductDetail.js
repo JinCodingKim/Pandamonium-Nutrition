@@ -3,7 +3,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { getProductById } from "../../ducks/product";
 //Local
-// import "./ProductDetail.css";
+import "./ProductDetail.css";
 
 class ProductDetail extends Component {
   constructor(props) {
@@ -30,13 +30,13 @@ class ProductDetail extends Component {
     // console.log(this.props.productDetail);
     const { productDetail = { productDetail: [] }, loading } = this.props;
     return (
-      <div className="detail-main-container">
+      <div>
         {loading ? (
           <div>
             <h1>Loading Content...</h1>
           </div>
         ) : (
-          <div>
+          <div className="detail-main-container">
             <div className="detail-img-container">
               {!this.state.flavor ||
               this.state.flavor === productDetail.product_flavor ? (
@@ -47,28 +47,34 @@ class ProductDetail extends Component {
             </div>
 
             <div className="detail-description-container">
-              <p className="detail-name">{productDetail.product_name}</p>
-              <p className="detail-price">${productDetail.product_price}</p>
+              <p className="company-name">
+                <span>PANDAMONIUM</span> SPORTS NUTRITION
+              </p>
+              <h2 className="detail-name">{productDetail.product_name}</h2>
+              <h4 className="detail-price">${productDetail.product_price}</h4>
               {!productDetail.product_flavor2 ? (
-                <div className="flavor-select">
-                  {productDetail.product_flavor}
+                <div>
+                  <div className="flavor-select-title">QUANTITY</div>
+                  <div className="item-count">
+                    {productDetail.product_flavor}
+                  </div>
                 </div>
               ) : (
-                <select
-                  className="flavor-select"
-                  value={this.state.flavor}
-                  onChange={e => this.handleFlavor(e.target.value)}
-                >
-                  <option value="" disabled selected>
-                    Choose Flavor...
-                  </option>
-                  <option value={productDetail.product_flavor}>
-                    {productDetail.product_flavor}
-                  </option>
-                  <option value={productDetail.product_flavor2}>
-                    {productDetail.product_flavor2}
-                  </option>
-                </select>
+                <div>
+                  <div className="flavor-select-title">FLAVOR</div>
+                  <select
+                    className="flavor-select"
+                    value={this.state.flavor}
+                    onChange={e => this.handleFlavor(e.target.value)}
+                  >
+                    <option value={productDetail.product_flavor}>
+                      {productDetail.product_flavor}
+                    </option>
+                    <option value={productDetail.product_flavor2}>
+                      {productDetail.product_flavor2}
+                    </option>
+                  </select>
+                </div>
               )}
             </div>
           </div>

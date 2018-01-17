@@ -2,7 +2,7 @@
   display: flex;
   align-items: center;
   flex-direction: column;
-  width: 100%;
+  width: 80%;
   height: 100%;
 }
 
@@ -20,6 +20,11 @@
   border: 1px solid rgb(235, 235, 235);
 }
 
+.personal-container-name,
+.personal-container-age {
+  color: black;
+}
+
 .personal-container-name {
   font-weight: bold;
   font-size: 18px;
@@ -32,20 +37,19 @@
   font-size: 14px;
   font-weight: lighter;
   letter-spacing: 1px;
-  color: white;
   margin: 2.5px 0 20px 0;
-  text-shadow: -0.7px -0.7px 0 #000, 0.7px -0.7px 0 #000, -0.7px 0.7px 0 #000,
-    0.7px 0.7px 0 #000;
+  /* text-shadow: -0.7px -0.7px 0 #000, 0.7px -0.7px 0 #000, -0.7px 0.7px 0 #000,
+    0.7px 0.7px 0 #000; */
 }
 
 .user-personal-wrapper {
   display: flex;
   flex-direction: column;
   align-items: center;
-  height: 125px;
+  height: 150px;
   width: 300px;
   border-radius: 2px;
-  padding: 25px 0 25px 0;
+  padding: 20px 0 0 0;
 }
 
 .user-location-top-wrapper,
@@ -55,6 +59,7 @@
 
 .user-location-top-wrapper {
   padding-bottom: 5px;
+  margin-top: 15px;
 }
 
 .user-location-bottom-wrapper {
@@ -85,42 +90,8 @@
   font-size: 12px;
 }
 
-/* .user-button-edit-wrapper {
+.user-button-edit-wrapper {
   display: flex;
-  justify-content: flex-end;
-  margin-top: 10px;
+  align-self: flex-end;
+  margin-right: -5px;
 }
-
-.user-button {
-  border: 1px solid rgb(87, 87, 87);
-  border-radius: 5px;
-  padding: 1px;
-  color: rgb(87, 87, 87);
-  background: transparent;
-  margin: 3px;
-}
-
-.edit-button {
-  height: 18px;
-  width: 18px;
-}
-
-.user-button:hover,
-.user-button:focus {
-  background: rgb(87, 87, 87);
-  opacity: 0.4;
-  color: rgb(235, 235, 235);
-}
-
-.user-button:focus {
-  border: 1px solid rgb(235, 235, 235);
-  outline: none;
-  animation: pulse 0.5s;
-  box-shadow: 0 0 0 5px rgb(87, 87, 87);
-}
-
-@keyframes pulse {
-  0% {
-    box-shadow: 0 0 0 0 black;
-  }
-} */

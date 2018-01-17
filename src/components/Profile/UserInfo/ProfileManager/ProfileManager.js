@@ -1,9 +1,23 @@
 import React, { Component } from "react";
 //Material-ui
-
+import TextField from "material-ui/TextField";
+import Paper from "material-ui/Paper";
+import RaisedButton from "material-ui/RaisedButton";
+import { grey500, grey50 } from "material-ui/styles/colors";
 //Redux
 import { connect } from "react-redux";
 import { updateUser } from "../../../../ducks/user";
+//Local
+import "./ProfileManager.css";
+
+const styles = {
+  focusStyle: {
+    color: grey500
+  },
+  labelStyle: {
+    color: grey50
+  }
+};
 
 class ProfileManager extends Component {
   constructor(props) {
@@ -30,44 +44,42 @@ class ProfileManager extends Component {
   }
 
   render() {
+    const { user = { user: [] } } = this.props.user;
     return (
       <div className="body-main-wrapper">
-        <div className="body-header">
-          <h4 className="body-header-text">Profile Information</h4>
-        </div>
-        <div className="body-content">
-          <div className="update-wrapper">
-            <input
-              className="update-input"
-              type="text"
-              placeholder="Name"
-              onChange={e => this.handleChange("name", e.target.value)}
-            />
-          </div>
+        <Paper className="body-content-wrapper" zDepth={1}>
+          <TextField
+            className="update-input"
+            type="text"
+            floatingLabelText="Full Name"
+            floatingLabelFocusStyle={styles.focusStyle}
+            onChange={e => this.handleChange("name", e.target.value)}
+          />
 
-          <div className="update-wrapper">
-            <input
-              className="update-input"
-              type="text"
-              placeholder="Age"
-              onChange={e => this.handleChange("age", e.target.value)}
-            />
-          </div>
+          <TextField
+            className="update-input"
+            type="text"
+            floatingLabelText="Age"
+            floatingLabelFocusStyle={styles.focusStyle}
+            onChange={e => this.handleChange("age", e.target.value)}
+          />
 
-          <div className="update-wrapper">
-            <input
-              className="update-input"
-              type="img"
-              placeholder="Image URL"
-              onChange={e => this.handleChange("img", e.target.value)}
-            />
-          </div>
-        </div>
-
-        <div />
-        <button className="user-button" onClick={this.handleClick}>
-          Submit
-        </button>
+          <TextField
+            className="update-input"
+            type="img"
+            floatingLabelText="Image URL"
+            hintText="Input .png URL Path"
+            floatingLabelFocusStyle={styles.focusStyle}
+            onChange={e => this.handleChange("img", e.target.value)}
+          />
+        </Paper>
+        <RaisedButton
+          label="Submit"
+          onClick={this.handleClick}
+          backgroundColor={styles.focusStyle}
+          labelColor={styles.labelStyle}
+          className="submit-button"
+        />
       </div>
     );
   }

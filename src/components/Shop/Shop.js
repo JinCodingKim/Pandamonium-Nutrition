@@ -1,6 +1,4 @@
 import React, { Component } from "react";
-//Material-ui
-// import Card from "material-ui/Card";
 //React-router-dom
 import { NavLink } from "react-router-dom";
 //Redux
