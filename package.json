@@ -22,7 +22,8 @@
     "react-session": "^0.0.1",
     "react-slick": "^0.16.0",
     "redux": "^3.7.2",
-    "redux-promise-middleware": "^5.0.0"
+    "redux-promise-middleware": "^5.0.0",
+    "sweetalert2": "^7.4.0"
   },
   "proxy": "http://localhost:3001",
   "scripts": {

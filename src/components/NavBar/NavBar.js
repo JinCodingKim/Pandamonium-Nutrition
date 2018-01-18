@@ -21,8 +21,8 @@ import logo from "./Panda_Logo.png";
 import "./NavBar.css";
 
 class NavBar extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       drawerOpened: false
     };
@@ -50,7 +50,11 @@ class NavBar extends Component {
           style={{ height: 58 }}
           title={img}
           titleStyle={{ textAlign: "center" }}
-          iconElementRight={<ActionShoppingCart className="nav-cart" />}
+          iconElementRight={
+            <NavLink to="/cart">
+              <ActionShoppingCart className="nav-cart" />
+            </NavLink>
+          }
           onLeftIconButtonClick={() => this.toggleDrawer()}
         />
         <Drawer

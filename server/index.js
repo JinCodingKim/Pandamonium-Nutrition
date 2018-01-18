@@ -12,6 +12,7 @@ const app = express();
 
 const userCtrl = require("./controllers/user/userCtrl");
 const productCtrl = require("./controllers/product/productCtrl");
+const cartCtrl = require("./controllers/cart/cartCtrl");
 
 const {
   PORT,
@@ -116,8 +117,12 @@ app.get("/logout", (req, res, next) => {
 
 app.get("/users", userCtrl.getUsers);
 app.put("/profile/update", userCtrl.userInfo);
-app.get("/products", productCtrl.getProducts);
-app.get("/product/:product_id", productCtrl.getProductById);
+// app.get("/products", productCtrl.getProducts);
+app.get("/products", productCtrl.getDistinctProducts);
+app.get("/product/:product_type", productCtrl.getProductByType);
+app.post("/cart/add", cartCtrl.addCart);
+app.put("/cart/update", cartCtrl.updateCart);
+app.get("/cart/:user_id", cartCtrl.getCart);
 
 app.listen(PORT || 3001, () => {
   console.log(`Port Listening On: ${PORT || 3001}`);

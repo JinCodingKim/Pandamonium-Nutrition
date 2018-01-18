@@ -60,11 +60,11 @@ class App extends Component {
               <Route exact path="/" component={Home} />
               <Route exact path="/profile" component={Profile} />
               <Route path="/profile/manager" component={ProfileManager} />
-              {/* <Route path="/cart" component={Cart} /> */}
+              <Route path="/cart" component={Cart} />
               {/* <Route path="/contact" component={Contact} /> */}
               {/* <Route path="/about" component={About} /> */}
               <Route path="/shop" component={Shop} />
-              <Route path="/product/:product_id" component={ProductDetail} />
+              <Route path="/product/:product_type" component={ProductDetail} />
             </Switch>
             {/* <Footer /> */}
           </div>

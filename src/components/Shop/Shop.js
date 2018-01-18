@@ -16,14 +16,14 @@ class Shop extends Component {
   }
 
   render() {
-    console.log(this.props.product.product);
+    // console.log(this.props.product.product);
     const { product = { product: [] }, loading } = this.props;
 
     let productsList = product.map(product => {
       return (
         <NavLink
           className="product-wrapper"
-          to={`/product/${product.product_id}`}
+          to={`/product/${product.product_type}`}
           key={product.product_id}
         >
           <div className="product-img-container">
