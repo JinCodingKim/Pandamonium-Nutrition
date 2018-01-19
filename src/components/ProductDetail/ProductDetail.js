@@ -20,7 +20,10 @@ class ProductDetail extends Component {
 
     this.state = {
       flavor: "",
-      quantity: 1
+      quantity: 1,
+      total: !this.props.productDetail[0]
+        ? 0
+        : this.props.productDetail[0].product_price
     };
 
     this.handleFlavor = this.handleFlavor.bind(this);
@@ -30,8 +33,7 @@ class ProductDetail extends Component {
 
   componentDidMount() {
     this.props.getProductByType(this.props.match.params.product_type);
-    const { user_id } = this.props.user;
-    this.props.getCart(user_id);
+    this.props.getCart(this.props.user.user_id);
   }
 
   handleFlavor(val) {
@@ -42,20 +44,31 @@ class ProductDetail extends Component {
 
   handleQuantity(val) {
     this.setState({
-      quantity: val
+      quantity: val,
+      total: this.props.productDetail[0].product_price * val
     });
   }
 
-  handleCart(product, amount) {
+  handleCart(product, amount, price, single) {
+    // console.log(
+    //   "product:" +
+    //     product +
+    //     " amount:" +
+    //     amount +
+    //     " price:" +
+    //     price +
+    //     "single:" +
+    //     single
+    // );
     const { cart } = this.props;
     if (cart.length === 0) {
-      this.props.addToCart(product, amount);
+      this.props.addToCart(product, amount, price, single);
     } else {
       for (let i = 0; i < cart.length; i++) {
         if (cart[i].product_id === product) {
-          this.props.updateCart(product, amount);
+          this.props.updateCart(product, amount, price);
         } else {
-          this.props.addToCart(product, amount);
+          this.props.addToCart(product, amount, price, single);
         }
       }
     }
@@ -68,18 +81,18 @@ class ProductDetail extends Component {
       loading
     } = this.props;
 
+    const { flavor, quantity, total } = this.state;
+
     return (
       <div>
         {!productDetail[0] ? (
           <div>
-            {" "}
             <h1>Loading Content...</h1>
           </div>
         ) : (
           <div className="detail-main-container">
             <div className="detail-img-container">
-              {!this.state.flavor ||
-              this.state.flavor === productDetail[0].product_flavor ? (
+              {!flavor || flavor === productDetail[0].product_flavor ? (
                 <img
                   className="detail-img"
                   src={productDetail[0].product_img}
@@ -103,17 +116,17 @@ class ProductDetail extends Component {
 
               {!productDetail[1] ? (
                 <div>
-                  <div className="flavor-select-title">PER BOTTLE</div>
+                  <label className="flavor-select-title">CONTENTS</label>
                   <div className="item-count">
                     {productDetail[0].product_flavor}
                   </div>
                 </div>
               ) : (
                 <div>
-                  <div className="flavor-select-title">FLAVOR</div>
+                  <label className="flavor-select-title">FLAVOR</label>
                   <select
                     className="flavor-select"
-                    value={this.state.flavor}
+                    value={flavor}
                     onChange={e => this.handleFlavor(e.target.value)}
                   >
                     <option value={productDetail[0].product_flavor}>
@@ -126,19 +139,24 @@ class ProductDetail extends Component {
                 </div>
               )}
 
-              <div className="flavor-select-title">QUANTITY</div>
-              <select
+              <label className="flavor-select-title">QUANTITY</label>
+              {/* <select
                 className="flavor-select"
-                value={this.state.quantity}
+                value={quantity}
                 onChange={e => this.handleQuantity(e.target.value)}
               >
                 <option value="1">1</option>
                 <option value="2">2</option>
                 <option value="3">3</option>
-              </select>
+              </select> */}
+              <input
+                className="flavor-select"
+                onChange={e => this.handleQuantity(e.target.value)}
+                type="number"
+                value={quantity}
+              />
 
-              {!this.state.flavor ||
-              this.state.flavor === productDetail[0].product_flavor ? (
+              {!flavor || flavor === productDetail[0].product_flavor ? (
                 <RaisedButton
                   label="Add to Cart"
                   // backgroundColor={styles.buttonStyle}
@@ -146,14 +164,17 @@ class ProductDetail extends Component {
                   onClick={() => {
                     this.handleCart(
                       productDetail[0].product_id,
-                      this.state.quantity
+                      quantity,
+                      total,
+                      productDetail[0].product_price
                     );
 
                     swal({
                       title: `${productDetail[0].product_name} added to Cart!`,
                       text: `${productDetail[0].product_flavor}`,
                       type: "success",
-                      confirmButtonText: "Back to Shopping"
+                      confirmButtonText: "Back to Shopping",
+                      confirmButtonColor: "#757575"
                     });
                   }}
                 />
@@ -165,13 +186,16 @@ class ProductDetail extends Component {
                   onClick={() => {
                     this.handleCart(
                       productDetail[1].product_id,
-                      this.state.quantity
+                      quantity,
+                      total,
+                      productDetail[1].product_price
                     );
                     swal({
                       title: `${productDetail[1].product_name} added to Cart!`,
                       text: `${productDetail[1].product_flavor}`,
                       type: "success",
-                      confirmButtonText: "Back to Shopping"
+                      confirmButtonText: "Back to Shopping",
+                      confirmButtonColor: "#757575"
                     });
                   }}
                 />

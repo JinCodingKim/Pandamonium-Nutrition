@@ -122,6 +122,8 @@ app.get("/products", productCtrl.getDistinctProducts);
 app.get("/product/:product_type", productCtrl.getProductByType);
 app.post("/cart/add", cartCtrl.addCart);
 app.put("/cart/update", cartCtrl.updateCart);
+app.put("/cart/quantity", cartCtrl.updateCartItem);
+app.delete("/cart/:product_id", cartCtrl.deleteCart);
 app.get("/cart/:user_id", cartCtrl.getCart);
 
 app.listen(PORT || 3001, () => {

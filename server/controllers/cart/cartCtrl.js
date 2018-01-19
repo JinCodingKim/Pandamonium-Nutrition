@@ -2,9 +2,9 @@ module.exports = {
   addCart: (req, res, next) => {
     const db = req.app.get("db");
     const { user_id } = req.user;
-    const { product_id, quantity } = req.body;
+    const { product_id, quantity, total_price, single_price } = req.body;
     db
-      .add_cart([user_id, product_id, quantity])
+      .add_cart([user_id, product_id, quantity, total_price, single_price])
       .then(cart => res.status(200).json(cart))
       .catch(err => {
         res.status(500).json(err);
@@ -13,9 +13,31 @@ module.exports = {
   updateCart: (req, res, next) => {
     const db = req.app.get("db");
     const { user_id } = req.user;
-    const { product_id, quantity } = req.body;
+    const { product_id, quantity, total_price } = req.body;
     db
-      .update_cart([user_id, product_id, quantity])
+      .update_cart([user_id, product_id, quantity, total_price])
+      .then(cart => res.status(200).json(cart))
+      .catch(err => {
+        res.status(500).json(err);
+      });
+  },
+  updateCartItem: (req, res, next) => {
+    const db = req.app.get("db");
+    const { user_id } = req.user;
+    const { product_id, quantity, total_price } = req.body;
+    db
+      .update_cart_item([user_id, product_id, quantity, total_price])
+      .then(item => res.status(200).json(item))
+      .catch(err => {
+        res.status(500).json(err);
+      });
+  },
+  deleteCart: (req, res, next) => {
+    const db = req.app.get("db");
+    const { product_id } = req.params;
+    const { user_id } = req.user;
+    db
+      .delete_cart([product_id, user_id])
       .then(cart => res.status(200).json(cart))
       .catch(err => {
         res.status(500).json(err);
