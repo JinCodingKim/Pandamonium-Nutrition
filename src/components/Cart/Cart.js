@@ -1,12 +1,18 @@
 import React, { Component } from "react";
 //Redux
 import { connect } from "react-redux";
-import { getCart, removeCart, updateCartItem } from "../../ducks/product";
+import {
+  getCart,
+  removeCart,
+  updateCartItem,
+  removeAllCart
+} from "../../ducks/product";
 //Material-ui
 import RaisedButton from "material-ui/RaisedButton";
 //Sweetalert2
 import swal from "sweetalert2";
 //Local
+import Checkout from "../Checkout/Checkout";
 import "./Cart.css";
 
 class Cart extends Component {
@@ -21,6 +27,7 @@ class Cart extends Component {
     this.handleDelete = this.handleDelete.bind(this);
     this.handleQuantity = this.handleQuantity.bind(this);
     this.updateCartValues = this.updateCartValues.bind(this);
+    this.removeCart = this.removeCart.bind(this);
   }
 
   componentDidMount() {
@@ -44,6 +51,12 @@ class Cart extends Component {
   updateCartValues(product, amount, total) {
     const { user, updateCartItem, getCart } = this.props;
     updateCartItem(product, amount, total);
+    getCart(user.user_id);
+  }
+
+  removeCart() {
+    const { user, removeAllCart, getCart } = this.props;
+    removeAllCart(user.user_id);
     getCart(user.user_id);
   }
 
@@ -123,6 +136,14 @@ class Cart extends Component {
           </div>
         )}
         <div>Order Total: ${totalAmnt || "0.00"}</div>
+        <div className="checkout-container" onClick={this.removeCart}>
+          <Checkout
+            className="checkout-button"
+            name={"Pandamonium Sports Nutrition"}
+            // description={"Thanks for Ordering!"}
+            amount={totalAmnt}
+          />
+        </div>
       </div>
     );
   }
@@ -139,5 +160,6 @@ const mapStateToProps = state => {
 export default connect(mapStateToProps, {
   getCart,
   removeCart,
-  updateCartItem
+  updateCartItem,
+  removeAllCart
 })(Cart);

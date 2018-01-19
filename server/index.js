@@ -1,4 +1,13 @@
 require("dotenv").config();
+const {
+  PORT,
+  SESSION_SECRET,
+  CONNECTION_STRING,
+  AUTH_DOMAIN,
+  CLIENT_ID,
+  CLIENT_SECRET,
+  STRIPE_SECRET
+} = process.env;
 
 const express = require("express");
 const { json } = require("body-parser");
@@ -7,23 +16,23 @@ const session = require("express-session");
 const massive = require("massive");
 const passport = require("passport");
 const Auth0Strategy = require("passport-auth0");
+const stripe = require("stripe")(STRIPE_SECRET);
+
+const SERVER_CONFIGS = require("./constants/server");
+
+const configureServer = require("./server");
+const configureRoutes = require("./routes");
 
 const app = express();
-
+configureServer(app);
+configureRoutes(app);
+//Controllers
 const userCtrl = require("./controllers/user/userCtrl");
 const productCtrl = require("./controllers/product/productCtrl");
 const cartCtrl = require("./controllers/cart/cartCtrl");
+const payCtrl = require("./controllers/pay/payCtrl");
 
-const {
-  PORT,
-  SESSION_SECRET,
-  CONNECTION_STRING,
-  AUTH_DOMAIN,
-  CLIENT_ID,
-  CLIENT_SECRET
-} = process.env;
-
-//massive postgresql connection
+//Massive postgresql connection
 massive(CONNECTION_STRING)
   .then(db => {
     app.set("db", db);
@@ -95,14 +104,20 @@ passport.use(
 passport.serializeUser((user, done) => done(null, user));
 passport.deserializeUser((user, done) => done(null, user));
 
+//Stripe
+app.get("/payments");
+app.post("payments/:id", payCtrl.postPayment);
+
+//Auth0
 app.get(
   "/login",
   passport.authenticate("auth0", {
-    successRedirect: "http://localhost:3002/profile/",
+    successRedirect: "http://localhost:3002/",
     failureRedirect: "http://localhost:3001/login"
   })
 );
 
+//Session
 app.get("/me", (req, res, next) => {
   console.log(req.user);
   if (req.user) res.json(req.user);
@@ -124,6 +139,17 @@ app.put("/cart/update", cartCtrl.updateCart);
 app.put("/cart/quantity", cartCtrl.updateCartItem);
 app.delete("/cart/:product_id", cartCtrl.deleteCart);
 app.get("/cart/:user_id", cartCtrl.getCart);
+app.delete("/checkout/:user_id", cartCtrl.removeAllCart);
+app.post("/checkout", (req, res, next) => {
+  stripe.charges.create(req.body, (stripeErr, stripeRes) => {
+    console.log(req.body);
+    if (stripeErr) {
+      res.status(500).send({ error: stripeErr });
+    } else {
+      res.status(200).send({ success: stripeRes });
+    }
+  });
+});
 
 app.listen(PORT || 3001, () => {
   console.log(`Port Listening On: ${PORT || 3001}`);

@@ -29,6 +29,12 @@ class NavBar extends Component {
 
     this.toggleDrawer = this.toggleDrawer.bind(this);
   }
+
+  componentDidMount() {
+    this.props.getUser();
+    // console.log(this.props.user);
+  }
+
   toggleDrawer() {
     this.setState({
       opened: !this.state.opened
@@ -120,4 +126,4 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps)(NavBar);
+export default connect(mapStateToProps, { getUser })(NavBar);

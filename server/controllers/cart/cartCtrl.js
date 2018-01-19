@@ -52,5 +52,15 @@ module.exports = {
       .catch(err => {
         res.status(500).json(err);
       });
+  },
+  removeAllCart: (req, res, next) => {
+    const db = req.app.get("db");
+    const { user_id } = req.params;
+    db
+      .delete_all_cart([user_id])
+      .then(cart => res.status(200).json(cart))
+      .catch(err => {
+        res.status(500).json(err);
+      });
   }
 };

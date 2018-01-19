@@ -7,6 +7,7 @@ const GET_CART = "GET_CART";
 const UPDATE_CART = "UPDATE_CART";
 const UPDATE_CART_ITEM = "UPDATE_CART_ITEM";
 const REMOVE_CART = "REMOVE_CART";
+const REMOVE_ALL_CART = "REMOVE_ALL_CART";
 
 const initialState = {
   product: [],
@@ -115,7 +116,19 @@ export function removeCart(product) {
   return {
     type: REMOVE_CART,
     payload: axios
-      .delete(`cart/${product}`)
+      .delete(`/cart/${product}`)
+      .then(res => {
+        return res.data;
+      })
+      .catch(console.log)
+  };
+}
+
+export function removeAllCart(user) {
+  return {
+    type: REMOVE_ALL_CART,
+    payload: axios
+      .delete(`checkout/${user}`)
       .then(res => {
         return res.data;
       })
