@@ -55,7 +55,7 @@ passport.use(
       scope: "openid profile"
     },
     (accessToken, refreshToken, extraParams, profile, done) => {
-      console.log(profile);
+      // console.log(profile);
       //gets id from auth0 and passes in to the get_user_by_authid sql db
       app
         .get("db")
@@ -115,7 +115,6 @@ app.get("/logout", (req, res, next) => {
   res.redirect("http://localhost:3002/");
 });
 
-app.get("/users", userCtrl.getUsers);
 app.put("/profile/update", userCtrl.userInfo);
 // app.get("/products", productCtrl.getProducts);
 app.get("/products", productCtrl.getDistinctProducts);

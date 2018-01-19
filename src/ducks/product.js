@@ -181,20 +181,6 @@ export default function product(state = initialState, action) {
         loading: false,
         error: true
       });
-    // case `${UPDATE_CART_ITEM}_PENDING`:
-    //   return Object.assign({}, state, {
-    //     loading: true
-    //   });
-    // case `${UPDATE_CART_ITEM}_FULFILLED`:
-    //   return Object.assign({}, state, {
-    //     loading: false,
-    //     cart: action.payload
-    //   });
-    // case `${UPDATE_CART_ITEM}_REJECTED`:
-    //   return Object.assign({}, state, {
-    //     loading: false,
-    //     error: true
-    //   });
     default:
       return state;
   }

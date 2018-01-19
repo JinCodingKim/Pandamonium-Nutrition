@@ -32,8 +32,9 @@ class ProductDetail extends Component {
   }
 
   componentDidMount() {
-    this.props.getProductByType(this.props.match.params.product_type);
-    this.props.getCart(this.props.user.user_id);
+    const { user, match, getProductByType, getCart } = this.props;
+    getProductByType(match.params.product_type);
+    getCart(user.user_id);
   }
 
   handleFlavor(val) {
@@ -60,15 +61,15 @@ class ProductDetail extends Component {
     //     "single:" +
     //     single
     // );
-    const { cart } = this.props;
+    const { cart, addToCart, UpdateCart } = this.props;
     if (cart.length === 0) {
-      this.props.addToCart(product, amount, price, single);
+      addToCart(product, amount, price, single);
     } else {
       for (let i = 0; i < cart.length; i++) {
         if (cart[i].product_id === product) {
-          this.props.updateCart(product, amount, price);
+          updateCart(product, amount, price);
         } else {
-          this.props.addToCart(product, amount, price, single);
+          addToCart(product, amount, price, single);
         }
       }
     }
@@ -140,15 +141,6 @@ class ProductDetail extends Component {
               )}
 
               <label className="flavor-select-title">QUANTITY</label>
-              {/* <select
-                className="flavor-select"
-                value={quantity}
-                onChange={e => this.handleQuantity(e.target.value)}
-              >
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-              </select> */}
               <input
                 className="flavor-select"
                 onChange={e => this.handleQuantity(e.target.value)}

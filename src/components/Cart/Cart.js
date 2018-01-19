@@ -4,6 +4,8 @@ import { connect } from "react-redux";
 import { getCart, removeCart, updateCartItem } from "../../ducks/product";
 //Material-ui
 import RaisedButton from "material-ui/RaisedButton";
+//Sweetalert2
+import swal from "sweetalert2";
 //Local
 import "./Cart.css";
 
@@ -22,12 +24,14 @@ class Cart extends Component {
   }
 
   componentDidMount() {
-    const { user_id } = this.props.user;
-    this.props.getCart(user_id);
+    const { user, getCart } = this.props;
+    getCart(user.user_id);
   }
 
   handleDelete(product) {
-    this.props.removeCart(product);
+    const { user, removeCart, getCart } = this.props;
+    removeCart(product);
+    getCart(user.user_id);
   }
 
   handleQuantity(val, onePrice) {
@@ -38,14 +42,14 @@ class Cart extends Component {
   }
 
   updateCartValues(product, amount, total) {
-    this.props.updateCartItem(product, amount, total);
-    const { user_id } = this.props.user;
-    this.props.getCart(user_id);
+    const { user, updateCartItem, getCart } = this.props;
+    updateCartItem(product, amount, total);
+    getCart(user.user_id);
   }
 
   render() {
     const { cart = { cart: [] }, loading } = this.props;
-    const { cartTotal } = this.state;
+    const { cartTotal, newQuantity, newTotal } = this.state;
     let cartList = cart.map(product => {
       return (
         <div className="cart-item-container" key={product.product_id}>
@@ -60,7 +64,15 @@ class Cart extends Component {
               <p className="cart-item-price">${product.total_price}</p>
               <RaisedButton
                 label="Remove"
-                onClick={() => this.handleDelete(product.product_id)}
+                onClick={() => {
+                  this.handleDelete(product.product_id);
+                  swal({
+                    title: `Item has been removed!`,
+                    type: "success",
+                    confirmButtonText: "Back to Cart",
+                    confirmButtonColor: "#757575"
+                  });
+                }}
                 // backgroundColor={styles.focusStyle}
                 className="remove-button"
               />
@@ -81,9 +93,15 @@ class Cart extends Component {
               onClick={() => {
                 this.updateCartValues(
                   product.product_id,
-                  this.state.newQuantity,
-                  this.state.newTotal
+                  newQuantity,
+                  newTotal
                 );
+                swal({
+                  title: `Item has been updated!`,
+                  type: "success",
+                  confirmButtonText: "Back to Cart",
+                  confirmButtonColor: "#757575"
+                });
               }}
             />
           </div>
@@ -100,9 +118,11 @@ class Cart extends Component {
         {!cart ? (
           <div>Cart is empty</div>
         ) : (
-          <div className="cart-main-container">{cartList}</div>
+          <div className="cart-main-container">
+            {cartList || "Cart is empty"}
+          </div>
         )}
-        <div>GRAND TOTAL: {totalAmnt}</div>
+        <div>Order Total: ${totalAmnt || "0.00"}</div>
       </div>
     );
   }

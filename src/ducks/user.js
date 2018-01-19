@@ -15,7 +15,7 @@ export function getUser() {
     payload: axios
       .get("/me")
       .then(res => {
-        console.log(res.data);
+        // console.log(res.data);
         return res.data;
       })
       .catch(console.log)
@@ -28,7 +28,7 @@ export function updateUser(obj) {
     payload: axios
       .put("/profile/update", obj)
       .then(res => {
-        console.log(res.data);
+        // console.log(res.data);
         return res.data;
       })
       .catch(console.log)

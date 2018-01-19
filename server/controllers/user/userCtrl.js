@@ -12,7 +12,7 @@ module.exports = {
   },
   userInfo: (req, res, next) => {
     const db = req.app.get("db");
-    console.log(req.user);
+    // console.log(req.user);
     const { auth_id } = req.user;
     const { name, age, img } = req.body;
     db

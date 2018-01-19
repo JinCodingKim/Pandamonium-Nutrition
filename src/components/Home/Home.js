@@ -19,7 +19,7 @@ class Home extends Component {
     return (
       <div>
         <Slider {...settings}>
-          <a className="slider-container" href="/shop">
+          <a className="slider-container" href="/product/protein">
             <img src={allthewhey} className="slider-image" />
           </a>
           <div>There</div>
