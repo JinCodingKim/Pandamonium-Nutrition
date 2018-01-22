@@ -137,6 +137,8 @@ app.put("/profile/update", userCtrl.userInfo);
 app.get("/products", productCtrl.getDistinctProducts);
 app.get("/products/ascend", productCtrl.getProductsAsc);
 app.get("/products/descend", productCtrl.getProductsDesc);
+app.get("/products/az", productCtrl.getProductsAToZ);
+app.get("/products/za", productCtrl.getProductsZToA);
 app.get("/product/:product_type", productCtrl.getProductByType);
 app.post("/cart/add", cartCtrl.addCart);
 app.put("/cart/update", cartCtrl.updateCart);

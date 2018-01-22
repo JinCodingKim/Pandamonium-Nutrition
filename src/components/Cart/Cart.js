@@ -77,7 +77,7 @@ class Cart extends Component {
               <p className="cart-item-price">${product.total_price}</p>
               <RaisedButton
                 label="Remove"
-                primary="true"
+                primary={true}
                 onClick={() => {
                   this.handleDelete(product.product_id);
                   swal({
@@ -101,8 +101,7 @@ class Cart extends Component {
             />
             <RaisedButton
               label="Update"
-              primary="true"
-              className=""
+              primary={true}
               onClick={() => {
                 this.updateCartValues(
                   product.product_id,

@@ -3,7 +3,7 @@ module.exports = (req, res, next) => {
     req.user = {
       name: "guest",
       displayName: "guest",
-      id: 0
+      user_id: 0
     };
   }
   next();

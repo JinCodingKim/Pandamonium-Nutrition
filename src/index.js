@@ -18,7 +18,7 @@ import registerServiceWorker from "./registerServiceWorker";
 const muiTheme = getMuiTheme({
   palette: {
     //primary1color: changes NavBar Background & Primary Raised Button Background
-    primary1Color: "#fafafa",
+    primary1Color: "#E0E0E0",
     //accent1color: changes Secondary Raised Button Background
     accent1Color: "#fafafa",
     //textColor: changes Icon Color & Regular Text & Default Raised Button Text & Menu Text

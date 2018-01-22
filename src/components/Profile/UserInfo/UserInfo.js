@@ -23,7 +23,7 @@ class UserInfo extends Component {
     // console.log(this.props.user);
   }
   render() {
-    const { user = { user: [] } } = this.props.user;
+    const { user = { user: [] } } = this.props;
     return (
       <div className="user-wrapper">
         <Paper className="circle-paper" zDepth={1} circle={true}>
@@ -73,6 +73,10 @@ class UserInfo extends Component {
   }
 }
 
-const mapStateToProps = state => state;
+const mapStateToProps = state => {
+  return {
+    user: state.user.user
+  };
+};
 
 export default connect(mapStateToProps, { getUser })(UserInfo);

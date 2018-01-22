@@ -9,6 +9,7 @@ const UPDATE_CART_ITEM = "UPDATE_CART_ITEM";
 const REMOVE_CART = "REMOVE_CART";
 const REMOVE_ALL_CART = "REMOVE_ALL_CART";
 const GET_SORTED_PRODUCTS = "GET_SORTED_PRODUCTS";
+const SEARCH_PRODUCTS = "SEARCH_PRODUCTS";
 
 const initialState = {
   product: [],
@@ -24,7 +25,7 @@ export function getProducts() {
     payload: axios
       .get("/products")
       .then(res => {
-        console.log(res.data);
+        // console.log(res.data);
         return res.data;
       })
       .catch(console.log)
@@ -45,13 +46,13 @@ export function getProductByType(type) {
 }
 
 export function getSortedProducts(sorted) {
-  console.log("sorted: " + sorted);
+  // console.log("sorted: " + sorted);
   return {
     type: GET_SORTED_PRODUCTS,
     payload: axios
       .get(`/products/${sorted}`)
       .then(res => {
-        console.log(res.data);
+        // console.log(res.data);
         return res.data;
       })
       .catch(console.log)
@@ -151,8 +152,31 @@ export function removeAllCart(user) {
   };
 }
 
+export function searchProducts(search) {
+  return {
+    type: SEARCH_PRODUCTS,
+    payload: search
+  };
+}
+
 export default function product(state = initialState, action) {
   switch (action.type) {
+    case `SEARCH_PRODUCTS`:
+      return Object.assign({}, state, {
+        product: state.product.filter(e => {
+          if (
+            e.product_name.toLowerCase().includes(action.payload.toLowerCase())
+          ) {
+            return true;
+          } else if (
+            e.product_type.toLowerCase().includes(action.payload.toLowerCase())
+          ) {
+            return true;
+          } else {
+            return false;
+          }
+        })
+      });
     case `${GET_PRODUCTS}_PENDING`:
       return Object.assign({}, state, {
         loading: true

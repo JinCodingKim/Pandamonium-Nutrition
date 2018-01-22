@@ -34,7 +34,6 @@ class ProfileManager extends Component {
   }
 
   render() {
-    const { user = { user: [] } } = this.props.user;
     return (
       <div className="body-main-wrapper">
         <Paper className="body-content-wrapper" zDepth={1}>
@@ -69,6 +68,10 @@ class ProfileManager extends Component {
     );
   }
 }
-const mapStateToProps = state => state;
+const mapStateToProps = state => {
+  return {
+    user: state.user.user
+  };
+};
 
 export default connect(mapStateToProps, { updateUser })(ProfileManager);

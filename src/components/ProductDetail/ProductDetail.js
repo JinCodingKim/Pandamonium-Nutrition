@@ -151,7 +151,7 @@ class ProductDetail extends Component {
               {!flavor || flavor === productDetail[0].product_flavor ? (
                 <RaisedButton
                   label="Add to Cart"
-                  primary="true"
+                  primary={true}
                   className="cart-button"
                   onClick={() => {
                     this.handleCart(
@@ -173,7 +173,7 @@ class ProductDetail extends Component {
               ) : (
                 <RaisedButton
                   label="Add to Cart"
-                  primary="true"
+                  primary={true}
                   className="cart-button"
                   onClick={() => {
                     this.handleCart(

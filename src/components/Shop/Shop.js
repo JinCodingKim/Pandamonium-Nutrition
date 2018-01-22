@@ -3,9 +3,19 @@ import React, { Component } from "react";
 import { NavLink } from "react-router-dom";
 //Material-ui
 import RaisedButton from "material-ui/RaisedButton";
+import ActionSearch from "material-ui/svg-icons/action/search";
+import ContentSort from "material-ui/svg-icons/content/sort";
+import ContentClear from "material-ui/svg-icons/content/clear";
+import IconButton from "material-ui/IconButton";
+import { Card, CardActions, CardText } from "material-ui/Card";
 //Redux
 import { connect } from "react-redux";
-import { getProducts, getSortedProducts } from "../../ducks/product";
+import {
+  getProducts,
+  getSortedProducts,
+  searchProducts
+} from "../../ducks/product";
+//Local
 import "./Shop.css";
 
 class Shop extends Component {
@@ -13,32 +23,48 @@ class Shop extends Component {
     super(props);
 
     this.state = {
-      sort: ""
+      sort: "",
+      search: ""
     };
 
     this.handleSort = this.handleSort.bind(this);
     this.confirmSort = this.confirmSort.bind(this);
+    this.clearSort = this.clearSort.bind(this);
+    this.handleSearch = this.handleSearch.bind(this);
+    this.confirmSearch = this.confirmSearch.bind(this);
   }
 
   componentDidMount() {
     this.props.getProducts();
-    // console.log(this.props.product);
   }
 
   handleSort(val) {
     this.setState({
       sort: val
     });
-    console.log(this.state.sort);
   }
 
   confirmSort() {
     this.props.getSortedProducts(this.state.sort);
   }
 
+  clearSort() {
+    this.props.getProducts();
+  }
+
+  handleSearch(val) {
+    this.setState({
+      search: val
+    });
+  }
+
+  confirmSearch() {
+    this.props.searchProducts(this.state.search);
+  }
+
   render() {
-    // console.log(this.props.product.product);
     const { product = { product: [] }, loading } = this.props;
+    const { search } = this.state;
 
     let productsList = product.map(product => {
       return (
@@ -57,28 +83,60 @@ class Shop extends Component {
     });
     return (
       <div className="products-main-container">
-        {loading ? (
+        {!product ? (
           <div>
             <h1>Loading Content...</h1>
           </div>
         ) : (
           <div className="products-list">
-            <select
-              className=""
-              onChange={e => this.handleSort(e.target.value)}
-            >
-              <option value="" disabled selected>
-                Sort Products
-              </option>
-              <option value="ascend"> Price (low-to-high) </option>
-              <option value="descend"> Price (high-to-low) </option>
-            </select>
+            <div className="search-container">
+              <input
+                className="search-input"
+                type="text"
+                onChange={e => this.handleSearch(e.target.value)}
+                value={search}
+              />
+              <RaisedButton
+                label="Search"
+                labelPosition="after"
+                style={{ height: 30 }}
+                labelStyle={{ fontSize: 12, fontWeight: "bold" }}
+                icon={<ActionSearch />}
+                primary={true}
+                onClick={this.confirmSearch}
+              />
+            </div>
+
+            <div className="sort-container">
+              <select
+                className="sort-select"
+                onChange={e => this.handleSort(e.target.value)}
+              >
+                <option value="az"> Alphabetically: A-Z </option>
+                <option value="za"> Alphabetically: Z-A </option>
+                <option value="ascend"> Price: Low-to-High </option>
+                <option value="descend"> Price: High-to-Low </option>
+              </select>
+              <RaisedButton
+                label="Sort"
+                primary={true}
+                labelPosition="after"
+                style={{ height: 30 }}
+                labelStyle={{ fontSize: 12, fontWeight: "bold" }}
+                icon={<ContentSort />}
+                onClick={this.confirmSort}
+              />
+            </div>
             <RaisedButton
-              label="Sort"
+              label="Clear"
               primary={true}
-              className="sort-button"
-              onClick={this.confirmSort}
+              labelPosition="after"
+              style={{ height: 30 }}
+              labelStyle={{ fontSize: 12, fontWeight: "bold" }}
+              icon={<ContentClear />}
+              onClick={this.clearSort}
             />
+
             {productsList}
           </div>
         )}
@@ -94,6 +152,8 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps, { getProducts, getSortedProducts })(
-  Shop
-);
+export default connect(mapStateToProps, {
+  getProducts,
+  getSortedProducts,
+  searchProducts
+})(Shop);

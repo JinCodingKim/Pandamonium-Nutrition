@@ -2,4 +2,4 @@ SELECT * FROM (
   SELECT DISTINCT ON (product_type) *
   FROM products
   ) products
-  ORDER BY product_price ASC
+  ORDER BY product_name DESC

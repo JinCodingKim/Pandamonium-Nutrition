@@ -44,5 +44,23 @@ module.exports = {
       .catch(err => {
         res.status(500).json(err);
       });
+  },
+  getProductsAToZ: (req, res, next) => {
+    const db = req.app.get("db");
+    db
+      .get_products_az()
+      .then(products => res.status(200).json(products))
+      .catch(err => {
+        res.status(500).json(err);
+      });
+  },
+  getProductsZToA: (req, res, next) => {
+    const db = req.app.get("db");
+    db
+      .get_products_za()
+      .then(products => res.status(200).json(products))
+      .catch(err => {
+        res.status(500).json(err);
+      });
   }
 };
