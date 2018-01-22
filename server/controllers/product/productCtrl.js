@@ -26,5 +26,23 @@ module.exports = {
       .catch(err => {
         res.status(500).json(err);
       });
+  },
+  getProductsAsc: (req, res, next) => {
+    const db = req.app.get("db");
+    db
+      .get_products_asc()
+      .then(products => res.status(200).json(products))
+      .catch(err => {
+        res.status(500).json(err);
+      });
+  },
+  getProductsDesc: (req, res, next) => {
+    const db = req.app.get("db");
+    db
+      .get_products_desc()
+      .then(products => res.status(200).json(products))
+      .catch(err => {
+        res.status(500).json(err);
+      });
   }
 };

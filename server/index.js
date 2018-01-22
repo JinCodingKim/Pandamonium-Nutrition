@@ -31,6 +31,7 @@ const userCtrl = require("./controllers/user/userCtrl");
 const productCtrl = require("./controllers/product/productCtrl");
 const cartCtrl = require("./controllers/cart/cartCtrl");
 const payCtrl = require("./controllers/pay/payCtrl");
+const guestSession = require("./middlewares/guestSession");
 
 //Massive postgresql connection
 massive(CONNECTION_STRING)
@@ -49,6 +50,7 @@ app.use(
     saveUninitialized: false
   })
 );
+app.use(guestSession);
 
 //Auth0 Setup
 app.use(passport.initialize());
@@ -133,6 +135,8 @@ app.get("/logout", (req, res, next) => {
 app.put("/profile/update", userCtrl.userInfo);
 // app.get("/products", productCtrl.getProducts);
 app.get("/products", productCtrl.getDistinctProducts);
+app.get("/products/ascend", productCtrl.getProductsAsc);
+app.get("/products/descend", productCtrl.getProductsDesc);
 app.get("/product/:product_type", productCtrl.getProductByType);
 app.post("/cart/add", cartCtrl.addCart);
 app.put("/cart/update", cartCtrl.updateCart);

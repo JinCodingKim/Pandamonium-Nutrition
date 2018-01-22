@@ -77,6 +77,7 @@ class Cart extends Component {
               <p className="cart-item-price">${product.total_price}</p>
               <RaisedButton
                 label="Remove"
+                primary="true"
                 onClick={() => {
                   this.handleDelete(product.product_id);
                   swal({
@@ -86,7 +87,6 @@ class Cart extends Component {
                     confirmButtonColor: "#757575"
                   });
                 }}
-                // backgroundColor={styles.focusStyle}
                 className="remove-button"
               />
             </div>
@@ -101,7 +101,7 @@ class Cart extends Component {
             />
             <RaisedButton
               label="Update"
-              // backgroundColor={styles.buttonStyle}
+              primary="true"
               className=""
               onClick={() => {
                 this.updateCartValues(

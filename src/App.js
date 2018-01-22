@@ -27,10 +27,13 @@ class App extends Component {
           <Route path="/cart" component={Cart} />
           {/* <Route path="/contact" component={Contact} /> */}
           {/* <Route path="/about" component={About} /> */}
+          {/* <Route path="/terms" component={Terms} /> */}
+          {/* <Route path="/policy" component={Policy} /> */}
+          {/* <Route path="/disclaimer" component={Disclaimer}/> */}
           <Route path="/shop" component={Shop} />
           <Route path="/product/:product_type" component={ProductDetail} />
         </Switch>
-        {/* <Footer /> */}
+        <Footer />
       </div>
     );
   }

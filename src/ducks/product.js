@@ -8,6 +8,7 @@ const UPDATE_CART = "UPDATE_CART";
 const UPDATE_CART_ITEM = "UPDATE_CART_ITEM";
 const REMOVE_CART = "REMOVE_CART";
 const REMOVE_ALL_CART = "REMOVE_ALL_CART";
+const GET_SORTED_PRODUCTS = "GET_SORTED_PRODUCTS";
 
 const initialState = {
   product: [],
@@ -23,7 +24,7 @@ export function getProducts() {
     payload: axios
       .get("/products")
       .then(res => {
-        // console.log(res.data);
+        console.log(res.data);
         return res.data;
       })
       .catch(console.log)
@@ -37,6 +38,20 @@ export function getProductByType(type) {
       .get(`/product/${type}`)
       .then(res => {
         // console.log(res.data);
+        return res.data;
+      })
+      .catch(console.log)
+  };
+}
+
+export function getSortedProducts(sorted) {
+  console.log("sorted: " + sorted);
+  return {
+    type: GET_SORTED_PRODUCTS,
+    payload: axios
+      .get(`/products/${sorted}`)
+      .then(res => {
+        console.log(res.data);
         return res.data;
       })
       .catch(console.log)
@@ -148,6 +163,20 @@ export default function product(state = initialState, action) {
         product: action.payload
       });
     case `${GET_PRODUCTS}_REJECTED`:
+      return Object.assign({}, state, {
+        loading: false,
+        error: true
+      });
+    case `${GET_SORTED_PRODUCTS}_PENDING`:
+      return Object.assign({}, state, {
+        loading: true
+      });
+    case `${GET_SORTED_PRODUCTS}_FULFILLED`:
+      return Object.assign({}, state, {
+        loading: false,
+        product: action.payload
+      });
+    case `${GET_SORTED_PRODUCTS}_REJECTED`:
       return Object.assign({}, state, {
         loading: false,
         error: true
