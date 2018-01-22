@@ -19,7 +19,7 @@
 
 .detail-description-container {
   width: 320px;
-  height: 200px;
+  height: 100%;
   margin: 0 20px 0 20px;
 }
 
@@ -60,6 +60,11 @@
   font-weight: normal;
 }
 
+.detail-options-container {
+  height: 175px;
+  margin: 10px 0 0 0;
+}
+
 .detail-name,
 .flavor-select-title {
   padding-left: 3px;
@@ -89,14 +94,15 @@
 }
 
 .flavor-select {
-  width: 87vw;
-  height: 45px;
+  width: 82vw;
+  height: 40px;
   outline: none;
   font-size: 15px;
-  height: 45px;
+  padding: 0 0 0 15px;
   border: 1px solid #757575;
   color: #757575;
   border-radius: 2px;
+  margin: 5px 0 15px 0;
 }
 
 .item-count {

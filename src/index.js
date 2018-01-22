@@ -18,19 +18,19 @@ import registerServiceWorker from "./registerServiceWorker";
 const muiTheme = getMuiTheme({
   palette: {
     //primary1color: changes NavBar Background & Primary Raised Button Background
-    primary1Color: "#E0E0E0",
+    primary1Color: "#000000",
     //accent1color: changes Secondary Raised Button Background
     accent1Color: "#fafafa",
     //textColor: changes Icon Color & Regular Text & Default Raised Button Text & Menu Text
-    textColor: "#000000",
+    textColor: "#FAFAFA",
     //canvasColor: regular page background color
     canvasColor: "#fafafa",
     //borderColor: Text Field underline color
-    borderColor: "#000000",
+    borderColor: "#BDBDBD",
     //secondaryTextColor: changes Sub Text Color
     secondaryTextColor: "#c62828",
     //alternateTextColor: changes Default Raised Button Background, Primary Raised Button Text, Secondary Raised Button Text
-    alternateTextColor: "#000000",
+    alternateTextColor: "#FAFAFA",
     //shadowColor: changes shadow color
     shadowColor: "#fafafa"
   }

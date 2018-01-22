@@ -9,6 +9,8 @@ import {
 } from "../../ducks/product";
 //Material-ui
 import RaisedButton from "material-ui/RaisedButton";
+import ActionDelete from "material-ui/svg-icons/action/delete";
+import ActionUpdate from "material-ui/svg-icons/action/update";
 //Sweetalert2
 import swal from "sweetalert2";
 //Local
@@ -75,9 +77,53 @@ class Cart extends Component {
             </p>
             <div className="cart-item-option">
               <p className="cart-item-price">${product.total_price}</p>
+              <div className="quantity-container">
+                <label className="cart-item-quantity">Qty:</label>
+                <input
+                  className="quantity-select"
+                  onChange={e =>
+                    this.handleQuantity(e.target.value, product.single_price)
+                  }
+                  type="number"
+                  placeholder={product.quantity}
+                />
+              </div>
+              <RaisedButton
+                label="Update"
+                primary={true}
+                labelPosition="after"
+                style={{ height: 30 }}
+                labelStyle={{
+                  fontSize: 12,
+                  fontWeight: "bold",
+                  margin: "10px 0 10px 0"
+                }}
+                icon={<ActionUpdate />}
+                onClick={() => {
+                  this.updateCartValues(
+                    product.product_id,
+                    newQuantity,
+                    newTotal
+                  );
+                  swal({
+                    title: `Item has been updated!`,
+                    type: "success",
+                    confirmButtonText: "Back to Cart",
+                    confirmButtonColor: "#757575"
+                  });
+                }}
+              />
               <RaisedButton
                 label="Remove"
                 primary={true}
+                labelPosition="after"
+                style={{ height: 30 }}
+                labelStyle={{
+                  fontSize: 12,
+                  fontWeight: "bold",
+                  margin: "10px 0 10px 0"
+                }}
+                icon={<ActionDelete />}
                 onClick={() => {
                   this.handleDelete(product.product_id);
                   swal({
@@ -87,35 +133,8 @@ class Cart extends Component {
                     confirmButtonColor: "#757575"
                   });
                 }}
-                className="remove-button"
               />
             </div>
-            <p className="cart-item-quantity">Qty:</p>
-            <input
-              className="flavor-select"
-              onChange={e =>
-                this.handleQuantity(e.target.value, product.single_price)
-              }
-              type="number"
-              placeholder={product.quantity}
-            />
-            <RaisedButton
-              label="Update"
-              primary={true}
-              onClick={() => {
-                this.updateCartValues(
-                  product.product_id,
-                  newQuantity,
-                  newTotal
-                );
-                swal({
-                  title: `Item has been updated!`,
-                  type: "success",
-                  confirmButtonText: "Back to Cart",
-                  confirmButtonColor: "#757575"
-                });
-              }}
-            />
           </div>
         </div>
       );
@@ -126,22 +145,19 @@ class Cart extends Component {
     }, cartTotal);
 
     return (
-      <div>
-        {!cart ? (
-          <div>Cart is empty</div>
-        ) : (
-          <div className="cart-main-container">
-            {cartList || "Cart is empty"}
+      <div className="cart-main-container">
+        {cartList || <div>Cart is empty.</div>}
+        <div className="order-container">
+          <div className="order-total">
+            Order Total: <span>${totalAmnt || "0.00"}</span>
           </div>
-        )}
-        <div>Order Total: ${totalAmnt || "0.00"}</div>
-        <div className="checkout-container" onClick={this.removeCart}>
-          <Checkout
-            className="checkout-button"
-            name={"Pandamonium Sports Nutrition"}
-            // description={"Thanks for Ordering!"}
-            amount={totalAmnt}
-          />
+          <div className="checkout-container" onClick={this.removeCart}>
+            <Checkout
+              name={"Pandamonium Sports Nutrition"}
+              // description={"Thanks for Ordering!"}
+              amount={totalAmnt}
+            />
+          </div>
         </div>
       </div>
     );

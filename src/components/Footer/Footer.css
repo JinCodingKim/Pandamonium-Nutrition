@@ -4,6 +4,8 @@
   display: flex;
   flex-direction: column;
   height: 520px;
+  background-color: black;
+  color: white;
 }
 
 .links-container {
@@ -22,7 +24,7 @@
 .links-header,
 .links-body > p {
   font-weight: bolder;
-  color: black;
+  color: white;
 }
 
 .links-header {
@@ -75,6 +77,8 @@ p:hover {
   height: 35px;
   width: 180px;
   outline: none;
-  border: 0.5px solid black;
+  border: 0.5px solid #bdbdbd;
   padding: 2.5px;
+  color: white;
+  background-color: transparent;
 }

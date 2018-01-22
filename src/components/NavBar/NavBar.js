@@ -17,7 +17,7 @@ import { NavLink } from "react-router-dom";
 import { connect } from "react-redux";
 import { getUser } from "../../ducks/user";
 //Local
-import logo from "./Panda_Logo.png";
+import logo from "./Pandamonium.png";
 import "./NavBar.css";
 
 class NavBar extends Component {
@@ -45,7 +45,7 @@ class NavBar extends Component {
     const { user = { user: [] } } = this.props.user;
     const img = (
       <img
-        style={{ height: 50, width: 50, marginTop: 5, paddingRight: 30 }}
+        style={{ height: 55, width: 55, marginTop: 5, paddingRight: 20 }}
         src={logo}
       />
     );

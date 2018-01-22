@@ -21,9 +21,7 @@ class ProductDetail extends Component {
     this.state = {
       flavor: "",
       quantity: 1,
-      total: !this.props.productDetail[0]
-        ? 0
-        : this.props.productDetail[0].product_price
+      total: 0
     };
 
     this.handleFlavor = this.handleFlavor.bind(this);
@@ -139,59 +137,64 @@ class ProductDetail extends Component {
                   </select>
                 </div>
               )}
-
-              <label className="flavor-select-title">QUANTITY</label>
-              <input
-                className="flavor-select"
-                onChange={e => this.handleQuantity(e.target.value)}
-                type="number"
-                value={quantity}
-              />
-
-              {!flavor || flavor === productDetail[0].product_flavor ? (
-                <RaisedButton
-                  label="Add to Cart"
-                  primary={true}
-                  className="cart-button"
-                  onClick={() => {
-                    this.handleCart(
-                      productDetail[0].product_id,
-                      quantity,
-                      total,
-                      productDetail[0].product_price
-                    );
-
-                    swal({
-                      title: `${productDetail[0].product_name} added to Cart!`,
-                      text: `${productDetail[0].product_flavor}`,
-                      type: "success",
-                      confirmButtonText: "Back to Shopping",
-                      confirmButtonColor: "#757575"
-                    });
-                  }}
+              <div className="detail-options-container">
+                <label className="flavor-select-title">QUANTITY</label>
+                <input
+                  className="flavor-select"
+                  onChange={e => this.handleQuantity(e.target.value)}
+                  type="number"
+                  value={quantity}
                 />
-              ) : (
-                <RaisedButton
-                  label="Add to Cart"
-                  primary={true}
-                  className="cart-button"
-                  onClick={() => {
-                    this.handleCart(
-                      productDetail[1].product_id,
-                      quantity,
-                      total,
-                      productDetail[1].product_price
-                    );
-                    swal({
-                      title: `${productDetail[1].product_name} added to Cart!`,
-                      text: `${productDetail[1].product_flavor}`,
-                      type: "success",
-                      confirmButtonText: "Back to Shopping",
-                      confirmButtonColor: "#757575"
-                    });
-                  }}
-                />
-              )}
+
+                {!flavor || flavor === productDetail[0].product_flavor ? (
+                  <RaisedButton
+                    label="Add to Cart"
+                    primary={true}
+                    className="cart-button"
+                    onClick={() => {
+                      this.handleCart(
+                        productDetail[0].product_id,
+                        quantity,
+                        total,
+                        productDetail[0].product_price
+                      );
+
+                      swal({
+                        title: `${
+                          productDetail[0].product_name
+                        } added to Cart!`,
+                        text: `${productDetail[0].product_flavor}`,
+                        type: "success",
+                        confirmButtonText: "Back to Shopping",
+                        confirmButtonColor: "#757575"
+                      });
+                    }}
+                  />
+                ) : (
+                  <RaisedButton
+                    label="Add to Cart"
+                    primary={true}
+                    className="cart-button"
+                    onClick={() => {
+                      this.handleCart(
+                        productDetail[1].product_id,
+                        quantity,
+                        total,
+                        productDetail[1].product_price
+                      );
+                      swal({
+                        title: `${
+                          productDetail[1].product_name
+                        } added to Cart!`,
+                        text: `${productDetail[1].product_flavor}`,
+                        type: "success",
+                        confirmButtonText: "Back to Shopping",
+                        confirmButtonColor: "#757575"
+                      });
+                    }}
+                  />
+                )}
+              </div>
             </div>
           </div>
         )}
