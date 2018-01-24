@@ -2,6 +2,7 @@ import axios from "axios";
 
 const GET_PRODUCTS = "GET_PRODUCTS";
 const GET_PRODUCT_BY_TYPE = "GET_PRODUCT_BY_TYPE";
+const ADD_REVIEW = "ADD_REVIEW";
 const ADD_TO_CART = "ADD_TO_CART";
 const GET_CART = "GET_CART";
 const UPDATE_CART = "UPDATE_CART";
@@ -39,6 +40,25 @@ export function getProductByType(type) {
       .get(`/product/${type}`)
       .then(res => {
         // console.log(res.data);
+        return res.data;
+      })
+      .catch(console.log)
+  };
+}
+
+export function addReview(product, name, email, rating, title, description) {
+  return {
+    type: ADD_REVIEW,
+    payload: axios
+      .post("/product/review", {
+        product_id: product,
+        review_name: name,
+        review_email: email,
+        rating: rating,
+        review_title: title,
+        description: description
+      })
+      .then(res => {
         return res.data;
       })
       .catch(console.log)

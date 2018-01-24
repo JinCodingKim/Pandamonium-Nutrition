@@ -3,7 +3,8 @@ module.exports = (req, res, next) => {
     req.user = {
       name: "guest",
       displayName: "guest",
-      user_id: 0
+      user_id: 0,
+      auth_id: 0
     };
   }
   next();

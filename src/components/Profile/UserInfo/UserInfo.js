@@ -7,6 +7,7 @@ import CommunicationEmail from "material-ui/svg-icons/communication/email";
 import CommunicationLocationOn from "material-ui/svg-icons/communication/location-on";
 import ContentCreate from "material-ui/svg-icons/content/create";
 import IconButton from "material-ui/IconButton";
+import { orangeA700 } from "material-ui/styles/colors";
 //Redux
 import { connect } from "react-redux";
 import { getUser } from "../../../ducks/user";
@@ -26,7 +27,7 @@ class UserInfo extends Component {
     const { user = { user: [] } } = this.props;
     return (
       <div className="user-wrapper">
-        <Paper className="circle-paper" zDepth={1} circle={true}>
+        <Paper className="circle-paper" zDepth={2} circle={true}>
           <img className="user-image" src={user.user_img} />
         </Paper>
         <div className="personal-container-name" placeholder="Name">
@@ -35,9 +36,9 @@ class UserInfo extends Component {
         <div className="personal-container-age" placeholder="Age">
           {user.user_age}
         </div>
-        <Paper className="user-personal-wrapper" zDepth={1}>
+        <Paper className="user-personal-wrapper" zDepth={2}>
           <div className="user-location-top-wrapper">
-            <CommunicationEmail className="location-icon" />
+            <CommunicationEmail className="location-icon" color={orangeA700} />
             <div className="email-address-container" placeholder="Email">
               <div className="email-address-title">EMAIL</div>
               <div className="email-address-info">{user.user_email}</div>
@@ -45,7 +46,10 @@ class UserInfo extends Component {
           </div>
 
           <div className="user-location-bottom-wrapper">
-            <CommunicationLocationOn className="location-icon" />
+            <CommunicationLocationOn
+              className="location-icon"
+              color={orangeA700}
+            />
             <div className="email-address-container" placeholder="Address">
               <div className="email-address-title">ADDRESS</div>
               <div className="email-address-info">
@@ -58,7 +62,8 @@ class UserInfo extends Component {
             <IconButton
               iconStyle={{
                 width: 17,
-                height: 17
+                height: 17,
+                color: "#FF6D00"
               }}
               tooltip="Edit Profile"
               tooltipPosition="top-center"

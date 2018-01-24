@@ -31,6 +31,7 @@ const userCtrl = require("./controllers/user/userCtrl");
 const productCtrl = require("./controllers/product/productCtrl");
 const cartCtrl = require("./controllers/cart/cartCtrl");
 const payCtrl = require("./controllers/pay/payCtrl");
+const reviewCtrl = require("./controllers/review/reviewCtrl");
 const guestSession = require("./middlewares/guestSession");
 
 //Massive postgresql connection
@@ -132,8 +133,8 @@ app.get("/logout", (req, res, next) => {
   res.redirect("http://localhost:3002/");
 });
 
+app.post("/product/review", reviewCtrl.addReview);
 app.put("/profile/update", userCtrl.userInfo);
-// app.get("/products", productCtrl.getProducts);
 app.get("/products", productCtrl.getDistinctProducts);
 app.get("/products/ascend", productCtrl.getProductsAsc);
 app.get("/products/descend", productCtrl.getProductsDesc);

@@ -58,8 +58,10 @@ class Shop extends Component {
     });
   }
 
-  confirmSearch() {
-    this.props.searchProducts(this.state.search);
+  confirmSearch(event) {
+    if (event.keyCode == 13) {
+      this.props.searchProducts(this.state.search);
+    }
   }
 
   render() {
@@ -90,27 +92,22 @@ class Shop extends Component {
         ) : (
           <div className="products-list">
             <div className="search-container">
+              <label className="search-title">Search</label>
               <input
                 className="search-input"
                 type="text"
                 onChange={e => this.handleSearch(e.target.value)}
                 value={search}
-              />
-              <RaisedButton
-                label="Search"
-                labelPosition="after"
-                style={{ height: 30 }}
-                labelStyle={{ fontSize: 12, fontWeight: "bold" }}
-                icon={<ActionSearch />}
-                primary={true}
-                onClick={this.confirmSearch}
+                onKeyDown={this.confirmSearch}
               />
             </div>
 
             <div className="sort-container">
+              <label className="sort-title">Sort</label>
               <select
                 className="sort-select"
                 onChange={e => this.handleSort(e.target.value)}
+                onClick={this.confirmSort}
               >
                 <option value="az"> Alphabetically: A-Z </option>
                 <option value="za"> Alphabetically: Z-A </option>
@@ -118,25 +115,15 @@ class Shop extends Component {
                 <option value="descend"> Price: High-to-Low </option>
               </select>
               <RaisedButton
-                label="Sort"
-                primary={true}
+                label="Clear"
+                secondary={true}
                 labelPosition="after"
-                style={{ height: 30 }}
+                style={{ height: 40, width: 105 }}
                 labelStyle={{ fontSize: 12, fontWeight: "bold" }}
-                icon={<ContentSort />}
-                onClick={this.confirmSort}
+                icon={<ContentClear />}
+                onClick={this.clearSort}
               />
             </div>
-            <RaisedButton
-              label="Clear"
-              primary={true}
-              labelPosition="after"
-              style={{ height: 30 }}
-              labelStyle={{ fontSize: 12, fontWeight: "bold" }}
-              icon={<ContentClear />}
-              onClick={this.clearSort}
-            />
-
             {productsList}
           </div>
         )}

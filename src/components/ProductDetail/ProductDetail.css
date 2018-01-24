@@ -93,9 +93,14 @@
   margin: 5px 0 0 0;
 }
 
-.flavor-select {
-  width: 82vw;
-  height: 40px;
+.flavor-container,
+.detail-options-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.flavor-select,
+.quantity-select {
   outline: none;
   font-size: 15px;
   padding: 0 0 0 15px;
@@ -105,7 +110,71 @@
   margin: 5px 0 15px 0;
 }
 
+.flavor-select {
+  width: 87vw;
+  height: 40px;
+}
+
+.quantity-select {
+  width: 81.5vw;
+  height: 37px;
+  text-align: left;
+  margin: 0 0 35px 0;
+}
 .item-count {
   font-size: 18px;
   height: 30px;
+}
+
+.detail-header {
+  margin: 15px 0 15px 0;
+  letter-spacing: 0.5px;
+  font-size: 15px;
+  width: 85vw;
+}
+
+.detail-description {
+  font-size: 15px;
+  line-height: 20px;
+  width: 85vw;
+  letter-spacing: 0.5px;
+  margin: 0 0 40px 0;
+}
+
+.card-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.review-title {
+  font-size: 12px;
+  color: black;
+  font-weight: bolder;
+  margin: 15px 0 2px 0;
+}
+
+.review-name,
+.review-email,
+.review-title-input {
+  height: 30px;
+  width: 85%;
+  border: 1px solid #757575;
+  padding: 0 0 0 5px;
+  margin: 5px 0 5px 0;
+  outline: none;
+}
+
+.rate-stars {
+  display: flex;
+  justify-content: center;
+  width: 88%;
+}
+
+.review-description {
+  height: 100px;
+  width: 85%;
+  padding: 5px 0 0 5px;
+  border: 1px solid #757575;
+  outline: none;
+  margin: 0 0 15px 0;
 }
