@@ -1,6 +1,10 @@
 import React, { Component } from "react";
 //React-Router
 import { NavLink } from "react-router-dom";
+//Axios
+import axios from "axios";
+//Sweetalert2
+import swal from "sweetalert2";
 //Local
 import "./Footer.css";
 import facebook from "./facebook.png";
@@ -16,6 +20,7 @@ class Footer extends Component {
     };
 
     this.handleEmail = this.handleEmail.bind(this);
+    this.confirmSignup = this.confirmSignup.bind(this);
   }
 
   handleEmail(val) {
@@ -24,7 +29,29 @@ class Footer extends Component {
     });
   }
 
+  confirmSignup(event) {
+    const { emailVal } = this.state;
+    if (event.keyCode == 13) {
+      axios
+        .post("/subscription", { subscription_email: emailVal })
+        .then(res => {
+          swal({
+            title: `Thanks for signing up!`,
+            type: "success",
+            confirmButtonText: "Back to Shopping",
+            confirmButtonColor: "#ff6d00"
+          });
+          res.data;
+          this.setState({
+            emailVal: ""
+          });
+        })
+        .catch(console.log);
+    }
+  }
+
   render() {
+    const { emailVal } = this.state;
     return (
       <div className="footer-main-container">
         <div className="links-container">
@@ -71,8 +98,9 @@ class Footer extends Component {
                 onChange={e => this.handleEmail(e.target.value)}
                 type="email"
                 placeholder="Enter email"
+                value={emailVal}
+                onKeyDown={this.confirmSignup}
               />
-              {/* <button /> */}
             </div>
           </div>
         </div>

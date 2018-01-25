@@ -93,7 +93,15 @@ class ProductDetail extends Component {
 
   submitReview(product, name, email, rating, title, description) {
     const { addReview } = this.props;
-    addReview(product, name, email, rating, title, description);
+    addReview(product, name, email, rating, title, description).then(res => {
+      this.setState({
+        name: "",
+        email: "",
+        rating: 0,
+        title: "",
+        description: ""
+      });
+    });
   }
 
   render() {

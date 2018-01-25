@@ -54,6 +54,9 @@ class Shop extends Component {
   clearSort() {
     const { getProducts } = this.props;
     getProducts();
+    this.setState({
+      search: ""
+    });
   }
 
   handleSearch(val) {

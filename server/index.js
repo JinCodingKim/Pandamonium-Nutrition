@@ -32,6 +32,7 @@ const productCtrl = require("./controllers/product/productCtrl");
 const cartCtrl = require("./controllers/cart/cartCtrl");
 const payCtrl = require("./controllers/pay/payCtrl");
 const reviewCtrl = require("./controllers/review/reviewCtrl");
+const subscriptionCtrl = require("./controllers/subscription/subscriptionCtrl");
 const guestSession = require("./middlewares/guestSession");
 
 //Massive postgresql connection
@@ -142,6 +143,8 @@ app.put("/profile/billing", userCtrl.updateBillingAddress);
 //ReviewCtrl
 app.get("/review/:product_id", reviewCtrl.getReviews);
 app.post("/product/review", reviewCtrl.addReview);
+//SubscriptionCtrl
+app.post("/subscription", subscriptionCtrl.postSubscriptionEmail);
 //ProductCtrl
 app.get("/products", productCtrl.getDistinctProducts);
 app.get("/products/ascend", productCtrl.getProductsAsc);
