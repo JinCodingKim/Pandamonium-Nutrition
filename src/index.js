@@ -13,7 +13,6 @@ import store from "./store";
 //Local
 import "./index.css";
 import App from "./App";
-import registerServiceWorker from "./registerServiceWorker";
 
 const muiTheme = getMuiTheme({
   palette: {
@@ -46,4 +45,3 @@ ReactDOM.render(
   </Provider>,
   document.getElementById("root")
 );
-registerServiceWorker();

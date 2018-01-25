@@ -43,6 +43,7 @@ massive(CONNECTION_STRING)
   .catch(console.log);
 
 //Middleware
+app.use(express.static(`${__dirname}/../build`));
 app.use(json());
 app.use(cors());
 app.use(
@@ -169,6 +170,11 @@ app.post("/checkout", (req, res, next) => {
       res.status(200).send({ success: stripeRes });
     }
   });
+});
+
+const path = require("path");
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "../build/index.html"));
 });
 
 app.listen(PORT || 3001, () => {
