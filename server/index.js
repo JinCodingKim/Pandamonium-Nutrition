@@ -137,6 +137,8 @@ app.get("/logout", (req, res, next) => {
 app.put("/profile/update", userCtrl.userInfo);
 app.put("/guest/email", userCtrl.updateGuestEmail);
 app.get("/profile/", userCtrl.getUserByUserId);
+app.put("/profile/shipping", userCtrl.updateShippingAddress);
+app.put("/profile/billing", userCtrl.updateBillingAddress);
 //ReviewCtrl
 app.get("/review/:product_id", reviewCtrl.getReviews);
 app.post("/product/review", reviewCtrl.addReview);

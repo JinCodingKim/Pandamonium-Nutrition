@@ -4,6 +4,8 @@ const GET_USER = "GET_USER";
 const GET_USER_BY_USER_ID = "GET_USER_BY_USER_ID";
 const UPDATE_USER = "UPDATE_USER";
 const UPDATE_GUEST_EMAIL = "UPDATE_GUEST_EMAIL";
+const UPDATE_SHIPPING_ADDRESS = "UPDATE_SHIPPING_ADDRESS";
+const UPDATE_BILLING_ADDRESS = "UPDATE_BILLING_ADDRESS";
 
 const initialState = {
   user: {},
@@ -56,6 +58,62 @@ export function updateGuestEmail(email) {
       .put("/guest/email", { user_email: email })
       .then(res => {
         return res.data;
+      })
+      .catch(console.log)
+  };
+}
+
+export function updateShippingAddress(
+  shipFirst,
+  shipLast,
+  shipAdd,
+  shipCity,
+  shipState,
+  shipCountry,
+  shipZip
+) {
+  return {
+    type: UPDATE_SHIPPING_ADDRESS,
+    payload: axios
+      .put("/profile/shipping", {
+        shipping_first_name: shipFirst,
+        shipping_last_name: shipLast,
+        shipping_address: shipAdd,
+        shipping_city: shipCity,
+        shipping_state: shipState,
+        shipping_country: shipCountry,
+        shipping_zip: shipZip
+      })
+      .then(res => {
+        res.data;
+      })
+      .catch(console.log)
+  };
+}
+
+export function updateBillingAddress(
+  billFirst,
+  billLast,
+  billAdd,
+  billCity,
+  billState,
+  billCountry,
+  billZip
+) {
+  return {
+    type: UPDATE_BILLING_ADDRESS,
+    payload: axios
+      .put("/profile/billing", {
+        billing_first_name: billFirst,
+        billing_last_name: billLast,
+        billing_address: billAdd,
+        billing_city: billCity,
+        billing_state: billState,
+        billing_country: billCountry,
+        billing_zip: billZip
+      })
+      .then(res => {
+        res.data;
       })
       .catch(console.log)
   };

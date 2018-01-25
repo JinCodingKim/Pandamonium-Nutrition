@@ -104,7 +104,7 @@ class NavBar extends Component {
               <p className="menu-item"> Contact </p>
             </NavLink>
           </MenuItem>
-          {!user.user_email ? (
+          {!user || user.user_id === 1 ? (
             <MenuItem leftIcon={<ActionAccountBox />}>
               <a
                 className="menu-item-wrapper"

@@ -1,12 +1,19 @@
 import React, { Component } from "react";
 //Redux
 import { connect } from "react-redux";
-import { getUser, updateGuestEmail, getUserByUserId } from "../../ducks/user";
+import {
+  getUser,
+  updateGuestEmail,
+  getUserByUserId,
+  updateShippingAddress,
+  updateBillingAddress
+} from "../../ducks/user";
 //Material-ui
 import { Step, Stepper, StepLabel } from "material-ui/Stepper";
 import TextField from "material-ui/TextField";
 import RaisedButton from "material-ui/RaisedButton";
-import FlatButton from "material-ui/FlatButton";
+import Divider from "material-ui/Divider";
+import Paper from "material-ui/Paper";
 //Sweetalert2
 import swal from "sweetalert2";
 //Local
@@ -19,14 +26,30 @@ class CheckoutInfo extends Component {
 
     this.state = {
       email: "",
+      shippingFirstName: "",
+      shippingLastName: "",
+      shippingAddress: "",
+      shippingCity: "",
+      shippingState: "",
+      shippingCountry: "",
+      shippingZip: "",
+      billingFirstName: "",
+      billingLastName: "",
+      billingAddress: "",
+      billingCity: "",
+      billingState: "",
+      billingCountry: "",
+      billingZip: "",
       finished: false,
       stepIndex: 0
     };
     this.handleEmail = this.handleEmail.bind(this);
     this.submitEmail = this.submitEmail.bind(this);
-    this.handleNext = this.handleNext.bind(this);
     this.handlePrev = this.handlePrev.bind(this);
     this.getStepContent = this.getStepContent.bind(this);
+    this.handleAddressChange = this.handleAddressChange.bind(this);
+    this.submitShippingMethod = this.submitShippingMethod.bind(this);
+    this.submitBillingMethod = this.submitBillingMethod.bind(this);
   }
 
   componentDidMount() {
@@ -48,11 +71,68 @@ class CheckoutInfo extends Component {
     });
   }
 
-  handleNext() {
-    const { stepIndex } = this.state;
+  submitShippingMethod() {
+    const {
+      stepIndex,
+      shippingFirstName,
+      shippingLastName,
+      shippingAddress,
+      shippingCity,
+      shippingState,
+      shippingCountry,
+      shippingZip,
+      email
+    } = this.state;
+    const {
+      updateShippingAddress,
+      updateGuestEmail,
+      getUserByUserId
+    } = this.props;
+    this.setState({
+      stepIndex: stepIndex + 1
+    });
+
+    updateShippingAddress(
+      shippingFirstName,
+      shippingLastName,
+      shippingAddress,
+      shippingCity,
+      shippingState,
+      shippingCountry,
+      shippingZip
+    ).then(res => {
+      getUserByUserId();
+    });
+  }
+
+  submitBillingMethod() {
+    const {
+      stepIndex,
+      billingFirstName,
+      billingLastName,
+      billingAddress,
+      billingCity,
+      billingState,
+      billingCountry,
+      billingZip,
+      email
+    } = this.state;
+    const { updateBillingAddress } = this.props;
     this.setState({
       stepIndex: stepIndex + 1,
-      finished: stepIndex >= 2
+      finished: stepIndex >= 1
+    });
+
+    updateBillingAddress(
+      billingFirstName,
+      billingLastName,
+      billingAddress,
+      billingCity,
+      billingState,
+      billingCountry,
+      billingZip
+    ).then(res => {
+      getUserByUserId();
     });
   }
 
@@ -65,24 +145,256 @@ class CheckoutInfo extends Component {
     }
   }
 
+  handleAddressChange(prop, val) {
+    this.setState({ [prop]: val });
+  }
+
   getStepContent(stepIndex) {
+    const {
+      shippingFirstName,
+      shippingLastName,
+      shippingAddress,
+      shippingCity,
+      shippingState,
+      shippingCountry,
+      shippingZip,
+      billingFirstName,
+      billingLastName,
+      billingAddress,
+      billingCity,
+      billingState,
+      billingCountry,
+      billingZip
+    } = this.state;
+
+    let caseZero = (
+      <Paper zDepth={2}>
+        <TextField
+          hintText="First Name"
+          style={{
+            height: 30,
+            width: "55%",
+            marginRight: "5%",
+            fontSize: 12
+          }}
+          inputStyle={{ color: "#212121" }}
+          underlineShow={false}
+          value={shippingFirstName}
+          onChange={e =>
+            this.handleAddressChange("shippingFirstName", e.target.value)
+          }
+        />
+        <TextField
+          hintText="Last Name"
+          style={{
+            height: 30,
+            width: "35%",
+            marginLeft: "5%",
+            fontSize: 12
+          }}
+          inputStyle={{ color: "#212121" }}
+          underlineShow={false}
+          value={shippingLastName}
+          onChange={e =>
+            this.handleAddressChange("shippingLastName", e.target.value)
+          }
+        />
+        <Divider />
+        <TextField
+          hintText="Address & (Apt,suite,etc.)"
+          style={{ height: 30, width: "100%", fontSize: 12 }}
+          inputStyle={{ color: "#212121" }}
+          underlineShow={false}
+          value={shippingAddress}
+          onChange={e =>
+            this.handleAddressChange("shippingAddress", e.target.value)
+          }
+        />
+        <Divider />
+        <TextField
+          hintText="City"
+          style={{
+            height: 30,
+            width: "55%",
+            marginRight: "5%",
+            fontSize: 12
+          }}
+          inputStyle={{ color: "#212121" }}
+          underlineShow={false}
+          value={shippingCity}
+          onChange={e =>
+            this.handleAddressChange("shippingCity", e.target.value)
+          }
+        />
+        <TextField
+          hintText="State"
+          style={{
+            height: 30,
+            width: "35%",
+            marginLeft: "5%",
+            fontSize: 12
+          }}
+          inputStyle={{ color: "#212121" }}
+          underlineShow={false}
+          value={shippingState}
+          onChange={e =>
+            this.handleAddressChange("shippingState", e.target.value)
+          }
+        />
+        <Divider />
+        <TextField
+          hintText="Country"
+          style={{
+            height: 30,
+            width: "70%",
+            marginRight: "5%",
+            fontSize: 12
+          }}
+          inputStyle={{ color: "#212121" }}
+          underlineShow={false}
+          value={shippingCountry}
+          onChange={e =>
+            this.handleAddressChange("shippingCountry", e.target.value)
+          }
+        />
+        <TextField
+          hintText="Zip code"
+          style={{
+            height: 30,
+            width: "20%",
+            marginLeft: "5%",
+            fontSize: 12
+          }}
+          inputStyle={{ color: "#212121" }}
+          underlineShow={false}
+          value={shippingZip}
+          onChange={e =>
+            this.handleAddressChange("shippingZip", e.target.value)
+          }
+        />
+        <Divider />
+      </Paper>
+    );
+
+    let caseOne = (
+      <Paper zDepth={2}>
+        <TextField
+          hintText="First Name"
+          style={{
+            height: 30,
+            width: "55%",
+            marginRight: "5%",
+            fontSize: 12
+          }}
+          inputStyle={{ color: "#212121" }}
+          underlineShow={false}
+          value={billingFirstName}
+          onChange={e =>
+            this.handleAddressChange("billingFirstName", e.target.value)
+          }
+        />
+        <TextField
+          hintText="Last Name"
+          style={{
+            height: 30,
+            width: "35%",
+            marginLeft: "5%",
+            fontSize: 12
+          }}
+          inputStyle={{ color: "#212121" }}
+          underlineShow={false}
+          value={billingLastName}
+          onChange={e =>
+            this.handleAddressChange("billingLastName", e.target.value)
+          }
+        />
+        <Divider />
+        <TextField
+          hintText="Address & (Apt,suite,etc.)"
+          style={{ height: 30, width: "100%", fontSize: 12 }}
+          inputStyle={{ color: "#212121" }}
+          underlineShow={false}
+          value={billingAddress}
+          onChange={e =>
+            this.handleAddressChange("billingAddress", e.target.value)
+          }
+        />
+        <Divider />
+        <TextField
+          hintText="City"
+          style={{
+            height: 30,
+            width: "55%",
+            marginRight: "5%",
+            fontSize: 12
+          }}
+          inputStyle={{ color: "#212121" }}
+          underlineShow={false}
+          value={billingCity}
+          onChange={e =>
+            this.handleAddressChange("billingCity", e.target.value)
+          }
+        />
+        <TextField
+          hintText="State"
+          style={{
+            height: 30,
+            width: "35%",
+            marginLeft: "5%",
+            fontSize: 12
+          }}
+          inputStyle={{ color: "#212121" }}
+          underlineShow={false}
+          value={billingState}
+          onChange={e =>
+            this.handleAddressChange("billingState", e.target.value)
+          }
+        />
+        <Divider />
+        <TextField
+          hintText="Country"
+          style={{
+            height: 30,
+            width: "70%",
+            marginRight: "5%",
+            fontSize: 12
+          }}
+          inputStyle={{ color: "#212121" }}
+          underlineShow={false}
+          value={billingCountry}
+          onChange={e =>
+            this.handleAddressChange("billingCountry", e.target.value)
+          }
+        />
+        <TextField
+          hintText="Zip code"
+          style={{
+            height: 30,
+            width: "20%",
+            marginLeft: "5%",
+            fontSize: 12
+          }}
+          inputStyle={{ color: "#212121" }}
+          underlineShow={false}
+          value={billingZip}
+          onChange={e => this.handleAddressChange("billingZip", e.target.value)}
+        />
+        <Divider />
+      </Paper>
+    );
+
     switch (stepIndex) {
       case 0:
-        return "";
+        return <div className="input-address-container">{caseZero}</div>;
       case 1:
-        return "";
-      case 2:
-        return "";
-      case 3:
-        return "";
+        return <div className="input-address-container">{caseOne}</div>;
     }
   }
 
   render() {
-    console.log(this.props.user);
+    // console.log(this.props.user);
     const { finished, stepIndex, email } = this.state;
     const { user = {}, totalAmnt } = this.props;
-    const contentStyle = { margin: "0 16px" };
 
     return (
       <div className="checkout-main-container">
@@ -127,42 +439,46 @@ class CheckoutInfo extends Component {
             </div>
           </section>
         ) : (
-          <div style={{ width: "100%", maxWidth: 700, margin: "auto" }}>
+          <div className="stepper">
             <Stepper activeStep={stepIndex}>
               <Step>
-                <StepLabel>Shipping Address</StepLabel>
+                <StepLabel>Shipping Method</StepLabel>
               </Step>
               <Step>
-                <StepLabel>Billing Address</StepLabel>
-              </Step>
-              <Step>
-                <StepLabel>Payment</StepLabel>
+                <StepLabel>Billing Method</StepLabel>
               </Step>
             </Stepper>
-            <div style={contentStyle}>
+            <div className="finished-wrapper">
               {finished ? (
                 <div>
-                  <Checkout
-                    name={"Pandamonium"}
-                    // description={"Thanks for Ordering!"}
-                    amount={totalAmnt}
-                  />
+                  <Checkout name={"Pandamonium"} amount={totalAmnt} />
                 </div>
               ) : (
                 <div>
-                  <p>{this.getStepContent(stepIndex)}</p>
-                  <div style={{ marginTop: 12 }}>
-                    <FlatButton
+                  <div>{this.getStepContent(stepIndex)}</div>
+                  <div className="stepper-buttons-wrapper">
+                    <RaisedButton
                       label="Back"
+                      primary={true}
                       disabled={stepIndex === 0}
                       onClick={this.handlePrev}
-                      style={{ marginRight: 12 }}
+                      style={{ height: 30, width: 100, marginRight: 15 }}
                     />
-                    <RaisedButton
-                      label={stepIndex === 2 ? "Finish" : "Next"}
-                      primary={true}
-                      onClick={this.handleNext}
-                    />
+                    {stepIndex === 0 ? (
+                      <RaisedButton
+                        label="Next"
+                        primary={true}
+                        style={{ height: 30, width: 100, marginLeft: 15 }}
+                        onClick={this.submitShippingMethod}
+                      />
+                    ) : (
+                      <RaisedButton
+                        label="Payment"
+                        primary={true}
+                        style={{ height: 30, width: 100, marginLeft: 15 }}
+                        onClick={this.submitBillingMethod}
+                      />
+                    )}
                   </div>
                 </div>
               )}
@@ -184,5 +500,7 @@ const mapStateToProps = state => {
 export default connect(mapStateToProps, {
   getUser,
   updateGuestEmail,
-  getUserByUserId
+  getUserByUserId,
+  updateShippingAddress,
+  updateBillingAddress
 })(CheckoutInfo);

@@ -38,21 +38,18 @@ class ProfileManager extends Component {
       <div className="body-main-wrapper">
         <Paper className="body-content-wrapper" zDepth={1}>
           <TextField
-            className="update-input"
             type="text"
             floatingLabelText="Full Name"
             onChange={e => this.handleChange("name", e.target.value)}
           />
 
           <TextField
-            className="update-input"
             type="text"
             floatingLabelText="Age"
             onChange={e => this.handleChange("age", e.target.value)}
           />
 
           <TextField
-            className="update-input"
             type="img"
             floatingLabelText="Image URL"
             hintText="Input .png URL Path"
