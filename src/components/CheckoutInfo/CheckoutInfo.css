@@ -1,0 +1,42 @@
+.checkout-main-container {
+  padding: 0;
+  margin: 0;
+  background: rgb(235, 235, 235);
+}
+
+.checkout-options-container {
+  display: flex;
+  flex-direction: column;
+  background: rgb(235, 235, 235);
+  width: 100vw;
+}
+
+.login-checkout-wrapper,
+.guest-checkout-wrapper {
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+  margin-top: 20px;
+  padding-bottom: 20px;
+  width: 80%;
+  align-items: center;
+  text-align: center;
+}
+
+.login-checkout-wrapper {
+  border-bottom: 1px solid black;
+}
+
+.login-checkout-title,
+.guest-checkout-title {
+  font-size: 15px;
+  font-weight: bolder;
+}
+
+.login-checkout-title {
+  margin: 10px;
+}
+
+.guest-checkout-title {
+  margin: 10px 10px 0 10px;
+}

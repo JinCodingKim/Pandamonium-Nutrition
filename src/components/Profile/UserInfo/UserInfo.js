@@ -12,7 +12,6 @@ import { orangeA700 } from "material-ui/styles/colors";
 import { connect } from "react-redux";
 import { getUser } from "../../../ducks/user";
 //Local
-import ProfileManager from "./ProfileManager/ProfileManager";
 import "./UserInfo.css";
 
 class UserInfo extends Component {
@@ -20,8 +19,8 @@ class UserInfo extends Component {
     super(props);
   }
   componentDidMount() {
-    this.props.getUser();
-    // console.log(this.props.user);
+    const { getUser } = this.props;
+    getUser();
   }
   render() {
     const { user = { user: [] } } = this.props;

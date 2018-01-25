@@ -5,7 +5,7 @@ import Paper from "material-ui/Paper";
 import RaisedButton from "material-ui/RaisedButton";
 //Redux
 import { connect } from "react-redux";
-import { updateUser } from "../../../../ducks/user";
+import { updateUser } from "../../../ducks/user";
 //Local
 import "./ProfileManager.css";
 

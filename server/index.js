@@ -120,36 +120,44 @@ app.get(
   })
 );
 
-//Session
+//Login
 app.get("/me", (req, res, next) => {
   console.log(req.user);
   if (req.user) res.json(req.user);
   else res.redirect("/login");
 });
-
+//Logout
 app.get("/logout", (req, res, next) => {
   req.logout();
   req.session.destroy();
   res.redirect("http://localhost:3002/");
 });
 
-app.post("/product/review", reviewCtrl.addReview);
+//UserCtrl
 app.put("/profile/update", userCtrl.userInfo);
+app.put("/guest/email", userCtrl.updateGuestEmail);
+app.get("/profile/", userCtrl.getUserByUserId);
+//ReviewCtrl
+app.get("/review/:product_id", reviewCtrl.getReviews);
+app.post("/product/review", reviewCtrl.addReview);
+//ProductCtrl
 app.get("/products", productCtrl.getDistinctProducts);
 app.get("/products/ascend", productCtrl.getProductsAsc);
 app.get("/products/descend", productCtrl.getProductsDesc);
 app.get("/products/az", productCtrl.getProductsAToZ);
 app.get("/products/za", productCtrl.getProductsZToA);
 app.get("/product/:product_type", productCtrl.getProductByType);
+//CartCtrl
 app.post("/cart/add", cartCtrl.addCart);
 app.put("/cart/update", cartCtrl.updateCart);
 app.put("/cart/quantity", cartCtrl.updateCartItem);
 app.delete("/cart/:product_id", cartCtrl.deleteCart);
 app.get("/cart/:user_id", cartCtrl.getCart);
 app.delete("/checkout/:user_id", cartCtrl.removeAllCart);
+//Stripe
 app.post("/checkout", (req, res, next) => {
   stripe.charges.create(req.body, (stripeErr, stripeRes) => {
-    console.log(req.body);
+    // console.log(req.body);
     if (stripeErr) {
       res.status(500).send({ error: stripeErr });
     } else {

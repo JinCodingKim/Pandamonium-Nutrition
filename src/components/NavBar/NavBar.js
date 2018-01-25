@@ -31,21 +31,33 @@ class NavBar extends Component {
   }
 
   componentDidMount() {
-    this.props.getUser();
-    // console.log(this.props.user);
+    const { getUser } = this.props;
+    getUser();
   }
 
   toggleDrawer() {
+    const { opened } = this.state;
     this.setState({
-      opened: !this.state.opened
+      opened: !opened
     });
   }
 
   render() {
-    const { user = { user: [] } } = this.props.user;
+    const {
+      user = {
+        user: []
+      }
+    } = this.props.user;
+    const { opened } = this.state;
+
     const img = (
       <img
-        style={{ height: 45, width: 55, marginTop: 7, paddingRight: 20 }}
+        style={{
+          height: 45,
+          width: 55,
+          marginTop: 7,
+          paddingRight: 20
+        }}
         src={logo}
       />
     );
@@ -53,9 +65,13 @@ class NavBar extends Component {
     return (
       <div>
         <AppBar
-          style={{ height: 58 }}
+          style={{
+            height: 58
+          }}
           title={img}
-          titleStyle={{ textAlign: "center" }}
+          titleStyle={{
+            textAlign: "center"
+          }}
           iconElementRight={
             <NavLink to="/cart">
               <ActionShoppingCart className="nav-cart" />
@@ -64,28 +80,28 @@ class NavBar extends Component {
           onLeftIconButtonClick={() => this.toggleDrawer()}
         />
         <Drawer
-          open={this.state.opened}
+          open={opened}
           docked={false}
           onRequestChange={() => this.toggleDrawer()}
         >
           <MenuItem leftIcon={<ActionHome />}>
             <NavLink className="menu-item-wrapper" to="/">
-              <p className="menu-item">Home</p>
+              <p className="menu-item"> Home </p>
             </NavLink>
           </MenuItem>
           <MenuItem leftIcon={<ActionShop />}>
             <NavLink className="menu-item-wrapper" to="/shop">
-              <p className="menu-item">Shop</p>
+              <p className="menu-item"> Shop </p>
             </NavLink>
           </MenuItem>
           <MenuItem leftIcon={<CommunicationBusiness />}>
             <NavLink className="menu-item-wrapper" to="/about">
-              <p className="menu-item">About</p>
+              <p className="menu-item"> About </p>
             </NavLink>
           </MenuItem>
           <MenuItem leftIcon={<CommunicationPhone />}>
             <NavLink className="menu-item-wrapper" to="/contact">
-              <p className="menu-item">Contact</p>
+              <p className="menu-item"> Contact </p>
             </NavLink>
           </MenuItem>
           {!user.user_email ? (
@@ -94,14 +110,14 @@ class NavBar extends Component {
                 className="menu-item-wrapper"
                 href={process.env.REACT_APP_LOGIN}
               >
-                <p className="menu-item">Sign-In</p>
+                <p className="menu-item"> Sign-In </p>
               </a>
             </MenuItem>
           ) : (
             <div>
               <MenuItem leftIcon={<ActionFace />}>
                 <NavLink className="menu-item-wrapper" to="/profile">
-                  <p className="menu-item">View Profile</p>
+                  <p className="menu-item"> View Profile </p>
                 </NavLink>
               </MenuItem>
               <MenuItem leftIcon={<ActionExitToApp />}>
@@ -109,7 +125,7 @@ class NavBar extends Component {
                   className="menu-item-wrapper"
                   href={process.env.REACT_APP_LOGOUT}
                 >
-                  <p className="menu-item">Sign-Out</p>
+                  <p className="menu-item"> Sign-Out </p>
                 </a>
               </MenuItem>
             </div>
@@ -126,4 +142,6 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps, { getUser })(NavBar);
+export default connect(mapStateToProps, {
+  getUser
+})(NavBar);

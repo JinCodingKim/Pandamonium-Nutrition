@@ -24,5 +24,15 @@ module.exports = {
       .catch(err => {
         res.status(500).json(err);
       });
+  },
+  getReviews: (req, res, next) => {
+    const db = req.app.get("db");
+    const { product_id } = req.params;
+    db
+      .get_reviews([product_id])
+      .then(reviews => res.status(200).json(reviews))
+      .catch(err => {
+        res.status(500).json(err);
+      });
   }
 };

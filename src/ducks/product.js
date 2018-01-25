@@ -1,7 +1,9 @@
 import axios from "axios";
 
+const UPDATE_TOTAL_AMNT = "UPDATE_TOTAL_AMNT";
 const GET_PRODUCTS = "GET_PRODUCTS";
 const GET_PRODUCT_BY_TYPE = "GET_PRODUCT_BY_TYPE";
+const GET_REVIEWS = "GET_REVIEWS";
 const ADD_REVIEW = "ADD_REVIEW";
 const ADD_TO_CART = "ADD_TO_CART";
 const GET_CART = "GET_CART";
@@ -16,9 +18,18 @@ const initialState = {
   product: [],
   productDetail: [],
   cart: [],
+  review: [],
   loading: false,
-  error: false
+  error: false,
+  totalAmnt: 0
 };
+
+export function updateTotalAmnt(amount) {
+  return {
+    type: UPDATE_TOTAL_AMNT,
+    payload: amount
+  };
+}
 
 export function getProducts() {
   return {
@@ -40,6 +51,18 @@ export function getProductByType(type) {
       .get(`/product/${type}`)
       .then(res => {
         // console.log(res.data);
+        return res.data;
+      })
+      .catch(console.log)
+  };
+}
+
+export function getReviews(product) {
+  return {
+    type: GET_REVIEWS,
+    payload: axios
+      .get(`/review/${product}`)
+      .then(res => {
         return res.data;
       })
       .catch(console.log)
@@ -181,6 +204,10 @@ export function searchProducts(search) {
 
 export default function product(state = initialState, action) {
   switch (action.type) {
+    case `UPDATE_TOTAL_AMNT`:
+      return Object.assign({}, state, {
+        totalAmnt: action.payload
+      });
     case `SEARCH_PRODUCTS`:
       return Object.assign({}, state, {
         product: state.product.filter(e => {
@@ -196,6 +223,20 @@ export default function product(state = initialState, action) {
             return false;
           }
         })
+      });
+    case `${GET_REVIEWS}_PENDING`:
+      return Object.assign({}, state, {
+        loading: true
+      });
+    case `${GET_REVIEWS}_FULFILLED`:
+      return Object.assign({}, state, {
+        loading: false,
+        review: action.payload
+      });
+    case `${GET_REVIEWS}_REJECTED`:
+      return Object.assign({}, state, {
+        loading: false,
+        error: true
       });
     case `${GET_PRODUCTS}_PENDING`:
       return Object.assign({}, state, {

@@ -5,16 +5,20 @@ import {
   getCart,
   removeCart,
   updateCartItem,
-  removeAllCart
+  removeAllCart,
+  updateTotalAmnt
 } from "../../ducks/product";
 //Material-ui
 import RaisedButton from "material-ui/RaisedButton";
 import ActionDelete from "material-ui/svg-icons/action/delete";
 import ActionUpdate from "material-ui/svg-icons/action/update";
+import ActionPayment from "material-ui/svg-icons/action/payment";
 //Sweetalert2
 import swal from "sweetalert2";
+//React-Router
+import { NavLink } from "react-router-dom";
 //Local
-import Checkout from "../Checkout/Checkout";
+import CheckoutInfo from "../Checkout/Checkout";
 import "./Cart.css";
 
 class Cart extends Component {
@@ -63,7 +67,7 @@ class Cart extends Component {
   }
 
   render() {
-    const { cart = { cart: [] }, loading } = this.props;
+    const { cart = { cart: [] }, loading, updateTotalAmnt } = this.props;
     const { cartTotal, newQuantity, newTotal } = this.state;
     let cartList = cart.map(product => {
       return (
@@ -80,7 +84,7 @@ class Cart extends Component {
               <div className="quantity-container">
                 <label className="cart-item-quantity">Qty:</label>
                 <input
-                  className="quantity-select"
+                  className="quantity-reselect"
                   onChange={e =>
                     this.handleQuantity(e.target.value, product.single_price)
                   }
@@ -92,7 +96,7 @@ class Cart extends Component {
                 label="Update"
                 primary={true}
                 labelPosition="after"
-                style={{ height: 30 }}
+                style={{ height: 30, width: 160, marginBottom: 2 }}
                 labelStyle={{
                   fontSize: 12,
                   fontWeight: "bold",
@@ -109,7 +113,7 @@ class Cart extends Component {
                     title: `Item has been updated!`,
                     type: "success",
                     confirmButtonText: "Back to Cart",
-                    confirmButtonColor: "#757575"
+                    confirmButtonColor: "#ff6d00"
                   });
                 }}
               />
@@ -117,7 +121,7 @@ class Cart extends Component {
                 label="Remove"
                 primary={true}
                 labelPosition="after"
-                style={{ height: 30 }}
+                style={{ height: 30, width: 160, marginTop: 2 }}
                 labelStyle={{
                   fontSize: 12,
                   fontWeight: "bold",
@@ -130,7 +134,7 @@ class Cart extends Component {
                     title: `Item has been removed!`,
                     type: "success",
                     confirmButtonText: "Back to Cart",
-                    confirmButtonColor: "#757575"
+                    confirmButtonColor: "#ff6d00"
                   });
                 }}
               />
@@ -152,11 +156,21 @@ class Cart extends Component {
             Order Total: <span>${totalAmnt || "0.00"}</span>
           </div>
           <div className="checkout-container" onClick={this.removeCart}>
-            <Checkout
-              name={"Pandamonium Sports Nutrition"}
-              // description={"Thanks for Ordering!"}
-              amount={totalAmnt}
-            />
+            <NavLink to="/checkout" className="checkout-button">
+              <RaisedButton
+                label="Checkout"
+                primary={true}
+                labelPosition="after"
+                style={{ height: 30, width: 140 }}
+                labelStyle={{
+                  fontSize: 12,
+                  fontWeight: "bold",
+                  margin: "10px 0 10px 0"
+                }}
+                onClick={() => updateTotalAmnt(totalAmnt)}
+                icon={<ActionPayment />}
+              />
+            </NavLink>
           </div>
         </div>
       </div>
@@ -176,5 +190,6 @@ export default connect(mapStateToProps, {
   getCart,
   removeCart,
   updateCartItem,
-  removeAllCart
+  removeAllCart,
+  updateTotalAmnt
 })(Cart);

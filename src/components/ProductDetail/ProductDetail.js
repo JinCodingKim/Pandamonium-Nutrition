@@ -6,7 +6,8 @@ import {
   addToCart,
   getCart,
   updateCart,
-  addReview
+  addReview,
+  getReviews
 } from "../../ducks/product";
 //Material-ui
 import RaisedButton from "material-ui/RaisedButton";
@@ -45,8 +46,10 @@ class ProductDetail extends Component {
   }
 
   componentDidMount() {
-    const { user, match, getProductByType, getCart } = this.props;
-    getProductByType(match.params.product_type);
+    const { user, match, getProductByType, getCart, getReviews } = this.props;
+    getProductByType(match.params.product_type).then(res => {
+      getReviews(this.props.productDetail[0].product_id);
+    });
     getCart(user.user_id);
   }
 
@@ -64,16 +67,6 @@ class ProductDetail extends Component {
   }
 
   handleCart(product, amount, price, single) {
-    // console.log(
-    //   "product:" +
-    //     product +
-    //     " amount:" +
-    //     amount +
-    //     " price:" +
-    //     price +
-    //     "single:" +
-    //     single
-    // );
     const { cart, addToCart, UpdateCart } = this.props;
     if (cart.length === 0) {
       addToCart(product, amount, price, single);
@@ -99,13 +92,15 @@ class ProductDetail extends Component {
   }
 
   submitReview(product, name, email, rating, title, description) {
-    this.props.addReview(product, name, email, rating, title, description);
+    const { addReview } = this.props;
+    addReview(product, name, email, rating, title, description);
   }
 
   render() {
     const {
       productDetail = { productDetail: [] },
       cart = { cart: [] },
+      review = { review: [] },
       loading
     } = this.props;
 
@@ -119,6 +114,27 @@ class ProductDetail extends Component {
       title,
       description
     } = this.state;
+
+    let reviewsList = review.map(review => {
+      return (
+        <div className="reviewed-wrapper" key={review.review_id}>
+          <div className="reviewed-rating">
+            <StarRatings
+              rating={review.rating}
+              isSelectable={false}
+              starRatedColor="#ff6d00"
+              starSelectingHoverColor="#ff6d00"
+              starSpacing="12px"
+              starWidthAndHeight="25px"
+              numOfStars={5}
+            />
+          </div>
+          <h4 className="reviewed-title">{review.review_title}</h4>
+          <p>{review.review_name}</p>
+          <p>{review.description}</p>
+        </div>
+      );
+    });
 
     return (
       <div>
@@ -211,7 +227,7 @@ class ProductDetail extends Component {
                         text: `${productDetail[0].product_flavor}`,
                         type: "success",
                         confirmButtonText: "Back to Shopping",
-                        confirmButtonColor: "#757575"
+                        confirmButtonColor: "#ff6d00"
                       });
                     }}
                   />
@@ -220,7 +236,7 @@ class ProductDetail extends Component {
                     label="Add to Cart"
                     primary={true}
                     labelPosition="after"
-                    style={{ height: 30 }}
+                    style={{ height: 37, width: "87vw" }}
                     labelStyle={{
                       fontSize: 12,
                       fontWeight: "bold",
@@ -241,7 +257,7 @@ class ProductDetail extends Component {
                         text: `${productDetail[1].product_flavor}`,
                         type: "success",
                         confirmButtonText: "Back to Shopping",
-                        confirmButtonColor: "#757575"
+                        confirmButtonColor: "#ff6d00"
                       });
                     }}
                   />
@@ -329,7 +345,7 @@ class ProductDetail extends Component {
                           title: `Thank you for your review ${name}`,
                           type: "success",
                           confirmButtonText: "Back to Shopping",
-                          confirmButtonColor: "#757575"
+                          confirmButtonColor: "#ff6d00"
                         });
                       }}
                     />
@@ -340,6 +356,7 @@ class ProductDetail extends Component {
               <p className="detail-description">
                 {productDetail[0].description}
               </p>
+              <div className="reviews-container">{reviewsList}</div>
             </div>
           </div>
         )}
@@ -353,7 +370,8 @@ const mapStateToProps = state => {
     loading: state.product.loading,
     productDetail: state.product.productDetail,
     cart: state.product.cart,
-    user: state.user.user
+    user: state.user.user,
+    review: state.product.review
   };
 };
 
@@ -362,5 +380,6 @@ export default connect(mapStateToProps, {
   addToCart,
   updateCart,
   getCart,
-  addReview
+  addReview,
+  getReviews
 })(ProductDetail);

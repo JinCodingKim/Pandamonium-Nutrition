@@ -35,7 +35,8 @@ class Shop extends Component {
   }
 
   componentDidMount() {
-    this.props.getProducts();
+    const { getProducts } = this.props;
+    getProducts();
   }
 
   handleSort(val) {
@@ -45,11 +46,14 @@ class Shop extends Component {
   }
 
   confirmSort() {
-    this.props.getSortedProducts(this.state.sort);
+    const { sort } = this.state;
+    const { getSortedProducts } = this.props;
+    getSortedProducts(sort);
   }
 
   clearSort() {
-    this.props.getProducts();
+    const { getProducts } = this.props;
+    getProducts();
   }
 
   handleSearch(val) {
@@ -59,8 +63,10 @@ class Shop extends Component {
   }
 
   confirmSearch(event) {
+    const { search } = this.state;
+    const { searchProducts } = this.props;
     if (event.keyCode == 13) {
-      this.props.searchProducts(this.state.search);
+      searchProducts(search);
     }
   }
 

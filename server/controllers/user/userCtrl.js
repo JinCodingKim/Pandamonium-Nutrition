@@ -1,10 +1,11 @@
 module.exports = {
-  getUsers: (req, res, next) => {
+  getUserByUserId: (req, res, next) => {
     const db = req.app.get("db");
+    const { user_id } = req.user;
     db
-      .get_users()
-      .then(users => {
-        res.status(200).json(users);
+      .get_user_by_user_id([user_id])
+      .then(user => {
+        res.status(200).json(user);
       })
       .catch(err => {
         res.status(500).json(err);
@@ -27,6 +28,25 @@ module.exports = {
         res.status(200).json(user);
       })
       .catch(err => {
+        res.status(500).json(err);
+      });
+  },
+  updateGuestEmail: (req, res, next) => {
+    console.log(req.user);
+    const db = req.app.get("db");
+    const { user_id } = req.user;
+    const { user_email } = req.body;
+    db
+      .update_guest_email([user_id, user_email])
+      .then(guest => {
+        req.session.passport.user.user_email = user_email;
+        req.session.save(function(err) {
+          console.log(err);
+        });
+        res.status(200).json(guest);
+      })
+      .catch(err => {
+        console.log(err);
         res.status(500).json(err);
       });
   }

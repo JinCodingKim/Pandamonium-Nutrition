@@ -17,7 +17,7 @@ const successPayment = data => {
     title: `Thank you for your business!`,
     type: "success",
     confirmButtonText: "Back to Cart",
-    confirmButtonColor: "#757575"
+    confirmButtonColor: "#ff6d00"
   });
 };
 
@@ -26,7 +26,7 @@ const errorPayment = data => {
     title: `Uh-oh! Try again!`,
     type: "error",
     confirmButtonText: "Back to Cart",
-    confirmButtonColor: "#757575"
+    confirmButtonColor: "#ff6d00"
   });
 };
 
