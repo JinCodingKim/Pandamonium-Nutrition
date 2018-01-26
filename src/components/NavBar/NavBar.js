@@ -21,6 +21,7 @@ import { getUser } from "../../ducks/user";
 //Local
 import logo from "./panda.png";
 import pandamonium from "./pandamonium.png";
+import fullLogo from "./pandamonium_nutrition.png";
 import "./NavBar.css";
 
 class NavBar extends Component {
@@ -149,7 +150,7 @@ class NavBar extends Component {
         <div className="desktop-nav">
           <div className="top-bar">
             {!user || user.user_id === 1 ? (
-              <div>
+              <div className="nav-out-container">
                 <a href={process.env.REACT_APP_LOGIN}>
                   <ActionAccountBox style={navStyles.desktopIcons} />
                 </a>
@@ -159,13 +160,16 @@ class NavBar extends Component {
                 </NavLink>
               </div>
             ) : (
-              <div>
-                <NavLink to="/profile">
-                  <ActionFace style={navStyles.desktopIcons} />
-                </NavLink>
-                <a href={process.env.REACT_APP_LOGOUT}>
-                  <ActionExitToApp iconStyle={navStyles.desktopIcons} />
-                </a>
+              <div className="nav-logged-container">
+                <div>
+                  <NavLink to="/profile">
+                    <ActionFace style={navStyles.desktopIcons} />
+                  </NavLink>
+                  <a href={process.env.REACT_APP_LOGOUT}>
+                    <ActionExitToApp style={navStyles.desktopIcons} />
+                  </a>
+                </div>
+                <img className="top-img" src={pandamonium} />
                 <NavLink to="/cart">
                   <ActionShoppingCart style={navStyles.desktopIcons} />
                 </NavLink>
@@ -189,6 +193,46 @@ class NavBar extends Component {
               <p className="desktop-navlink"> CONTACT </p>
             </NavLink>
           </div>
+        </div>
+
+        <div className="desktop-full-nav">
+          <img className="full-img" src={fullLogo} />
+          <div className="full-navlink-container">
+            <NavLink className="full-navlink-wrapper" to="/">
+              <p className="full-navlink"> HOME </p>
+            </NavLink>
+            <NavLink className="full-navlink-wrapper" to="/shop">
+              <p className="full-navlink"> SHOP </p>
+            </NavLink>
+            <NavLink className="full-navlink-wrapper" to="/about">
+              <p className="full-navlink"> ABOUT </p>
+            </NavLink>
+            <NavLink className="full-navlink-wrapper" to="/contact">
+              <p className="full-navlink"> CONTACT </p>
+            </NavLink>
+          </div>
+          {!user || user.user_id === 1 ? (
+            <div className="full-right-container">
+              <a href={process.env.REACT_APP_LOGIN}>
+                <ActionAccountBox style={navStyles.desktopIcons} />
+              </a>
+              <NavLink to="/cart">
+                <ActionShoppingCart style={navStyles.desktopIcons} />
+              </NavLink>
+            </div>
+          ) : (
+            <div className="full-right-in-container">
+              <NavLink to="/profile">
+                <ActionFace style={navStyles.desktopIcons} />
+              </NavLink>
+              <a href={process.env.REACT_APP_LOGOUT}>
+                <ActionExitToApp style={navStyles.desktopIcons} />
+              </a>
+              <NavLink to="/cart">
+                <ActionShoppingCart style={navStyles.desktopIcons} />
+              </NavLink>
+            </div>
+          )}
         </div>
       </div>
     );

@@ -33,6 +33,10 @@
   display: none;
 }
 
+.desktop-full-nav {
+  display: none;
+}
+
 @media (min-width: 414px) {
   .desktop-nav {
     display: none;
@@ -48,6 +52,9 @@
   .mobile-bar > div {
     text-align: center !important;
     height: 83px !important;
+  }
+  .desktop-full-nav {
+    display: none;
   }
 }
 
@@ -66,17 +73,17 @@
   .top-bar,
   .middle-bar,
   .bottom-bar {
-    display: flex;
-    flex-direction: row;
     width: 100%;
   }
   .top-bar {
+    display: flex;
+    flex-direction: row;
     justify-content: center;
     padding: 10px 0 10px 0;
     background-color: black;
   }
 
-  .top-bar > div {
+  .nav-out-container {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -86,7 +93,19 @@
     width: 200px;
     height: 58px;
   }
+  .nav-logged-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+  }
+
+  .nav-logged-container > img {
+    padding-right: 53px;
+  }
   .middle-bar {
+    display: flex;
+    flex-direction: row;
     justify-content: center;
     height: 95px;
     background-color: #ff6d00;
@@ -97,6 +116,8 @@
     padding: 29px 0 0 0;
   }
   .bottom-bar {
+    display: flex;
+    flex-direction: row;
     justify-content: space-around;
     align-content: center;
     background-color: #ff6d00;
@@ -119,6 +140,66 @@
     cursor: pointer;
   }
   .mobile-nav {
+    display: none;
+  }
+  .desktop-full-nav {
+    display: none;
+  }
+}
+
+@media (min-width: 991px) {
+  .desktop-full-nav {
+    width: 100%;
+    height: 83px;
+    margin: 0;
+    padding: 10px 0 10px 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    background-color: black;
+  }
+  .full-img {
+    width: 300px;
+    height: 83px;
+    padding: 0 0 0 8px;
+  }
+  .full-navlink-container {
+    margin: 10px 20px 0 0;
+  }
+  .full-right-container,
+  .full-right-in-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    height: 73px;
+    padding: 10px 20px 0 15px;
+    border-left: 2px solid #ff6d00;
+  }
+
+  .full-right-container {
+    width: 10%;
+  }
+
+  .full-right-in-container {
+    width: 16%;
+  }
+
+  .full-navlink-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    width: 50%;
+    line-height: 62px;
+  }
+  .full-navlink-wrapper {
+    text-decoration: none;
+    letter-spacing: 0.5px;
+    font-size: 16px;
+    font-weight: bolder;
+    color: #eeeeee;
+  }
+
+  .desktop-nav {
     display: none;
   }
 }

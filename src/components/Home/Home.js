@@ -2,7 +2,9 @@ import React, { Component } from "react";
 //React-Slick (Slider)
 import Slider from "react-slick";
 //local
-import allthewhey from "./all_the_whey.png";
+import allthewhey from "./banner_whey.png";
+import shaker from "./shaker_banner.png";
+import featured from "./as_featured_on.png";
 import "./Home.css";
 
 class Home extends Component {
@@ -18,14 +20,18 @@ class Home extends Component {
       arrows: false
     };
     return (
-      <div>
+      <div className="home-container">
         <Slider {...settings}>
           <a className="slider-container" href="/product/protein">
             <img src={allthewhey} className="slider-image" />
           </a>
-          <div>There</div>
+          <a className="slider-container" href="/product/shaker">
+            <img src={shaker} className="slider-image" />
+          </a>
         </Slider>
-        Welcome to Home Page
+        <div className="featured-banner-wrapper">
+          <img src={featured} className="featured-banner" />
+        </div>
       </div>
     );
   }
