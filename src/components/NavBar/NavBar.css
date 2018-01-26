@@ -5,6 +5,7 @@
   font-weight: lighter;
   color: black;
 }
+
 .menu-item {
   padding: 10px 0 0px -10px;
 }
@@ -13,9 +14,32 @@
   cursor: pointer;
 }
 
-.nav-cart {
-  height: 23px;
-  width: 23px;
-  margin-top: 12.5px;
-  margin-right: 15px;
+.logo-img {
+  height: 14vw !important;
+  width: 17vw !important;
+  margin-top: 7px !important;
+}
+
+.mobile-bar {
+  height: 20vw !important;
+}
+
+.mobile-bar>div {
+  text-align: center !important;
+  height: 20vw !important;
+}
+
+@media (min-width: 414px) {
+  .logo-img {
+    height: 58px !important;
+    width: 70.5px !important;
+    margin-top: 7px !important;
+  }
+  .mobile-bar {
+    height: 83px !important;
+  }
+  .mobile-bar>div {
+    text-align: center !important;
+    height: 83px !important;
+  }
 }

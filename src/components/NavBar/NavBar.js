@@ -11,6 +11,7 @@ import ActionExitToApp from "material-ui/svg-icons/action/exit-to-app";
 import CommunicationPhone from "material-ui/svg-icons/communication/phone";
 import ActionHome from "material-ui/svg-icons/action/home";
 import ActionFace from "material-ui/svg-icons/action/face";
+import NavigationMenu from "material-ui/svg-icons/navigation/menu";
 //React-Router
 import { NavLink } from "react-router-dom";
 //Redux
@@ -50,31 +51,34 @@ class NavBar extends Component {
     } = this.props.user;
     const { opened } = this.state;
 
-    const img = (
-      <img
-        style={{
-          height: 45,
-          width: 55,
-          marginTop: 7,
-          paddingRight: 20
-        }}
-        src={logo}
-      />
-    );
+    const smallestWidth = window.screen.availWidth < 415;
+
+    const img = <img className="logo-img" src={logo} />;
+    const navStyles = {
+      mobileIconLeft: {
+        height: 32.5,
+        width: 32.5,
+        marginTop: 8.75,
+        marginLeft: "4.5vw"
+      },
+
+      mobileIconRight: {
+        height: 32.5,
+        width: 32.5,
+        marginTop: 8.75,
+        marginRight: "4.5vw"
+      }
+    };
 
     return (
-      <div>
+      <div className="mobile-nav">
         <AppBar
-          style={{
-            height: 58
-          }}
           title={img}
-          titleStyle={{
-            textAlign: "center"
-          }}
+          className="mobile-bar"
+          iconElementLeft={<NavigationMenu style={navStyles.mobileIconLeft} />}
           iconElementRight={
             <NavLink to="/cart">
-              <ActionShoppingCart className="nav-cart" />
+              <ActionShoppingCart style={navStyles.mobileIconRight} />
             </NavLink>
           }
           onLeftIconButtonClick={() => this.toggleDrawer()}
