@@ -14,7 +14,8 @@ class Home extends Component {
       slidesToShow: 1,
       slidesToScroll: 1,
       autoplay: true,
-      pauseOnHover: true
+      pauseOnHover: true,
+      arrows: false
     };
     return (
       <div>

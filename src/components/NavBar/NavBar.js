@@ -12,6 +12,7 @@ import CommunicationPhone from "material-ui/svg-icons/communication/phone";
 import ActionHome from "material-ui/svg-icons/action/home";
 import ActionFace from "material-ui/svg-icons/action/face";
 import NavigationMenu from "material-ui/svg-icons/navigation/menu";
+import IconButton from "material-ui/IconButton";
 //React-Router
 import { NavLink } from "react-router-dom";
 //Redux
@@ -19,6 +20,7 @@ import { connect } from "react-redux";
 import { getUser } from "../../ducks/user";
 //Local
 import logo from "./panda.png";
+import pandamonium from "./pandamonium.png";
 import "./NavBar.css";
 
 class NavBar extends Component {
@@ -51,8 +53,6 @@ class NavBar extends Component {
     } = this.props.user;
     const { opened } = this.state;
 
-    const smallestWidth = window.screen.availWidth < 415;
-
     const img = <img className="logo-img" src={logo} />;
     const navStyles = {
       mobileIconLeft: {
@@ -61,80 +61,135 @@ class NavBar extends Component {
         marginTop: 8.75,
         marginLeft: "4.5vw"
       },
-
       mobileIconRight: {
         height: 32.5,
         width: 32.5,
         marginTop: 8.75,
         marginRight: "4.5vw"
+      },
+      desktopIcons: {
+        height: 32.5,
+        width: 32.5,
+        marginLeft: 15,
+        marginRight: 15,
+        paddingTop: 12
       }
     };
 
     return (
-      <div className="mobile-nav">
-        <AppBar
-          title={img}
-          className="mobile-bar"
-          iconElementLeft={<NavigationMenu style={navStyles.mobileIconLeft} />}
-          iconElementRight={
-            <NavLink to="/cart">
-              <ActionShoppingCart style={navStyles.mobileIconRight} />
-            </NavLink>
-          }
-          onLeftIconButtonClick={() => this.toggleDrawer()}
-        />
-        <Drawer
-          open={opened}
-          docked={false}
-          onRequestChange={() => this.toggleDrawer()}
-        >
-          <MenuItem leftIcon={<ActionHome />}>
-            <NavLink className="menu-item-wrapper" to="/">
-              <p className="menu-item"> Home </p>
-            </NavLink>
-          </MenuItem>
-          <MenuItem leftIcon={<ActionShop />}>
-            <NavLink className="menu-item-wrapper" to="/shop">
-              <p className="menu-item"> Shop </p>
-            </NavLink>
-          </MenuItem>
-          <MenuItem leftIcon={<CommunicationBusiness />}>
-            <NavLink className="menu-item-wrapper" to="/about">
-              <p className="menu-item"> About </p>
-            </NavLink>
-          </MenuItem>
-          <MenuItem leftIcon={<CommunicationPhone />}>
-            <NavLink className="menu-item-wrapper" to="/contact">
-              <p className="menu-item"> Contact </p>
-            </NavLink>
-          </MenuItem>
-          {!user || user.user_id === 1 ? (
-            <MenuItem leftIcon={<ActionAccountBox />}>
-              <a
-                className="menu-item-wrapper"
-                href={process.env.REACT_APP_LOGIN}
-              >
-                <p className="menu-item"> Sign-In </p>
-              </a>
+      <div>
+        <div className="mobile-nav">
+          <AppBar
+            title={img}
+            className="mobile-bar"
+            iconElementLeft={
+              <NavigationMenu style={navStyles.mobileIconLeft} />
+            }
+            iconElementRight={
+              <NavLink to="/cart">
+                <ActionShoppingCart style={navStyles.mobileIconRight} />
+              </NavLink>
+            }
+            onLeftIconButtonClick={() => this.toggleDrawer()}
+          />
+          <Drawer
+            open={opened}
+            docked={false}
+            onRequestChange={() => this.toggleDrawer()}
+          >
+            <MenuItem leftIcon={<ActionHome />}>
+              <NavLink className="menu-item-wrapper" to="/">
+                <p className="menu-item"> Home </p>
+              </NavLink>
             </MenuItem>
-          ) : (
-            <div>
-              <MenuItem leftIcon={<ActionFace />}>
-                <NavLink className="menu-item-wrapper" to="/profile">
-                  <p className="menu-item"> View Profile </p>
-                </NavLink>
-              </MenuItem>
-              <MenuItem leftIcon={<ActionExitToApp />}>
+            <MenuItem leftIcon={<ActionShop />}>
+              <NavLink className="menu-item-wrapper" to="/shop">
+                <p className="menu-item"> Shop </p>
+              </NavLink>
+            </MenuItem>
+            <MenuItem leftIcon={<CommunicationBusiness />}>
+              <NavLink className="menu-item-wrapper" to="/about">
+                <p className="menu-item"> About </p>
+              </NavLink>
+            </MenuItem>
+            <MenuItem leftIcon={<CommunicationPhone />}>
+              <NavLink className="menu-item-wrapper" to="/contact">
+                <p className="menu-item"> Contact </p>
+              </NavLink>
+            </MenuItem>
+            {!user || user.user_id === 1 ? (
+              <MenuItem leftIcon={<ActionAccountBox />}>
                 <a
                   className="menu-item-wrapper"
-                  href={process.env.REACT_APP_LOGOUT}
+                  href={process.env.REACT_APP_LOGIN}
                 >
-                  <p className="menu-item"> Sign-Out </p>
+                  <p className="menu-item"> Sign-In </p>
                 </a>
               </MenuItem>
-            </div>
-          )}
-        </Drawer>
+            ) : (
+              <div>
+                <MenuItem leftIcon={<ActionFace />}>
+                  <NavLink className="menu-item-wrapper" to="/profile">
+                    <p className="menu-item"> View Profile </p>
+                  </NavLink>
+                </MenuItem>
+                <MenuItem leftIcon={<ActionExitToApp />}>
+                  <a
+                    className="menu-item-wrapper"
+                    href={process.env.REACT_APP_LOGOUT}
+                  >
+                    <p className="menu-item"> Sign-Out </p>
+                  </a>
+                </MenuItem>
+              </div>
+            )}
+          </Drawer>
+        </div>
+
+        <div className="desktop-nav">
+          <div className="top-bar">
+            {!user || user.user_id === 1 ? (
+              <div>
+                <a href={process.env.REACT_APP_LOGIN}>
+                  <ActionAccountBox style={navStyles.desktopIcons} />
+                </a>
+                <img className="top-img" src={pandamonium} />
+                <NavLink to="/cart">
+                  <ActionShoppingCart style={navStyles.desktopIcons} />
+                </NavLink>
+              </div>
+            ) : (
+              <div>
+                <NavLink to="/profile">
+                  <ActionFace style={navStyles.desktopIcons} />
+                </NavLink>
+                <a href={process.env.REACT_APP_LOGOUT}>
+                  <ActionExitToApp iconStyle={navStyles.desktopIcons} />
+                </a>
+                <NavLink to="/cart">
+                  <ActionShoppingCart style={navStyles.desktopIcons} />
+                </NavLink>
+              </div>
+            )}
+          </div>
+          <div className="middle-bar">
+            <img className="desktop-img" src={logo} />
+          </div>
+          <div className="bottom-bar">
+            <NavLink className="desktop-navlink-wrapper" to="/">
+              <p className="desktop-navlink"> HOME </p>
+            </NavLink>
+            <NavLink className="desktop-navlink-wrapper" to="/shop">
+              <p className="desktop-navlink"> SHOP </p>
+            </NavLink>
+            <NavLink className="desktop-navlink-wrapper" to="/about">
+              <p className="desktop-navlink"> ABOUT </p>
+            </NavLink>
+            <NavLink className="desktop-navlink-wrapper" to="/contact">
+              <p className="desktop-navlink"> CONTACT </p>
+            </NavLink>
+          </div>
+        </div>
       </div>
     );
   }

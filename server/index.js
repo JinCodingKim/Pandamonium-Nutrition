@@ -111,7 +111,7 @@ passport.deserializeUser((user, done) => done(null, user));
 
 //Stripe
 app.get("/payments");
-app.post("payments/:id", payCtrl.postPayment);
+app.post("/payments/:id", payCtrl.postPayment);
 
 //Auth0
 app.get(
