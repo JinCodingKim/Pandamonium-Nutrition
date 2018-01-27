@@ -27,3 +27,9 @@
   height: 100%;
   width: 100%;
 }
+
+@media (min-width: 768px) {
+  .featured-banner-wrapper {
+    padding: 10px 0 10px 0;
+  }
+}

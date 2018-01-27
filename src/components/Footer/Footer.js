@@ -10,7 +10,10 @@ import "./Footer.css";
 import facebook from "./facebook.png";
 import instagram from "./instagram.png";
 import twitter from "./twitter.png";
-import payments from "./accepted_payments.png";
+import ae from "./ae.svg";
+import discover from "./discover.svg";
+import mastercard from "./mc.svg";
+import visa from "./visa.svg";
 
 class Footer extends Component {
   constructor(props) {
@@ -106,12 +109,19 @@ class Footer extends Component {
               />
             </div>
           </div>
-        </div>
-        <div className="disclaimer-container">
-          <div className="footer-company">
-            2017 Pandamonium Sports Nutrition
+
+          <div className="disclaimer-container">
+            <p className="footer-company">2017 Pandamonium Sports Nutrition.</p>
+            <div className="footer-payments-wrapper">
+              <img src={ae} className="payments" />
+
+              <img src={discover} className="payments" />
+
+              <img src={mastercard} className="payments" />
+
+              <img src={visa} className="payments" />
+            </div>
           </div>
-          <img src={payments} className="payments" />
         </div>
       </div>
     );
