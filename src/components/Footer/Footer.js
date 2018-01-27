@@ -81,13 +81,13 @@ class Footer extends Component {
           <div className="links-sub">
             <h3 className="links-header">SOCIAL NETWORKS</h3>
             <div className="icon-container">
-              <a href="www.facebook.com" className="social-links">
+              <a href="https://www.facebook.com" className="social-links">
                 <img src={facebook} />
               </a>
-              <a href="www.instagram.com" className="social-links">
+              <a href="https://www.instagram.com" className="social-links">
                 <img src={instagram} />
               </a>
-              <a href="www.twitter.com" className="social-links">
+              <a href="https://www.twitter.com" className="social-links">
                 <img src={twitter} />
               </a>
             </div>

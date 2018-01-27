@@ -205,7 +205,7 @@ class ProductDetail extends Component {
                   className="quantity-select"
                   onChange={e => this.handleQuantity(e.target.value)}
                   type="number"
-                  value={quantity}
+                  placeholder={quantity}
                 />
 
                 {!flavor || flavor === productDetail[0].product_flavor ? (
