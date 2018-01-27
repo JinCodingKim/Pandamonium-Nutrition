@@ -108,6 +108,7 @@ class Shop extends Component {
                 <option value="descend"> Price: High-to-Low </option>
               </select>
             </div>
+
             <div className="products-align">{productsList}</div>
           </div>
         )}
