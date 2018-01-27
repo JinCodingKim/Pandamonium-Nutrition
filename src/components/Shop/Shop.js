@@ -1,13 +1,6 @@
 import React, { Component } from "react";
 //React-router-dom
 import { NavLink } from "react-router-dom";
-//Material-ui
-import RaisedButton from "material-ui/RaisedButton";
-import ActionSearch from "material-ui/svg-icons/action/search";
-import ContentSort from "material-ui/svg-icons/content/sort";
-import ContentClear from "material-ui/svg-icons/content/clear";
-import IconButton from "material-ui/IconButton";
-import { Card, CardActions, CardText } from "material-ui/Card";
 //Redux
 import { connect } from "react-redux";
 import {
@@ -29,7 +22,6 @@ class Shop extends Component {
 
     this.handleSort = this.handleSort.bind(this);
     this.confirmSort = this.confirmSort.bind(this);
-    this.clearSort = this.clearSort.bind(this);
     this.handleSearch = this.handleSearch.bind(this);
     this.confirmSearch = this.confirmSearch.bind(this);
   }
@@ -48,15 +40,7 @@ class Shop extends Component {
   confirmSort() {
     const { sort } = this.state;
     const { getSortedProducts } = this.props;
-    getSortedProducts(sort);
-  }
-
-  clearSort() {
-    const { getProducts } = this.props;
-    getProducts();
-    this.setState({
-      search: ""
-    });
+    getSortedProducts(sort).then(res => this.setState({ search: "" }));
   }
 
   handleSearch(val) {
@@ -101,7 +85,6 @@ class Shop extends Component {
         ) : (
           <div className="products-list">
             <div className="search-container">
-              <label className="search-title">Search</label>
               <input
                 className="search-input"
                 type="text"
@@ -118,22 +101,14 @@ class Shop extends Component {
                 onChange={e => this.handleSort(e.target.value)}
                 onClick={this.confirmSort}
               >
+                <option value="clear"> Default Sorting </option>
                 <option value="az"> Alphabetically: A-Z </option>
                 <option value="za"> Alphabetically: Z-A </option>
                 <option value="ascend"> Price: Low-to-High </option>
                 <option value="descend"> Price: High-to-Low </option>
               </select>
-              <RaisedButton
-                label="Clear"
-                secondary={true}
-                labelPosition="after"
-                style={{ height: 40, width: 105 }}
-                labelStyle={{ fontSize: 12, fontWeight: "bold" }}
-                icon={<ContentClear />}
-                onClick={this.clearSort}
-              />
             </div>
-            {productsList}
+            <div className="products-align">{productsList}</div>
           </div>
         )}
       </div>

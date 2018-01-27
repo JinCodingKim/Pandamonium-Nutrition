@@ -148,6 +148,7 @@ app.post("/product/review", reviewCtrl.addReview);
 app.post("/subscription", subscriptionCtrl.postSubscriptionEmail);
 //ProductCtrl
 app.get("/products", productCtrl.getDistinctProducts);
+app.get("/products/clear", productCtrl.getDistinctProducts);
 app.get("/products/ascend", productCtrl.getProductsAsc);
 app.get("/products/descend", productCtrl.getProductsDesc);
 app.get("/products/az", productCtrl.getProductsAToZ);
