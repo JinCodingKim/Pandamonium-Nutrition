@@ -10,6 +10,7 @@ import "./Footer.css";
 import facebook from "./facebook.png";
 import instagram from "./instagram.png";
 import twitter from "./twitter.png";
+import payments from "./accepted_payments.png";
 
 class Footer extends Component {
   constructor(props) {
@@ -73,20 +74,22 @@ class Footer extends Component {
               <p>Disclaimer</p>
             </NavLink>
           </div>
+
           <div className="links-sub">
             <h3 className="links-header">SOCIAL NETWORKS</h3>
             <div className="icon-container">
               <a href="www.facebook.com" className="social-links">
-                <img src={facebook} alt="" />
+                <img src={facebook} />
               </a>
               <a href="www.instagram.com" className="social-links">
-                <img src={instagram} alt="" />
+                <img src={instagram} />
               </a>
               <a href="www.twitter.com" className="social-links">
-                <img src={twitter} alt="" />
+                <img src={twitter} />
               </a>
             </div>
           </div>
+
           <div className="links-sub">
             <h3 className="links-header">JOIN OUR MAILING LIST</h3>
             <h4 className="mailing-sub">
@@ -104,7 +107,12 @@ class Footer extends Component {
             </div>
           </div>
         </div>
-        <div className="disclaimer-container" />
+        <div className="disclaimer-container">
+          <div className="footer-company">
+            2017 Pandamonium Sports Nutrition
+          </div>
+          <img src={payments} className="payments" />
+        </div>
       </div>
     );
   }

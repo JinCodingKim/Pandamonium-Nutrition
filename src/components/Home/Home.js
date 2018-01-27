@@ -3,14 +3,14 @@ import React, { Component } from "react";
 import Slider from "react-slick";
 //local
 import allthewhey from "./banner_whey.png";
-import shaker from "./shaker_banner.png";
+import shaker from "./banner_shaker.png";
 import featured from "./as_featured_on.png";
 import "./Home.css";
 
 class Home extends Component {
   render() {
     const settings = {
-      dots: true,
+      dots: false,
       infinite: true,
       speed: 500,
       slidesToShow: 1,
