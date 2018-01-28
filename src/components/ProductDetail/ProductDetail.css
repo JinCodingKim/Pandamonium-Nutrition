@@ -45,18 +45,18 @@
   font-weight: lighter;
 }
 
-.company-name > span,
+.company-name>span,
 .detail-name,
 .detail-price {
   color: black;
 }
 
-.company-name > span,
+.company-name>span,
 .flavor-select-title {
   font-size: 13.5px;
 }
 
-.company-name > span {
+.company-name>span {
   font-weight: bold;
   display: block;
 }
@@ -133,6 +133,7 @@
   height: 40px !important;
   width: 100% !important;
   margin: 20px 0 0 0 !important;
+  background-color: #ff6d00 !important;
 }
 
 .review-card-wrapper {
@@ -201,6 +202,7 @@
   height: 40px !important;
   width: 87.5% !important;
   margin: 10px 0 0 0 !important;
+  background-color: #ff6d00 !important;
 }
 
 .detail-header {
@@ -222,7 +224,7 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  width: 85vw;
+  width: 100%;
   padding: 20px 0 0 0;
   margin: 0 0 40px 0;
   border-top: 1px solid #ff6d00;
@@ -301,5 +303,4 @@
   }
 }
 
-@media (min-width: 1200px) {
-}
+@media (min-width: 1200px) {}
