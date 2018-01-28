@@ -23,7 +23,7 @@ class UserInfo extends Component {
     getUser();
   }
   render() {
-    const { user = { user: [] } } = this.props;
+    const { user = [] } = this.props;
     return (
       <div className="user-wrapper">
         <Paper className="circle-paper" zDepth={2} circle={true}>

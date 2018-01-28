@@ -58,7 +58,7 @@ class Shop extends Component {
   }
 
   render() {
-    const { product = { product: [] }, loading } = this.props;
+    const { product = [], loading } = this.props;
     const { search } = this.state;
 
     let productsList = product.map(product => {

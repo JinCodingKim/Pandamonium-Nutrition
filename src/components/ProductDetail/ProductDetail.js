@@ -105,12 +105,7 @@ class ProductDetail extends Component {
   }
 
   render() {
-    const {
-      productDetail = { productDetail: [] },
-      cart = { cart: [] },
-      review = { review: [] },
-      loading
-    } = this.props;
+    const { productDetail = [], cart = [], review = [], loading } = this.props;
 
     const {
       flavor,

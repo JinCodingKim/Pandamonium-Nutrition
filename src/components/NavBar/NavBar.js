@@ -47,11 +47,7 @@ class NavBar extends Component {
   }
 
   render() {
-    const {
-      user = {
-        user: []
-      }
-    } = this.props.user;
+    const { user = [] } = this.props.user;
     const { opened } = this.state;
 
     const img = <img className="logo-img" src={logo} />;

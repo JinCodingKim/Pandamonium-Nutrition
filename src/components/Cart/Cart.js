@@ -67,7 +67,7 @@ class Cart extends Component {
   }
 
   render() {
-    const { cart = { cart: [] }, loading, updateTotalAmnt } = this.props;
+    const { cart = [], loading, updateTotalAmnt } = this.props;
     const { cartTotal, newQuantity, newTotal } = this.state;
     let cartList = cart.map(product => {
       return (

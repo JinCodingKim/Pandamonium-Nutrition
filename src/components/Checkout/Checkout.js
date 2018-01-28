@@ -16,9 +16,9 @@ const successPayment = data => {
   swal({
     title: `Thank you for your business!`,
     type: "success",
-    confirmButtonText: "Back to Cart",
+    confirmButtonText: "Back to Shopping",
     confirmButtonColor: "#ff6d00"
-  });
+  }).then(() => (window.location.href = "http://localhost:3002/"));
 };
 
 const errorPayment = data => {
