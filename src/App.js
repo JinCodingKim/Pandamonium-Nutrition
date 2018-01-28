@@ -26,7 +26,7 @@ class App extends Component {
           <Route path="/profile/manager" component={ProfileManager} />
           <Route path="/cart" component={Cart} />
           <Route path="/checkout" component={CheckoutInfo} />
-          {/* <Route path="/contact" component={Contact} /> */}
+          <Route path="/contact" component={Contact} />
           <Route path="/about" component={About} />
           {/* <Route path="/terms" component={Terms} /> */}
           {/* <Route path="/policy" component={Policy} /> */}
