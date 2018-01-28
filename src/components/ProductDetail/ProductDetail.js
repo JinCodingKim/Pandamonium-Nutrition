@@ -1,10 +1,6 @@
-import React, {
-  Component
-} from "react";
+import React, { Component } from "react";
 //Redux
-import {
-  connect
-} from "react-redux";
+import { connect } from "react-redux";
 import {
   getProductByType,
   addToCart,
@@ -17,14 +13,8 @@ import {
 import RaisedButton from "material-ui/RaisedButton";
 import ActionAddShoppingCart from "material-ui/svg-icons/action/add-shopping-cart";
 import ActionCheckCircle from "material-ui/svg-icons/action/check-circle";
-import {
-  Card,
-  CardHeader,
-  CardText
-} from "material-ui/Card";
-import {
-  orangeA700
-} from "material-ui/styles/colors";
+import { Card, CardHeader, CardText } from "material-ui/Card";
+import { orangeA700 } from "material-ui/styles/colors";
 //Sweetalert2
 import swal from "sweetalert2";
 //React-star-ratings
@@ -38,7 +28,7 @@ class ProductDetail extends Component {
 
     this.state = {
       flavor: "",
-      quantity: 1,
+      quantity: 0,
       total: 0,
       name: "",
       email: "",
@@ -56,13 +46,7 @@ class ProductDetail extends Component {
   }
 
   componentDidMount() {
-    const {
-      user,
-      match,
-      getProductByType,
-      getCart,
-      getReviews
-    } = this.props;
+    const { user, match, getProductByType, getCart, getReviews } = this.props;
     getProductByType(match.params.product_type).then(res => {
       getReviews(this.props.productDetail[0].product_id);
     });
@@ -83,11 +67,7 @@ class ProductDetail extends Component {
   }
 
   handleCart(product, amount, price, single) {
-    const {
-      cart,
-      addToCart,
-      UpdateCart
-    } = this.props;
+    const { cart, addToCart, UpdateCart } = this.props;
     if (cart.length === 0) {
       addToCart(product, amount, price, single);
     } else {
@@ -102,9 +82,7 @@ class ProductDetail extends Component {
   }
 
   handleReview(prop, val) {
-    this.setState({
-      [prop]: val
-    });
+    this.setState({ [prop]: val });
   }
 
   handleStars(val) {
@@ -114,9 +92,7 @@ class ProductDetail extends Component {
   }
 
   submitReview(product, name, email, rating, title, description) {
-    const {
-      addReview
-    } = this.props;
+    const { addReview } = this.props;
     addReview(product, name, email, rating, title, description).then(res => {
       this.setState({
         name: "",
@@ -130,16 +106,10 @@ class ProductDetail extends Component {
 
   render() {
     const {
-      productDetail = {
-          productDetail: []
-        },
-        cart = {
-          cart: []
-        },
-        review = {
-          review: []
-        },
-        loading
+      productDetail = { productDetail: [] },
+      cart = { cart: [] },
+      review = { review: [] },
+      loading
     } = this.props;
 
     const {
@@ -154,380 +124,270 @@ class ProductDetail extends Component {
     } = this.state;
 
     let reviewsList = review.map(review => {
-      return ( <
-        div className = "reviewed-wrapper"
-        key = {
-          review.review_id
-        } >
-        <
-        div className = "reviewed-rating" >
-        <
-        StarRatings rating = {
-          review.rating
-        }
-        isSelectable = {
-          false
-        }
-        starRatedColor = "#ff6d00"
-        starSelectingHoverColor = "#ff6d00"
-        starSpacing = "12px"
-        starWidthAndHeight = "25px"
-        numOfStars = {
-          5
-        }
-        /> <
-        /div> <
-        h4 className = "reviewed-title" > {
-          review.review_title
-        } < /h4> <
-        p className = "reviewed-name" > {
-          review.review_name
-        } < /p> <
-        p className = "reviewed-description" > {
-          review.description
-        } < /p> <
-        /div>
+      return (
+        <div className="reviewed-wrapper" key={review.review_id}>
+          <div className="reviewed-rating">
+            <StarRatings
+              rating={review.rating}
+              isSelectable={false}
+              starRatedColor="#ff6d00"
+              starSelectingHoverColor="#ff6d00"
+              starSpacing="12px"
+              starWidthAndHeight="25px"
+              numOfStars={5}
+            />
+          </div>
+          <h4 className="reviewed-title">{review.review_title}</h4>
+          <p className="reviewed-name">{review.review_name}</p>
+          <p className="reviewed-description">{review.description}</p>
+        </div>
       );
     });
 
-    return ( <
-      div className = "detail-main-container" > {!productDetail[0] ? ( <
-          div >
-          <
-          h1 > Loading Content... < /h1> <
-          /div>
-        ) : ( <
-          div className = "detail-sub-container" >
-          <
-          div className = "detail-img-container" > {!flavor || flavor === productDetail[0].product_flavor ? ( <
-              img className = "detail-img"
-              src = {
-                productDetail[0].product_img
-              }
-              />
-            ) : ( <
-              img className = "detail-img"
-              src = {
-                productDetail[1].product_img
-              }
-              />
-            )
-          } <
-          /div>
+    return (
+      <div className="detail-main-container">
+        {!productDetail[0] ? (
+          <div>
+            <h1>Loading Content...</h1>
+          </div>
+        ) : (
+          <div className="detail-sub-container">
+            <div className="detail-img-container">
+              {!flavor || flavor === productDetail[0].product_flavor ? (
+                <img
+                  className="detail-img"
+                  src={productDetail[0].product_img}
+                />
+              ) : (
+                <img
+                  className="detail-img"
+                  src={productDetail[1].product_img}
+                />
+              )}
+            </div>
 
-          <
-          div className = "detail-description-container" >
-          <
-          p className = "company-name" >
-          <
-          span > PANDAMONIUM < /span> SPORTS NUTRITION <
-          /p> <
-          h2 className = "detail-name" > {
-            productDetail[0].product_name
-          } < /h2> <
-          h4 className = "detail-price" >
-          $ {
-            productDetail[0].product_price
-          } <
-          /h4>
+            <div className="detail-description-container">
+              <p className="company-name">
+                <span>PANDAMONIUM</span> SPORTS NUTRITION
+              </p>
+              <h2 className="detail-name">{productDetail[0].product_name}</h2>
+              <h4 className="detail-price">
+                ${productDetail[0].product_price}
+              </h4>
+              <div className="flavor-quantity-container">
+                {!productDetail[1] ? (
+                  <div className="flavor-container">
+                    <label className="flavor-select-title">CONTENTS</label>
+                    <div className="item-count">
+                      {productDetail[0].product_flavor}
+                    </div>
+                  </div>
+                ) : !productDetail[2] ? (
+                  <div className="flavor-container">
+                    <label className="flavor-select-title">FLAVOR</label>
+                    <span className="flavor-select-wrapper">
+                      <select
+                        className="flavor-select"
+                        value={flavor}
+                        onChange={e => this.handleFlavor(e.target.value)}
+                      >
+                        <option value={productDetail[0].product_flavor}>
+                          {productDetail[0].product_flavor}
+                        </option>
+                        <option value={productDetail[1].product_flavor}>
+                          {productDetail[1].product_flavor}
+                        </option>
+                      </select>
+                    </span>
+                  </div>
+                ) : (
+                  <div className="flavor-container">
+                    <label className="flavor-select-title">SIZE</label>
+                    <span className="flavor-select-wrapper">
+                      <select
+                        className="flavor-select"
+                        value={flavor}
+                        onChange={e => this.handleFlavor(e.target.value)}
+                      >
+                        <option value={productDetail[0].product_flavor}>
+                          {productDetail[0].product_flavor}
+                        </option>
+                        <option value={productDetail[1].product_flavor}>
+                          {productDetail[1].product_flavor}
+                        </option>
+                        <option value={productDetail[2].product_flavor}>
+                          {productDetail[2].product_flavor}
+                        </option>
+                      </select>
+                    </span>
+                  </div>
+                )}
+                <div className="detail-options-container">
+                  <label className="flavor-select-title">QUANTITY</label>
+                  <span className="quantity-select-wrapper">
+                    <input
+                      className="quantity-select"
+                      onChange={e => this.handleQuantity(e.target.value)}
+                      type="number"
+                      placeholder={quantity}
+                    />
+                  </span>
+                </div>
+              </div>
+              <div className="add-cart-container">
+                {!flavor || flavor === productDetail[0].product_flavor ? (
+                  <RaisedButton
+                    label="Add to Cart"
+                    primary={true}
+                    labelPosition="after"
+                    className="add-cart-button"
+                    icon={<ActionAddShoppingCart />}
+                    onClick={() => {
+                      this.handleCart(
+                        productDetail[0].product_id,
+                        quantity,
+                        total,
+                        productDetail[0].product_price
+                      );
 
-          {
-            !productDetail[1] ? ( <
-              div className = "flavor-container" >
-              <
-              label className = "flavor-select-title" > CONTENTS < /label> <
-              div className = "item-count" > {
-                productDetail[0].product_flavor
-              } <
-              /div> <
-              /div>
-            ) : !productDetail[2] ? ( <
-              div className = "flavor-container" >
-              <
-              label className = "flavor-select-title" > FLAVOR < /label> <
-              span className = "flavor-select-wrapper" >
-              <
-              select className = "flavor-select"
-              value = {
-                flavor
-              }
-              onChange = {
-                e => this.handleFlavor(e.target.value)
-              } >
-              <
-              option value = {
-                productDetail[0].product_flavor
-              } > {
-                productDetail[0].product_flavor
-              } <
-              /option> <
-              option value = {
-                productDetail[1].product_flavor
-              } > {
-                productDetail[1].product_flavor
-              } <
-              /option> <
-              /select> <
-              /span> <
-              /div>
-            ) : ( <
-              div className = "flavor-container" >
-              <
-              label className = "flavor-select-title" > SIZE < /label> <
-              span className = "flavor-select-wrapper" >
-              <
-              select className = "flavor-select"
-              value = {
-                flavor
-              }
-              onChange = {
-                e => this.handleFlavor(e.target.value)
-              } >
-              <
-              option value = {
-                productDetail[0].product_flavor
-              } > {
-                productDetail[0].product_flavor
-              } <
-              /option> <
-              option value = {
-                productDetail[1].product_flavor
-              } > {
-                productDetail[1].product_flavor
-              } <
-              /option> <
-              option value = {
-                productDetail[2].product_flavor
-              } > {
-                productDetail[2].product_flavor
-              } <
-              /option> <
-              /select> <
-              /span> <
-              /div>
-            )
-          } <
-          div className = "detail-options-container" >
-          <
-          label className = "flavor-select-title" > QUANTITY < /label> <
-          span className = "quantity-select-wrapper" >
-          <
-          input className = "quantity-select"
-          onChange = {
-            e => this.handleQuantity(e.target.value)
-          }
-          type = "number"
-          placeholder = {
-            quantity
-          }
-          /> <
-          /span>
-
-          {
-            !flavor || flavor === productDetail[0].product_flavor ? ( <
-              RaisedButton label = "Add to Cart"
-              primary = {
-                true
-              }
-              labelPosition = "after"
-              className = "add-cart-button"
-              icon = { < ActionAddShoppingCart / >
-              }
-              onClick = {
-                () => {
-                  this.handleCart(
-                    productDetail[0].product_id,
-                    quantity,
-                    total,
-                    productDetail[0].product_price
-                  );
-
-                  swal({
-                    title: `${
+                      swal({
+                        title: `${
                           productDetail[0].product_name
                         } added to Cart!`,
-                    text: `${productDetail[0].product_flavor}`,
-                    type: "success",
-                    confirmButtonText: "Back to Shopping",
-                    confirmButtonColor: "#ff6d00"
-                  });
-                }
-              }
-              />
-            ) : ( <
-              RaisedButton label = "Add to Cart"
-              primary = {
-                true
-              }
-              labelPosition = "after"
-              className = "add-cart-button"
-              icon = { < ActionAddShoppingCart / >
-              }
-              onClick = {
-                () => {
-                  this.handleCart(
-                    productDetail[1].product_id,
-                    quantity,
-                    total,
-                    productDetail[1].product_price
-                  );
-                  swal({
-                    title: `${
+                        text: `${productDetail[0].product_flavor}`,
+                        type: "success",
+                        confirmButtonText: "Back to Shopping",
+                        confirmButtonColor: "#ff6d00"
+                      });
+                    }}
+                  />
+                ) : (
+                  <RaisedButton
+                    label="Add to Cart"
+                    primary={true}
+                    labelPosition="after"
+                    className="add-cart-button"
+                    icon={<ActionAddShoppingCart />}
+                    onClick={() => {
+                      this.handleCart(
+                        productDetail[1].product_id,
+                        quantity,
+                        total,
+                        productDetail[1].product_price
+                      );
+                      swal({
+                        title: `${
                           productDetail[1].product_name
                         } added to Cart!`,
-                    text: `${productDetail[1].product_flavor}`,
-                    type: "success",
-                    confirmButtonText: "Back to Shopping",
-                    confirmButtonColor: "#ff6d00"
-                  });
-                }
-              }
-              />
-            )
-          } <
-          /div> <
-          div className = "review-card-wrapper" >
-          <
-          Card className = "review-card" >
-          <
-          CardHeader title = "Write a review"
-          actAsExpander = {
-            true
-          }
-          titleColor = {
-            orangeA700
-          }
-          className = "review-card-header" /
-          >
-          <
-          CardText expandable = {
-            true
-          }
-          className = "review-card-text" >
-          <
-          div className = "card-container" >
-          <
-          label className = "review-title" > Full Name < /label> <
-          input className = "review-name"
-          placeholder = "Enter your name"
-          onChange = {
-            e =>
-            this.handleReview("name", e.target.value)
-          }
-          value = {
-            name
-          }
-          type = "text" /
-          >
-          <
-          label className = "review-title" > E - mail Address < /label> <
-          input className = "review-email"
-          placeholder = "will.smith@example.com"
-          onChange = {
-            e =>
-            this.handleReview("email", e.target.value)
-          }
-          value = {
-            email
-          }
-          type = "text" /
-          >
-          <
-          label className = "review-title" > Rating < /label> <
-          div className = "rate-stars" >
-          <
-          StarRatings rating = {
-            rating
-          }
-          isSelectable = {
-            true
-          }
-          isAggregateRating = {
-            false
-          }
-          changeRating = {
-            this.handleStars
-          }
-          starRatedColor = "#ff6d00"
-          starSelectingHoverColor = "#ff6d00"
-          starSpacing = "12px"
-          starWidthAndHeight = "25px"
-          numOfStars = {
-            5
-          }
-          /> <
-          /div> <
-          label className = "review-title" > Review Title < /label> <
-          input className = "review-title-input"
-          placeholder = "Give your review a title"
-          onChange = {
-            e =>
-            this.handleReview("title", e.target.value)
-          }
-          value = {
-            title
-          }
-          type = "text" /
-          >
-          <
-          label className = "review-title" > Body of Review < /label> <
-          textarea className = "review-description"
-          placeholder = "Write your comments here"
-          onChange = {
-            e =>
-            this.handleReview("description", e.target.value)
-          }
-          value = {
-            description
-          }
-          /> <
-          RaisedButton label = "Submit Review"
-          primary = {
-            true
-          }
-          labelPosition = "after"
-          className = "submit-review-button"
-          icon = { < ActionCheckCircle / >
-          }
-          onClick = {
-            () => {
-              this.submitReview(
-                productDetail[0].product_id,
-                name,
-                email,
-                rating,
-                title,
-                description
-              );
+                        text: `${productDetail[1].product_flavor}`,
+                        type: "success",
+                        confirmButtonText: "Back to Shopping",
+                        confirmButtonColor: "#ff6d00"
+                      });
+                    }}
+                  />
+                )}
+              </div>
+              <div className="review-card-wrapper">
+                <Card className="review-card">
+                  <CardHeader
+                    title="Write a review"
+                    actAsExpander={true}
+                    titleColor={orangeA700}
+                    className="review-card-header"
+                  />
+                  <CardText expandable={true} className="review-card-text">
+                    <div className="card-container">
+                      <label className="review-title">Full Name</label>
+                      <input
+                        className="review-name"
+                        placeholder="Enter your name"
+                        onChange={e =>
+                          this.handleReview("name", e.target.value)
+                        }
+                        value={name}
+                        type="text"
+                      />
+                      <label className="review-title">E-mail Address</label>
+                      <input
+                        className="review-email"
+                        placeholder="will.smith@example.com"
+                        onChange={e =>
+                          this.handleReview("email", e.target.value)
+                        }
+                        value={email}
+                        type="text"
+                      />
+                      <label className="review-title">Rating</label>
+                      <div className="rate-stars">
+                        <StarRatings
+                          rating={rating}
+                          isSelectable={true}
+                          isAggregateRating={false}
+                          changeRating={this.handleStars}
+                          starRatedColor="#ff6d00"
+                          starSelectingHoverColor="#ff6d00"
+                          starSpacing="12px"
+                          starWidthAndHeight="25px"
+                          numOfStars={5}
+                        />
+                      </div>
+                      <label className="review-title">Review Title</label>
+                      <input
+                        className="review-title-input"
+                        placeholder="Give your review a title"
+                        onChange={e =>
+                          this.handleReview("title", e.target.value)
+                        }
+                        value={title}
+                        type="text"
+                      />
+                      <label className="review-title">Body of Review</label>
+                      <textarea
+                        className="review-description"
+                        placeholder="Write your comments here"
+                        onChange={e =>
+                          this.handleReview("description", e.target.value)
+                        }
+                        value={description}
+                      />
+                      <RaisedButton
+                        label="Submit Review"
+                        primary={true}
+                        labelPosition="after"
+                        className="submit-review-button"
+                        icon={<ActionCheckCircle />}
+                        onClick={() => {
+                          this.submitReview(
+                            productDetail[0].product_id,
+                            name,
+                            email,
+                            rating,
+                            title,
+                            description
+                          );
 
-              swal({
-                title: `Thank you for your review ${name}`,
-                type: "success",
-                confirmButtonText: "Back to Shopping",
-                confirmButtonColor: "#ff6d00"
-              });
-            }
-          }
-          /> <
-          /div> <
-          /CardText> <
-          /Card> <
-          /div> <
-          h4 className = "detail-header" > {
-            productDetail[0].heading
-          } < /h4> <
-          p className = "detail-description" > {
-            productDetail[0].description
-          } <
-          /p> <
-          div className = "reviews-container" > {
-            reviewsList
-          } < /div> <
-          /div> <
-          /div>
-        )
-      } <
-      /div>
+                          swal({
+                            title: `Thank you for your review ${name}`,
+                            type: "success",
+                            confirmButtonText: "Back to Shopping",
+                            confirmButtonColor: "#ff6d00"
+                          });
+                        }}
+                      />
+                    </div>
+                  </CardText>
+                </Card>
+              </div>
+              <h4 className="detail-header">{productDetail[0].heading}</h4>
+              <p className="detail-description">
+                {productDetail[0].description}
+              </p>
+              <div className="reviews-container">{reviewsList}</div>
+            </div>
+          </div>
+        )}
+      </div>
     );
   }
 }
