@@ -2,22 +2,25 @@
   display: flex;
   align-items: center;
   flex-direction: column;
-  width: 100%;
+  width: 95vw;
+  padding: 0 2.5vw 0 2.5vw;
   height: 100%;
 }
 
-.circle-paper,
-.user-image {
-  height: 80px;
-  width: 80px;
+.circle-paper {
+  height: 25vw !important;
+  width: 25vw !important;
+  margin-top: 20px !important;
+  align-items: center !important;
+  display: block !important;
+  overflow: hidden !important;
+  border: 1px solid rgb(235, 235, 235) !important;
+  border: 50% !important;
 }
 
-.circle-paper {
-  margin-top: 20px;
-  align-items: center;
-  display: block;
-  overflow: hidden;
-  border: 1px solid rgb(235, 235, 235);
+.user-image {
+  height: 100%;
+  width: 100%;
 }
 
 .personal-container-name,
@@ -43,13 +46,15 @@
 }
 
 .user-personal-wrapper {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  height: 150px;
-  width: 300px;
-  border-radius: 2px;
-  padding: 20px 0 0 0;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  height: 115px !important;
+  width: 300px !important;
+  border-radius: 2px !important;
+  padding: 10px 0 0 0 !important;
+  margin: 0 0 20px 0 !important;
+  border: 1px solid #ff6d00 !important;
 }
 
 .user-location-top-wrapper,
@@ -69,7 +74,7 @@
 .location-icon {
   height: 23px;
   width: 23px;
-  margin-right: 8vw;
+  margin-right: 15%;
   color: black;
 }
 
@@ -94,6 +99,20 @@
 
 .user-button-edit-wrapper {
   display: flex;
-  align-self: flex-end;
-  margin-right: -5px;
+  flex-direction: row;
+  justify-content: flex-end;
+  width: 85%;
+}
+
+.user-button-edit {
+  width: 17px !important;
+  height: 17px !important;
+}
+@media (min-width: 413px) {
+}
+
+@media (min-width: 768px) {
+}
+
+@media (min-width: 1200px) {
 }

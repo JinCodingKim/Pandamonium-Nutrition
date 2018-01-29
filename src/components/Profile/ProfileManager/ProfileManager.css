@@ -14,8 +14,11 @@
   align-items: center;
   height: 250px;
   width: 320px;
+  margin: 20px 0 20px 0;
+  border: 1px solid #ff6d00;
 }
 
 .submit-button {
-  width: 320px;
+  width: 320px !important;
+  margin: 0 0 20px 0;
 }

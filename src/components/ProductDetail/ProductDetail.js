@@ -256,7 +256,7 @@ class ProductDetail extends Component {
                       });
                     }}
                   />
-                ) : (
+                ) : flavor === productDetail[1].product_flavor ? (
                   <RaisedButton
                     label="Add to Cart"
                     primary={true}
@@ -275,6 +275,31 @@ class ProductDetail extends Component {
                           productDetail[1].product_name
                         } added to Cart!`,
                         text: `${productDetail[1].product_flavor}`,
+                        type: "success",
+                        confirmButtonText: "Back to Shopping",
+                        confirmButtonColor: "#ff6d00"
+                      });
+                    }}
+                  />
+                ) : (
+                  <RaisedButton
+                    label="Add to Cart"
+                    primary={true}
+                    labelPosition="after"
+                    className="add-cart-button"
+                    icon={<ActionAddShoppingCart />}
+                    onClick={() => {
+                      this.handleCart(
+                        productDetail[2].product_id,
+                        quantity,
+                        total,
+                        productDetail[2].product_price
+                      );
+                      swal({
+                        title: `${
+                          productDetail[2].product_name
+                        } added to Cart!`,
+                        text: `${productDetail[2].product_flavor}`,
                         type: "success",
                         confirmButtonText: "Back to Shopping",
                         confirmButtonColor: "#ff6d00"

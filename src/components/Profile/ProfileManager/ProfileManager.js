@@ -40,12 +40,14 @@ class ProfileManager extends Component {
           <TextField
             type="text"
             floatingLabelText="Full Name"
+            inputStyle={{ color: "#000000" }}
             onChange={e => this.handleChange("name", e.target.value)}
           />
 
           <TextField
             type="text"
             floatingLabelText="Age"
+            inputStyle={{ color: "#000000" }}
             onChange={e => this.handleChange("age", e.target.value)}
           />
 
@@ -53,12 +55,14 @@ class ProfileManager extends Component {
             type="img"
             floatingLabelText="Image URL"
             hintText="Input .png URL Path"
+            inputStyle={{ color: "#000000" }}
             onChange={e => this.handleChange("img", e.target.value)}
           />
         </Paper>
         <RaisedButton
           label="Submit"
           onClick={this.handleClick}
+          primary={true}
           className="submit-button"
         />
       </div>

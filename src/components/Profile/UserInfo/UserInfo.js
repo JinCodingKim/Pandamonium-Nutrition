@@ -44,7 +44,7 @@ class UserInfo extends Component {
             </div>
           </div>
 
-          <div className="user-location-bottom-wrapper">
+          {/* <div className="user-location-bottom-wrapper">
             <CommunicationLocationOn
               className="location-icon"
               color={orangeA700}
@@ -56,14 +56,11 @@ class UserInfo extends Component {
                 500 S. Ervay St. Dallas, TX 75031
               </div>
             </div>
-          </div>
+          </div> */}
           <NavLink to="/profile/manager" className="user-button-edit-wrapper">
             <IconButton
-              iconStyle={{
-                width: 17,
-                height: 17,
-                color: "#FF6D00"
-              }}
+              className="user-button-edit"
+              iconStyle={{ color: "black" }}
               tooltip="Edit Profile"
               tooltipPosition="top-center"
               touch={true}

@@ -12,10 +12,6 @@ import {
 import { Step, Stepper, StepLabel } from "material-ui/Stepper";
 import TextField from "material-ui/TextField";
 import RaisedButton from "material-ui/RaisedButton";
-import Divider from "material-ui/Divider";
-import Paper from "material-ui/Paper";
-//Sweetalert2
-import swal from "sweetalert2";
 //Local
 import Checkout from "../Checkout/Checkout";
 import "./CheckoutInfo.css";
