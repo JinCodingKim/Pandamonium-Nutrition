@@ -39,8 +39,106 @@
   margin: 10px;
 }
 
+.submit-login {
+  height: 30px !important;
+  width: 160px !important;
+  margin: 10px 0 20px 0 !important;
+}
+
 .guest-checkout-title {
   margin: 10px 10px 0 10px;
+}
+
+.guest-textfield {
+  width: 160px !important;
+  font-size: 12px !important;
+}
+
+.submit-guest {
+  margin: 30px 0 0 0 !important;
+  height: 30px !important;
+  width: 160px !important;
+}
+
+.input-address-container {
+  width: 85vw;
+  margin: 0;
+  padding: 0;
+}
+.checkout-whole-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.checkout-info-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.first-name-container,
+.last-name-container,
+.address-container,
+.city-container,
+.state-container,
+.country-container,
+.zip-container {
+  display: flex;
+  flex-direction: column;
+  margin: 10px 0 10px 0;
+}
+
+.first-name-container {
+  padding: 0 1% 0 0;
+  width: 55%;
+}
+
+.last-name-container {
+  padding: 0 0 0 1%;
+  width: 43%;
+}
+
+.city-container {
+  padding: 0 1% 0 0;
+  width: 65%;
+}
+
+.state-container {
+  padding: 0 0 0 1%;
+  width: 33%;
+}
+
+.country-container {
+  padding: 0 1% 0 0;
+  width: 83%;
+}
+
+.zip-container {
+  padding: 0 0 0 1%;
+  width: 15%;
+}
+
+.info-labels {
+  font-size: 14px;
+  color: #ff6d00;
+}
+
+.first-name-input,
+.last-name-input,
+.address-input,
+.city-input,
+.state-input,
+.country-input,
+.zip-input {
+  border: 1px solid black;
+  outline: none;
+  border-radius: 2px;
+  height: 30px;
+  font-size: 10px;
+  letter-spacing: 0px;
+  padding: 0 0 0 2%;
+  background: transparent;
 }
 
 .finished-wrapper {
@@ -48,8 +146,58 @@
   flex-direction: row;
   justify-content: center;
 }
-.stepper,
-.stepp-buttons-wrapper {
-  width: 100%;
+
+.stepper {
+  width: 90vw;
+  padding: 0 5vw 0 5vw;
   margin: auto;
+}
+
+.stepper-buttons-wrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 95%;
+}
+
+.step-content {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.back-stepper {
+  height: 30px !important;
+  width: 100px !important;
+  margin: 30px 0 30px 0 !important;
+}
+
+.next-stepper {
+  height: 30px !important;
+  width: 100px !important;
+  margin: 30px 0 30px 0 !important;
+}
+
+@media (min-width: 413px) {
+  .first-name-input,
+  .last-name-input,
+  .address-input,
+  .city-input,
+  .state-input,
+  .country-input,
+  .zip-input {
+    height: 40px;
+    font-size: 14px;
+    letter-spacing: 0.5px;
+  }
+
+  .back-stepper {
+    width: 150px !important;
+  }
+
+  .next-stepper {
+    width: 150px !important;
+  }
 }

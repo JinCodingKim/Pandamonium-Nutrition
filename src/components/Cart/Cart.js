@@ -92,52 +92,44 @@ class Cart extends Component {
                   placeholder={product.quantity}
                 />
               </div>
-              <RaisedButton
-                label="Update"
-                primary={true}
-                labelPosition="after"
-                style={{ height: 30, width: 160, marginBottom: 2 }}
-                labelStyle={{
-                  fontSize: 12,
-                  fontWeight: "bold",
-                  margin: "10px 0 10px 0"
-                }}
-                icon={<ActionUpdate />}
-                onClick={() => {
-                  this.updateCartValues(
-                    product.product_id,
-                    newQuantity,
-                    newTotal
-                  );
-                  swal({
-                    title: `Item has been updated!`,
-                    type: "success",
-                    confirmButtonText: "Back to Cart",
-                    confirmButtonColor: "#ff6d00"
-                  });
-                }}
-              />
-              <RaisedButton
-                label="Remove"
-                primary={true}
-                labelPosition="after"
-                style={{ height: 30, width: 160, marginTop: 2 }}
-                labelStyle={{
-                  fontSize: 12,
-                  fontWeight: "bold",
-                  margin: "10px 0 10px 0"
-                }}
-                icon={<ActionDelete />}
-                onClick={() => {
-                  this.handleDelete(product.product_id);
-                  swal({
-                    title: `Item has been removed!`,
-                    type: "success",
-                    confirmButtonText: "Back to Cart",
-                    confirmButtonColor: "#ff6d00"
-                  });
-                }}
-              />
+              <div className="buttons-cart-wrapper">
+                <RaisedButton
+                  label="Update"
+                  primary={true}
+                  labelPosition="after"
+                  className="update-order-button"
+                  icon={<ActionUpdate />}
+                  onClick={() => {
+                    this.updateCartValues(
+                      product.product_id,
+                      newQuantity,
+                      newTotal
+                    );
+                    swal({
+                      title: `Item has been updated!`,
+                      type: "success",
+                      confirmButtonText: "Back to Cart",
+                      confirmButtonColor: "#ff6d00"
+                    });
+                  }}
+                />
+                <RaisedButton
+                  label="Remove"
+                  primary={true}
+                  labelPosition="after"
+                  className="remove-order-button"
+                  icon={<ActionDelete />}
+                  onClick={() => {
+                    this.handleDelete(product.product_id);
+                    swal({
+                      title: `Item has been removed!`,
+                      type: "success",
+                      confirmButtonText: "Back to Cart",
+                      confirmButtonColor: "#ff6d00"
+                    });
+                  }}
+                />
+              </div>
             </div>
           </div>
         </div>
@@ -161,12 +153,7 @@ class Cart extends Component {
                 label="Checkout"
                 primary={true}
                 labelPosition="after"
-                style={{ height: 30, width: 140 }}
-                labelStyle={{
-                  fontSize: 12,
-                  fontWeight: "bold",
-                  margin: "10px 0 10px 0"
-                }}
+                className="checkout-button"
                 onClick={() => updateTotalAmnt(totalAmnt)}
                 icon={<ActionPayment />}
               />

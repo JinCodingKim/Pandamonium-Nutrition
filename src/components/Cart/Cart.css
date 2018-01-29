@@ -3,51 +3,60 @@
   margin: 0;
   display: flex;
   flex-direction: column;
-  background: rgb(235, 235, 235);
+  background: #eeeeee;
 }
 
 .cart-item-container {
   display: flex;
   justify-content: flex-start;
-  margin: 20px 20px 0 20px;
-  background: rgb(235, 235, 235);
+  padding: 20px 5vw 0 5vw;
+  background: #eeeeee;
   width: 90vw;
+  border-bottom: 1px solid #ff6d00;
 }
 
 .cart-item-img-container {
-  height: 125px;
-  width: 84px;
+  height: 39.06vw;
+  width: 26.25vw;
   text-align: center;
 }
 
 .cart-item-img {
-  height: 125px;
+  height: 100%;
+  width: 100%;
 }
 
 .cart-item-description {
   display: flex;
   flex-direction: column;
-  margin: 0 0 20px 20px;
-  width: 60%;
+  margin: 0 0 20px 6.25vw;
+  width: 57.5vw;
 }
 
 .cart-item-option {
   display: flex;
   flex-direction: column;
-  width: 90%;
+  width: 95%;
+  padding: 0 2.5% 0 2.5%;
 }
 
 .cart-item-name,
 .cart-item-price {
   font-size: 12px;
-  margin: 0 0 10px 0;
+  margin: 0 2.5% 10px 2.5%;
+  width: 95%;
 }
 
 .quantity-container {
   display: flex;
   flex-direction: row;
   justify-content: flex-end;
+  width: 100%;
   margin: 0 0 10px 0;
+}
+
+.cart-item-price {
+  font-weight: bold;
 }
 
 .cart-item-quantity {
@@ -57,40 +66,157 @@
 }
 
 .quantity-reselect {
-  width: 15px;
+  width: 30px;
   height: 15px;
   padding: 1px;
+  font-size: 11px;
+  font-weight: bold;
+  color: black;
   text-align: center;
   border: 0.5px solid black;
   border-radius: 2px;
 }
 
-.cart-item-price {
-  font-weight: bold;
+.update-order-button,
+.remove-order-button {
+  height: 30px !important;
+  width: 100% !important;
+  margin: 10px 0 10px 0 !important;
 }
 
 .order-container {
   display: flex;
   flex-direction: column;
   align-items: flex-end;
-  width: 100vw;
-  height: 100px;
-  background-color: #e0e0e0;
+  width: 90%;
+  padding: 0 5% 0 5%;
+  background-color: #eeeeee;
 }
 
 .order-total {
   display: flex;
   justify-content: flex-end;
   font-size: 17px;
-  width: 200px;
+  width: 100%;
   height: 30px;
-  margin: 17px 20px 2px 0;
+  margin: 17px 0 2px 0;
 }
 
 .checkout-container {
   display: flex;
   justify-content: flex-end;
-  width: 200px;
-  height: 30px;
-  margin: 0 20px 0 0;
+  width: 100%;
+  height: 50px;
 }
+
+.checkout-button {
+  height: 30px !important;
+  width: 43.75vw !important;
+  margin: 0 0 10px 0 !important;
+}
+
+@media (min-width: 768px) {
+  .cart-item-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 20px 5% 0 5%;
+    width: 90%;
+  }
+
+  .cart-item-img-container {
+    height: 148px;
+    width: 100px;
+    padding: 0 15px 0 15px;
+  }
+
+  .cart-item-description {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 0 15px 0 15px;
+    margin: 0 0 20px 0;
+    width: 70vw;
+    height: 148px;
+  }
+
+  .cart-item-option {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+    padding: 0 0 0 0;
+  }
+
+  .cart-item-name,
+  .cart-item-price {
+    font-size: 14px;
+    margin: 0 0 0 0;
+    padding: 0 15px 0 15px 0;
+    height: 100%;
+    line-height: 150px;
+    text-align: center;
+  }
+
+  .cart-item-name {
+    width: 450px;
+  }
+
+  .cart-item-price {
+    width: 150px;
+  }
+
+  .quantity-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 150px;
+    margin: 0 0 0 0;
+  }
+
+  .cart-item-quantity {
+    display: none;
+  }
+
+  .quantity-reselect {
+    width: 30px;
+    height: 20px;
+    font-size: 15px;
+  }
+
+  .buttons-cart-wrapper {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .update-order-button,
+  .remove-order-button {
+    width: 150px !important;
+    margin: 25px 0 10px 0 !important;
+  }
+
+  .order-container {
+    width: 90%;
+    padding: 0 5% 0 5%;
+  }
+
+  .order-total {
+    font-size: 20px;
+    width: 100%;
+    height: 30px;
+    margin: 20px 40px 5px 15px;
+  }
+
+  .checkout-container {
+    margin: 5px 40px 20px 15px;
+  }
+
+  .checkout-button {
+    width: 150px !important;
+  }
+}
+/* 
+@media (min-width: 1200px) {
+} */
