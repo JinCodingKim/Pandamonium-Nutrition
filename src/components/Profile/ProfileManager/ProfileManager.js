@@ -29,8 +29,9 @@ class ProfileManager extends Component {
 
   handleClick() {
     const { name, age, img } = this.state;
-    this.props.updateUser({ name, age, img });
-    window.location.href = "/profile";
+    this.props.updateUser({ name, age, img }).then(() => {
+      window.location.href = "/profile";
+    });
   }
 
   render() {
