@@ -65,7 +65,7 @@ passport.use(
       domain: AUTH_DOMAIN,
       clientID: CLIENT_ID,
       clientSecret: CLIENT_SECRET,
-      callbackURL: "/login",
+      callbackURL: "/api/login",
       scope: "openid profile"
     },
     (accessToken, refreshToken, extraParams, profile, done) => {
@@ -110,59 +110,59 @@ passport.serializeUser((user, done) => done(null, user));
 passport.deserializeUser((user, done) => done(null, user));
 
 //Stripe
-app.get("/payments");
-app.post("/payments/:id", payCtrl.postPayment);
+app.get("/api/payments");
+app.post("/api/payments/:id", payCtrl.postPayment);
 
 //Auth0
 app.get(
-  "/login",
+  "/api/login",
   passport.authenticate("auth0", {
     successRedirect: "http://localhost:3002/",
-    failureRedirect: "http://localhost:3001/login"
+    failureRedirect: "http://localhost:3001/api/login"
   })
 );
 
 //Login
-app.get("/me", (req, res, next) => {
+app.get("/api/me", (req, res, next) => {
   console.log(req.user);
   if (req.user) res.json(req.user);
-  else res.redirect("/login");
+  else res.redirect("/api/login");
 });
 //Logout
-app.get("/logout", (req, res, next) => {
+app.get("/api/logout", (req, res, next) => {
   req.logout();
   req.session.destroy();
   res.redirect("http://localhost:3002/");
 });
 
 //UserCtrl
-app.put("/profile/update", userCtrl.userInfo);
-app.put("/guest/email", userCtrl.updateGuestEmail);
-app.get("/profile/", userCtrl.getUserByUserId);
-app.put("/profile/shipping", userCtrl.updateShippingAddress);
-app.put("/profile/billing", userCtrl.updateBillingAddress);
+app.put("/api/profile/update", userCtrl.userInfo);
+app.put("/api/guest/email", userCtrl.updateGuestEmail);
+app.get("/api/profile/", userCtrl.getUserByUserId);
+app.put("/api/profile/shipping", userCtrl.updateShippingAddress);
+app.put("/api/profile/billing", userCtrl.updateBillingAddress);
 //ReviewCtrl
-app.get("/review/:product_id", reviewCtrl.getReviews);
-app.post("/product/review", reviewCtrl.addReview);
+app.get("/api/review/:product_id", reviewCtrl.getReviews);
+app.post("/api/product/review", reviewCtrl.addReview);
 //SubscriptionCtrl
-app.post("/subscription", subscriptionCtrl.postSubscriptionEmail);
+app.post("/api/subscription", subscriptionCtrl.postSubscriptionEmail);
 //ProductCtrl
-app.get("/products", productCtrl.getDistinctProducts);
-app.get("/products/clear", productCtrl.getDistinctProducts);
-app.get("/products/ascend", productCtrl.getProductsAsc);
-app.get("/products/descend", productCtrl.getProductsDesc);
-app.get("/products/az", productCtrl.getProductsAToZ);
-app.get("/products/za", productCtrl.getProductsZToA);
-app.get("/product/:product_type", productCtrl.getProductByType);
+app.get("/api/products", productCtrl.getDistinctProducts);
+app.get("/api/products/clear", productCtrl.getDistinctProducts);
+app.get("/api/products/ascend", productCtrl.getProductsAsc);
+app.get("/api/products/descend", productCtrl.getProductsDesc);
+app.get("/api/products/az", productCtrl.getProductsAToZ);
+app.get("/api/products/za", productCtrl.getProductsZToA);
+app.get("/api/product/:product_type", productCtrl.getProductByType);
 //CartCtrl
-app.post("/cart/add", cartCtrl.addCart);
-app.put("/cart/update", cartCtrl.updateCart);
-app.put("/cart/quantity", cartCtrl.updateCartItem);
-app.delete("/cart/:product_id", cartCtrl.deleteCart);
-app.get("/cart/:user_id", cartCtrl.getCart);
-app.delete("/checkout/:user_id", cartCtrl.removeAllCart);
+app.post("/api/cart/add", cartCtrl.addCart);
+app.put("/api/cart/update", cartCtrl.updateCart);
+app.put("/api/cart/quantity", cartCtrl.updateCartItem);
+app.delete("/api/cart/:product_id", cartCtrl.deleteCart);
+app.get("/api/cart/:user_id", cartCtrl.getCart);
+app.delete("/api/checkout/:user_id", cartCtrl.removeAllCart);
 //Stripe
-app.post("/checkout", (req, res, next) => {
+app.post("/api/checkout", (req, res, next) => {
   stripe.charges.create(req.body, (stripeErr, stripeRes) => {
     // console.log(req.body);
     if (stripeErr) {

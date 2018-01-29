@@ -35,7 +35,7 @@ export function getProducts() {
   return {
     type: GET_PRODUCTS,
     payload: axios
-      .get("/products")
+      .get("/api/products")
       .then(res => {
         // console.log(res.data);
         return res.data;
@@ -48,7 +48,7 @@ export function getProductByType(type) {
   return {
     type: GET_PRODUCT_BY_TYPE,
     payload: axios
-      .get(`/product/${type}`)
+      .get(`/api/product/${type}`)
       .then(res => {
         // console.log(res.data);
         return res.data;
@@ -61,7 +61,7 @@ export function getReviews(product) {
   return {
     type: GET_REVIEWS,
     payload: axios
-      .get(`/review/${product}`)
+      .get(`/api/review/${product}`)
       .then(res => {
         return res.data;
       })
@@ -73,7 +73,7 @@ export function addReview(product, name, email, rating, title, description) {
   return {
     type: ADD_REVIEW,
     payload: axios
-      .post("/product/review", {
+      .post("/api/product/review", {
         product_id: product,
         review_name: name,
         review_email: email,
@@ -93,7 +93,7 @@ export function getSortedProducts(sorted) {
   return {
     type: GET_SORTED_PRODUCTS,
     payload: axios
-      .get(`/products/${sorted}`)
+      .get(`/api/products/${sorted}`)
       .then(res => {
         // console.log(res.data);
         return res.data;
@@ -107,7 +107,7 @@ export function addToCart(product, amount, price, single) {
   return {
     type: ADD_TO_CART,
     payload: axios
-      .post("/cart/add", {
+      .post("/api/cart/add", {
         product_id: product,
         quantity: amount,
         total_price: price,
@@ -126,7 +126,7 @@ export function updateCart(product, amount, price) {
   return {
     type: UPDATE_CART,
     payload: axios
-      .put("/cart/update", {
+      .put("/api/cart/update", {
         product_id: product,
         quantity: amount,
         total_price: price
@@ -144,7 +144,7 @@ export function updateCartItem(product, amount, price) {
   return {
     type: UPDATE_CART_ITEM,
     payload: axios
-      .put("/cart/quantity", {
+      .put("/api/cart/quantity", {
         product_id: product,
         quantity: amount,
         total_price: price
@@ -161,7 +161,7 @@ export function getCart(user) {
   return {
     type: GET_CART,
     payload: axios
-      .get(`/cart/${user}`)
+      .get(`/api/cart/${user}`)
       .then(res => {
         // console.log("Get Cart:" + res.data);
         return res.data;
@@ -175,7 +175,7 @@ export function removeCart(product) {
   return {
     type: REMOVE_CART,
     payload: axios
-      .delete(`/cart/${product}`)
+      .delete(`/api/cart/${product}`)
       .then(res => {
         return res.data;
       })
@@ -187,7 +187,7 @@ export function removeAllCart(user) {
   return {
     type: REMOVE_ALL_CART,
     payload: axios
-      .delete(`checkout/${user}`)
+      .delete(`/api/checkout/${user}`)
       .then(res => {
         return res.data;
       })

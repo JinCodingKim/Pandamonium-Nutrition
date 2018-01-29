@@ -22,10 +22,10 @@ class Home extends Component {
     return (
       <div className="home-container">
         <Slider {...settings}>
-          <a className="slider-container" href="/product/protein">
+          <a className="slider-container" href="/product/supplement-protein">
             <img src={allthewhey} className="slider-image" />
           </a>
-          <a className="slider-container" href="/product/shaker">
+          <a className="slider-container" href="/product/accessory-shaker">
             <img src={shaker} className="slider-image" />
           </a>
         </Slider>

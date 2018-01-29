@@ -37,7 +37,7 @@ class Footer extends Component {
     const { emailVal } = this.state;
     if (event.keyCode == 13) {
       axios
-        .post("/subscription", { subscription_email: emailVal })
+        .post("/api/subscription", { subscription_email: emailVal })
         .then(res => {
           swal({
             title: `Thanks for signing up!`,

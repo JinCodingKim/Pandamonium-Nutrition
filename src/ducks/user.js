@@ -17,7 +17,7 @@ export function getUser() {
   return {
     type: GET_USER,
     payload: axios
-      .get("/me")
+      .get("/api/me")
       .then(res => {
         console.log(res.data);
         return res.data;
@@ -30,7 +30,7 @@ export function getUserByUserId() {
   return {
     type: GET_USER_BY_USER_ID,
     payload: axios
-      .get("/profile")
+      .get("/api/profile")
       .then(res => {
         return res.data;
       })
@@ -42,7 +42,7 @@ export function updateUser(obj) {
   return {
     type: UPDATE_USER,
     payload: axios
-      .put("/profile/update", obj)
+      .put("/api/profile/update", obj)
       .then(res => {
         // console.log(res.data);
         return res.data;
@@ -55,7 +55,7 @@ export function updateGuestEmail(email) {
   return {
     type: UPDATE_GUEST_EMAIL,
     payload: axios
-      .put("/guest/email", { user_email: email })
+      .put("/api/guest/email", { user_email: email })
       .then(res => {
         return res.data;
       })
@@ -75,7 +75,7 @@ export function updateShippingAddress(
   return {
     type: UPDATE_SHIPPING_ADDRESS,
     payload: axios
-      .put("/profile/shipping", {
+      .put("/api/profile/shipping", {
         shipping_first_name: shipFirst,
         shipping_last_name: shipLast,
         shipping_address: shipAdd,
@@ -103,7 +103,7 @@ export function updateBillingAddress(
   return {
     type: UPDATE_BILLING_ADDRESS,
     payload: axios
-      .put("/profile/billing", {
+      .put("/api/profile/billing", {
         billing_first_name: billFirst,
         billing_last_name: billLast,
         billing_address: billAdd,
