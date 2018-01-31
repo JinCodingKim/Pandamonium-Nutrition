@@ -117,7 +117,7 @@ class ProductDetail extends Component {
       title,
       description
     } = this.state;
-
+    if (loading) return <h1>Page Is Loading...</h1>;
     let reviewsList = review.map(review => {
       return (
         <div className="reviewed-wrapper" key={review.review_id}>

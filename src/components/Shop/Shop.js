@@ -60,7 +60,7 @@ class Shop extends Component {
   render() {
     const { product = [], loading } = this.props;
     const { search } = this.state;
-
+    if (loading) return <h1>Page Is Loading...</h1>;
     let productsList = product.map(product => {
       return (
         <NavLink
@@ -78,40 +78,34 @@ class Shop extends Component {
     });
     return (
       <div className="products-main-container">
-        {!product ? (
-          <div>
-            <h1>Loading Content...</h1>
+        <div className="products-list">
+          <div className="search-container">
+            <input
+              className="search-input"
+              type="text"
+              onChange={e => this.handleSearch(e.target.value)}
+              value={search}
+              onKeyDown={this.confirmSearch}
+            />
           </div>
-        ) : (
-          <div className="products-list">
-            <div className="search-container">
-              <input
-                className="search-input"
-                type="text"
-                onChange={e => this.handleSearch(e.target.value)}
-                value={search}
-                onKeyDown={this.confirmSearch}
-              />
-            </div>
 
-            <div className="sort-container">
-              <label className="sort-title">Sort</label>
-              <select
-                className="sort-select"
-                onChange={e => this.handleSort(e.target.value)}
-                onClick={this.confirmSort}
-              >
-                <option value="clear"> Default Sorting </option>
-                <option value="az"> Alphabetically: A-Z </option>
-                <option value="za"> Alphabetically: Z-A </option>
-                <option value="ascend"> Price: Low-to-High </option>
-                <option value="descend"> Price: High-to-Low </option>
-              </select>
-            </div>
-
-            <div className="products-align">{productsList}</div>
+          <div className="sort-container">
+            <label className="sort-title">Sort</label>
+            <select
+              className="sort-select"
+              onChange={e => this.handleSort(e.target.value)}
+              onClick={this.confirmSort}
+            >
+              <option value="clear"> Default Sorting </option>
+              <option value="az"> Alphabetically: A-Z </option>
+              <option value="za"> Alphabetically: Z-A </option>
+              <option value="ascend"> Price: Low-to-High </option>
+              <option value="descend"> Price: High-to-Low </option>
+            </select>
           </div>
-        )}
+
+          <div className="products-align">{productsList}</div>
+        </div>
       </div>
     );
   }

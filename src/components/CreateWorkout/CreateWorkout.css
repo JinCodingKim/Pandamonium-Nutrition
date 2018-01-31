@@ -48,7 +48,7 @@
   outline: none;
 }
 
-.create-button > span {
+.create-button>span {
   font-weight: 100;
   font-size: 10px;
   letter-spacing: 0px;
@@ -71,36 +71,41 @@
   overflow: scroll;
   border-radius: 2px;
   border: 1px solid #ff6d00;
-  margin: 5px 12.5% 25px 12.5%;
+  margin: 5px 7.5% 25px 7.5%;
 }
 
 .ex {
-  padding: 0.2em 0 0.2em 0.5em;
-  color: #84caf9;
+  padding: 5px 0 5px 5px;
+  color: #000000;
   list-style-type: none;
+  display: flex;
+  flex-direction: column;
+  align-items: left;
 }
 
 .days {
-  color: #ccc;
-  font-size: 30px;
-  font-style: oblique;
-  margin-top: 50px;
+  text-align: center;
+  color: #ff6d00;
+  font-size: 15px;
+  width: 95%;
+  margin: 25px 2.5% 10px 2.5%;
   text-transform: uppercase;
 }
 
 .ex-title {
-  width: 33%;
-  margin: 0px auto;
-  padding-top: 15px;
-  border-bottom: 1px solid #84caf9;
+  text-align: center;
+  width: 90%;
+  margin: 0 5% 0 5%;
+  padding-top: 5px;
+  border-bottom: 1px solid #ff6d00;
   font-weight: bold;
-  font-size: 25px;
-  letter-spacing: 1px;
+  font-size: 15px;
+  letter-spacing: .5px;
 }
 
 .ex-description {
-  padding: 3px 150px 5px 150px;
+  width: 90%;
+  margin: 5px 5% 0 5%;
   font-size: 12px;
-  line-height: 20px;
-  letter-spacing: 0.5px;
+  line-height: 17.5px;
 }

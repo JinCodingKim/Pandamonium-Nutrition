@@ -8,7 +8,7 @@ class List extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      isLoading: true,
+      loading: true,
       exercises: [],
       name: "",
       description: ""
@@ -27,11 +27,12 @@ class List extends Component {
         console.log(response);
         this.setState({
           exercises: response.data,
-          isLoading: false
+          loading: false
         });
       })
       .catch(console.log);
   }
+
   destroy(id) {
     console.log("asdf");
     axios.delete(`/api/exercises/${id}`).then(response => {
@@ -41,6 +42,7 @@ class List extends Component {
       });
     });
   }
+
   add() {
     let ex = {
       name: this.state.name,
@@ -63,7 +65,7 @@ class List extends Component {
         axios.put(`/api/exercises/${id}`, { description }).then(response => {
           return this.setState({
             exercises: response.data,
-            isLoading: false
+            loading: false
           });
         })
     );
@@ -81,9 +83,9 @@ class List extends Component {
   }
 
   render() {
-    const { exercises, isLoading, name, description } = this.state;
+    const { exercises, loading, name, description } = this.state;
     const { bodyPart } = this.props;
-    if (isLoading) return <h1>Page Is Loading...</h1>;
+    if (loading) return <h1>Page Is Loading...</h1>;
     const exerciseList = exercises
       .filter((e, i) => {
         return JSON.stringify(e.category) === bodyPart || bodyPart === "";
