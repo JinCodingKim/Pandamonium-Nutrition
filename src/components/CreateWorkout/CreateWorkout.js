@@ -85,10 +85,10 @@ class CreateWorkout extends Component {
         </h2>
         <div className="buttons-container">
           <button className="create-button" onClick={this.threeDays}>
-            Three Days (Full Body Workouts)
+            Three Days <span>(Full Body Workouts)</span>
           </button>
           <button className="create-button" onClick={this.fourDays}>
-            Four Days (Upper/Lower Split Workouts)
+            Four Days <span>(Upper/Lower Split Workouts)</span>
           </button>
         </div>
 
