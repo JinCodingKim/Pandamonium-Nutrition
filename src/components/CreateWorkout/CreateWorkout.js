@@ -1,5 +1,8 @@
 import React, { Component } from "react";
-import axios from "axios";
+//Redux
+import { connect } from "react-redux";
+import { getExercises } from "../../ducks/workout";
+//Local
 import MWFList from "./MWFList/MWFList";
 import MTTFList from "./MTTFList/MTTFList";
 import "./CreateWorkout.css";
@@ -9,7 +12,6 @@ class CreateWorkout extends Component {
     super(props);
 
     this.state = {
-      exercises: [],
       days1: [],
       days2: [],
       workouts1: [],
@@ -21,19 +23,13 @@ class CreateWorkout extends Component {
   }
 
   componentDidMount() {
-    axios
-      .get("/api/exercises")
-      .then(response => {
-        console.log(response);
-        this.setState({
-          exercises: response.data
-        });
-      })
-      .catch(console.log);
+    const { getExercises } = this.props;
+    getExercises();
   }
 
   threeDays() {
-    const { exercises } = this.state;
+    const { exercises, loading } = this.props;
+    if (loading) return <h1>Page Is Loading...</h1>;
     let mwfWorkouts = exercises.filter(
       exercise =>
         exercise.category == "11" ||
@@ -53,7 +49,8 @@ class CreateWorkout extends Component {
   }
 
   fourDays() {
-    const { exercises } = this.state;
+    const { exercises, loading } = this.props;
+    if (loading) return <h1>Page Is Loading...</h1>;
     let mttfWorkouts = exercises.filter(
       exercise =>
         exercise.category == "11" ||
@@ -103,4 +100,14 @@ class CreateWorkout extends Component {
     );
   }
 }
-export default CreateWorkout;
+
+const mapStateToProps = state => {
+  return {
+    loading: state.workout.loading,
+    exercises: state.workout.exercises
+  };
+};
+
+export default connect(mapStateToProps, {
+  getExercises
+})(CreateWorkout);
