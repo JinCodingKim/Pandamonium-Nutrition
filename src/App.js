@@ -13,6 +13,10 @@ import About from "./components/About/About";
 import Shop from "./components/Shop/Shop";
 import Footer from "./components/Footer/Footer";
 import ProductDetail from "./components/ProductDetail/ProductDetail";
+
+import WorkoutList from "./components/WorkoutList/WorkoutList";
+import CreateWorkout from "./components/CreateWorkout/CreateWorkout";
+
 import "./App.css";
 
 class App extends Component {
@@ -33,6 +37,9 @@ class App extends Component {
           {/* <Route path="/disclaimer" component={Disclaimer}/> */}
           <Route path="/shop" component={Shop} />
           <Route path="/product/:product_type" component={ProductDetail} />
+
+          <Route path="/exercises" component={WorkoutList} />
+          <Route path="/create" component={CreateWorkout} />
         </Switch>
         <Footer />
       </div>

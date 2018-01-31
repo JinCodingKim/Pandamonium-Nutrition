@@ -27,6 +27,7 @@ const app = express();
 configureServer(app);
 configureRoutes(app);
 //Controllers
+const exerciseCtrl = require("./controllers/exercise/exerciseCtrl");
 const userCtrl = require("./controllers/user/userCtrl");
 const productCtrl = require("./controllers/product/productCtrl");
 const cartCtrl = require("./controllers/cart/cartCtrl");
@@ -135,6 +136,11 @@ app.get("/api/logout", (req, res, next) => {
   res.redirect("http://localhost:3002/");
 });
 
+//ExerciseCtrl
+app.get("/api/exercises", exerciseCtrl.getExercises);
+app.post("/api/exercises", exerciseCtrl.addExercises);
+app.put("/api/exercises/:id", exerciseCtrl.updateExercises);
+app.delete("/api/exercises/:id", exerciseCtrl.removeExercises);
 //UserCtrl
 app.put("/api/profile/update", userCtrl.userInfo);
 app.put("/api/guest/email", userCtrl.updateGuestEmail);

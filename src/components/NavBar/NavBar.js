@@ -11,6 +11,9 @@ import ActionExitToApp from "material-ui/svg-icons/action/exit-to-app";
 import CommunicationPhone from "material-ui/svg-icons/communication/phone";
 import ActionHome from "material-ui/svg-icons/action/home";
 import ActionFace from "material-ui/svg-icons/action/face";
+import PlacesFitnessCenter from "material-ui/svg-icons/places/fitness-center";
+import ContentContentPaste from "material-ui/svg-icons/content/content-paste";
+import HardwareKeyboardArrowDown from "material-ui/svg-icons/hardware/keyboard-arrow-down";
 import NavigationMenu from "material-ui/svg-icons/navigation/menu";
 import IconButton from "material-ui/IconButton";
 //React-Router
@@ -125,6 +128,17 @@ class NavBar extends Component {
               </MenuItem>
             ) : (
               <div>
+                <MenuItem leftIcon={<PlacesFitnessCenter />}>
+                  <NavLink className="menu-item-wrapper" to="/exercises">
+                    <p className="menu-item"> Workout List </p>
+                  </NavLink>
+                </MenuItem>
+                <MenuItem leftIcon={<ContentContentPaste />}>
+                  <NavLink className="menu-item-wrapper" to="/create">
+                    <p className="menu-item"> Workout Plan </p>
+                  </NavLink>
+                </MenuItem>
+
                 <MenuItem leftIcon={<ActionFace />}>
                   <NavLink className="menu-item-wrapper" to="/profile">
                     <p className="menu-item"> View Profile </p>
@@ -157,7 +171,7 @@ class NavBar extends Component {
               </div>
             ) : (
               <div className="nav-logged-container">
-                <div>
+                <div className="nav-logged-left">
                   <NavLink to="/profile">
                     <ActionFace style={navStyles.desktopIcons} />
                   </NavLink>
@@ -166,9 +180,19 @@ class NavBar extends Component {
                   </a>
                 </div>
                 <img className="top-img" src={pandamonium} />
-                <NavLink to="/cart">
-                  <ActionShoppingCart style={navStyles.desktopIcons} />
-                </NavLink>
+                <div className="nav-logged-right">
+                  <NavLink to="/exercises">
+                    <PlacesFitnessCenter style={navStyles.desktopIcons} />
+                  </NavLink>
+
+                  <NavLink to="/create">
+                    <ContentContentPaste style={navStyles.desktopIcons} />
+                  </NavLink>
+
+                  <NavLink to="/cart">
+                    <ActionShoppingCart style={navStyles.desktopIcons} />
+                  </NavLink>
+                </div>
               </div>
             )}
           </div>
@@ -200,6 +224,23 @@ class NavBar extends Component {
             <NavLink className="full-navlink-wrapper" to="/shop">
               <p className="full-navlink"> SHOP </p>
             </NavLink>
+            {!user || user.user_id === 1 ? null : (
+              <div className="full-navlink-wrapper">
+                <button className="full-dropdown-button">
+                  {" "}
+                  WORKOUT <HardwareKeyboardArrowDown />
+                  <i className="fa fa-caret-down" />
+                </button>
+                <div className="dropdown-content">
+                  <NavLink className="dropdown-link-one" to="/exercises">
+                    <p className="full-navlink"> LIST </p>
+                  </NavLink>
+                  <NavLink className="dropdown-link" to="/create">
+                    <p className="full-navlink"> PLAN </p>
+                  </NavLink>
+                </div>
+              </div>
+            )}
             <NavLink className="full-navlink-wrapper" to="/about">
               <p className="full-navlink"> ABOUT </p>
             </NavLink>

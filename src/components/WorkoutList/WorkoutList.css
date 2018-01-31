@@ -1,0 +1,178 @@
+* {
+  margin: 0px;
+  padding: 0px;
+}
+
+.workoutContainer {
+  height: 70%;
+  width: 100%;
+  margin-top: 2%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.bigContainer {
+  display: flex;
+  height: 75vh;
+  margin: 0 100px;
+}
+
+.listContainer {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  overflow: scroll;
+}
+
+.exercise {
+  border-bottom: 2px solid #ccc;
+  padding: 0.2em 0 0.2em 0.5em;
+  color: #84caf9;
+  list-style-type: none;
+}
+
+#exerciseTitle {
+  width: 500px;
+  margin: 0px auto;
+  padding-top: 20px;
+  border-bottom: 1px solid #84caf9;
+  font-weight: bold;
+  font-size: 25px;
+  letter-spacing: 1px;
+}
+
+#descriptionContainer {
+  padding-top: 3px;
+  padding-bottom: 10px;
+  font-size: 12px;
+  line-height: 20px;
+  letter-spacing: 0.5px;
+}
+
+.filterContainer {
+  position: relative;
+  width: 165px;
+  left: -22.2%;
+  height: 30px;
+  padding: 0.2em 0 0.2em 0.5em;
+  color: #878787;
+  border: 2px solid #ccc;
+  border-radius: 15px;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.filterContainer:focus {
+  cursor: pointer;
+  color: #84caf9;
+  border: 2px solid #84caf9;
+}
+
+.postContainer {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  padding: 50px;
+  box-sizing: border-box;
+}
+
+#postTitle {
+  text-align: center;
+  width: 20vw;
+  height: 30px;
+  font-weight: bold;
+  font-size: 25px;
+  letter-spacing: 1px;
+  color: #84caf9;
+  border: 2px solid #ccc;
+  border-radius: 15px 15px 0px 0px;
+  margin: -2px 7vw;
+}
+
+#textContainer {
+  height: 150px;
+  width: 35vw;
+  padding: 5px;
+  border: 2px solid #ccc;
+  border-radius: 15px;
+  letter-spacing: 0.5px;
+  color: #84caf9;
+  line-height: 20px;
+}
+
+#postButton {
+  text-align: center;
+  width: 20vw;
+  height: 30px;
+  font-weight: bold;
+  font-size: 25px;
+  letter-spacing: 1px;
+  color: #878787;
+  border: 2px solid #ccc;
+  border-radius: 0px 0px 15px 15px;
+  margin: -2px 7vw;
+  background-color: transparent;
+  outline: none;
+}
+
+#postButton:hover {
+  cursor: pointer;
+  color: #84caf9;
+}
+
+#deleteButton {
+  text-align: center;
+  width: 110px;
+  height: 25px;
+  font-weight: bold;
+  font-size: 10px;
+  letter-spacing: 0.5px;
+  color: #878787;
+  border: 2px solid #ccc;
+  border-radius: 15px;
+  margin-right: 10px;
+  background-color: transparent;
+  outline: none;
+}
+
+#deleteButton:hover {
+  cursor: pointer;
+  color: #84caf9;
+  border: 2px solid #84caf9;
+}
+
+.editButton {
+  text-align: center;
+  width: 50px;
+  height: 25px;
+  font-weight: bold;
+  font-size: 10px;
+  letter-spacing: 0.5px;
+  color: #878787;
+  border: 2px solid #ccc;
+  border-radius: 15px;
+  margin-bottom: 10px;
+  background-color: transparent;
+  outline: none;
+}
+
+.editButton:hover {
+  cursor: pointer;
+  color: #84caf9;
+  border: 2px solid #84caf9;
+}
+
+#editContainer {
+  height: 100px;
+  width: 40vw;
+  padding: 5px;
+  border: 2px solid #ccc;
+  border-radius: 15px;
+  letter-spacing: 0.5px;
+  color: #84caf9;
+  line-height: 20px;
+}
+
+@media (min-width: 1180px) {
+}
