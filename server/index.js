@@ -140,8 +140,10 @@ app.get("/api/logout", (req, res, next) => {
 app.get("/api/exercises", exerciseCtrl.getExercises);
 app.post("/api/exercise/add", exerciseCtrl.addExercise);
 app.put("/api/exercise/update", exerciseCtrl.updateExercise);
-// app.delete("/api/exercises/:id", exerciseCtrl.removeExercises);
-
+app.get("/api/favorites/:user_id", exerciseCtrl.getUserExercises);
+app.post("/api/favorites/add", exerciseCtrl.addUserExercise);
+app.put("/api/favorites/update", exerciseCtrl.updateUserExercise);
+app.delete("/api/favorites/:exercise_id", exerciseCtrl.deleteUserExercise);
 //UserCtrl
 app.put("/api/profile/update", userCtrl.userInfo);
 app.put("/api/guest/email", userCtrl.updateGuestEmail);

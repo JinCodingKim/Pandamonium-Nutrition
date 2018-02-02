@@ -3,6 +3,7 @@ import axios from "axios";
 const GET_EXERCISES = "GET_EXERCISES";
 const ADD_EXERCISE = "ADD_EXERCISE";
 const UPDATE_EXERCISE = "UPDATE_EXERCISE";
+const GET_USER_EXERCISES = "GET_USER_EXERCISES";
 
 const initialState = {
   exercises: [],
@@ -57,6 +58,18 @@ export function updateExercise(id, name, category, description) {
   };
 }
 
+export function getUserExercises(user) {
+  return {
+    type: GET_USER_EXERCISES,
+    payload: axios
+      .get(`/api/favorites/${user}`)
+      .then(res => {
+        return res.data;
+      })
+      .catch(console.log)
+  };
+}
+
 export default function product(state = initialState, action) {
   switch (action.type) {
     case `${GET_EXERCISES}_PENDING`:
@@ -97,6 +110,20 @@ export default function product(state = initialState, action) {
         userExercises: action.payload
       });
     case `${UPDATE_EXERCISE}_REJECTED`:
+      return Object.assign({}, state, {
+        loading: false,
+        error: true
+      });
+    case `${GET_USER_EXERCISES}_PENDING`:
+      return Object.assign({}, state, {
+        loading: true
+      });
+    case `${GET_USER_EXERCISES}_FULFILLED`:
+      return Object.assign({}, state, {
+        loading: false,
+        userExercises: action.payload
+      });
+    case `${GET_USER_EXERCISES}_REJECTED`:
       return Object.assign({}, state, {
         loading: false,
         error: true
