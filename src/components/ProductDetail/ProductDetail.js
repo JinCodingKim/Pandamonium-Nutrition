@@ -46,7 +46,14 @@ class ProductDetail extends Component {
   }
 
   componentDidMount() {
-    const { user, match, getProductByType, getCart, getReviews } = this.props;
+    const {
+      user,
+      match,
+      productDetail = [],
+      getProductByType,
+      getCart,
+      getReviews
+    } = this.props;
     getProductByType(match.params.product_type).then(res => {
       getReviews(this.props.productDetail[0].product_id);
     });
@@ -67,7 +74,7 @@ class ProductDetail extends Component {
   }
 
   handleCart(product, amount, price, single) {
-    const { cart, addToCart, UpdateCart } = this.props;
+    const { cart = [], addToCart, updateCart } = this.props;
     if (cart.length === 0) {
       addToCart(product, amount, price, single);
     } else {
@@ -222,8 +229,11 @@ class ProductDetail extends Component {
                   <span className="quantity-select-wrapper">
                     <input
                       className="quantity-select"
-                      onChange={e => this.handleQuantity(e.target.value)}
+                      onChange={e =>
+                        this.handleQuantity(Math.max(1, e.target.value))
+                      }
                       type="number"
+                      min="1"
                       placeholder={quantity}
                     />
                   </span>

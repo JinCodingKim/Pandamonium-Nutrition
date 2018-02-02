@@ -1,5 +1,5 @@
 module.exports = {
-  addReview: (req, res, next) => {
+  addReview: (req, res) => {
     const db = req.app.get("db");
     const { user_id } = req.user;
     const {
@@ -25,7 +25,7 @@ module.exports = {
         res.status(500).json(err);
       });
   },
-  getReviews: (req, res, next) => {
+  getReviews: (req, res) => {
     const db = req.app.get("db");
     const { product_id } = req.params;
     db

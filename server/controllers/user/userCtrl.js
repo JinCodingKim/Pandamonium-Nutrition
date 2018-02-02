@@ -1,5 +1,5 @@
 module.exports = {
-  getUserByUserId: (req, res, next) => {
+  getUserByUserId: (req, res) => {
     const db = req.app.get("db");
     const { user_id } = req.user;
     db
@@ -11,7 +11,7 @@ module.exports = {
         res.status(500).json(err);
       });
   },
-  userInfo: (req, res, next) => {
+  userInfo: (req, res) => {
     const db = req.app.get("db");
     // console.log(req.user);
     const { auth_id } = req.user;
@@ -31,7 +31,7 @@ module.exports = {
         res.status(500).json(err);
       });
   },
-  updateGuestEmail: (req, res, next) => {
+  updateGuestEmail: (req, res) => {
     // console.log(req.user);
     const db = req.app.get("db");
     const { user_id } = req.user;
@@ -50,7 +50,7 @@ module.exports = {
         res.status(500).json(err);
       });
   },
-  updateShippingAddress: (req, res, next) => {
+  updateShippingAddress: (req, res) => {
     const db = req.app.get("db");
     const { user_id } = req.user;
     const {
@@ -91,7 +91,7 @@ module.exports = {
         res.status(500).json(err);
       });
   },
-  updateBillingAddress: (req, res, next) => {
+  updateBillingAddress: (req, res) => {
     const db = req.app.get("db");
     const { user_id } = req.user;
     const {

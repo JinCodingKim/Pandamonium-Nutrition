@@ -1,5 +1,5 @@
 module.exports = {
-  postPayment: (req, res, next) => {
+  postPayment: (req, res) => {
     const db = req.app.get("db");
     const { user_id } = req.user;
     const { total_price } = req.body;

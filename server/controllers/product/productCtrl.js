@@ -1,5 +1,5 @@
 module.exports = {
-  getProductByType: (req, res, next) => {
+  getProductByType: (req, res) => {
     const db = req.app.get("db");
     const { product_type } = req.params;
     db
@@ -9,7 +9,7 @@ module.exports = {
         res.status(500).json(err);
       });
   },
-  getDistinctProducts: (req, res, next) => {
+  getDistinctProducts: (req, res) => {
     const db = req.app.get("db");
     db
       .get_distinct_product()
@@ -18,7 +18,7 @@ module.exports = {
         res.status(500).json(err);
       });
   },
-  getProductsAsc: (req, res, next) => {
+  getProductsAsc: (req, res) => {
     const db = req.app.get("db");
     db
       .get_products_asc()
@@ -27,7 +27,7 @@ module.exports = {
         res.status(500).json(err);
       });
   },
-  getProductsDesc: (req, res, next) => {
+  getProductsDesc: (req, res) => {
     const db = req.app.get("db");
     db
       .get_products_desc()
@@ -36,7 +36,7 @@ module.exports = {
         res.status(500).json(err);
       });
   },
-  getProductsAToZ: (req, res, next) => {
+  getProductsAToZ: (req, res) => {
     const db = req.app.get("db");
     db
       .get_products_az()
@@ -45,7 +45,7 @@ module.exports = {
         res.status(500).json(err);
       });
   },
-  getProductsZToA: (req, res, next) => {
+  getProductsZToA: (req, res) => {
     const db = req.app.get("db");
     db
       .get_products_za()

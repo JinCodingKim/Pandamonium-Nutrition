@@ -1,5 +1,5 @@
 module.exports = {
-  postSubscriptionEmail: (req, res, next) => {
+  postSubscriptionEmail: (req, res) => {
     const db = req.app.get("db");
     const { subscription_email } = req.body;
     db

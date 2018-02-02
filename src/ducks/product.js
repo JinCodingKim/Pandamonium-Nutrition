@@ -308,6 +308,34 @@ export default function product(state = initialState, action) {
         loading: false,
         error: true
       });
+    case `${ADD_TO_CART}_PENDING`:
+      return Object.assign({}, state, {
+        loading: true
+      });
+    case `${ADD_TO_CART}_FULFILLED`:
+      return Object.assign({}, state, {
+        loading: false,
+        cart: action.payload
+      });
+    case `${ADD_TO_CART}_REJECTED`:
+      return Object.assign({}, state, {
+        loading: false,
+        error: true
+      });
+    case `${UPDATE_CART}_PENDING`:
+      return Object.assign({}, state, {
+        loading: true
+      });
+    case `${UPDATE_CART}_FULFILLED`:
+      return Object.assign({}, state, {
+        loading: false,
+        cart: action.payload
+      });
+    case `${UPDATE_CART}_REJECTED`:
+      return Object.assign({}, state, {
+        loading: false,
+        error: true
+      });
     default:
       return state;
   }

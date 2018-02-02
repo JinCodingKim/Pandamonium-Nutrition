@@ -1,5 +1,5 @@
 module.exports = {
-  addCart: (req, res, next) => {
+  addCart: (req, res) => {
     const db = req.app.get("db");
     const { user_id } = req.user;
     const { product_id, quantity, total_price, single_price } = req.body;
@@ -11,7 +11,7 @@ module.exports = {
         res.status(500).json(err);
       });
   },
-  updateCart: (req, res, next) => {
+  updateCart: (req, res) => {
     const db = req.app.get("db");
     const { user_id } = req.user;
     const { product_id, quantity, total_price } = req.body;
@@ -22,7 +22,7 @@ module.exports = {
         res.status(500).json(err);
       });
   },
-  updateCartItem: (req, res, next) => {
+  updateCartItem: (req, res) => {
     const db = req.app.get("db");
     const { user_id } = req.user;
     const { product_id, quantity, total_price } = req.body;
@@ -33,7 +33,7 @@ module.exports = {
         res.status(500).json(err);
       });
   },
-  deleteCart: (req, res, next) => {
+  deleteCart: (req, res) => {
     const db = req.app.get("db");
     const { product_id } = req.params;
     const { user_id } = req.user;
@@ -44,7 +44,7 @@ module.exports = {
         res.status(500).json(err);
       });
   },
-  getCart: (req, res, next) => {
+  getCart: (req, res) => {
     const db = req.app.get("db");
     const { user_id } = req.params;
     db
@@ -54,7 +54,7 @@ module.exports = {
         res.status(500).json(err);
       });
   },
-  removeAllCart: (req, res, next) => {
+  removeAllCart: (req, res) => {
     const db = req.app.get("db");
     const { user_id } = req.params;
     db
