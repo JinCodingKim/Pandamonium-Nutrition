@@ -4,6 +4,7 @@ const GET_EXERCISES = "GET_EXERCISES";
 const ADD_EXERCISE = "ADD_EXERCISE";
 const UPDATE_EXERCISE = "UPDATE_EXERCISE";
 const GET_USER_EXERCISES = "GET_USER_EXERCISES";
+const ADD_USER_EXERCISE = "ADD_USER_EXERCISE";
 
 const initialState = {
   exercises: [],
@@ -70,6 +71,22 @@ export function getUserExercises(user) {
   };
 }
 
+export function addUserExercise(name, category, description) {
+  return {
+    type: ADD_USER_EXERCISE,
+    payload: axios
+      .post("/api/favorites/add", {
+        name: name,
+        category: category,
+        description: description
+      })
+      .then(res => {
+        return res.data;
+      })
+      .catch(console.log)
+  };
+}
+
 export default function product(state = initialState, action) {
   switch (action.type) {
     case `${GET_EXERCISES}_PENDING`:
@@ -124,6 +141,20 @@ export default function product(state = initialState, action) {
         userExercises: action.payload
       });
     case `${GET_USER_EXERCISES}_REJECTED`:
+      return Object.assign({}, state, {
+        loading: false,
+        error: true
+      });
+    case `${ADD_USER_EXERCISE}_PENDING`:
+      return Object.assign({}, state, {
+        loading: true
+      });
+    case `${ADD_USER_EXERCISE}_FULFILLED`:
+      return Object.assign({}, state, {
+        loading: false,
+        userExercises: action.payload
+      });
+    case `${ADD_USER_EXERCISE}_REJECTED`:
       return Object.assign({}, state, {
         loading: false,
         error: true
