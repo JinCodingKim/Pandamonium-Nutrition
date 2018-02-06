@@ -49,7 +49,7 @@ module.exports = {
     const db = req.app.get("db");
     const { user_id } = req.params;
     db
-      .get_user_exercises()
+      .get_user_exercises([user_id])
       .then(exercises => res.status(200).json(exercises))
       .catch(err => {
         res.status(500).json(err);
@@ -69,9 +69,9 @@ module.exports = {
   updateUserExercise: (req, res) => {
     const db = req.app.get("db");
     const { user_id } = req.user;
-    const { exercise_id, name, category, description } = req.body;
+    const { exercise_id, name, description } = req.body;
     db
-      .update_user_exercise([user_id, exercise_id, name, category, description])
+      .update_user_exercise([user_id, exercise_id, name, description])
       .then(exercise => res.status(200).json(exercise))
       .catch(err => {
         res.status(500).json(err);
@@ -88,31 +88,4 @@ module.exports = {
         res.status(500).json(err);
       });
   }
-  // addExercises: (req, res, next) => {
-  //   let exercise = {
-  //     id: exercises.length,
-  //     name: req.body.name,
-  //     description: req.body.description
-  //   };
-  //   exercises.push(exercise);
-  //   res.json(exercises);
-  // },
-
-  // updateExercises: (req, res, next) => {
-  //   console.log(req.body);
-  //   const { id } = req.params;
-  //   const index = exercises.findIndex(exercise => exercise.id == id);
-
-  //   exercises[index] = Object.assign({}, exercises[index], {
-  //     description: req.body.description
-  //   });
-  //   res.json(exercises);
-  // },
-
-  // removeExercises: (req, res, next) => {
-  //   const { id } = req.params;
-
-  //   console.log(exercises.splice(+id, 1));
-  //   res.json(exercises);
-  // }
 };

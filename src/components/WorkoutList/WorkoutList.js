@@ -56,10 +56,10 @@ class WorkoutList extends Component {
 
     if (loading) return <h1>Page Is Loading...</h1>;
     const exerciseList = exercises
-      .filter((e, i) => {
-        return JSON.stringify(e.category) === bodyPart || bodyPart === "";
+      .filter(ex => {
+        return JSON.stringify(ex.category) === bodyPart || bodyPart === "";
       })
-      .map((exercise, i) => {
+      .map(exercise => {
         return (
           <div className="exercise" key={exercise.id}>
             <h2 className="exercise-title">{exercise.name}</h2>

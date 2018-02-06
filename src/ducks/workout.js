@@ -5,6 +5,8 @@ const ADD_EXERCISE = "ADD_EXERCISE";
 const UPDATE_EXERCISE = "UPDATE_EXERCISE";
 const GET_USER_EXERCISES = "GET_USER_EXERCISES";
 const ADD_USER_EXERCISE = "ADD_USER_EXERCISE";
+const EDIT_USER_EXERCISE = "EDIT_USER_EXERCISE";
+const DELETE_USER_EXERCISE = "DELETE_USER_EXERCISE";
 
 const initialState = {
   exercises: [],
@@ -87,6 +89,34 @@ export function addUserExercise(name, category, description) {
   };
 }
 
+export function editUserExercise(exercise_id, name, description) {
+  return {
+    type: EDIT_USER_EXERCISE,
+    payload: axios
+      .put("/api/favorites/update", {
+        exercise_id: exercise_id,
+        name: name,
+        description: description
+      })
+      .then(res => {
+        return res.data;
+      })
+      .catch(console.log)
+  };
+}
+
+export function deleteUserExercise(exercise_id) {
+  return {
+    type: DELETE_USER_EXERCISE,
+    payload: axios
+      .delete(`/api/favorites/${exercise_id}`)
+      .then(res => {
+        return res.data;
+      })
+      .catch(console.log)
+  };
+}
+
 export default function product(state = initialState, action) {
   switch (action.type) {
     case `${GET_EXERCISES}_PENDING`:
@@ -155,6 +185,34 @@ export default function product(state = initialState, action) {
         userExercises: action.payload
       });
     case `${ADD_USER_EXERCISE}_REJECTED`:
+      return Object.assign({}, state, {
+        loading: false,
+        error: true
+      });
+    case `${EDIT_USER_EXERCISE}_PENDING`:
+      return Object.assign({}, state, {
+        loading: true
+      });
+    case `${EDIT_USER_EXERCISE}_FULFILLED`:
+      return Object.assign({}, state, {
+        loading: false,
+        userExercises: action.payload
+      });
+    case `${EDIT_USER_EXERCISE}_REJECTED`:
+      return Object.assign({}, state, {
+        loading: false,
+        error: true
+      });
+    case `${DELETE_USER_EXERCISE}_PENDING`:
+      return Object.assign({}, state, {
+        loading: true
+      });
+    case `${DELETE_USER_EXERCISE}_FULFILLED`:
+      return Object.assign({}, state, {
+        loading: false,
+        userExercises: action.payload
+      });
+    case `${DELETE_USER_EXERCISE}_REJECTED`:
       return Object.assign({}, state, {
         loading: false,
         error: true
