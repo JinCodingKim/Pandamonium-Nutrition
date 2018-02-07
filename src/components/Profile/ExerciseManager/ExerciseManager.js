@@ -64,7 +64,7 @@ class ExerciseManager extends Component {
           />
 
           <SelectField
-            labelStyle={{ color: "#BDBDBD" }}
+            labelStyle={{ color: "#000000" }}
             menuItemStyle={{ color: "#000000" }}
             selectedMenuItemStyle={{ color: "#000000" }}
             value={value}

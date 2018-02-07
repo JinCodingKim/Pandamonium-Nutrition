@@ -29,7 +29,7 @@ class CreateWorkout extends Component {
 
   threeDays() {
     const { exercises, loading } = this.props;
-    if (loading) return <h1>Page Is Loading...</h1>;
+    if (loading) return <div />;
     let mwfWorkouts = exercises.filter(
       exercise =>
         exercise.category == "11" ||
@@ -50,7 +50,7 @@ class CreateWorkout extends Component {
 
   fourDays() {
     const { exercises, loading } = this.props;
-    if (loading) return <h1>Page Is Loading...</h1>;
+    if (loading) return <div />;
     let mttfWorkouts = exercises.filter(
       exercise =>
         exercise.category == "11" ||

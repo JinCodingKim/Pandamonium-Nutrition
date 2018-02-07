@@ -89,7 +89,7 @@ class PersonalExercises extends Component {
   render() {
     const { userExercises = [], loading } = this.props;
     const { bodyPart, addName, addDescription, assignedPart } = this.state;
-    if (loading) return <h1>Page Is Loading...</h1>;
+    if (loading) return <div />;
     let personalList = userExercises
       .filter(ex => {
         return JSON.stringify(ex.category) === bodyPart || bodyPart === "";

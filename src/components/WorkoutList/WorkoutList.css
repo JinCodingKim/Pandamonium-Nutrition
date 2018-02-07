@@ -32,7 +32,8 @@
   height: 75vh;
   margin: 5px 10vw 20px 10vw;
   padding: 0 5vw 0 5vw;
-  overflow: scroll;
+  overflow-y: auto;
+  overflow-x: hidden;
 }
 
 .exercise {

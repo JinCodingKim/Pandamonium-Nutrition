@@ -69,7 +69,7 @@ class Cart extends Component {
   render() {
     const { cart = [], loading, updateTotalAmnt } = this.props;
     const { cartTotal, newQuantity, newTotal } = this.state;
-    if (loading) return <h1>Page Is Loading...</h1>;
+    if (loading) return <div />;
     let cartList = cart.map(product => {
       return (
         <div className="cart-item-container" key={product.product_id}>

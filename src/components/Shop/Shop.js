@@ -60,7 +60,7 @@ class Shop extends Component {
   render() {
     const { product = [], loading } = this.props;
     const { search } = this.state;
-    // if (loading) return <h1>Page Is Loading...</h1>;
+    if (loading) return <div />;
     let productsList = product.map(product => {
       return (
         <NavLink

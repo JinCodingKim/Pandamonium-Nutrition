@@ -1,7 +1,7 @@
-.personal-ex-main-container {
+.personal-ex-main-wrapper {
   display: flex;
-  align-items: center;
   flex-direction: column;
+  align-items: center;
   width: 95vw;
   padding: 0 2.5vw 0 2.5vw;
   height: 100%;
@@ -36,7 +36,6 @@
   border-radius: 2px;
   flex-direction: column;
   text-align: center;
-  align-items: center;
   width: 87vw;
   overflow-y: auto;
   overflow-x: hidden;
@@ -72,6 +71,11 @@
   width: 100% !important;
   margin: 10px 0 10px 0 !important;
 }
+
+.ex-edit-content-wrapper {
+  background-color: transparent !important;
+}
+
 .remove-ex-button {
   align-self: center !important;
   width: 100% !important;

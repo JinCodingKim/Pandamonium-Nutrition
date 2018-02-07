@@ -54,7 +54,7 @@ class WorkoutList extends Component {
     const { exercises = [], loading } = this.props;
     const { bodyPart } = this.state;
 
-    if (loading) return <h1>Page Is Loading...</h1>;
+    if (loading) return <div />;
     const exerciseList = exercises
       .filter(ex => {
         return JSON.stringify(ex.category) === bodyPart || bodyPart === "";

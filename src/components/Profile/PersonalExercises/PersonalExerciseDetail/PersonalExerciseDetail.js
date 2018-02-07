@@ -4,6 +4,8 @@ import RaisedButton from "material-ui/RaisedButton";
 import ActionDelete from "material-ui/svg-icons/action/delete";
 import ContentCreate from "material-ui/svg-icons/content/create";
 import ContentSave from "material-ui/svg-icons/content/save";
+import TextField from "material-ui/TextField";
+import Paper from "material-ui/Paper";
 //Sweetalert2
 import swal from "sweetalert2";
 //Local
@@ -76,19 +78,31 @@ class PersonalExerciseDetail extends Component {
           </div>
         ) : (
           <div>
-            <input
-              className="add-title"
-              onChange={e => this.handleEditChange("editName", e.target.value)}
-              type="text"
-              value={editName}
-            />
-            <textarea
-              className="edit-ex-decription"
-              onChange={e =>
-                this.handleEditChange("editDescription", e.target.value)
-              }
-              value={editDescription}
-            />
+            <Paper className="ex-edit-content-wrapper" zDepth={1}>
+              <TextField
+                type="text"
+                inputStyle={{ color: "#000000" }}
+                value={editName}
+                onChange={e =>
+                  this.handleEditChange("editName", e.target.value)
+                }
+              />
+              <TextField
+                type="text"
+                multiLine={true}
+                rows={5}
+                textareaStyle={{
+                  color: "#000000",
+                  border: "1px solid #BDBDBD",
+                  borderRadius: "2px",
+                  overFlow: "scroll"
+                }}
+                value={editDescription}
+                onChange={e =>
+                  this.handleAddChange("editDescription", e.target.value)
+                }
+              />
+            </Paper>
             <RaisedButton
               label="Save"
               primary={true}

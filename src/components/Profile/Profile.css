@@ -5,7 +5,7 @@
   padding: 0;
   margin: 0;
   justify-content: center;
-  background: rgb(235, 235, 235);
+  background: #eeeeee;
 }
 
 .profile-top-main-wrapper,
@@ -57,4 +57,7 @@
 }
 
 @media (min-width: 1200px) {
+  .profile-body-main-wrapper {
+    padding: 0 7vw 0 7vw;
+  }
 }
