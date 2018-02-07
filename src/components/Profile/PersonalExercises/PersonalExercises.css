@@ -1,0 +1,114 @@
+.personal-ex-main-container {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  width: 95vw;
+  padding: 0 2.5vw 0 2.5vw;
+  height: 100%;
+}
+
+.personal-filter-container {
+  display: flex;
+  flex-direction: column;
+  height: 80px;
+  width: 87vw;
+  border-top: 1px solid black;
+  padding: 10px 0 0 0;
+}
+
+.personal-filter-title {
+  margin: 0 0 5px 0;
+  font-size: 15px;
+  font-weight: lighter;
+}
+
+.personal-filter-select {
+  border: 1px solid black;
+  border-radius: 2px;
+  background: transparent;
+  height: 40px;
+  outline: none;
+}
+
+.personal-exercises-wrapper {
+  display: flex;
+  border: 1px solid #ff6d00;
+  border-radius: 2px;
+  flex-direction: column;
+  text-align: center;
+  align-items: center;
+  width: 87vw;
+  overflow-y: auto;
+  overflow-x: hidden;
+  height: 500px;
+  margin: 0 0 5px 0;
+}
+
+.personal-ex-container {
+  border-bottom: 1px solid #ff6d00;
+  padding: 25px 3vw 25px 3vw;
+  color: #000000;
+  list-style-type: none;
+}
+
+.personal-ex-title {
+  width: 100%;
+  border-bottom: 1px dotted #000000;
+  padding: 0 0 5px 0;
+  font-weight: bold;
+  font-size: 15px;
+  letter-spacing: 0.5px;
+}
+
+.personal-ex-description {
+  padding: 10px 0 10px 0;
+  font-size: 15px;
+  line-height: 17.5px;
+  letter-spacing: 0.5px;
+}
+
+.update-ex-button {
+  align-self: center !important;
+  width: 100% !important;
+  margin: 10px 0 10px 0 !important;
+}
+.remove-ex-button {
+  align-self: center !important;
+  width: 100% !important;
+  margin: 10px 0 0 0 !important;
+}
+
+@media (min-width: 413px) {
+  .personal-ex-main-wrapper {
+    width: 400px;
+  }
+  .personal-filter-container {
+    width: 360px;
+  }
+  .personal-exercises-wrapper {
+    width: 360px;
+  }
+}
+
+@media (min-width: 768px) {
+  .personal-ex-main-wrapper {
+    width: 360px;
+    padding: 0 0 0 0;
+    height: 500px;
+    margin: 30px 0 0 0;
+  }
+  .personal-ex-main-container {
+    padding: 0 0 0 0;
+    width: 360px;
+  }
+  .personal-filter-container {
+    border-top: 0px solid black;
+    padding: 0 0 10px 0;
+  }
+  .personal-exercises-wrapper {
+    height: 391.5px;
+  }
+}
+
+@media (min-width: 1200px) {
+}

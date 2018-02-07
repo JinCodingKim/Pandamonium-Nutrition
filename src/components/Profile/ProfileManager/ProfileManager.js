@@ -3,6 +3,7 @@ import React, { Component } from "react";
 import TextField from "material-ui/TextField";
 import Paper from "material-ui/Paper";
 import RaisedButton from "material-ui/RaisedButton";
+import ActionCheckCircle from "material-ui/svg-icons/action/check-circle";
 //Redux
 import { connect } from "react-redux";
 import { updateUser } from "../../../ducks/user";
@@ -29,7 +30,8 @@ class ProfileManager extends Component {
 
   handleClick() {
     const { name, age, img } = this.state;
-    this.props.updateUser({ name, age, img }).then(() => {
+    const { updateUser } = this.props;
+    updateUser({ name, age, img }).then(() => {
       window.location.href = "/profile";
     });
   }
@@ -65,6 +67,8 @@ class ProfileManager extends Component {
           onClick={this.handleClick}
           primary={true}
           className="submit-button"
+          labelPosition="after"
+          icon={<ActionCheckCircle />}
         />
       </div>
     );

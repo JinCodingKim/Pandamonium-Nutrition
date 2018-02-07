@@ -27,15 +27,15 @@ export function getExercises() {
   };
 }
 
-export function addExercise(id, name, category, description) {
+export function addExercise(axios_id, name, category, description) {
   return {
     type: ADD_EXERCISE,
     payload: axios
       .post("/api/exercise/add", {
-        axios_id: id,
-        name: name,
-        category: category,
-        description: description
+        axios_id,
+        name,
+        category,
+        description
       })
       .then(res => {
         return res.data;
@@ -44,15 +44,15 @@ export function addExercise(id, name, category, description) {
   };
 }
 
-export function updateExercise(id, name, category, description) {
+export function updateExercise(axios_id, name, category, description) {
   return {
     type: UPDATE_EXERCISE,
     payload: axios
       .put("/api/exercise/update", {
-        axios_id: id,
-        name: name,
-        category: category,
-        description: description
+        axios_id,
+        name,
+        category,
+        description
       })
       .then(res => {
         return res.data;
@@ -61,11 +61,11 @@ export function updateExercise(id, name, category, description) {
   };
 }
 
-export function getUserExercises(user) {
+export function getUserExercises() {
   return {
     type: GET_USER_EXERCISES,
     payload: axios
-      .get(`/api/favorites/${user}`)
+      .get(`/api/favorites`)
       .then(res => {
         return res.data;
       })
@@ -78,9 +78,9 @@ export function addUserExercise(name, category, description) {
     type: ADD_USER_EXERCISE,
     payload: axios
       .post("/api/favorites/add", {
-        name: name,
-        category: category,
-        description: description
+        name,
+        category,
+        description
       })
       .then(res => {
         return res.data;
@@ -94,9 +94,9 @@ export function editUserExercise(exercise_id, name, description) {
     type: EDIT_USER_EXERCISE,
     payload: axios
       .put("/api/favorites/update", {
-        exercise_id: exercise_id,
-        name: name,
-        description: description
+        exercise_id,
+        name,
+        description
       })
       .then(res => {
         return res.data;
@@ -171,48 +171,6 @@ export default function product(state = initialState, action) {
         userExercises: action.payload
       });
     case `${GET_USER_EXERCISES}_REJECTED`:
-      return Object.assign({}, state, {
-        loading: false,
-        error: true
-      });
-    case `${ADD_USER_EXERCISE}_PENDING`:
-      return Object.assign({}, state, {
-        loading: true
-      });
-    case `${ADD_USER_EXERCISE}_FULFILLED`:
-      return Object.assign({}, state, {
-        loading: false,
-        userExercises: action.payload
-      });
-    case `${ADD_USER_EXERCISE}_REJECTED`:
-      return Object.assign({}, state, {
-        loading: false,
-        error: true
-      });
-    case `${EDIT_USER_EXERCISE}_PENDING`:
-      return Object.assign({}, state, {
-        loading: true
-      });
-    case `${EDIT_USER_EXERCISE}_FULFILLED`:
-      return Object.assign({}, state, {
-        loading: false,
-        userExercises: action.payload
-      });
-    case `${EDIT_USER_EXERCISE}_REJECTED`:
-      return Object.assign({}, state, {
-        loading: false,
-        error: true
-      });
-    case `${DELETE_USER_EXERCISE}_PENDING`:
-      return Object.assign({}, state, {
-        loading: true
-      });
-    case `${DELETE_USER_EXERCISE}_FULFILLED`:
-      return Object.assign({}, state, {
-        loading: false,
-        userExercises: action.payload
-      });
-    case `${DELETE_USER_EXERCISE}_REJECTED`:
       return Object.assign({}, state, {
         loading: false,
         error: true

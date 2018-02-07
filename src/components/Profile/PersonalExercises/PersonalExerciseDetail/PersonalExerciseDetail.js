@@ -6,6 +6,8 @@ import ContentCreate from "material-ui/svg-icons/content/create";
 import ContentSave from "material-ui/svg-icons/content/save";
 //Sweetalert2
 import swal from "sweetalert2";
+//Local
+import "./../PersonalExercises.css";
 
 class PersonalExerciseDetail extends Component {
   constructor(props) {
@@ -20,6 +22,7 @@ class PersonalExerciseDetail extends Component {
     this.handleEditChange = this.handleEditChange.bind(this);
     this.toggleEdit = this.toggleEdit.bind(this);
     this.handleUpdate = this.handleUpdate.bind(this);
+    this.handleRemove = this.handleRemove.bind(this);
   }
 
   handleEditChange(prop, val) {
@@ -39,17 +42,22 @@ class PersonalExerciseDetail extends Component {
     this.toggleEdit();
   }
 
+  handleRemove(id) {
+    const { removeEx } = this.props;
+    removeEx(id);
+  }
+
   render() {
-    const { removeEx, exercise } = this.props;
+    const { name, description, id } = this.props;
     const { edit, editName, editDescription } = this.state;
 
     return (
-      <div className="personal-ex-container" key={exercise.exercise_id}>
+      <div className="personal-ex-container">
         {!edit ? (
           <div>
-            <h2 className="personal-ex-title">{exercise.name}</h2>
+            <h2 className="personal-ex-title">{name}</h2>
             <p className="personal-ex-description">
-              {exercise.description
+              {description
                 .replace(/(<p[^>]+?>|<p>|<\/p>)/gim, "")
                 .replace(/(<li[^>]+?>|<li>|<\/li>)/gim, "")
                 .replace(/(<ol[^>]+?>|<ol>|<\/ol>)/gim, "")
@@ -88,11 +96,7 @@ class PersonalExerciseDetail extends Component {
               className="update-ex-button"
               icon={<ContentSave />}
               onClick={() => {
-                this.handleUpdate(
-                  exercise.exercise_id,
-                  editName,
-                  editDescription
-                );
+                this.handleUpdate(id, editName, editDescription);
                 swal({
                   title: `Update has been saved!`,
                   type: "success",
@@ -111,7 +115,7 @@ class PersonalExerciseDetail extends Component {
           className="remove-ex-button"
           icon={<ActionDelete />}
           onClick={() => {
-            removeEx(exercise.exercise_id);
+            this.handleRemove(id);
             swal({
               title: `Exercise has been removed!`,
               type: "success",
