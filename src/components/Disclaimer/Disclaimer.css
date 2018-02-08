@@ -41,6 +41,9 @@ h2 span {
 .disclaimer-content {
   height: 100%;
   margin: 0 auto;
+}
+
+.disclaimer-content-wrapper {
   margin: 0 0 60px 0;
 }
 
