@@ -12,13 +12,13 @@ article {
   display: inline-block;
 }
 
-h2.background {
+.title-header.background {
   background: white;
   z-index: 1;
   position: relative;
 }
 
-h2::before {
+.title-header::before {
   border-top: 1px dotted #ff6d00;
   content: "";
   margin: 0 auto;
@@ -30,12 +30,12 @@ h2::before {
   z-index: -1;
 }
 
-h2 span {
+.title-header span {
   background: white;
   padding: 0 10px;
   letter-spacing: -0.5px;
   font-weight: lighter;
-  font-size: 14px;
+  font-size: 14.5px;
 }
 
 .contact-content {
@@ -69,12 +69,12 @@ h2 span {
   margin: 0 0 10px 0;
 }
 
-@media (min-width: 413px) {
-  h2 span {
+@media (min-width: 430px) {
+  .title-header span {
     font-size: 18px;
     letter-spacing: 0.5px;
   }
-  h2::before {
+  .title-header::before {
     top: 65%;
   }
 }

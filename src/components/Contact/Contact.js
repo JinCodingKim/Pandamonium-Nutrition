@@ -7,7 +7,7 @@ class Contact extends Component {
       <article>
         <header>
           <div className="title-bar-contact">
-            <h2>
+            <h2 className="title-header">
               <span>Contact Pandamonium Sports Nutrition</span>
             </h2>
           </div>

@@ -3,7 +3,7 @@ article {
   margin: 0 auto;
   width: 85%;
 }
-.title-bar-about {
+.title-bar-policy {
   position: relative;
   padding: 10px 0 0 0;
   margin: 20px 0 50px 0;
@@ -38,13 +38,9 @@ h2 span {
   font-size: 15px;
 }
 
-.about-content {
+.policy-content {
   height: 100%;
   margin: 0 auto;
-}
-
-.about-content-wrapper,
-.conclusion-content-wrapper {
   margin: 0 0 60px 0;
 }
 
@@ -53,8 +49,8 @@ h3 {
   margin: 20px 0 10px 0;
 }
 
-.creation-content,
-.conclusion-content {
+.policy-info-content,
+.policy-info-content {
   font-size: 12px;
   line-height: 20px;
 }
@@ -64,15 +60,11 @@ h3 {
     font-size: 18px;
     letter-spacing: 0.5px;
   }
-  .about-content {
+  .policy-content {
     width: 70%;
   }
-  h3 {
-    font-size: 16px;
-    margin: 20px 0 10px 0;
-  }
-  .creation-content,
-  .conclusion-content {
+  .policy-info-content,
+  .policy-info-content {
     font-size: 14px;
     line-height: 20px;
   }

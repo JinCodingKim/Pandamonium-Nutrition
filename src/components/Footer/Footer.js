@@ -67,10 +67,10 @@ class Footer extends Component {
             <NavLink className="links-body" to="/contact">
               <p>Contact</p>
             </NavLink>
-            <NavLink className="links-body" to="/terms">
+            <NavLink className="links-body" to="/terms-conditions">
               <p>Terms & Conditions</p>
             </NavLink>
-            <NavLink className="links-body" to="/policy">
+            <NavLink className="links-body" to="/privacy-policy">
               <p>Privacy Policy</p>
             </NavLink>
             <NavLink className="links-body" to="/disclaimer">
