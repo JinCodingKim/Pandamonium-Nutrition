@@ -99,7 +99,7 @@ class PersonalExerciseDetail extends Component {
                 }}
                 value={editDescription}
                 onChange={e =>
-                  this.handleAddChange("editDescription", e.target.value)
+                  this.handleEditChange("editDescription", e.target.value)
                 }
               />
             </Paper>
