@@ -7,7 +7,6 @@ import { Provider } from "react-redux";
 //Material-ui
 import MuiThemeProvider from "material-ui/styles/MuiThemeProvider";
 import getMuiTheme from "material-ui/styles/getMuiTheme";
-import { fade } from "material-ui/utils/colorManipulator";
 //Redux store
 import store from "./store";
 //Local

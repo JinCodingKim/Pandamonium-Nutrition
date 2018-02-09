@@ -1,9 +1,6 @@
 import React, { Component } from "react";
 //Prop-types
 import PropTypes from "prop-types";
-//Material-ui
-import RaisedButton from "material-ui/RaisedButton";
-import ActionCheckCircle from "material-ui/svg-icons/action/check-circle";
 //Redux
 import { connect } from "react-redux";
 import {
@@ -61,7 +58,6 @@ class PersonalExercises extends Component {
   removeEx(id) {
     const { deleteUserExercise, getUserExercises } = this.props;
     deleteUserExercise(id).then(res => {
-      const { getUserExercises } = this.props;
       getUserExercises();
     });
   }
@@ -88,7 +84,7 @@ class PersonalExercises extends Component {
 
   render() {
     const { userExercises = [], loading } = this.props;
-    const { bodyPart, addName, addDescription, assignedPart } = this.state;
+    const { bodyPart } = this.state;
     if (loading) return <div />;
     let personalList = userExercises
       .filter(ex => {

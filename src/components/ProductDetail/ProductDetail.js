@@ -46,14 +46,7 @@ class ProductDetail extends Component {
   }
 
   componentDidMount() {
-    const {
-      user,
-      match,
-      productDetail = [],
-      getProductByType,
-      getCart,
-      getReviews
-    } = this.props;
+    const { user, match, getProductByType, getCart, getReviews } = this.props;
     getProductByType(match.params.product_type).then(res => {
       getReviews(this.props.productDetail[0].product_id);
     });
@@ -112,7 +105,7 @@ class ProductDetail extends Component {
   }
 
   render() {
-    const { productDetail = [], cart = [], review = [], loading } = this.props;
+    const { productDetail = [], review = [], loading } = this.props;
 
     const {
       flavor,
@@ -157,11 +150,13 @@ class ProductDetail extends Component {
             <div className="detail-img-container">
               {!flavor || flavor === productDetail[0].product_flavor ? (
                 <img
+                  alt=""
                   className="detail-img"
                   src={productDetail[0].product_img}
                 />
               ) : (
                 <img
+                  alt=""
                   className="detail-img"
                   src={productDetail[1].product_img}
                 />

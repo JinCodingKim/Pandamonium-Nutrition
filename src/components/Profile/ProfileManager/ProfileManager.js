@@ -16,7 +16,7 @@ class ProfileManager extends Component {
 
     this.state = {
       name: "",
-      age: parseInt(""),
+      age: "",
       img: ""
     };
 

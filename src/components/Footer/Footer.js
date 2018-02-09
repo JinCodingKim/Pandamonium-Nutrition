@@ -35,7 +35,7 @@ class Footer extends Component {
 
   confirmSignup(event) {
     const { emailVal } = this.state;
-    if (event.keyCode == 13) {
+    if (event.keyCode === 13) {
       axios
         .post("/api/subscription", { subscription_email: emailVal })
         .then(res => {
@@ -45,7 +45,6 @@ class Footer extends Component {
             confirmButtonText: "Back to Shopping",
             confirmButtonColor: "#ff6d00"
           });
-          res.data;
           this.setState({
             emailVal: ""
           });
@@ -81,14 +80,22 @@ class Footer extends Component {
           <div className="links-sub">
             <h3 className="links-header">SOCIAL NETWORKS</h3>
             <div className="icon-container">
-              <a href="https://www.facebook.com" className="social-links">
-                <img src={facebook} />
+              <a
+                href="https://www.facebook.com"
+                alt=""
+                className="social-links"
+              >
+                <img src={facebook} alt="" />
               </a>
-              <a href="https://www.instagram.com" className="social-links">
-                <img src={instagram} />
+              <a
+                href="https://www.instagram.com"
+                alt=""
+                className="social-links"
+              >
+                <img src={instagram} alt="" />
               </a>
-              <a href="https://www.twitter.com" className="social-links">
-                <img src={twitter} />
+              <a href="https://www.twitter.com" alt="" className="social-links">
+                <img src={twitter} alt="" />
               </a>
             </div>
           </div>
@@ -113,13 +120,13 @@ class Footer extends Component {
           <div className="disclaimer-container">
             <p className="footer-company">2017 Pandamonium Sports Nutrition.</p>
             <div className="footer-payments-wrapper">
-              <img src={ae} className="payments" />
+              <img src={ae} alt="" className="payments" />
 
-              <img src={discover} className="payments" />
+              <img src={discover} alt="" className="payments" />
 
-              <img src={mastercard} className="payments" />
+              <img src={mastercard} alt="" className="payments" />
 
-              <img src={visa} className="payments" />
+              <img src={visa} alt="" className="payments" />
             </div>
           </div>
         </div>

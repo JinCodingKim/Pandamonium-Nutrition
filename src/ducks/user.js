@@ -85,7 +85,7 @@ export function updateShippingAddress(
         shipping_zip: shipZip
       })
       .then(res => {
-        res.data;
+        return res.data;
       })
       .catch(console.log)
   };
@@ -113,7 +113,7 @@ export function updateBillingAddress(
         billing_zip: billZip
       })
       .then(res => {
-        res.data;
+        return res.data;
       })
       .catch(console.log)
   };

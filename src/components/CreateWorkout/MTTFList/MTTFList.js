@@ -2,7 +2,7 @@ import React from "react";
 
 const MTTFList = props => {
   let chest = props.mttf
-    .filter(exercise => exercise.category == "11")
+    .filter(exercise => exercise.category === 11)
     .map(exercise => {
       return (
         <div className="ex" key={exercise.id}>
@@ -24,7 +24,7 @@ const MTTFList = props => {
   let randChest = chest[Math.floor(Math.random() * chest.length)];
 
   let back = props.mttf
-    .filter(exercise => exercise.category == "12")
+    .filter(exercise => exercise.category === 12)
     .map(exercise => {
       return (
         <div className="ex" key={exercise.id}>
@@ -46,7 +46,7 @@ const MTTFList = props => {
   let randBack = back[Math.floor(Math.random() * back.length)];
 
   let shoulder = props.mttf
-    .filter(exercise => exercise.category == "13")
+    .filter(exercise => exercise.category === 13)
     .map(exercise => {
       return (
         <div className="ex" key={exercise.id}>
@@ -68,7 +68,7 @@ const MTTFList = props => {
   let randShoulder = shoulder[Math.floor(Math.random() * shoulder.length)];
 
   let arms = props.mttf
-    .filter(exercise => exercise.category == "8")
+    .filter(exercise => exercise.category === 8)
     .map(exercise => {
       return (
         <div className="ex" key={exercise.id}>
@@ -90,7 +90,7 @@ const MTTFList = props => {
   let randArms = arms[Math.floor(Math.random() * arms.length)];
 
   let abs = props.mttf
-    .filter(exercise => exercise.category == "10")
+    .filter(exercise => exercise.category === 10)
     .map(exercise => {
       return (
         <div className="ex" key={exercise.id}>
@@ -112,7 +112,7 @@ const MTTFList = props => {
   let randAbs = abs[Math.floor(Math.random() * abs.length)];
 
   let legs = props.mttf
-    .filter(exercise => exercise.category == "9")
+    .filter(exercise => exercise.category === 9)
     .map(exercise => {
       return (
         <div className="ex" key={exercise.id}>
@@ -134,7 +134,7 @@ const MTTFList = props => {
   let randLegs = legs[Math.floor(Math.random() * legs.length)];
 
   let calves = props.mttf
-    .filter(exercise => exercise.category == "14")
+    .filter(exercise => exercise.category === 14)
     .map(exercise => {
       return (
         <div className="ex" key={exercise.id}>

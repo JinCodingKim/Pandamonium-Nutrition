@@ -3,11 +3,7 @@ import React, { Component } from "react";
 import { NavLink } from "react-router-dom";
 //Redux
 import { connect } from "react-redux";
-import {
-  getProducts,
-  getSortedProducts,
-  searchProducts
-} from "../../ducks/product";
+import { getProducts, getSortedProducts } from "../../ducks/product";
 //Local
 import "./Shop.css";
 
@@ -23,7 +19,6 @@ class Shop extends Component {
     this.handleSort = this.handleSort.bind(this);
     this.confirmSort = this.confirmSort.bind(this);
     this.handleSearch = this.handleSearch.bind(this);
-    this.confirmSearch = this.confirmSearch.bind(this);
   }
 
   componentDidMount() {
@@ -49,33 +44,32 @@ class Shop extends Component {
     });
   }
 
-  confirmSearch(event) {
-    const { search } = this.state;
-    const { searchProducts } = this.props;
-    if (event.keyCode == 13) {
-      searchProducts(search);
-    }
-  }
-
   render() {
     const { product = [], loading } = this.props;
     const { search } = this.state;
     if (loading) return <div />;
-    let productsList = product.map(product => {
-      return (
-        <NavLink
-          className="product-wrapper"
-          to={`/product/${product.product_type}`}
-          key={product.product_id}
-        >
-          <div className="product-img-container">
-            <img className="product-img" src={product.product_img} />
-          </div>
-          <p className="product-name">{product.product_name}</p>
-          <p className="product-price">${product.product_price}</p>
-        </NavLink>
-      );
-    });
+    let productsList = product
+      .filter(item => {
+        return (
+          item.product_name.toLowerCase().search(search.toLowerCase()) !== -1 ||
+          item.product_type.toLowerCase().search(search.toLowerCase()) !== -1
+        );
+      })
+      .map(product => {
+        return (
+          <NavLink
+            className="product-wrapper"
+            to={`/product/${product.product_type}`}
+            key={product.product_id}
+          >
+            <div className="product-img-container">
+              <img className="product-img" alt="" src={product.product_img} />
+            </div>
+            <p className="product-name">{product.product_name}</p>
+            <p className="product-price">${product.product_price}</p>
+          </NavLink>
+        );
+      });
     return (
       <div className="products-main-container">
         <div className="products-list">
@@ -85,7 +79,6 @@ class Shop extends Component {
               type="text"
               onChange={e => this.handleSearch(e.target.value)}
               value={search}
-              onKeyDown={this.confirmSearch}
             />
           </div>
 
@@ -120,6 +113,5 @@ const mapStateToProps = state => {
 
 export default connect(mapStateToProps, {
   getProducts,
-  getSortedProducts,
-  searchProducts
+  getSortedProducts
 })(Shop);

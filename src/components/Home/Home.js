@@ -23,14 +23,14 @@ class Home extends Component {
       <div className="home-container">
         <Slider {...settings}>
           <a className="slider-container" href="/product/supplement-protein">
-            <img src={allthewhey} className="slider-image" />
+            <img src={allthewhey} alt="" className="slider-image" />
           </a>
           <a className="slider-container" href="/product/accessory-shaker">
-            <img src={shaker} className="slider-image" />
+            <img src={shaker} alt="" className="slider-image" />
           </a>
         </Slider>
         <div className="featured-banner-wrapper">
-          <img src={featured} className="featured-banner" />
+          <img src={featured} alt="" className="featured-banner" />
         </div>
       </div>
     );

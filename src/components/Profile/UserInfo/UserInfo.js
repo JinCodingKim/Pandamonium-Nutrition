@@ -2,7 +2,6 @@ import React, { Component } from "react";
 //Material-ui
 import Paper from "material-ui/Paper";
 import CommunicationEmail from "material-ui/svg-icons/communication/email";
-import CommunicationLocationOn from "material-ui/svg-icons/communication/location-on";
 import { orangeA700 } from "material-ui/styles/colors";
 //Redux
 import { connect } from "react-redux";
@@ -11,9 +10,6 @@ import { getUser } from "../../../ducks/user";
 import "./UserInfo.css";
 
 class UserInfo extends Component {
-  constructor(props) {
-    super(props);
-  }
   componentDidMount() {
     const { getUser } = this.props;
     getUser();
@@ -23,7 +19,7 @@ class UserInfo extends Component {
     return (
       <div className="user-wrapper">
         <Paper className="circle-paper" zDepth={2} circle={true}>
-          <img className="user-image" src={user.user_img} />
+          <img className="user-image" alt="" src={user.user_img} />
         </Paper>
         <div className="personal-container-name" placeholder="Name">
           {user.user_name}

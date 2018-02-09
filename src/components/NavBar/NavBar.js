@@ -13,9 +13,7 @@ import ActionHome from "material-ui/svg-icons/action/home";
 import ActionFace from "material-ui/svg-icons/action/face";
 import PlacesFitnessCenter from "material-ui/svg-icons/places/fitness-center";
 import ContentContentPaste from "material-ui/svg-icons/content/content-paste";
-import HardwareKeyboardArrowDown from "material-ui/svg-icons/hardware/keyboard-arrow-down";
 import NavigationMenu from "material-ui/svg-icons/navigation/menu";
-import IconButton from "material-ui/IconButton";
 //React-Router
 import { NavLink } from "react-router-dom";
 //Redux
@@ -53,7 +51,7 @@ class NavBar extends Component {
     const { user = [] } = this.props.user;
     const { opened } = this.state;
 
-    const img = <img className="logo-img" src={logo} />;
+    const img = <img className="logo-img" alt="" src={logo} />;
     const navStyles = {
       mobileIconLeft: {
         height: 32.5,
@@ -164,7 +162,7 @@ class NavBar extends Component {
                 <a href={process.env.REACT_APP_LOGIN}>
                   <ActionAccountBox style={navStyles.desktopIcons} />
                 </a>
-                <img className="top-img" src={pandamonium} />
+                <img className="top-img" alt="" src={pandamonium} />
                 <NavLink to="/cart">
                   <ActionShoppingCart style={navStyles.desktopIcons} />
                 </NavLink>
@@ -179,7 +177,7 @@ class NavBar extends Component {
                     <ActionExitToApp style={navStyles.desktopIcons} />
                   </a>
                 </div>
-                <img className="top-img" src={pandamonium} />
+                <img className="top-img" alt="" src={pandamonium} />
                 <div className="nav-logged-right">
                   <NavLink to="/exercises">
                     <PlacesFitnessCenter style={navStyles.desktopIcons} />
@@ -197,7 +195,7 @@ class NavBar extends Component {
             )}
           </div>
           <div className="middle-bar">
-            <img className="desktop-img" src={logo} />
+            <img className="desktop-img" alt="" src={logo} />
           </div>
           <div className="bottom-bar">
             <NavLink className="desktop-navlink-wrapper" to="/">
@@ -216,7 +214,7 @@ class NavBar extends Component {
         </div>
 
         <div className="desktop-full-nav">
-          <img className="full-img" src={fullLogo} />
+          <img className="full-img" alt="" src={fullLogo} />
           <div className="full-navlink-container">
             <NavLink className="full-navlink-wrapper" to="/">
               <p className="full-navlink"> HOME </p>
@@ -228,7 +226,7 @@ class NavBar extends Component {
               <div className="full-navlink-wrapper">
                 <button className="full-dropdown-button">
                   {" "}
-                  WORKOUT <HardwareKeyboardArrowDown />
+                  WORKOUT
                   <i className="fa fa-caret-down" />
                 </button>
                 <div className="dropdown-content">

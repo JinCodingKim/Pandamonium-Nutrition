@@ -52,7 +52,7 @@ class ExerciseManager extends Component {
   }
 
   render() {
-    const { addName, addDescription, value } = this.state;
+    const { value } = this.state;
     return (
       <div className="ex-manager-main-container">
         <Paper className="ex-manager-content-wrapper" zDepth={1}>

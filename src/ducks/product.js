@@ -12,7 +12,6 @@ const UPDATE_CART_ITEM = "UPDATE_CART_ITEM";
 const REMOVE_CART = "REMOVE_CART";
 const REMOVE_ALL_CART = "REMOVE_ALL_CART";
 const GET_SORTED_PRODUCTS = "GET_SORTED_PRODUCTS";
-const SEARCH_PRODUCTS = "SEARCH_PRODUCTS";
 
 const initialState = {
   product: [],
@@ -37,7 +36,6 @@ export function getProducts() {
     payload: axios
       .get("/api/products")
       .then(res => {
-        // console.log(res.data);
         return res.data;
       })
       .catch(console.log)
@@ -50,7 +48,6 @@ export function getProductByType(type) {
     payload: axios
       .get(`/api/product/${type}`)
       .then(res => {
-        // console.log(res.data);
         return res.data;
       })
       .catch(console.log)
@@ -89,13 +86,11 @@ export function addReview(product, name, email, rating, title, description) {
 }
 
 export function getSortedProducts(sorted) {
-  // console.log("sorted: " + sorted);
   return {
     type: GET_SORTED_PRODUCTS,
     payload: axios
       .get(`/api/products/${sorted}`)
       .then(res => {
-        // console.log(res.data);
         return res.data;
       })
       .catch(console.log)
@@ -103,7 +98,6 @@ export function getSortedProducts(sorted) {
 }
 
 export function addToCart(product, amount, price, single) {
-  // console.log("ADD PRICE:" + price);
   return {
     type: ADD_TO_CART,
     payload: axios
@@ -114,7 +108,6 @@ export function addToCart(product, amount, price, single) {
         single_price: single
       })
       .then(res => {
-        // console.log("Add Cart:" + res.data);
         return res.data;
       })
       .catch(console.log)
@@ -122,7 +115,6 @@ export function addToCart(product, amount, price, single) {
 }
 
 export function updateCart(product, amount, price) {
-  // console.log("UPDATE PRICE: " + price);
   return {
     type: UPDATE_CART,
     payload: axios
@@ -132,7 +124,6 @@ export function updateCart(product, amount, price) {
         total_price: price
       })
       .then(res => {
-        // console.log("Update Cart:" + res.data);
         return res.data;
       })
       .catch(console.log)
@@ -140,7 +131,6 @@ export function updateCart(product, amount, price) {
 }
 
 export function updateCartItem(product, amount, price) {
-  // console.log("product:" + product + " amount:" + amount + " price:" + price);
   return {
     type: UPDATE_CART_ITEM,
     payload: axios
@@ -150,7 +140,6 @@ export function updateCartItem(product, amount, price) {
         total_price: price
       })
       .then(res => {
-        // console.log("Update Item: " + res.data);
         return res.data;
       })
       .catch(console.log)
@@ -163,7 +152,6 @@ export function getCart(user) {
     payload: axios
       .get(`/api/cart/${user}`)
       .then(res => {
-        // console.log("Get Cart:" + res.data);
         return res.data;
       })
       .catch(console.log)
@@ -171,7 +159,6 @@ export function getCart(user) {
 }
 
 export function removeCart(product) {
-  // console.log(product);
   return {
     type: REMOVE_CART,
     payload: axios
@@ -195,34 +182,11 @@ export function removeAllCart(user) {
   };
 }
 
-export function searchProducts(search) {
-  return {
-    type: SEARCH_PRODUCTS,
-    payload: search
-  };
-}
-
 export default function product(state = initialState, action) {
   switch (action.type) {
     case `UPDATE_TOTAL_AMNT`:
       return Object.assign({}, state, {
         totalAmnt: action.payload
-      });
-    case `SEARCH_PRODUCTS`:
-      return Object.assign({}, state, {
-        product: state.product.filter(e => {
-          if (
-            e.product_name.toLowerCase().includes(action.payload.toLowerCase())
-          ) {
-            return true;
-          } else if (
-            e.product_type.toLowerCase().includes(action.payload.toLowerCase())
-          ) {
-            return true;
-          } else {
-            return false;
-          }
-        })
       });
     case `${GET_REVIEWS}_PENDING`:
       return Object.assign({}, state, {

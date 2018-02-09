@@ -2,7 +2,7 @@ import React from "react";
 
 const MWFList = props => {
   let chest = props.mwf
-    .filter(exercise => exercise.category == "11")
+    .filter(exercise => exercise.category === 11)
     .map(exercise => {
       return (
         <div className="ex" key={exercise.id}>
@@ -24,7 +24,7 @@ const MWFList = props => {
   let randChest = chest[Math.floor(Math.random() * chest.length)];
 
   let back = props.mwf
-    .filter(exercise => exercise.category == "12")
+    .filter(exercise => exercise.category === 12)
     .map(exercise => {
       return (
         <div className="ex" key={exercise.id}>
@@ -46,7 +46,7 @@ const MWFList = props => {
   let randBack = back[Math.floor(Math.random() * back.length)];
 
   let abs = props.mwf
-    .filter(exercise => exercise.category == "10")
+    .filter(exercise => exercise.category === 10)
     .map(exercise => {
       return (
         <div className="ex" key={exercise.id}>
@@ -68,7 +68,7 @@ const MWFList = props => {
   let randAbs = abs[Math.floor(Math.random() * abs.length)];
 
   let legs = props.mwf
-    .filter(exercise => exercise.category == "9")
+    .filter(exercise => exercise.category === 9)
     .map(exercise => {
       return (
         <div className="ex" key={exercise.id}>

@@ -18,7 +18,6 @@ import swal from "sweetalert2";
 //React-Router
 import { NavLink } from "react-router-dom";
 //Local
-import CheckoutInfo from "../Checkout/Checkout";
 import "./Cart.css";
 
 class Cart extends Component {
@@ -74,7 +73,7 @@ class Cart extends Component {
       return (
         <div className="cart-item-container" key={product.product_id}>
           <div className="cart-item-img-container">
-            <img className="cart-item-img" src={product.product_img} />
+            <img className="cart-item-img" alt="" src={product.product_img} />
           </div>
           <div className="cart-item-description">
             <p className="cart-item-name">

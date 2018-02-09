@@ -32,10 +32,10 @@ class CreateWorkout extends Component {
     if (loading) return <div />;
     let mwfWorkouts = exercises.filter(
       exercise =>
-        exercise.category == "11" ||
-        exercise.category == "12" ||
-        exercise.category == "9" ||
-        exercise.category == "10"
+        exercise.category === 11 ||
+        exercise.category === 12 ||
+        exercise.category === 9 ||
+        exercise.category === 10
     );
     this.setState({
       workouts1: mwfWorkouts,
@@ -53,13 +53,13 @@ class CreateWorkout extends Component {
     if (loading) return <div />;
     let mttfWorkouts = exercises.filter(
       exercise =>
-        exercise.category == "11" ||
-        exercise.category == "12" ||
-        exercise.category == "13" ||
-        exercise.category == "8" ||
-        exercise.category == "10" ||
-        exercise.category == "9" ||
-        exercise.category == "14"
+        exercise.category === 11 ||
+        exercise.category === 12 ||
+        exercise.category === 13 ||
+        exercise.category === 8 ||
+        exercise.category === 10 ||
+        exercise.category === 9 ||
+        exercise.category === 14
     );
     this.setState({
       workouts2: mttfWorkouts,

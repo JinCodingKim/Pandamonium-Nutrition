@@ -76,14 +76,9 @@ class CheckoutInfo extends Component {
       shippingCity,
       shippingState,
       shippingCountry,
-      shippingZip,
-      email
+      shippingZip
     } = this.state;
-    const {
-      updateShippingAddress,
-      updateGuestEmail,
-      getUserByUserId
-    } = this.props;
+    const { updateShippingAddress, getUserByUserId } = this.props;
     this.setState({
       stepIndex: stepIndex + 1
     });
@@ -110,8 +105,7 @@ class CheckoutInfo extends Component {
       billingCity,
       billingState,
       billingCountry,
-      billingZip,
-      email
+      billingZip
     } = this.state;
     const { updateBillingAddress } = this.props;
     this.setState({
@@ -348,6 +342,8 @@ class CheckoutInfo extends Component {
         return <div className="input-address-container">{caseZero}</div>;
       case 1:
         return <div className="input-address-container">{caseOne}</div>;
+      default:
+        return <div />;
     }
   }
 
