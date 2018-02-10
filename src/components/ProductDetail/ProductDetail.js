@@ -28,7 +28,7 @@ class ProductDetail extends Component {
 
     this.state = {
       flavor: "",
-      quantity: 0,
+      quantity: 1,
       total: 0,
       name: "",
       email: "",
@@ -225,11 +225,12 @@ class ProductDetail extends Component {
                     <input
                       className="quantity-select"
                       onChange={e =>
-                        this.handleQuantity(Math.max(1, e.target.value))
+                        this.handleQuantity(
+                          Math.floor(Math.max(1, e.target.value))
+                        )
                       }
                       type="number"
-                      min="1"
-                      placeholder={quantity}
+                      value={quantity}
                     />
                   </span>
                 </div>

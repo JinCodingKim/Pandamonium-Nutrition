@@ -87,12 +87,11 @@ class Cart extends Component {
                   className="quantity-reselect"
                   onChange={e =>
                     this.handleQuantity(
-                      Math.max(1, e.target.value),
+                      Math.floor(Math.max(1, e.target.value)),
                       product.single_price
                     )
                   }
                   type="number"
-                  min="1"
                   placeholder={product.quantity}
                 />
               </div>
