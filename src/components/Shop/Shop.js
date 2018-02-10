@@ -17,7 +17,6 @@ class Shop extends Component {
     };
 
     this.handleSort = this.handleSort.bind(this);
-    this.confirmSort = this.confirmSort.bind(this);
     this.handleSearch = this.handleSearch.bind(this);
   }
 
@@ -27,15 +26,14 @@ class Shop extends Component {
   }
 
   handleSort(val) {
-    this.setState({
-      sort: val
-    });
-  }
-
-  confirmSort() {
-    const { sort } = this.state;
     const { getSortedProducts } = this.props;
-    getSortedProducts(sort).then(res => this.setState({ search: "" }));
+    getSortedProducts(val)
+      .then(res => this.setState({ search: "" }))
+      .then(() => {
+        this.setState({
+          sort: val
+        });
+      });
   }
 
   handleSearch(val) {
@@ -46,7 +44,7 @@ class Shop extends Component {
 
   render() {
     const { product = [], loading } = this.props;
-    const { search } = this.state;
+    const { search, sort } = this.state;
     if (loading) return <div />;
     let productsList = product
       .filter(item => {
@@ -87,7 +85,7 @@ class Shop extends Component {
             <select
               className="sort-select"
               onChange={e => this.handleSort(e.target.value)}
-              onClick={this.confirmSort}
+              value={sort}
             >
               <option value="clear"> Default Sorting </option>
               <option value="az"> Alphabetically: A-Z </option>
