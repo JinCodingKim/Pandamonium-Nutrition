@@ -15,6 +15,15 @@ A live demo of this website is available at:
 
 * http://pandamoniumnutrition.com
 
+Extra features are available for users that login to the site:
+
+* Workout and Profile Tab in NavBar (Options: List/Plan).
+* Plan provides 3 or 4 day pre-made workout plan for the user.
+* List provides multiple exercises (from the external api: http://wger.de) with the ability to add an exercise to the user's own list, which is located in their profile.
+* Profile provides the user with a list of exercises that they have added from the List page.
+* Profile provides the user with the ability to edit personal information and exercises.
+* Profile provides the user with the ability to create their own exercises.
+
 ## Issues
 
 The website is fully functional as of 02/09/2018.
