@@ -39,4 +39,4 @@ The package.json file contains a list of all the dependencies required to run th
 
 ## Author(s)
 
-* Jinyeob Kim (GithHub Profile:<a href="https://github.com/JinCodingKim">JinCodingKim</a>)
+* Jinyeob Kim <a href="https://github.com/JinCodingKim">JinCodingKim</a>
