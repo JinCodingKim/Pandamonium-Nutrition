@@ -29,7 +29,7 @@ class NavBar extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      drawerOpened: false
+      opened: false
     };
 
     this.toggleDrawer = this.toggleDrawer.bind(this);
