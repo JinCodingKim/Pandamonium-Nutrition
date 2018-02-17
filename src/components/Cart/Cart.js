@@ -148,7 +148,8 @@ class Cart extends Component {
         {cartList || <div>Cart is empty.</div>}
         <div className="order-container">
           <div className="order-total">
-            Order Total: <span>${totalAmnt || "0.00"}</span>
+            Order Total:{" "}
+            <span>${Number.parseFloat(totalAmnt).toFixed(2) || "0.00"}</span>
           </div>
           <div className="checkout-container" onClick={this.removeCart}>
             <NavLink to="/checkout" className="checkout-button">

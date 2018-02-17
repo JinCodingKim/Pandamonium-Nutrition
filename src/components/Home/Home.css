@@ -6,6 +6,40 @@
   width: 100%;
 }
 
+.modal-buttons {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.modal-dialog {
+  color: black;
+}
+
+.modal-dialog > h4 {
+  font-size: 14px;
+  color: #ff6d00;
+}
+
+.modal-notice {
+  font-size: 12px;
+  font-style: italic;
+}
+
+.modal-details {
+  font-size: 12px;
+}
+
+.modal-list {
+  font-size: 10px;
+}
+
+.modal-list > li {
+  padding: 5px 0 0 0;
+  margin: 0 0 0 17.5px;
+  height: 12.5px;
+}
+
 .slider-container {
   width: 100%;
   height: 50vw;
@@ -31,5 +65,20 @@
 @media (min-width: 768px) {
   .featured-banner-wrapper {
     padding: 10px 0 10px 0;
+  }
+  .modal-dialog > h4 {
+    font-size: 20px;
+  }
+
+  .modal-notice {
+    font-size: 15px;
+  }
+
+  .modal-details {
+    font-size: 13px;
+  }
+
+  .modal-list {
+    font-size: 12px;
   }
 }
