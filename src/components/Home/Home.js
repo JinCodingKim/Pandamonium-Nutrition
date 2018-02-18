@@ -15,25 +15,48 @@ class Home extends Component {
     super();
 
     this.state = {
-      open: false
+      open: false,
+      firstTime: true
     };
     this.handleClose = this.handleClose.bind(this);
     this.handleShow = this.handleShow.bind(this);
   }
 
+  componentWillMount() {
+    sessionStorage.getItem("firstTime") &&
+      this.setState({
+        firstTime: JSON.parse(sessionStorage.getItem("firstTime"))
+      });
+  }
+
   componentDidMount() {
-    setTimeout(
-      function() {
-        this.setState({
-          open: !this.state.open
-        });
-      }.bind(this),
-      3000
-    );
+    const { firstTime } = this.state;
+    if (firstTime) {
+      setTimeout(
+        function() {
+          this.setState({
+            open: !this.state.open,
+            firstTime: false
+          });
+        }.bind(this),
+        3000
+      );
+    }
   }
 
   handleShow() {
-    //set localstorage so modal shows only first time
+    this.setState(
+      {
+        open: !this.state.open,
+        firstTime: false
+      },
+      () => {
+        sessionStorage.setItem(
+          "firstTime",
+          JSON.stringify(this.state.firstTime)
+        );
+      }
+    );
   }
 
   handleClose() {
@@ -41,6 +64,7 @@ class Home extends Component {
       open: !this.state.open
     });
   }
+
   render() {
     const { open } = this.state;
     const modalStyle = {
@@ -55,7 +79,7 @@ class Home extends Component {
         <RaisedButton
           label="Don't Show Again"
           primary={true}
-          disabled={true}
+          // disabled={true}
           onClick={this.handleShow}
         />,
         <RaisedButton label="Close" primary={true} onClick={this.handleClose} />

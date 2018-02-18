@@ -25,6 +25,7 @@
     "react-star-ratings": "^1.4.1",
     "react-stripe-checkout": "^2.6.3",
     "redux": "^3.7.2",
+    "redux-persist": "^5.9.0",
     "redux-promise-middleware": "^5.0.0",
     "stripe": "^5.4.0",
     "sweetalert2": "^7.4.0"
