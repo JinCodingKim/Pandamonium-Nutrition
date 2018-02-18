@@ -30,7 +30,7 @@ The website is fully functional as of 02/09/2018.
 
 In-process of adding extra functions:
 
-* Home screen pop-up modal
+* ~~Home screen pop-up modal~~
 * Dual option buttons for alerts
 
 ## Requirements
