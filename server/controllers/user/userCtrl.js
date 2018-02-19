@@ -13,7 +13,6 @@ module.exports = {
   },
   userInfo: (req, res) => {
     const db = req.app.get("db");
-    // console.log(req.user);
     const { auth_id } = req.user;
     const { name, age, img } = req.body;
     db
@@ -22,9 +21,7 @@ module.exports = {
         req.session.passport.user.user_name = name;
         req.session.passport.user.user_age = age;
         req.session.passport.user.user_img = img;
-        req.session.save(function(err) {
-          console.log(err);
-        });
+        req.session.save(function(err) {});
         res.status(200).json(user);
       })
       .catch(err => {
@@ -32,7 +29,6 @@ module.exports = {
       });
   },
   updateGuestEmail: (req, res) => {
-    // console.log(req.user);
     const db = req.app.get("db");
     const { user_id } = req.user;
     const { user_email } = req.body;
@@ -40,13 +36,10 @@ module.exports = {
       .update_guest_email([user_id, user_email])
       .then(guest => {
         req.session.passport.user.user_email = user_email;
-        req.session.save(function(err) {
-          console.log(err);
-        });
+        req.session.save(function(err) {});
         res.status(200).json(guest);
       })
       .catch(err => {
-        console.log(err);
         res.status(500).json(err);
       });
   },
@@ -81,13 +74,10 @@ module.exports = {
         req.session.passport.user.shipping_state = shipping_state;
         req.session.passport.user.shipping_country = shipping_country;
         req.session.passport.user.shipping_zip = shipping_zip;
-        req.session.save(function(err) {
-          console.log(err);
-        });
+        req.session.save(function(err) {});
         res.status(200).json(shipping);
       })
       .catch(err => {
-        console.log(err);
         res.status(500).json(err);
       });
   },
@@ -122,13 +112,10 @@ module.exports = {
         req.session.passport.user.billing_state = billing_state;
         req.session.passport.user.billing_country = billing_country;
         req.session.passport.user.billing_zip = billing_zip;
-        req.session.save(function(err) {
-          console.log(err);
-        });
+        req.session.save(function(err) {});
         res.status(200).json(billing);
       })
       .catch(err => {
-        console.log(err);
         res.status(500).json(err);
       });
   }

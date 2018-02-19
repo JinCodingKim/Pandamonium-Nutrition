@@ -28,7 +28,7 @@ class ProductDetail extends Component {
 
     this.state = {
       flavor: "",
-      quantity: 1,
+      quantity: 0,
       total: 0,
       name: "",
       email: "",
@@ -226,7 +226,7 @@ class ProductDetail extends Component {
                       className="quantity-select"
                       onChange={e =>
                         this.handleQuantity(
-                          Math.floor(Math.max(1, e.target.value))
+                          Math.floor(Math.max(0, e.target.value))
                         )
                       }
                       type="number"
@@ -240,6 +240,7 @@ class ProductDetail extends Component {
                   <RaisedButton
                     label="Add to Cart"
                     primary={true}
+                    disabled={quantity === 0}
                     labelPosition="after"
                     className="add-cart-button"
                     icon={<ActionAddShoppingCart />}
@@ -257,8 +258,15 @@ class ProductDetail extends Component {
                         } added to Cart!`,
                         text: `${productDetail[0].product_flavor}`,
                         type: "success",
-                        confirmButtonText: "Back to Shopping",
+                        showCancelButton: true,
+                        reverseButtons: true,
+                        confirmButtonText: "Go to Cart",
+                        cancelButtonText: "Back to Shopping",
                         confirmButtonColor: "#ff6d00"
+                      }).then(result => {
+                        if (result.value) {
+                          this.props.history.push("/cart");
+                        }
                       });
                     }}
                   />
@@ -266,6 +274,7 @@ class ProductDetail extends Component {
                   <RaisedButton
                     label="Add to Cart"
                     primary={true}
+                    disabled={quantity === 0}
                     labelPosition="after"
                     className="add-cart-button"
                     icon={<ActionAddShoppingCart />}
@@ -282,8 +291,15 @@ class ProductDetail extends Component {
                         } added to Cart!`,
                         text: `${productDetail[1].product_flavor}`,
                         type: "success",
-                        confirmButtonText: "Back to Shopping",
+                        showCancelButton: true,
+                        reverseButtons: true,
+                        confirmButtonText: "Go to Cart",
+                        cancelButtonText: "Back to Shopping",
                         confirmButtonColor: "#ff6d00"
+                      }).then(result => {
+                        if (result.value) {
+                          this.props.history.push("/cart");
+                        }
                       });
                     }}
                   />
@@ -291,6 +307,7 @@ class ProductDetail extends Component {
                   <RaisedButton
                     label="Add to Cart"
                     primary={true}
+                    disabled={quantity === 0}
                     labelPosition="after"
                     className="add-cart-button"
                     icon={<ActionAddShoppingCart />}
@@ -307,8 +324,15 @@ class ProductDetail extends Component {
                         } added to Cart!`,
                         text: `${productDetail[2].product_flavor}`,
                         type: "success",
-                        confirmButtonText: "Back to Shopping",
+                        showCancelButton: true,
+                        reverseButtons: true,
+                        confirmButtonText: "Go to Cart",
+                        cancelButtonText: "Back to Shopping",
                         confirmButtonColor: "#ff6d00"
+                      }).then(result => {
+                        if (result.value) {
+                          this.props.history.push("/cart");
+                        }
                       });
                     }}
                   />

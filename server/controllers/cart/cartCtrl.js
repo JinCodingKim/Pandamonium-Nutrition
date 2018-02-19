@@ -7,7 +7,6 @@ module.exports = {
       .add_cart([user_id, product_id, quantity, total_price, single_price])
       .then(cart => res.status(200).json(cart))
       .catch(err => {
-        console.log(err);
         res.status(500).json(err);
       });
   },

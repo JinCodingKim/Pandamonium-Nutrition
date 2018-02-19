@@ -70,36 +70,27 @@ passport.use(
       scope: "openid profile"
     },
     (accessToken, refreshToken, extraParams, profile, done) => {
-      // console.log(profile);
-      //gets id from auth0 and passes in to the get_user_by_authid sql db
       app
         .get("db")
         .get_user_by_authid(profile.id)
         .then(response => {
-          // console.log(`profile: ${response}`);
           if (!response[0]) {
-            //if the id does not exist in the db, then insert the auth0 id and displayName into the sql db, and then sql will return this value from createUserByAuthid by using (RETURNING) key word
             app
               .get("db")
               .create_user([
-                //profile is the data coming from the auth0:
-                //firstname
                 profile.name.givenName,
-                //email
                 profile.displayName,
-                //age
+
                 profile.age,
-                //picture
+
                 profile.picture,
-                //auth_id
+
                 profile.id
               ])
               .then(created => {
-                // console.log(`new profile: ${created}`);
                 return done(null, created[0]);
               });
           } else {
-            // console.log(`profile: ${response}`);
             return done(null, response[0]);
           }
         });

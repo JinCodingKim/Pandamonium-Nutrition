@@ -348,7 +348,6 @@ class CheckoutInfo extends Component {
   }
 
   render() {
-    // console.log(this.props.user);
     const { finished, stepIndex, email } = this.state;
     const { user = {}, totalAmnt } = this.props;
 

@@ -45,18 +45,18 @@
   font-weight: lighter;
 }
 
-.company-name>span,
+.company-name > span,
 .detail-name,
 .detail-price {
   color: black;
 }
 
-.company-name>span,
+.company-name > span,
 .flavor-select-title {
   font-size: 13.5px;
 }
 
-.company-name>span {
+.company-name > span {
   font-weight: bold;
   display: block;
 }
@@ -136,7 +136,6 @@
 }
 
 .add-cart-button {
-  height: 40px !important;
   width: 100% !important;
   background-color: #ff6d00 !important;
 }
@@ -204,7 +203,6 @@
 }
 
 .submit-review-button {
-  height: 40px !important;
   width: 87.5% !important;
   margin: 10px 0 0 0 !important;
   background-color: #ff6d00 !important;
