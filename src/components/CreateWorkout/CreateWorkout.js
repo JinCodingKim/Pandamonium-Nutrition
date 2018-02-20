@@ -23,7 +23,12 @@ class CreateWorkout extends Component {
   }
 
   componentDidMount() {
-    const { getExercises } = this.props;
+    const { getExercises, user } = this.props;
+
+    if (!user.user_email) {
+      this.props.history.push("/");
+    }
+
     getExercises();
   }
 
@@ -104,7 +109,8 @@ class CreateWorkout extends Component {
 const mapStateToProps = state => {
   return {
     loading: state.workout.loading,
-    exercises: state.workout.exercises
+    exercises: state.workout.exercises,
+    user: state.user.user
   };
 };
 

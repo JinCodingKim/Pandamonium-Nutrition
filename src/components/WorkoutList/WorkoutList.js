@@ -25,7 +25,10 @@ class WorkoutList extends Component {
   }
 
   componentDidMount() {
-    const { getExercises } = this.props;
+    const { getExercises, user } = this.props;
+    if (!user.user_email) {
+      this.props.history.push("/");
+    }
     getExercises();
   }
 
@@ -130,7 +133,8 @@ const mapStateToProps = state => {
   return {
     loading: state.workout.loading,
     exercises: state.workout.exercises,
-    userExercises: state.workout.userExercises
+    userExercises: state.workout.userExercises,
+    user: state.user.user
   };
 };
 

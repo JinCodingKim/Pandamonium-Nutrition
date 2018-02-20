@@ -29,6 +29,9 @@ class ExerciseManager extends Component {
 
   componentDidMount() {
     const { user, getUserExercises } = this.props;
+    if (!user.user_email) {
+      this.props.history.push("/");
+    }
     getUserExercises(user.user_id);
   }
 

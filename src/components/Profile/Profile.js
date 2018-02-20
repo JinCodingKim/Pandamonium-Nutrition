@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 //React-router
 import { NavLink } from "react-router-dom";
+//React-Redux
+import { connect } from "react-redux";
 //Material-ui
 import ContentCreate from "material-ui/svg-icons/content/create";
 import ActionBuild from "material-ui/svg-icons/action/build";
@@ -12,6 +14,11 @@ import PersonalExercises from "./PersonalExercises/PersonalExercises";
 import "./Profile.css";
 
 class Profile extends Component {
+  componentDidMount() {
+    if (!this.props.user.user_email) {
+      this.props.history.push("/");
+    }
+  }
   render() {
     return (
       <div className="profile-body-main-wrapper">
@@ -45,4 +52,10 @@ class Profile extends Component {
   }
 }
 
-export default Profile;
+const mapStateToProps = state => {
+  return {
+    user: state.user.user
+  };
+};
+
+export default connect(mapStateToProps)(Profile);

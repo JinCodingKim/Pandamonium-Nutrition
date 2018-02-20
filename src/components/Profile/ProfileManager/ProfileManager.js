@@ -24,6 +24,12 @@ class ProfileManager extends Component {
     this.handleClick = this.handleClick.bind(this);
   }
 
+  componentDidMount() {
+    if (!this.props.user.user_email) {
+      this.props.history.push("/");
+    }
+  }
+
   handleChange(prop, val) {
     this.setState({ [prop]: val });
   }
