@@ -26,7 +26,7 @@ Extra features are available for users that login to the site:
 
 ## Issues
 
-The website is fully functional as of 02/09/2018.
+The website has bug updating values within the cart as of 02/2/2018.
 
 In-process of adding extra functions:
 
