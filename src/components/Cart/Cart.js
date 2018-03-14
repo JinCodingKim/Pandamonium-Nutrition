@@ -55,8 +55,7 @@ class Cart extends Component {
 
   updateCartValues(product, amount, total) {
     const { user, updateCartItem, getCart } = this.props;
-    updateCartItem(product, amount, total);
-    getCart(user.user_id);
+    updateCartItem(product, amount, total).then(() => getCart(user.user_id));
   }
 
   removeCart() {
