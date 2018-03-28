@@ -4,7 +4,7 @@ Pandamonium Sports Nutrition is a mock e-Commerce site for sports nutrition supp
 A personal project created with:
 
 * PostgreSQL
-* Reactjs
+* ReactJS
 * Redux
 * NodeJS
 * Express
@@ -26,12 +26,7 @@ Extra features are available for users that login to the site:
 
 ## Issues
 
-The website has bug updating values within the cart as of 02/2/2018.
-
-In-process of adding extra functions:
-
-* ~~Home screen pop-up modal~~
-* ~~Dual option buttons for alerts~~
+The website is fully functional as of: 03/14/2018
 
 ## Requirements
 
