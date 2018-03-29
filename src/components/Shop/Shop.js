@@ -47,7 +47,7 @@ class Shop extends Component {
 
   render() {
     const { product = [], loading } = this.props;
-    const { search, sort, trail } = this.state;
+    const { search, sort } = this.state;
     if (loading)
       return (
         <div className="loader-container">

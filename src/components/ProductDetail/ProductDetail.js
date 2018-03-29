@@ -119,8 +119,7 @@ class ProductDetail extends Component {
       email,
       rating,
       title,
-      description,
-      trail
+      description
     } = this.state;
     if (loading || !productDetail[0])
       return (

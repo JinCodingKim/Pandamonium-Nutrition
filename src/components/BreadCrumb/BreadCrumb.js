@@ -1,6 +1,10 @@
 import React from "react";
+//Material-UI
+import HardwareKeyboardArrowRight from "material-ui/svg-icons/hardware/keyboard-arrow-right";
 //React-Router
 import { NavLink } from "react-router-dom";
+//Local
+import "./BreadCrumb.css";
 
 function BreadCrumb({ trail }) {
   return (
@@ -14,9 +18,16 @@ function BreadCrumb({ trail }) {
           );
         } else {
           return (
-            <NavLink key={location.id} className="crumb-name" to={location.url}>
-              {location.name}
-            </NavLink>
+            <div className="crumbs-sub-container">
+              <NavLink
+                key={location.id}
+                className="crumb-name-link"
+                to={location.url}
+              >
+                {location.name}
+              </NavLink>
+              <HardwareKeyboardArrowRight className="crumb-arrow" />
+            </div>
           );
         }
       })}

@@ -79,14 +79,18 @@
 
 .search-container,
 .sort-container {
-  height: 100px;
   width: 87vw;
+}
+
+.sort-container {
+  height: 100px;
 }
 
 .search-container {
   display: flex;
   flex-direction: row;
   align-content: left;
+  height: 65px;
 }
 
 .sort-title {

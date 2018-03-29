@@ -1,0 +1,41 @@
+.crumbs-container {
+  width: 100%;
+  background-color: #eeeeee;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  box-sizing: border-box;
+  padding: 0 0 0 15px;
+}
+
+.crumbs-sub-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.crumb-name,
+.crumb-name-link {
+  font-weight: bold;
+  box-sizing: border-box;
+  text-decoration: none;
+  color: black;
+}
+
+.crumb-name {
+  padding: 12px 0 0 0;
+}
+
+.crumb-name-link {
+  padding: 12px 0 0 0;
+}
+
+.crumb-name-link:hover {
+  color: #ff6d00;
+}
+
+.crumb-arrow {
+  color: #ff6d00 !important;
+  box-sizing: border-box;
+  margin: 10px 0 0 0;
+}

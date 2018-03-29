@@ -116,7 +116,6 @@ app.get(
 
 //Login
 app.get("/api/me", (req, res, next) => {
-  console.log(req.user);
   if (req.user) res.json(req.user);
   else res.redirect("/api/login");
 });
@@ -164,7 +163,6 @@ app.delete("/api/checkout/:user_id", cartCtrl.removeAllCart);
 //Stripe
 app.post("/api/checkout", (req, res, next) => {
   stripe.charges.create(req.body, (stripeErr, stripeRes) => {
-    // console.log(req.body);
     if (stripeErr) {
       res.status(500).send({ error: stripeErr });
     } else {
