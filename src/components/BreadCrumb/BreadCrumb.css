@@ -5,7 +5,7 @@
   flex-direction: row;
   align-items: center;
   box-sizing: border-box;
-  padding: 0 0 0 15px;
+  padding: 0 0 0 5vw;
 }
 
 .crumbs-sub-container {
@@ -38,4 +38,19 @@
   color: #ff6d00 !important;
   box-sizing: border-box;
   margin: 10px 0 0 0;
+}
+
+@media (min-width: 768px) {
+  .crumbs-container {
+    width: 670px;
+    padding: 10px 0 0 20px;
+  }
+}
+
+@media (min-width: 991px) {
+  .crumbs-container {
+    width: 100%;
+    padding: 10px 0 0 10px;
+    font-size: 20px;
+  }
 }

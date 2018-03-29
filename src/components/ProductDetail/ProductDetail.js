@@ -124,7 +124,7 @@ class ProductDetail extends Component {
     if (loading || !productDetail[0])
       return (
         <div className="loader-container">
-          <img className="loader" src={LoaderSVG} />
+          <img className="loader" src={LoaderSVG} alt="Loader" />
         </div>
       );
     let reviewsList = review.map(review => {

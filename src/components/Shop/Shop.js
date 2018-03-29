@@ -51,7 +51,7 @@ class Shop extends Component {
     if (loading)
       return (
         <div className="loader-container">
-          <img className="loader" src={LoaderSVG} />
+          <img className="loader" src={LoaderSVG} alt="Loader" />
         </div>
       );
     let productsList = product

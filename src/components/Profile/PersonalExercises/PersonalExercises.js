@@ -1,6 +1,4 @@
 import React, { Component } from "react";
-//Prop-types
-import PropTypes from "prop-types";
 //Redux
 import { connect } from "react-redux";
 import {
@@ -127,11 +125,6 @@ class PersonalExercises extends Component {
     );
   }
 }
-
-PersonalExercises.propTypes = {
-  bodyPart: PropTypes.oneOf(["", "11", "12", "13", "10", "9", "14", "8"])
-    .isRequired
-};
 
 const mapStateToProps = state => {
   return {

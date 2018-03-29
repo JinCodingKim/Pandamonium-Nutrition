@@ -131,7 +131,8 @@
   .search-container,
   .sort-container {
     width: 300px;
-    margin: 10px 15px 20px 15px;
+    height: 100px;
+    margin: 0 15px 20px 15px;
   }
   .search-container {
     align-self: center;

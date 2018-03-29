@@ -2,8 +2,6 @@ import React, { Component } from "react";
 //Redux
 import { connect } from "react-redux";
 import { getExercises, addExercise, updateExercise } from "../../ducks/workout";
-//Prop-types
-import PropTypes from "prop-types";
 //Material-ui
 import RaisedButton from "material-ui/RaisedButton";
 import ActionStars from "material-ui/svg-icons/action/stars";
@@ -62,7 +60,7 @@ class WorkoutList extends Component {
     if (loading)
       return (
         <div className="loader-container">
-          <img className="loader" src={LoaderSVG} />
+          <img className="loader" src={LoaderSVG} alt="Loader" />
         </div>
       );
     const exerciseList = exercises
@@ -130,11 +128,6 @@ class WorkoutList extends Component {
     );
   }
 }
-
-WorkoutList.propTypes = {
-  bodyPart: PropTypes.oneOf(["", "11", "12", "13", "10", "9", "14", "8"])
-    .isRequired
-};
 
 const mapStateToProps = state => {
   return {

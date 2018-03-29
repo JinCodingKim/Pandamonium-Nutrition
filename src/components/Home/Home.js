@@ -112,7 +112,7 @@ class Home extends Component {
               is NOT real, and created for web development project purposes.
             </p>
             <br />
-            <p className="modal-details">
+            <div className="modal-details">
               Once you register, you are able to get extra contents:
               <ul className="modal-list">
                 <li>Workout List</li>
@@ -123,7 +123,7 @@ class Home extends Component {
               </ul>
               <br />
               Thank you for visiting the page. Enjoy!
-            </p>
+            </div>
           </div>
         </Dialog>
         <Slider {...settings}>

@@ -40,7 +40,6 @@ class ExerciseManager extends Component {
   }
 
   handlePart(event, index, value) {
-    // console.log(value);
     this.setState({
       value
     });

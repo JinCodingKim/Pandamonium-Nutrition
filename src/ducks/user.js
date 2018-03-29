@@ -43,7 +43,6 @@ export function updateUser(obj) {
     payload: axios
       .put("/api/profile/update", obj)
       .then(res => {
-        // console.log(res.data);
         return res.data;
       })
       .catch(console.log)

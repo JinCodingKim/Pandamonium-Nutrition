@@ -18,12 +18,8 @@ function BreadCrumb({ trail }) {
           );
         } else {
           return (
-            <div className="crumbs-sub-container">
-              <NavLink
-                key={location.id}
-                className="crumb-name-link"
-                to={location.url}
-              >
+            <div key={location.id} className="crumbs-sub-container">
+              <NavLink className="crumb-name-link" to={location.url}>
                 {location.name}
               </NavLink>
               <HardwareKeyboardArrowRight className="crumb-arrow" />
