@@ -21,7 +21,6 @@ import { connect } from "react-redux";
 import { getUser } from "../../ducks/user";
 //Local
 import logo from "./panda.png";
-import pandamonium from "./pandamonium.png";
 import fullLogo from "./pandamonium_nutrition.png";
 import "./NavBar.css";
 
@@ -78,7 +77,7 @@ class NavBar extends Component {
       <div>
         <div className="mobile-nav">
           <AppBar
-            title={img}
+            title={<NavLink to="/">{img}</NavLink>}
             className="mobile-bar"
             iconElementLeft={
               <NavigationMenu style={navStyles.mobileIconLeft} />
@@ -162,7 +161,9 @@ class NavBar extends Component {
                 <a href={process.env.REACT_APP_LOGIN}>
                   <ActionAccountBox style={navStyles.desktopIcons} />
                 </a>
-                <img className="top-img" alt="" src={pandamonium} />
+                <NavLink to="/">
+                  <img className="top-img" alt="" src={fullLogo} />
+                </NavLink>
                 <NavLink to="/cart">
                   <ActionShoppingCart style={navStyles.desktopIcons} />
                 </NavLink>
@@ -177,7 +178,9 @@ class NavBar extends Component {
                     <ActionExitToApp style={navStyles.desktopIcons} />
                   </a>
                 </div>
-                <img className="top-img" alt="" src={pandamonium} />
+                <NavLink to="/">
+                  <img className="top-img" alt="" src={fullLogo} />
+                </NavLink>
                 <div className="nav-logged-right">
                   <NavLink to="/exercises">
                     <PlacesFitnessCenter style={navStyles.desktopIcons} />
@@ -193,9 +196,6 @@ class NavBar extends Component {
                 </div>
               </div>
             )}
-          </div>
-          <div className="middle-bar">
-            <img className="desktop-img" alt="" src={logo} />
           </div>
           <div className="bottom-bar">
             <NavLink className="desktop-navlink-wrapper" to="/">

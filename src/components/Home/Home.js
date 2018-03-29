@@ -79,7 +79,6 @@ class Home extends Component {
         <RaisedButton
           label="Don't Show Again"
           primary={true}
-          // disabled={true}
           onClick={this.handleShow}
         />,
         <RaisedButton label="Close" primary={true} onClick={this.handleClose} />

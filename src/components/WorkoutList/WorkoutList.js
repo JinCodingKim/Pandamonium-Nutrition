@@ -9,6 +9,8 @@ import RaisedButton from "material-ui/RaisedButton";
 import ActionStars from "material-ui/svg-icons/action/stars";
 //Sweetalert2
 import swal from "sweetalert2";
+//Loader
+import LoaderSVG from "../../ball-triangle.svg";
 //Local
 import "./WorkoutList.css";
 
@@ -57,7 +59,12 @@ class WorkoutList extends Component {
     const { exercises = [], loading } = this.props;
     const { bodyPart } = this.state;
 
-    if (loading) return <div />;
+    if (loading)
+      return (
+        <div className="loader-container">
+          <img className="loader" src={LoaderSVG} />
+        </div>
+      );
     const exerciseList = exercises
       .filter(ex => {
         return JSON.stringify(ex.category) === bodyPart || bodyPart === "";

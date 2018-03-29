@@ -4,7 +4,10 @@ import { NavLink } from "react-router-dom";
 //Redux
 import { connect } from "react-redux";
 import { getProducts, getSortedProducts } from "../../ducks/product";
+//Loader
+import LoaderSVG from "../../ball-triangle.svg";
 //Local
+import BreadCrumb from "../BreadCrumb/BreadCrumb";
 import "./Shop.css";
 
 class Shop extends Component {
@@ -44,8 +47,13 @@ class Shop extends Component {
 
   render() {
     const { product = [], loading } = this.props;
-    const { search, sort } = this.state;
-    if (loading) return <div />;
+    const { search, sort, trail } = this.state;
+    if (loading)
+      return (
+        <div className="loader-container">
+          <img className="loader" src={LoaderSVG} />
+        </div>
+      );
     let productsList = product
       .filter(item => {
         return (
@@ -70,6 +78,7 @@ class Shop extends Component {
       });
     return (
       <div className="products-main-container">
+        <BreadCrumb trail={[{ id: 1, name: "Shop", url: "/shop" }]} />
         <div className="products-list">
           <div className="search-container">
             <input

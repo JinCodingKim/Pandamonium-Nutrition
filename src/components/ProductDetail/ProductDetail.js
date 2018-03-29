@@ -19,6 +19,10 @@ import { orangeA700 } from "material-ui/styles/colors";
 import swal from "sweetalert2";
 //React-star-ratings
 import StarRatings from "react-star-ratings";
+//Loader
+import LoaderSVG from "../../ball-triangle.svg";
+//Local
+import BreadCrumb from "../BreadCrumb/BreadCrumb";
 //Local
 import "./ProductDetail.css";
 
@@ -105,7 +109,7 @@ class ProductDetail extends Component {
   }
 
   render() {
-    const { productDetail = [], review = [], loading } = this.props;
+    const { productDetail = [], review = [], loading, match } = this.props;
 
     const {
       flavor,
@@ -115,9 +119,15 @@ class ProductDetail extends Component {
       email,
       rating,
       title,
-      description
+      description,
+      trail
     } = this.state;
-    if (loading) return <div />;
+    if (loading || !productDetail[0])
+      return (
+        <div className="loader-container">
+          <img className="loader" src={LoaderSVG} />
+        </div>
+      );
     let reviewsList = review.map(review => {
       return (
         <div className="reviewed-wrapper" key={review.review_id}>
@@ -141,302 +151,290 @@ class ProductDetail extends Component {
 
     return (
       <div className="detail-main-container">
-        {!productDetail[0] ? (
-          <div>
-            <h1>Loading Content...</h1>
+        <BreadCrumb
+          trail={[
+            { id: 1, name: "Shop", url: "/shop" },
+            {
+              id: 2,
+              name: productDetail[0].product_name,
+              url: match.params.product_type
+            }
+          ]}
+        />
+        <div className="detail-sub-container">
+          <div className="detail-img-container">
+            {!flavor || flavor === productDetail[0].product_flavor ? (
+              <img
+                alt=""
+                className="detail-img"
+                src={productDetail[0].product_img}
+              />
+            ) : (
+              <img
+                alt=""
+                className="detail-img"
+                src={productDetail[1].product_img}
+              />
+            )}
           </div>
-        ) : (
-          <div className="detail-sub-container">
-            <div className="detail-img-container">
+
+          <div className="detail-description-container">
+            <p className="company-name">
+              <span>PANDAMONIUM</span> SPORTS NUTRITION
+            </p>
+            <h2 className="detail-name">{productDetail[0].product_name}</h2>
+            <h4 className="detail-price">${productDetail[0].product_price}</h4>
+            <div className="flavor-quantity-container">
+              {!productDetail[1] ? (
+                <div className="flavor-container">
+                  <label className="flavor-select-title">CONTENTS</label>
+                  <div className="item-count">
+                    {productDetail[0].product_flavor}
+                  </div>
+                </div>
+              ) : !productDetail[2] ? (
+                <div className="flavor-container">
+                  <label className="flavor-select-title">FLAVOR</label>
+                  <span className="flavor-select-wrapper">
+                    <select
+                      className="flavor-select"
+                      value={flavor}
+                      onChange={e => this.handleFlavor(e.target.value)}
+                    >
+                      <option value={productDetail[0].product_flavor}>
+                        {productDetail[0].product_flavor}
+                      </option>
+                      <option value={productDetail[1].product_flavor}>
+                        {productDetail[1].product_flavor}
+                      </option>
+                    </select>
+                  </span>
+                </div>
+              ) : (
+                <div className="flavor-container">
+                  <label className="flavor-select-title">SIZE</label>
+                  <span className="flavor-select-wrapper">
+                    <select
+                      className="flavor-select"
+                      value={flavor}
+                      onChange={e => this.handleFlavor(e.target.value)}
+                    >
+                      <option value={productDetail[0].product_flavor}>
+                        {productDetail[0].product_flavor}
+                      </option>
+                      <option value={productDetail[1].product_flavor}>
+                        {productDetail[1].product_flavor}
+                      </option>
+                      <option value={productDetail[2].product_flavor}>
+                        {productDetail[2].product_flavor}
+                      </option>
+                    </select>
+                  </span>
+                </div>
+              )}
+              <div className="detail-options-container">
+                <label className="flavor-select-title">QUANTITY</label>
+                <span className="quantity-select-wrapper">
+                  <input
+                    className="quantity-select"
+                    onChange={e =>
+                      this.handleQuantity(
+                        Math.floor(Math.max(0, e.target.value))
+                      )
+                    }
+                    type="number"
+                    value={quantity}
+                  />
+                </span>
+              </div>
+            </div>
+            <div className="add-cart-container">
               {!flavor || flavor === productDetail[0].product_flavor ? (
-                <img
-                  alt=""
-                  className="detail-img"
-                  src={productDetail[0].product_img}
+                <RaisedButton
+                  label="Add to Cart"
+                  primary={true}
+                  disabled={quantity === 0}
+                  labelPosition="after"
+                  className="add-cart-button"
+                  icon={<ActionAddShoppingCart />}
+                  onClick={() => {
+                    this.handleCart(
+                      productDetail[0].product_id,
+                      quantity,
+                      total,
+                      productDetail[0].product_price
+                    );
+
+                    swal({
+                      title: `${productDetail[0].product_name} added to Cart!`,
+                      text: `${productDetail[0].product_flavor}`,
+                      type: "success",
+                      showCancelButton: true,
+                      reverseButtons: true,
+                      confirmButtonText: "Go to Cart",
+                      cancelButtonText: "Back to Shopping",
+                      confirmButtonColor: "#ff6d00"
+                    }).then(result => {
+                      if (result.value) {
+                        this.props.history.push("/cart");
+                      }
+                    });
+                  }}
+                />
+              ) : flavor === productDetail[1].product_flavor ? (
+                <RaisedButton
+                  label="Add to Cart"
+                  primary={true}
+                  disabled={quantity === 0}
+                  labelPosition="after"
+                  className="add-cart-button"
+                  icon={<ActionAddShoppingCart />}
+                  onClick={() => {
+                    this.handleCart(
+                      productDetail[1].product_id,
+                      quantity,
+                      total,
+                      productDetail[1].product_price
+                    );
+                    swal({
+                      title: `${productDetail[1].product_name} added to Cart!`,
+                      text: `${productDetail[1].product_flavor}`,
+                      type: "success",
+                      showCancelButton: true,
+                      reverseButtons: true,
+                      confirmButtonText: "Go to Cart",
+                      cancelButtonText: "Back to Shopping",
+                      confirmButtonColor: "#ff6d00"
+                    }).then(result => {
+                      if (result.value) {
+                        this.props.history.push("/cart");
+                      }
+                    });
+                  }}
                 />
               ) : (
-                <img
-                  alt=""
-                  className="detail-img"
-                  src={productDetail[1].product_img}
+                <RaisedButton
+                  label="Add to Cart"
+                  primary={true}
+                  disabled={quantity === 0}
+                  labelPosition="after"
+                  className="add-cart-button"
+                  icon={<ActionAddShoppingCart />}
+                  onClick={() => {
+                    this.handleCart(
+                      productDetail[2].product_id,
+                      quantity,
+                      total,
+                      productDetail[2].product_price
+                    );
+                    swal({
+                      title: `${productDetail[2].product_name} added to Cart!`,
+                      text: `${productDetail[2].product_flavor}`,
+                      type: "success",
+                      showCancelButton: true,
+                      reverseButtons: true,
+                      confirmButtonText: "Go to Cart",
+                      cancelButtonText: "Back to Shopping",
+                      confirmButtonColor: "#ff6d00"
+                    }).then(result => {
+                      if (result.value) {
+                        this.props.history.push("/cart");
+                      }
+                    });
+                  }}
                 />
               )}
             </div>
-
-            <div className="detail-description-container">
-              <p className="company-name">
-                <span>PANDAMONIUM</span> SPORTS NUTRITION
-              </p>
-              <h2 className="detail-name">{productDetail[0].product_name}</h2>
-              <h4 className="detail-price">
-                ${productDetail[0].product_price}
-              </h4>
-              <div className="flavor-quantity-container">
-                {!productDetail[1] ? (
-                  <div className="flavor-container">
-                    <label className="flavor-select-title">CONTENTS</label>
-                    <div className="item-count">
-                      {productDetail[0].product_flavor}
-                    </div>
-                  </div>
-                ) : !productDetail[2] ? (
-                  <div className="flavor-container">
-                    <label className="flavor-select-title">FLAVOR</label>
-                    <span className="flavor-select-wrapper">
-                      <select
-                        className="flavor-select"
-                        value={flavor}
-                        onChange={e => this.handleFlavor(e.target.value)}
-                      >
-                        <option value={productDetail[0].product_flavor}>
-                          {productDetail[0].product_flavor}
-                        </option>
-                        <option value={productDetail[1].product_flavor}>
-                          {productDetail[1].product_flavor}
-                        </option>
-                      </select>
-                    </span>
-                  </div>
-                ) : (
-                  <div className="flavor-container">
-                    <label className="flavor-select-title">SIZE</label>
-                    <span className="flavor-select-wrapper">
-                      <select
-                        className="flavor-select"
-                        value={flavor}
-                        onChange={e => this.handleFlavor(e.target.value)}
-                      >
-                        <option value={productDetail[0].product_flavor}>
-                          {productDetail[0].product_flavor}
-                        </option>
-                        <option value={productDetail[1].product_flavor}>
-                          {productDetail[1].product_flavor}
-                        </option>
-                        <option value={productDetail[2].product_flavor}>
-                          {productDetail[2].product_flavor}
-                        </option>
-                      </select>
-                    </span>
-                  </div>
-                )}
-                <div className="detail-options-container">
-                  <label className="flavor-select-title">QUANTITY</label>
-                  <span className="quantity-select-wrapper">
+            <div className="review-card-wrapper">
+              <Card className="review-card">
+                <CardHeader
+                  title="Write a review"
+                  actAsExpander={true}
+                  titleColor={orangeA700}
+                  className="review-card-header"
+                />
+                <CardText expandable={true} className="review-card-text">
+                  <div className="card-container">
+                    <label className="review-title">Full Name</label>
                     <input
-                      className="quantity-select"
-                      onChange={e =>
-                        this.handleQuantity(
-                          Math.floor(Math.max(0, e.target.value))
-                        )
-                      }
-                      type="number"
-                      value={quantity}
+                      className="review-name"
+                      placeholder="Enter your name"
+                      onChange={e => this.handleReview("name", e.target.value)}
+                      value={name}
+                      type="text"
                     />
-                  </span>
-                </div>
-              </div>
-              <div className="add-cart-container">
-                {!flavor || flavor === productDetail[0].product_flavor ? (
-                  <RaisedButton
-                    label="Add to Cart"
-                    primary={true}
-                    disabled={quantity === 0}
-                    labelPosition="after"
-                    className="add-cart-button"
-                    icon={<ActionAddShoppingCart />}
-                    onClick={() => {
-                      this.handleCart(
-                        productDetail[0].product_id,
-                        quantity,
-                        total,
-                        productDetail[0].product_price
-                      );
-
-                      swal({
-                        title: `${
-                          productDetail[0].product_name
-                        } added to Cart!`,
-                        text: `${productDetail[0].product_flavor}`,
-                        type: "success",
-                        showCancelButton: true,
-                        reverseButtons: true,
-                        confirmButtonText: "Go to Cart",
-                        cancelButtonText: "Back to Shopping",
-                        confirmButtonColor: "#ff6d00"
-                      }).then(result => {
-                        if (result.value) {
-                          this.props.history.push("/cart");
-                        }
-                      });
-                    }}
-                  />
-                ) : flavor === productDetail[1].product_flavor ? (
-                  <RaisedButton
-                    label="Add to Cart"
-                    primary={true}
-                    disabled={quantity === 0}
-                    labelPosition="after"
-                    className="add-cart-button"
-                    icon={<ActionAddShoppingCart />}
-                    onClick={() => {
-                      this.handleCart(
-                        productDetail[1].product_id,
-                        quantity,
-                        total,
-                        productDetail[1].product_price
-                      );
-                      swal({
-                        title: `${
-                          productDetail[1].product_name
-                        } added to Cart!`,
-                        text: `${productDetail[1].product_flavor}`,
-                        type: "success",
-                        showCancelButton: true,
-                        reverseButtons: true,
-                        confirmButtonText: "Go to Cart",
-                        cancelButtonText: "Back to Shopping",
-                        confirmButtonColor: "#ff6d00"
-                      }).then(result => {
-                        if (result.value) {
-                          this.props.history.push("/cart");
-                        }
-                      });
-                    }}
-                  />
-                ) : (
-                  <RaisedButton
-                    label="Add to Cart"
-                    primary={true}
-                    disabled={quantity === 0}
-                    labelPosition="after"
-                    className="add-cart-button"
-                    icon={<ActionAddShoppingCart />}
-                    onClick={() => {
-                      this.handleCart(
-                        productDetail[2].product_id,
-                        quantity,
-                        total,
-                        productDetail[2].product_price
-                      );
-                      swal({
-                        title: `${
-                          productDetail[2].product_name
-                        } added to Cart!`,
-                        text: `${productDetail[2].product_flavor}`,
-                        type: "success",
-                        showCancelButton: true,
-                        reverseButtons: true,
-                        confirmButtonText: "Go to Cart",
-                        cancelButtonText: "Back to Shopping",
-                        confirmButtonColor: "#ff6d00"
-                      }).then(result => {
-                        if (result.value) {
-                          this.props.history.push("/cart");
-                        }
-                      });
-                    }}
-                  />
-                )}
-              </div>
-              <div className="review-card-wrapper">
-                <Card className="review-card">
-                  <CardHeader
-                    title="Write a review"
-                    actAsExpander={true}
-                    titleColor={orangeA700}
-                    className="review-card-header"
-                  />
-                  <CardText expandable={true} className="review-card-text">
-                    <div className="card-container">
-                      <label className="review-title">Full Name</label>
-                      <input
-                        className="review-name"
-                        placeholder="Enter your name"
-                        onChange={e =>
-                          this.handleReview("name", e.target.value)
-                        }
-                        value={name}
-                        type="text"
-                      />
-                      <label className="review-title">E-mail Address</label>
-                      <input
-                        className="review-email"
-                        placeholder="will.smith@example.com"
-                        onChange={e =>
-                          this.handleReview("email", e.target.value)
-                        }
-                        value={email}
-                        type="text"
-                      />
-                      <label className="review-title">Rating</label>
-                      <div className="rate-stars">
-                        <StarRatings
-                          rating={rating}
-                          isSelectable={true}
-                          isAggregateRating={false}
-                          changeRating={this.handleStars}
-                          starRatedColor="#ff6d00"
-                          starSelectingHoverColor="#ff6d00"
-                          starSpacing="12px"
-                          starWidthAndHeight="25px"
-                          numOfStars={5}
-                        />
-                      </div>
-                      <label className="review-title">Review Title</label>
-                      <input
-                        className="review-title-input"
-                        placeholder="Give your review a title"
-                        onChange={e =>
-                          this.handleReview("title", e.target.value)
-                        }
-                        value={title}
-                        type="text"
-                      />
-                      <label className="review-title">Body of Review</label>
-                      <textarea
-                        className="review-description"
-                        placeholder="Write your comments here"
-                        onChange={e =>
-                          this.handleReview("description", e.target.value)
-                        }
-                        value={description}
-                      />
-                      <RaisedButton
-                        label="Submit Review"
-                        primary={true}
-                        labelPosition="after"
-                        className="submit-review-button"
-                        icon={<ActionCheckCircle />}
-                        onClick={() => {
-                          this.submitReview(
-                            productDetail[0].product_id,
-                            name,
-                            email,
-                            rating,
-                            title,
-                            description
-                          );
-
-                          swal({
-                            title: `Thank you for your review ${name}`,
-                            type: "success",
-                            confirmButtonText: "Back to Shopping",
-                            confirmButtonColor: "#ff6d00"
-                          });
-                        }}
+                    <label className="review-title">E-mail Address</label>
+                    <input
+                      className="review-email"
+                      placeholder="will.smith@example.com"
+                      onChange={e => this.handleReview("email", e.target.value)}
+                      value={email}
+                      type="text"
+                    />
+                    <label className="review-title">Rating</label>
+                    <div className="rate-stars">
+                      <StarRatings
+                        rating={rating}
+                        isSelectable={true}
+                        isAggregateRating={false}
+                        changeRating={this.handleStars}
+                        starRatedColor="#ff6d00"
+                        starSelectingHoverColor="#ff6d00"
+                        starSpacing="12px"
+                        starWidthAndHeight="25px"
+                        numOfStars={5}
                       />
                     </div>
-                  </CardText>
-                </Card>
-              </div>
-              <h4 className="detail-header">{productDetail[0].heading}</h4>
-              <p className="detail-description">
-                {productDetail[0].description}
-              </p>
-              <div className="reviews-container">{reviewsList}</div>
+                    <label className="review-title">Review Title</label>
+                    <input
+                      className="review-title-input"
+                      placeholder="Give your review a title"
+                      onChange={e => this.handleReview("title", e.target.value)}
+                      value={title}
+                      type="text"
+                    />
+                    <label className="review-title">Body of Review</label>
+                    <textarea
+                      className="review-description"
+                      placeholder="Write your comments here"
+                      onChange={e =>
+                        this.handleReview("description", e.target.value)
+                      }
+                      value={description}
+                    />
+                    <RaisedButton
+                      label="Submit Review"
+                      primary={true}
+                      labelPosition="after"
+                      className="submit-review-button"
+                      icon={<ActionCheckCircle />}
+                      onClick={() => {
+                        this.submitReview(
+                          productDetail[0].product_id,
+                          name,
+                          email,
+                          rating,
+                          title,
+                          description
+                        );
+
+                        swal({
+                          title: `Thank you for your review ${name}`,
+                          type: "success",
+                          confirmButtonText: "Back to Shopping",
+                          confirmButtonColor: "#ff6d00"
+                        });
+                      }}
+                    />
+                  </div>
+                </CardText>
+              </Card>
             </div>
+            <h4 className="detail-header">{productDetail[0].heading}</h4>
+            <p className="detail-description">{productDetail[0].description}</p>
+            <div className="reviews-container">{reviewsList}</div>
           </div>
-        )}
+        </div>
       </div>
     );
   }
