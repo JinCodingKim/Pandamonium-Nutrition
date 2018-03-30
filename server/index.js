@@ -128,6 +128,7 @@ app.get("/api/logout", (req, res, next) => {
 
 //ExerciseCtrl
 app.get("/api/exercises", exerciseCtrl.getExercises);
+app.get("/api/exercise/images", exerciseCtrl.getExerciseImages);
 app.post("/api/exercise/add", exerciseCtrl.addExercise);
 app.put("/api/exercise/update", exerciseCtrl.updateExercise);
 app.get("/api/favorites", exerciseCtrl.getUserExercises);

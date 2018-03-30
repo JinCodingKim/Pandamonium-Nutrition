@@ -1,6 +1,7 @@
 const axios = require("axios");
 const APIKey = process.env.APIKey;
 let list = [];
+let newId = 500;
 
 module.exports = {
   getExercises: (req, res) => {
@@ -10,15 +11,13 @@ module.exports = {
           "https://wger.de/api/v2/exercise/?language=2&limit=470&status=2&context=edit"
         )
         .then(response => {
-          list = response.data.results
-            .filter(
-              e =>
-                e.license_author == "wger.de" &&
-                e.description !== "<p>.</p>" &&
-                e.description !== "" &&
-                e.description
-            )
-            .map((x, i) => Object.assign(x, { id: i }));
+          list = response.data.results.filter(
+            e =>
+              e.license_author == "wger.de" &&
+              e.description !== "<p>.</p>" &&
+              e.description !== "" &&
+              e.description
+          );
           res.status(200).json(list);
         })
         .catch(err => {
@@ -27,6 +26,17 @@ module.exports = {
     } else {
       res.status(200).json(list);
     }
+  },
+  getExerciseImages: (req, res) => {
+    let id = req.query.exercise;
+    axios
+      .get(`https://wger.de/api/v2/exerciseimage/?exercise=${id}&is_main=True`)
+      .then(response => {
+        res.status(200).json(response.data.results);
+      })
+      .catch(err => {
+        res.status(500).json(err);
+      });
   },
   addExercise: (req, res) => {
     const db = req.app.get("db");
@@ -65,11 +75,12 @@ module.exports = {
     const { user_id } = req.user;
     const { name, category, description } = req.body;
     db
-      .add_user_exercise([user_id, name, category, description])
+      .add_user_exercise([user_id, newId, name, category, description])
       .then(exercise => res.status(200).json(exercise))
       .catch(err => {
         res.status(500).json(err);
       });
+    newId++;
   },
   updateUserExercise: (req, res) => {
     const db = req.app.get("db");

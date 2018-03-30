@@ -2,14 +2,10 @@ import React, { Component } from "react";
 //Redux
 import { connect } from "react-redux";
 import { getExercises, addExercise, updateExercise } from "../../ducks/workout";
-//Material-ui
-import RaisedButton from "material-ui/RaisedButton";
-import ActionStars from "material-ui/svg-icons/action/stars";
-//Sweetalert2
-import swal from "sweetalert2";
 //Loader
 import LoaderSVG from "../../ball-triangle.svg";
 //Local
+import Workout from "./Workout/Workout";
 import "./WorkoutList.css";
 
 class WorkoutList extends Component {
@@ -40,7 +36,7 @@ class WorkoutList extends Component {
 
   handleExercise(id, name, category, description) {
     const { userExercises, addExercise, updateExercise } = this.props;
-    if (userExercises.length === 0) {
+    if (!userExercises.length) {
       addExercise(id, name, category, description);
     } else {
       for (let i = 0; i < userExercises.length; i++) {
@@ -69,41 +65,14 @@ class WorkoutList extends Component {
       })
       .map(exercise => {
         return (
-          <div className="exercise" key={exercise.id}>
-            <h2 className="exercise-title">{exercise.name}</h2>
-            <p className="exercise-description">
-              {exercise.description
-                .replace(/(<p[^>]+?>|<p>|<\/p>)/gim, "")
-                .replace(/(<li[^>]+?>|<li>|<\/li>)/gim, "")
-                .replace(/(<ol[^>]+?>|<ol>|<\/ol>)/gim, "")
-                .replace(/(<ul[^>]+?>|<ul>|<\/ul>)/gim, "")
-                .replace(/(<em[^>]+?>|<em>|<\/em>)/gim, "")
-                .replace(/(<strong[^>]+?>|<strong>|<\/strong>)/gim, "")}
-            </p>
-            <RaisedButton
-              label="Add to Favorites"
-              primary={true}
-              labelPosition="after"
-              className="favorites-button"
-              icon={<ActionStars />}
-              onClick={() => {
-                this.handleExercise(
-                  exercise.id,
-                  exercise.name,
-                  exercise.category,
-                  exercise.description
-                );
-
-                swal({
-                  title: `${exercise.name} added to Favorites!`,
-                  type: "success",
-                  confirmButtonText: "Back to List",
-                  confirmButtonColor: "#ff6d00"
-                });
-              }}
-            />
-            <br />
-          </div>
+          <Workout
+            key={exercise.id}
+            id={exercise.id}
+            name={exercise.name}
+            category={exercise.category}
+            description={exercise.description}
+            handleExercise={this.handleExercise}
+          />
         );
       });
     return (

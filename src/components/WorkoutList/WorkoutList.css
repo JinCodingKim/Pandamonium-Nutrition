@@ -52,38 +52,7 @@
   overflow-x: hidden;
 }
 
-.exercise {
-  border-bottom: 1px solid #ff6d00;
-  padding: 25px 0 25px 0;
-  color: #000000;
-  list-style-type: none;
-}
-
-.exercise-title {
-  width: 100%;
-  border-bottom: 1px dotted #000000;
-  padding: 0 0 5px 0;
-  font-weight: bold;
-  font-size: 15px;
-  letter-spacing: 0.5px;
-}
-
-.exercise-description {
-  padding: 12.5px 0 12.5px 0;
-  font-size: 15px;
-  line-height: 17.5px;
-  letter-spacing: 0.5px;
-}
-
-.favorites-button {
-  width: 100% !important;
-  background-color: #ff6d00 !important;
-}
-
 @media (min-width: 991px) {
-  .favorites-button {
-    width: 30% !important;
-  }
   .list-container {
     width: 75vw;
     margin: 5px 12.5vw 20px 12.5vw;

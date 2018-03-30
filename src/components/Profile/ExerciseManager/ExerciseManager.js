@@ -49,7 +49,7 @@ class ExerciseManager extends Component {
     const { addUserExercise } = this.props;
     const { addName, value, addDescription } = this.state;
     addUserExercise(addName, value, addDescription).then(() => {
-      window.location.href = "/profile";
+      this.props.history.push("/profile");
     });
   }
 

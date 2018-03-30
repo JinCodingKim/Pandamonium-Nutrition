@@ -88,10 +88,10 @@ class PersonalExercises extends Component {
       .filter(ex => {
         return JSON.stringify(ex.category) === bodyPart || bodyPart === "";
       })
-      .map((exercise, index) => {
+      .map(exercise => {
         return (
           <PersonalExerciseDetail
-            key={index}
+            key={exercise.exercise_id}
             name={exercise.name}
             description={exercise.description}
             id={exercise.exercise_id}

@@ -95,6 +95,7 @@ class Home extends Component {
       pauseOnHover: true,
       arrows: false
     };
+
     return (
       <div className="home-container">
         <Dialog contentStyle={modalStyle} open={open} actions={actions}>
