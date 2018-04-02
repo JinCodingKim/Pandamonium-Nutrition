@@ -4,7 +4,7 @@ import swal from "sweetalert2";
 //Material-ui
 import RaisedButton from "material-ui/RaisedButton";
 import Dialog from "material-ui/Dialog";
-import ActionStars from "material-ui/svg-icons/action/stars";
+import ActionFavorite from "material-ui/svg-icons/action/favorite";
 import ImagePhoto from "material-ui/svg-icons/image/photo";
 
 //Local
@@ -76,6 +76,19 @@ class Workout extends Component {
           {!images.length ? null : (
             <ImagePhoto onClick={this.viewModal} className="image-photo" />
           )}
+          <ActionFavorite
+            onClick={() => {
+              handleExercise(id, name, category, description);
+
+              swal({
+                title: `${name} added to Favorites!`,
+                type: "success",
+                confirmButtonText: "Back to List",
+                confirmButtonColor: "#ff6d00"
+              });
+            }}
+            className="favorites-desktop"
+          />
         </div>
         <p className="exercise-description">
           {description
@@ -91,7 +104,7 @@ class Workout extends Component {
           primary={true}
           labelPosition="after"
           className="favorites-button"
-          icon={<ActionStars />}
+          icon={<ActionFavorite />}
           onClick={() => {
             handleExercise(id, name, category, description);
 

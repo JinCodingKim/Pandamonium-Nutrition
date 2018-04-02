@@ -52,10 +52,13 @@ h3 {
   margin: 20px 0 10px 0;
 }
 
-.policy-info-content,
 .policy-info-content {
   font-size: 12px;
   line-height: 20px;
+}
+
+.policy-info-content:hover {
+  color: black;
 }
 
 @media (min-width: 413px) {

@@ -38,12 +38,17 @@ class ProductDetail extends Component {
       email: "",
       rating: 0,
       title: "",
-      description: ""
+      description: "",
+      iconOne: "",
+      iconTwo: "",
+      iconThree: ""
     };
 
     this.handleFlavor = this.handleFlavor.bind(this);
     this.handleQuantity = this.handleQuantity.bind(this);
     this.handleCart = this.handleCart.bind(this);
+    this.handleIcon = this.handleIcon.bind(this);
+    this.handleLeave = this.handleLeave.bind(this);
     this.handleReview = this.handleReview.bind(this);
     this.handleStars = this.handleStars.bind(this);
     this.submitReview = this.submitReview.bind(this);
@@ -85,6 +90,18 @@ class ProductDetail extends Component {
     }
   }
 
+  handleIcon(prop, val) {
+    this.setState({
+      [prop]: val
+    });
+  }
+
+  handleLeave(prop) {
+    this.setState({
+      [prop]: ""
+    });
+  }
+
   handleReview(prop, val) {
     this.setState({ [prop]: val });
   }
@@ -119,7 +136,10 @@ class ProductDetail extends Component {
       email,
       rating,
       title,
-      description
+      description,
+      iconOne,
+      iconTwo,
+      iconThree
     } = this.state;
     if (loading || !productDetail[0])
       return (
@@ -164,13 +184,13 @@ class ProductDetail extends Component {
           <div className="detail-img-container">
             {!flavor || flavor === productDetail[0].product_flavor ? (
               <img
-                alt=""
+                alt="product"
                 className="detail-img"
                 src={productDetail[0].product_img}
               />
             ) : (
               <img
-                alt=""
+                alt="product"
                 className="detail-img"
                 src={productDetail[1].product_img}
               />
@@ -344,6 +364,46 @@ class ProductDetail extends Component {
                 />
               )}
             </div>
+            {!productDetail[0].icon_one ? null : (
+              <div className="icons-container">
+                <div className="icon-wrapper">
+                  <img
+                    className="product-icon"
+                    src={productDetail[0].icon_one}
+                    alt="icon"
+                    onMouseEnter={() =>
+                      this.handleIcon("iconOne", productDetail[0].one_name)
+                    }
+                    onMouseLeave={() => this.handleLeave("iconOne")}
+                  />
+                  <p className="icon-name">{iconOne}</p>
+                </div>
+                <div className="icon-wrapper">
+                  <img
+                    className="product-icon"
+                    src={productDetail[0].icon_two}
+                    alt="icon"
+                    onMouseEnter={() =>
+                      this.handleIcon("iconTwo", productDetail[0].two_name)
+                    }
+                    onMouseLeave={() => this.handleLeave("iconTwo")}
+                  />
+                  <p className="icon-name">{iconTwo}</p>
+                </div>
+                <div className="icon-wrapper">
+                  <img
+                    className="product-icon"
+                    src={productDetail[0].icon_three}
+                    alt="icon"
+                    onMouseEnter={() =>
+                      this.handleIcon("iconThree", productDetail[0].three_name)
+                    }
+                    onMouseLeave={() => this.handleLeave("iconThree")}
+                  />
+                  <p className="icon-name">{iconThree}</p>
+                </div>
+              </div>
+            )}
             <div className="review-card-wrapper">
               <Card className="review-card">
                 <CardHeader

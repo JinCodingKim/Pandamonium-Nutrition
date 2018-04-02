@@ -46,6 +46,11 @@ article {
   align-items: center;
 }
 
+.contact-content-description:hover,
+.contact-content-top-description:hover {
+  color: black;
+}
+
 .contact-content-description,
 .contact-content-top-description {
   font-size: 14px;

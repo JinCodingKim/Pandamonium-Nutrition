@@ -58,6 +58,10 @@ h3 {
   font-size: 12px;
   line-height: 20px;
 }
+.creation-content:hover,
+.conclusion-content:hover {
+  color: black;
+}
 
 @media (min-width: 413px) {
   h2 span {

@@ -52,10 +52,13 @@ h3 {
   margin: 20px 0 10px 0;
 }
 
-.terms-info-content,
 .terms-info-content {
   font-size: 12px;
   line-height: 20px;
+}
+
+.terms-info-content:hover {
+  color: black;
 }
 
 @media (min-width: 413px) {
