@@ -43,45 +43,6 @@
   margin: 0 0 5px 0;
 }
 
-.personal-ex-container {
-  border-bottom: 1px solid #ff6d00;
-  padding: 25px 3vw 25px 3vw;
-  color: #000000;
-  list-style-type: none;
-}
-
-.personal-ex-title {
-  width: 100%;
-  border-bottom: 1px dotted #000000;
-  padding: 0 0 5px 0;
-  font-weight: bold;
-  font-size: 15px;
-  letter-spacing: 0.5px;
-}
-
-.personal-ex-description {
-  padding: 10px 0 10px 0;
-  font-size: 15px;
-  line-height: 17.5px;
-  letter-spacing: 0.5px;
-}
-
-.update-ex-button {
-  align-self: center !important;
-  width: 100% !important;
-  margin: 10px 0 10px 0 !important;
-}
-
-.ex-edit-content-wrapper {
-  background-color: transparent !important;
-}
-
-.remove-ex-button {
-  align-self: center !important;
-  width: 100% !important;
-  margin: 10px 0 0 0 !important;
-}
-
 @media (min-width: 413px) {
   .personal-ex-main-wrapper {
     width: 400px;
@@ -100,10 +61,6 @@
     padding: 0 0 0 0;
     height: 500px;
     margin: 30px 0 0 0;
-  }
-  .personal-ex-main-container {
-    padding: 0 0 0 0;
-    width: 360px;
   }
   .personal-filter-container {
     border-top: 0px solid black;

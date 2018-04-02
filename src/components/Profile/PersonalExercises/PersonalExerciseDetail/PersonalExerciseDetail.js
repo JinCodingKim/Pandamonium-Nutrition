@@ -1,15 +1,15 @@
 import React, { Component } from "react";
 //Material-ui
-import RaisedButton from "material-ui/RaisedButton";
 import ActionDelete from "material-ui/svg-icons/action/delete";
 import ContentCreate from "material-ui/svg-icons/content/create";
 import ContentSave from "material-ui/svg-icons/content/save";
+import NavigationCancel from "material-ui/svg-icons/navigation/cancel";
 import TextField from "material-ui/TextField";
 import Paper from "material-ui/Paper";
 //Sweetalert2
 import swal from "sweetalert2";
 //Local
-import "./../PersonalExercises.css";
+import "./PersonalExerciseDetail.css";
 
 class PersonalExerciseDetail extends Component {
   constructor(props) {
@@ -57,7 +57,35 @@ class PersonalExerciseDetail extends Component {
       <div className="personal-ex-container">
         {!edit ? (
           <div>
-            <h2 className="personal-ex-title">{name}</h2>
+            <div className="title-button-wrapper">
+              <h2 className="personal-ex-title">{name}</h2>
+              <div className="edit-delete-wrapper">
+                <ActionDelete
+                  onClick={() => {
+                    swal({
+                      title: `Are you sure?`,
+                      text: `You will not be able to recover this exercise`,
+                      type: "warning",
+                      showCancelButton: true,
+                      reverseButtons: true,
+                      cancelButtonText: "No, keep it",
+                      confirmButtonText: "Yes, delete it",
+                      cancelButtonColor: "#757575",
+                      confirmButtonColor: "#ff6d00"
+                    }).then(result => {
+                      if (result.value) {
+                        this.handleRemove(id);
+                      }
+                    });
+                  }}
+                  className="delete-ex-button"
+                />
+                <ContentCreate
+                  onClick={this.toggleEdit}
+                  className="update-ex-button"
+                />
+              </div>
+            </div>
             <p className="personal-ex-description">
               {description
                 .replace(/(<p[^>]+?>|<p>|<\/p>)/gim, "")
@@ -67,30 +95,43 @@ class PersonalExerciseDetail extends Component {
                 .replace(/(<em[^>]+?>|<em>|<\/em>)/gim, "")
                 .replace(/(<strong[^>]+?>|<strong>|<\/strong>)/gim, "")}
             </p>
-            <RaisedButton
-              label="Edit"
-              primary={true}
-              labelPosition="after"
-              className="update-ex-button"
-              icon={<ContentCreate />}
-              onClick={this.toggleEdit}
-            />
           </div>
         ) : (
           <div>
             <Paper className="ex-edit-content-wrapper" zDepth={1}>
-              <TextField
-                type="text"
-                inputStyle={{ color: "#000000" }}
-                value={editName}
-                onChange={e =>
-                  this.handleEditChange("editName", e.target.value)
-                }
-              />
+              <div className="edit-text-wrapper">
+                <TextField
+                  type="text"
+                  inputStyle={{ color: "#000000" }}
+                  value={editName}
+                  onChange={e =>
+                    this.handleEditChange("editName", e.target.value)
+                  }
+                />
+                <div className="edit-cancel-confirm">
+                  <NavigationCancel
+                    onClick={this.toggleEdit}
+                    className="cancel-ex-button"
+                  />
+                  <ContentSave
+                    onClick={() => {
+                      this.handleUpdate(id, editName, editDescription);
+                      swal({
+                        title: `Update has been saved!`,
+                        type: "success",
+                        confirmButtonText: "Back to Profile",
+                        confirmButtonColor: "#ff6d00"
+                      });
+                    }}
+                    className="update-ex-button"
+                  />
+                </div>
+              </div>
               <TextField
                 type="text"
                 multiLine={true}
                 rows={5}
+                className="edit-description"
                 textareaStyle={{
                   color: "#000000",
                   border: "1px solid #BDBDBD",
@@ -103,41 +144,8 @@ class PersonalExerciseDetail extends Component {
                 }
               />
             </Paper>
-            <RaisedButton
-              label="Save"
-              primary={true}
-              labelPosition="after"
-              className="update-ex-button"
-              icon={<ContentSave />}
-              onClick={() => {
-                this.handleUpdate(id, editName, editDescription);
-                swal({
-                  title: `Update has been saved!`,
-                  type: "success",
-                  confirmButtonText: "Back to Profile",
-                  confirmButtonColor: "#ff6d00"
-                });
-              }}
-            />
           </div>
         )}
-
-        <RaisedButton
-          label="Remove"
-          primary={true}
-          labelPosition="after"
-          className="remove-ex-button"
-          icon={<ActionDelete />}
-          onClick={() => {
-            this.handleRemove(id);
-            swal({
-              title: `Exercise has been removed!`,
-              type: "success",
-              confirmButtonText: "Back to Profile",
-              confirmButtonColor: "#ff6d00"
-            });
-          }}
-        />
       </div>
     );
   }

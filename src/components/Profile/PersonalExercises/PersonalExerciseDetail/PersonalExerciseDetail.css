@@ -1,0 +1,91 @@
+.personal-ex-container {
+  border-bottom: 1px solid #ff6d00;
+  padding: 25px 3vw 25px 3vw;
+  color: #000000;
+  list-style-type: none;
+  text-align: left;
+}
+
+.title-button-wrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  border-bottom: 1px dotted #000000;
+  padding: 0 0 5px 0;
+}
+
+.personal-ex-title {
+  width: 80%;
+  font-weight: bold;
+  font-size: 15px;
+  letter-spacing: 0.5px;
+}
+
+.edit-delete-wrapper {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  width: 20%;
+}
+
+.personal-ex-description {
+  padding: 10px 0 10px 0;
+  font-size: 15px;
+  line-height: 17.5px;
+  letter-spacing: 0.5px;
+}
+
+.personal-ex-description:hover {
+  color: black;
+}
+
+.ex-edit-content-wrapper {
+  background-color: transparent !important;
+}
+
+.edit-text-wrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.edit-cancel-confirm {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  width: 20%;
+}
+
+.delete-ex-button {
+  color: black !important;
+  width: 50px !important;
+  margin: 0 0 0 5px !important;
+  cursor: pointer !important;
+}
+.delete-ex-button:hover {
+  color: #ff6d00 !important;
+}
+
+.update-ex-button,
+.delete-ex-button,
+.cancel-ex-button {
+  color: black !important;
+  width: 50px !important;
+  margin: 0 0 0 5px !important;
+  cursor: pointer !important;
+}
+.update-ex-button:hover,
+.delete-ex-button:hover,
+.cancel-ex-button:hover {
+  color: #ff6d00 !important;
+}
+
+.edit-description {
+  width: 100% !important;
+}
