@@ -19,7 +19,7 @@ const initialState = {
   cart: [],
   review: [],
   loading: false,
-  error: false,
+  error: "",
   totalAmnt: 0
 };
 
@@ -33,273 +33,250 @@ export function updateTotalAmnt(amount) {
 export function getProducts() {
   return {
     type: GET_PRODUCTS,
-    payload: axios
-      .get("/api/products")
-      .then(res => {
-        return res.data;
-      })
-      .catch(console.log)
+    payload: axios.get("/api/products")
   };
 }
 
 export function getProductByType(type) {
   return {
     type: GET_PRODUCT_BY_TYPE,
-    payload: axios
-      .get(`/api/product/${type}`)
-      .then(res => {
-        return res.data;
-      })
-      .catch(console.log)
+    payload: axios.get(`/api/product/${type}`)
   };
 }
 
 export function getReviews(product) {
   return {
     type: GET_REVIEWS,
-    payload: axios
-      .get(`/api/review/${product}`)
-      .then(res => {
-        return res.data;
-      })
-      .catch(console.log)
+    payload: axios.get(`/api/review/${product}`)
   };
 }
 
-export function addReview(product, name, email, rating, title, description) {
+export function addReview(
+  product_id,
+  review_name,
+  review_email,
+  rating,
+  review_title,
+  description
+) {
   return {
     type: ADD_REVIEW,
-    payload: axios
-      .post("/api/product/review", {
-        product_id: product,
-        review_name: name,
-        review_email: email,
-        rating: rating,
-        review_title: title,
-        description: description
-      })
-      .then(res => {
-        return res.data;
-      })
-      .catch(console.log)
+    payload: axios.post("/api/product/review", {
+      product_id,
+      review_name,
+      review_email,
+      rating,
+      review_title,
+      description
+    })
   };
 }
 
 export function getSortedProducts(sorted) {
   return {
     type: GET_SORTED_PRODUCTS,
-    payload: axios
-      .get(`/api/products/${sorted}`)
-      .then(res => {
-        return res.data;
-      })
-      .catch(console.log)
+    payload: axios.get(`/api/products/${sorted}`)
   };
 }
 
-export function addToCart(product, amount, price, single) {
+export function addToCart(product_id, quantity, total_price, single_price) {
   return {
     type: ADD_TO_CART,
-    payload: axios
-      .post("/api/cart/add", {
-        product_id: product,
-        quantity: amount,
-        total_price: price,
-        single_price: single
-      })
-      .then(res => {
-        return res.data;
-      })
-      .catch(console.log)
+    payload: axios.post("/api/cart/add", {
+      product_id,
+      quantity,
+      total_price,
+      single_price
+    })
   };
 }
 
-export function updateCart(product, amount, price) {
+export function updateCart(product_id, quantity, total_price) {
   return {
     type: UPDATE_CART,
-    payload: axios
-      .put("/api/cart/update", {
-        product_id: product,
-        quantity: amount,
-        total_price: price
-      })
-      .then(res => {
-        return res.data;
-      })
-      .catch(console.log)
+    payload: axios.put("/api/cart/update", {
+      product_id,
+      quantity,
+      total_price
+    })
   };
 }
 
-export function updateCartItem(product, amount, price) {
+export function updateCartItem(product_id, quantity, total_price) {
   return {
     type: UPDATE_CART_ITEM,
-    payload: axios
-      .put("/api/cart/quantity", {
-        product_id: product,
-        quantity: amount,
-        total_price: price
-      })
-      .then(res => {
-        return res.data;
-      })
-      .catch(console.log)
+    payload: axios.put("/api/cart/quantity", {
+      product_id,
+      quantity,
+      total_price
+    })
   };
 }
 
 export function getCart(user) {
   return {
     type: GET_CART,
-    payload: axios
-      .get(`/api/cart/${user}`)
-      .then(res => {
-        return res.data;
-      })
-      .catch(console.log)
+    payload: axios.get(`/api/cart/${user}`)
   };
 }
 
 export function removeCart(product) {
   return {
     type: REMOVE_CART,
-    payload: axios
-      .delete(`/api/cart/${product}`)
-      .then(res => {
-        return res.data;
-      })
-      .catch(console.log)
+    payload: axios.delete(`/api/cart/${product}`)
   };
 }
 
 export function removeAllCart(user) {
   return {
     type: REMOVE_ALL_CART,
-    payload: axios
-      .delete(`/api/checkout/${user}`)
-      .then(res => {
-        return res.data;
-      })
-      .catch(console.log)
+    payload: axios.delete(`/api/checkout/${user}`)
   };
 }
 
 export default function product(state = initialState, action) {
   switch (action.type) {
     case `UPDATE_TOTAL_AMNT`:
-      return Object.assign({}, state, {
+      return {
+        ...state,
         totalAmnt: action.payload
-      });
+      };
     case `${GET_REVIEWS}_PENDING`:
-      return Object.assign({}, state, {
+      return {
+        ...state,
         loading: true
-      });
+      };
     case `${GET_REVIEWS}_FULFILLED`:
-      return Object.assign({}, state, {
+      return {
+        ...state,
         loading: false,
-        review: action.payload
-      });
+        review: action.payload.data
+      };
     case `${GET_REVIEWS}_REJECTED`:
-      return Object.assign({}, state, {
+      return {
+        ...state,
         loading: false,
-        error: true
-      });
+        error: action.payload
+      };
     case `${GET_PRODUCTS}_PENDING`:
-      return Object.assign({}, state, {
+      return {
+        ...state,
         loading: true
-      });
+      };
     case `${GET_PRODUCTS}_FULFILLED`:
-      return Object.assign({}, state, {
+      return {
+        ...state,
         loading: false,
-        product: action.payload
-      });
+        product: action.payload.data
+      };
     case `${GET_PRODUCTS}_REJECTED`:
-      return Object.assign({}, state, {
+      return {
+        ...state,
         loading: false,
-        error: true
-      });
+        error: action.payload
+      };
     case `${GET_SORTED_PRODUCTS}_PENDING`:
-      return Object.assign({}, state, {
+      return {
+        ...state,
         loading: true
-      });
+      };
     case `${GET_SORTED_PRODUCTS}_FULFILLED`:
-      return Object.assign({}, state, {
+      return {
+        ...state,
         loading: false,
-        product: action.payload
-      });
+        product: action.payload.data
+      };
     case `${GET_SORTED_PRODUCTS}_REJECTED`:
-      return Object.assign({}, state, {
+      return {
+        ...state,
         loading: false,
-        error: true
-      });
+        error: action.payload
+      };
     case `${GET_PRODUCT_BY_TYPE}_PENDING`:
-      return Object.assign({}, state, {
+      return {
+        ...state,
         loading: true
-      });
+      };
     case `${GET_PRODUCT_BY_TYPE}_FULFILLED`:
-      return Object.assign({}, state, {
+      return {
+        ...state,
         loading: false,
-        productDetail: action.payload
-      });
+        productDetail: action.payload.data
+      };
     case `${GET_PRODUCT_BY_TYPE}_REJECTED`:
-      return Object.assign({}, state, {
+      return {
+        ...state,
         loading: false,
-        error: true
-      });
+        error: action.payload
+      };
     case `${GET_CART}_PENDING`:
-      return Object.assign({}, state, {
+      return {
+        ...state,
         loading: true
-      });
+      };
     case `${GET_CART}_FULFILLED`:
-      return Object.assign({}, state, {
+      return {
+        ...state,
         loading: false,
-        cart: action.payload
-      });
+        cart: action.payload.data
+      };
     case `${GET_CART}_REJECTED`:
-      return Object.assign({}, state, {
+      return {
+        ...state,
         loading: false,
-        error: true
-      });
+        error: action.payload
+      };
     case `${REMOVE_CART}_PENDING`:
-      return Object.assign({}, state, {
+      return {
+        ...state,
         loading: true
-      });
+      };
     case `${REMOVE_CART}_FULFILLED`:
-      return Object.assign({}, state, {
+      return {
+        ...state,
         loading: false,
-        cart: action.payload
-      });
+        cart: action.payload.data
+      };
     case `${REMOVE_CART}_REJECTED`:
-      return Object.assign({}, state, {
+      return {
+        ...state,
         loading: false,
-        error: true
-      });
+        error: action.payload
+      };
     case `${ADD_TO_CART}_PENDING`:
-      return Object.assign({}, state, {
+      return {
+        ...state,
         loading: true
-      });
+      };
     case `${ADD_TO_CART}_FULFILLED`:
-      return Object.assign({}, state, {
+      return {
+        ...state,
         loading: false,
-        cart: action.payload
-      });
+        cart: action.payload.data
+      };
     case `${ADD_TO_CART}_REJECTED`:
-      return Object.assign({}, state, {
+      return {
+        ...state,
         loading: false,
-        error: true
-      });
+        error: action.payload
+      };
     case `${UPDATE_CART}_PENDING`:
-      return Object.assign({}, state, {
+      return {
+        ...state,
         loading: true
-      });
+      };
     case `${UPDATE_CART}_FULFILLED`:
-      return Object.assign({}, state, {
+      return {
+        ...state,
         loading: false,
-        cart: action.payload
-      });
+        cart: action.payload.data
+      };
     case `${UPDATE_CART}_REJECTED`:
-      return Object.assign({}, state, {
+      return {
+        ...state,
         loading: false,
-        error: true
-      });
+        error: action.payload
+      };
     default:
       return state;
   }

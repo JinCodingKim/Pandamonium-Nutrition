@@ -16,145 +16,144 @@ const initialState = {
 export function getUser() {
   return {
     type: GET_USER,
-    payload: axios
-      .get("/api/me")
-      .then(res => {
-        return res.data;
-      })
-      .catch(console.log)
+    payload: axios.get("/api/me")
   };
 }
-
 export function getUserByUserId() {
   return {
     type: GET_USER_BY_USER_ID,
-    payload: axios
-      .get("/api/profile")
-      .then(res => {
-        return res.data;
-      })
-      .catch(console.log)
+    payload: axios.get("/api/profile")
   };
 }
-
 export function updateUser(obj) {
   return {
     type: UPDATE_USER,
-    payload: axios
-      .put("/api/profile/update", obj)
-      .then(res => {
-        return res.data;
-      })
-      .catch(console.log)
+    payload: axios.put("/api/profile/update", obj)
   };
 }
-
-export function updateGuestEmail(email) {
+export function updateGuestEmail(user_email) {
   return {
     type: UPDATE_GUEST_EMAIL,
-    payload: axios
-      .put("/api/guest/email", { user_email: email })
-      .then(res => {
-        return res.data;
-      })
-      .catch(console.log)
+    payload: axios.put("/api/guest/email", { user_email })
   };
 }
 
 export function updateShippingAddress(
-  shipFirst,
-  shipLast,
-  shipAdd,
-  shipCity,
-  shipState,
-  shipCountry,
-  shipZip
+  shipping_first_name,
+  shipping_last_name,
+  shipping_address,
+  shipping_city,
+  shipping_state,
+  shipping_country,
+  shipping_zip
 ) {
   return {
     type: UPDATE_SHIPPING_ADDRESS,
-    payload: axios
-      .put("/api/profile/shipping", {
-        shipping_first_name: shipFirst,
-        shipping_last_name: shipLast,
-        shipping_address: shipAdd,
-        shipping_city: shipCity,
-        shipping_state: shipState,
-        shipping_country: shipCountry,
-        shipping_zip: shipZip
-      })
-      .then(res => {
-        return res.data;
-      })
-      .catch(console.log)
+    payload: axios.put("/api/profile/shipping", {
+      shipping_first_name,
+      shipping_last_name,
+      shipping_address,
+      shipping_city,
+      shipping_state,
+      shipping_country,
+      shipping_zip
+    })
   };
 }
 
 export function updateBillingAddress(
-  billFirst,
-  billLast,
-  billAdd,
-  billCity,
-  billState,
-  billCountry,
-  billZip
+  billing_first_name,
+  billing_last_name,
+  billing_address,
+  billing_city,
+  billing_state,
+  billing_country,
+  billing_zip
 ) {
   return {
     type: UPDATE_BILLING_ADDRESS,
-    payload: axios
-      .put("/api/profile/billing", {
-        billing_first_name: billFirst,
-        billing_last_name: billLast,
-        billing_address: billAdd,
-        billing_city: billCity,
-        billing_state: billState,
-        billing_country: billCountry,
-        billing_zip: billZip
-      })
-      .then(res => {
-        return res.data;
-      })
-      .catch(console.log)
+    payload: axios.put("/api/profile/billing", {
+      billing_first_name,
+      billing_last_name,
+      billing_address,
+      billing_city,
+      billing_state,
+      billing_country,
+      billing_zip
+    })
   };
 }
 
 export default function user(state = initialState, action) {
   switch (action.type) {
     case `${GET_USER}_PENDING`:
-      return Object.assign({}, state, {
+      return {
+        ...state,
         loading: true
-      });
+      };
     case `${GET_USER}_FULFILLED`:
-      return Object.assign({}, state, {
+      return {
+        ...state,
         loading: false,
-        user: action.payload
-      });
+        user: action.payload.data
+      };
     case `${GET_USER}_REJECTED`:
-      return Object.assign({}, state, {
+      return {
+        ...state,
         loading: false,
-        error: true
-      });
+        error: action.payload
+      };
     case `${GET_USER_BY_USER_ID}_PENDING`:
-      return Object.assign({}, state, {
+      return {
+        ...state,
         loading: true
-      });
+      };
     case `${GET_USER_BY_USER_ID}_FULFILLED`:
-      return Object.assign({}, state, {
+      return {
+        ...state,
         loading: false,
-        user: action.payload[0]
-      });
+        user: action.payload.data[0]
+      };
     case `${GET_USER_BY_USER_ID}_REJECTED`:
-      return Object.assign({}, state, {
+      return {
+        ...state,
         loading: false,
-        error: true
-      });
+        error: action.payload
+      };
+    case `${UPDATE_USER}_PENDING`:
+      return {
+        ...state,
+        loading: true
+      };
     case `${UPDATE_USER}_FULFILLED`:
-      return Object.assign({}, state, {
-        user: action.payload
-      });
+      return {
+        ...state,
+        loading: false,
+        user: action.payload.data
+      };
+    case `${UPDATE_USER}_REJECTED`:
+      return {
+        ...state,
+        loading: false,
+        error: action.payload
+      };
+    case `${UPDATE_GUEST_EMAIL}_PENDING`:
+      return {
+        ...state,
+        loading: true
+      };
     case `${UPDATE_GUEST_EMAIL}_FULFILLED`:
-      return Object.assign({}, state, {
-        user: action.payload
-      });
+      return {
+        ...state,
+        loading: false,
+        user: action.payload.data
+      };
+    case `${UPDATE_GUEST_EMAIL}_REJECTED`:
+      return {
+        ...state,
+        loading: false,
+        error: action.payload
+      };
     default:
       return state;
   }
