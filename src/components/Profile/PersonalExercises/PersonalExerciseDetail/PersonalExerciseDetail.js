@@ -101,8 +101,9 @@ class PersonalExerciseDetail extends Component {
             <Paper className="ex-edit-content-wrapper" zDepth={1}>
               <div className="edit-text-wrapper">
                 <TextField
+                  id="editTitle"
                   type="text"
-                  inputStyle={{ color: "#000000" }}
+                  inputStyle={{ color: "#000000", fontWeight: "600" }}
                   value={editName}
                   onChange={e =>
                     this.handleEditChange("editName", e.target.value)
@@ -128,6 +129,7 @@ class PersonalExerciseDetail extends Component {
                 </div>
               </div>
               <TextField
+                id="editDescription"
                 type="text"
                 multiLine={true}
                 rows={5}
@@ -136,7 +138,10 @@ class PersonalExerciseDetail extends Component {
                   color: "#000000",
                   border: "1px solid #BDBDBD",
                   borderRadius: "2px",
-                  overFlow: "scroll"
+                  overFlow: "scroll",
+                  fontSize: "15px",
+                  lineHeight: "17.5px",
+                  letterSpacing: "0.5px"
                 }}
                 value={editDescription}
                 onChange={e =>

@@ -136,7 +136,7 @@ export function removeAllCart(user) {
 
 export default function product(state = initialState, action) {
   switch (action.type) {
-    case `UPDATE_TOTAL_AMNT`:
+    case UPDATE_TOTAL_AMNT:
       return {
         ...state,
         totalAmnt: action.payload

@@ -92,6 +92,13 @@
     width: 210px;
     height: 60px;
   }
+
+  .top-img-logged {
+    width: 210px;
+    height: 60px;
+    margin: 0 0 0 65px;
+  }
+
   .nav-logged-container {
     display: flex;
     flex-direction: row;

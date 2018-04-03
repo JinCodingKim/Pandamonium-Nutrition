@@ -25,7 +25,6 @@ class Workout extends Component {
   componentDidMount() {
     const { id } = this.props;
     axios.get(`/api/exercise/images/?exercise=${id}`).then(res => {
-      console.log(res.data);
       this.setState({
         images: res.data
       });
@@ -62,7 +61,7 @@ class Workout extends Component {
                 );
               } else {
                 return (
-                  <div className="image-container">
+                  <div key={image.id} className="image-container">
                     <img src={image.image} alt="Exercise" className="image" />
                   </div>
                 );

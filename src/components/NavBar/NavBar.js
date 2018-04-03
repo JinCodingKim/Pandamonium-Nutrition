@@ -179,7 +179,7 @@ class NavBar extends Component {
                   </a>
                 </div>
                 <NavLink to="/">
-                  <img className="top-img" alt="" src={fullLogo} />
+                  <img className="top-img-logged" alt="" src={fullLogo} />
                 </NavLink>
                 <div className="nav-logged-right">
                   <NavLink to="/exercises">
