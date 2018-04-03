@@ -11,47 +11,42 @@ module.exports = {
   },
   getDistinctProducts: (req, res) => {
     const db = req.app.get("db");
-    db
-      .get_distinct_product()
-      .then(products => res.status(200).json(products))
-      .catch(err => {
-        res.status(500).json(err);
-      });
-  },
-  getProductsAsc: (req, res) => {
-    const db = req.app.get("db");
-    db
-      .get_products_asc()
-      .then(products => res.status(200).json(products))
-      .catch(err => {
-        res.status(500).json(err);
-      });
-  },
-  getProductsDesc: (req, res) => {
-    const db = req.app.get("db");
-    db
-      .get_products_desc()
-      .then(products => res.status(200).json(products))
-      .catch(err => {
-        res.status(500).json(err);
-      });
-  },
-  getProductsAToZ: (req, res) => {
-    const db = req.app.get("db");
-    db
-      .get_products_az()
-      .then(products => res.status(200).json(products))
-      .catch(err => {
-        res.status(500).json(err);
-      });
-  },
-  getProductsZToA: (req, res) => {
-    const db = req.app.get("db");
-    db
-      .get_products_za()
-      .then(products => res.status(200).json(products))
-      .catch(err => {
-        res.status(500).json(err);
-      });
+    const { sort } = req.query;
+    if (sort === "ascend") {
+      db
+        .get_products_asc()
+        .then(products => res.status(200).json(products))
+        .catch(err => {
+          res.status(500).json(err);
+        });
+    } else if (sort === "descend") {
+      db
+        .get_products_desc()
+        .then(products => res.status(200).json(products))
+        .catch(err => {
+          res.status(500).json(err);
+        });
+    } else if (sort === "az") {
+      db
+        .get_products_az()
+        .then(products => res.status(200).json(products))
+        .catch(err => {
+          res.status(500).json(err);
+        });
+    } else if (sort === "za") {
+      db
+        .get_products_za()
+        .then(products => res.status(200).json(products))
+        .catch(err => {
+          res.status(500).json(err);
+        });
+    } else {
+      db
+        .get_distinct_product()
+        .then(products => res.status(200).json(products))
+        .catch(err => {
+          res.status(500).json(err);
+        });
+    }
   }
 };

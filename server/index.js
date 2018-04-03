@@ -148,11 +148,6 @@ app.post("/api/product/review", reviewCtrl.addReview);
 app.post("/api/subscription", subscriptionCtrl.postSubscriptionEmail);
 //ProductCtrl
 app.get("/api/products", productCtrl.getDistinctProducts);
-app.get("/api/products/clear", productCtrl.getDistinctProducts);
-app.get("/api/products/ascend", productCtrl.getProductsAsc);
-app.get("/api/products/descend", productCtrl.getProductsDesc);
-app.get("/api/products/az", productCtrl.getProductsAToZ);
-app.get("/api/products/za", productCtrl.getProductsZToA);
 app.get("/api/product/:product_type", productCtrl.getProductByType);
 //CartCtrl
 app.post("/api/cart/add", cartCtrl.addCart);

@@ -75,7 +75,7 @@ export function addReview(
 export function getSortedProducts(sorted) {
   return {
     type: GET_SORTED_PRODUCTS,
-    payload: axios.get(`/api/products/${sorted}`)
+    payload: axios.get(`/api/products?sort=${sorted}`)
   };
 }
 

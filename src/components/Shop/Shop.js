@@ -96,7 +96,7 @@ class Shop extends Component {
               onChange={e => this.handleSort(e.target.value)}
               value={sort}
             >
-              <option value="clear"> Default Sorting </option>
+              <option value=""> Default Sorting </option>
               <option value="az"> Alphabetically: A-Z </option>
               <option value="za"> Alphabetically: Z-A </option>
               <option value="ascend"> Price: Low-to-High </option>
