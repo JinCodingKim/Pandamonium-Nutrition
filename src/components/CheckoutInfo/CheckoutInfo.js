@@ -62,9 +62,11 @@ class CheckoutInfo extends Component {
   submitEmail() {
     const { getUserByUserId, updateGuestEmail } = this.props;
     const { email } = this.state;
-    updateGuestEmail(email).then(res => {
-      getUserByUserId();
-    });
+    updateGuestEmail(email)
+      .then(res => {
+        getUserByUserId();
+      })
+      .catch(console.log);
   }
 
   submitShippingMethod() {
@@ -350,7 +352,7 @@ class CheckoutInfo extends Component {
   render() {
     const { finished, stepIndex, email } = this.state;
     const { user = {}, totalAmnt } = this.props;
-
+    console.log(user.user_email);
     return (
       <div className="checkout-main-container">
         {!user.user_email ? (
@@ -370,6 +372,8 @@ class CheckoutInfo extends Component {
               <TextField
                 floatingLabelText="E-mail Address"
                 floatingLabelFixed={true}
+                type="email"
+                value={email}
                 hintText="billy.bob@example.com"
                 errorText="This field is required"
                 className="guest-textfield"

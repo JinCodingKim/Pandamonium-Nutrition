@@ -80,11 +80,8 @@ passport.use(
               .create_user([
                 profile.name.givenName,
                 profile.displayName,
-
                 profile.age,
-
                 profile.picture,
-
                 profile.id
               ])
               .then(created => {

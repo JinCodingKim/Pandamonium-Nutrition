@@ -34,12 +34,13 @@ module.exports = {
     const { user_email } = req.body;
     db
       .update_guest_email([user_id, user_email])
-      .then(guest => {
-        req.session.passport.user.user_email = user_email;
+      .then(() => {
+        // req.session.passport.user.user_email = user_email;
         req.session.save(function(err) {});
-        res.status(200).json(guest);
+        res.status(200).json();
       })
       .catch(err => {
+        console.log(err);
         res.status(500).json(err);
       });
   },
@@ -66,16 +67,16 @@ module.exports = {
         shipping_country,
         shipping_zip
       ])
-      .then(shipping => {
-        req.session.passport.user.shipping_first_name = shipping_first_name;
-        req.session.passport.user.shipping_last_name = shipping_last_name;
-        req.session.passport.user.shipping_address = shipping_address;
-        req.session.passport.user.shipping_city = shipping_city;
-        req.session.passport.user.shipping_state = shipping_state;
-        req.session.passport.user.shipping_country = shipping_country;
-        req.session.passport.user.shipping_zip = shipping_zip;
+      .then(() => {
+        // req.session.passport.user.shipping_first_name = shipping_first_name;
+        // req.session.passport.user.shipping_last_name = shipping_last_name;
+        // req.session.passport.user.shipping_address = shipping_address;
+        // req.session.passport.user.shipping_city = shipping_city;
+        // req.session.passport.user.shipping_state = shipping_state;
+        // req.session.passport.user.shipping_country = shipping_country;
+        // req.session.passport.user.shipping_zip = shipping_zip;
         req.session.save(function(err) {});
-        res.status(200).json(shipping);
+        res.status(200).json();
       })
       .catch(err => {
         res.status(500).json(err);
@@ -104,16 +105,16 @@ module.exports = {
         billing_country,
         billing_zip
       ])
-      .then(billing => {
-        req.session.passport.user.billing_first_name = billing_first_name;
-        req.session.passport.user.billing_last_name = billing_last_name;
-        req.session.passport.user.billing_address = billing_address;
-        req.session.passport.user.billing_city = billing_city;
-        req.session.passport.user.billing_state = billing_state;
-        req.session.passport.user.billing_country = billing_country;
-        req.session.passport.user.billing_zip = billing_zip;
+      .then(() => {
+        // req.session.passport.user.billing_first_name = billing_first_name;
+        // req.session.passport.user.billing_last_name = billing_last_name;
+        // req.session.passport.user.billing_address = billing_address;
+        // req.session.passport.user.billing_city = billing_city;
+        // req.session.passport.user.billing_state = billing_state;
+        // req.session.passport.user.billing_country = billing_country;
+        // req.session.passport.user.billing_zip = billing_zip;
         req.session.save(function(err) {});
-        res.status(200).json(billing);
+        res.status(200).json();
       })
       .catch(err => {
         res.status(500).json(err);
