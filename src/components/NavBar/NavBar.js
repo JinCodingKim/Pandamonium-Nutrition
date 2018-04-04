@@ -63,14 +63,14 @@ class NavBar extends Component {
         width: 32.5,
         marginTop: 8.75,
         marginRight: "4.5vw"
-      },
-      desktopIcons: {
-        height: 32.5,
-        width: 32.5,
-        marginLeft: 15,
-        marginRight: 15,
-        paddingTop: 12
       }
+      // desktopIcons: {
+      //   height: 32.5,
+      //   width: 32.5,
+      //   marginLeft: 15,
+      //   marginRight: 15,
+      //   paddingTop: 12
+      // }
     };
 
     return (
@@ -159,23 +159,23 @@ class NavBar extends Component {
             {!user || user.user_id === 1 ? (
               <div className="nav-out-container">
                 <a href={process.env.REACT_APP_LOGIN}>
-                  <ActionAccountBox style={navStyles.desktopIcons} />
+                  <ActionAccountBox className="desktop-icons" />
                 </a>
                 <NavLink to="/">
                   <img className="top-img" alt="" src={fullLogo} />
                 </NavLink>
                 <NavLink to="/cart">
-                  <ActionShoppingCart style={navStyles.desktopIcons} />
+                  <ActionShoppingCart className="desktop-icons" />
                 </NavLink>
               </div>
             ) : (
               <div className="nav-logged-container">
                 <div className="nav-logged-left">
                   <NavLink to="/profile">
-                    <ActionFace style={navStyles.desktopIcons} />
+                    <ActionFace className="desktop-icons" />
                   </NavLink>
                   <a href={process.env.REACT_APP_LOGOUT}>
-                    <ActionExitToApp style={navStyles.desktopIcons} />
+                    <ActionExitToApp className="desktop-icons" />
                   </a>
                 </div>
                 <NavLink to="/">
@@ -183,15 +183,15 @@ class NavBar extends Component {
                 </NavLink>
                 <div className="nav-logged-right">
                   <NavLink to="/exercises">
-                    <PlacesFitnessCenter style={navStyles.desktopIcons} />
+                    <PlacesFitnessCenter className="desktop-icons" />
                   </NavLink>
 
                   <NavLink to="/create">
-                    <ContentContentPaste style={navStyles.desktopIcons} />
+                    <ContentContentPaste className="desktop-icons" />
                   </NavLink>
 
                   <NavLink to="/cart">
-                    <ActionShoppingCart style={navStyles.desktopIcons} />
+                    <ActionShoppingCart className="desktop-icons" />
                   </NavLink>
                 </div>
               </div>
@@ -249,22 +249,22 @@ class NavBar extends Component {
           {!user || user.user_id === 1 ? (
             <div className="full-right-container">
               <a href={process.env.REACT_APP_LOGIN}>
-                <ActionAccountBox style={navStyles.desktopIcons} />
+                <ActionAccountBox className="desktop-icons" />
               </a>
               <NavLink to="/cart">
-                <ActionShoppingCart style={navStyles.desktopIcons} />
+                <ActionShoppingCart className="desktop-icons" />
               </NavLink>
             </div>
           ) : (
             <div className="full-right-in-container">
               <NavLink to="/profile">
-                <ActionFace style={navStyles.desktopIcons} />
+                <ActionFace className="desktop-icons" />
               </NavLink>
               <a href={process.env.REACT_APP_LOGOUT}>
-                <ActionExitToApp style={navStyles.desktopIcons} />
+                <ActionExitToApp className="desktop-icons" />
               </a>
               <NavLink to="/cart">
-                <ActionShoppingCart style={navStyles.desktopIcons} />
+                <ActionShoppingCart className="desktop-icons" />
               </NavLink>
             </div>
           )}

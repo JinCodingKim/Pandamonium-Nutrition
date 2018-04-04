@@ -96,7 +96,7 @@
   .top-img-logged {
     width: 210px;
     height: 60px;
-    margin: 0 0 0 65px;
+    margin: 0 0 0 62px;
   }
 
   .nav-logged-container {
@@ -109,6 +109,20 @@
   .nav-logged-container > img {
     padding-left: 61.5px;
   }
+
+  .desktop-icons {
+    height: 32.5px !important;
+    width: 32.5px !important;
+    margin-left: 15px !important;
+    margin-right: 15px !important;
+    padding-top: 12px !important;
+    transition: 250ms ease-in-out !important;
+  }
+
+  .desktop-icons:hover {
+    color: #ff6d00 !important;
+  }
+
   .bottom-bar {
     display: flex;
     flex-direction: row;
@@ -127,9 +141,10 @@
   }
   .desktop-navlink {
     color: black;
+    transition: 250ms ease-in-out;
   }
   .desktop-navlink:hover {
-    color: black;
+    color: #eeeeee;
     cursor: pointer;
   }
   .mobile-nav {
@@ -185,15 +200,25 @@
 
   .full-dropdown-button:hover + .dropdown-content,
   .dropdown-content:hover {
-    display: block;
-    transition: 300ms ease-in;
+    visibility: visible;
+    opacity: 1;
+    height: 125px;
+  }
+
+  .fa-caret-down {
+    margin: 0 0 0 5px;
   }
 
   .dropdown-content {
-    display: none;
+    display: block;
+    visibility: hidden;
+    opacity: 0;
+    height: 0;
+    transition: 250ms ease-in-out;
     position: absolute;
     background-color: #000000;
     box-shadow: 1px 2px 2.5px 0px #000000;
+    border-radius: 2px;
     z-index: 2;
     width: 125px;
     transform: translateY(0px);

@@ -71,11 +71,13 @@
 
 .product-name {
   font-size: 15px;
+  transition: 250ms ease-in-out;
 }
 
 .product-price {
   font-size: 16px;
   padding: 10px 0 0 0;
+  transition: 250ms ease-in-out;
 }
 
 .search-container,
