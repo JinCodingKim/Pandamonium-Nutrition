@@ -352,7 +352,6 @@ class CheckoutInfo extends Component {
   render() {
     const { finished, stepIndex, email } = this.state;
     const { user = {}, totalAmnt } = this.props;
-    console.log(user.user_email);
     return (
       <div className="checkout-main-container">
         {!user.user_email ? (

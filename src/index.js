@@ -10,6 +10,7 @@ import getMuiTheme from "material-ui/styles/getMuiTheme";
 //Redux store
 import store from "./store";
 //Local
+import ScrollToTop from "./ScrollToTop";
 import App from "./App";
 
 const muiTheme = getMuiTheme({
@@ -28,9 +29,11 @@ const muiTheme = getMuiTheme({
 ReactDOM.render(
   <Provider store={store}>
     <Router>
-      <MuiThemeProvider muiTheme={muiTheme}>
-        <App />
-      </MuiThemeProvider>
+      <ScrollToTop>
+        <MuiThemeProvider muiTheme={muiTheme}>
+          <App />
+        </MuiThemeProvider>
+      </ScrollToTop>
     </Router>
   </Provider>,
   document.getElementById("root")

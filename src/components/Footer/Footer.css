@@ -24,6 +24,7 @@
 .links-header,
 .links-body > p {
   font-weight: bolder;
+  transition: 250ms ease-in-out;
 }
 
 .links-header {
@@ -50,15 +51,20 @@ p:hover {
   flex-wrap: nowrap;
 }
 
-.social-links {
-  height: 35px;
-  width: 35px;
-  margin: 0 7px 0 7px;
+.fa-facebook,
+.fa-instagram,
+.fa-twitter {
+  color: white;
+  margin: 0 13px 0 13px;
+  font-size: 37.5px;
+  transition: 250ms ease-in-out;
 }
 
-.social-links > img {
-  height: 100%;
-  width: 100%;
+.fa-facebook:hover,
+.fa-instagram:hover,
+.fa-twitter:hover {
+  color: #ff6d00;
+  cursor: pointer;
 }
 
 .mailing-sub {
@@ -81,7 +87,7 @@ p:hover {
   height: 40px;
   width: 180px;
   outline: none;
-  border: 0.5px solid #ff7609;
+  border: 0.5px solid #ff6d00;
   border-radius: 2px;
   padding: 0 0 0 10px;
   color: white;
@@ -97,7 +103,11 @@ p:hover {
 
 .footer-company {
   font-size: 12px;
-  color: #eeeeee;
+  color: white;
+}
+
+.footer-company:hover {
+  color: white;
 }
 
 .footer-payments-wrapper {
@@ -108,10 +118,13 @@ p:hover {
   width: 100%;
 }
 
-.payments {
-  height: 31.25px;
-  width: 50px;
-  margin: 10px 5px 10px 5px;
+.fa-cc-amex,
+.fa-cc-discover,
+.fa-cc-mastercard,
+.fa-cc-visa {
+  color: white;
+  margin: 10px 6px 10px 6px;
+  font-size: 37.5px;
 }
 
 @media (min-width: 372px) {

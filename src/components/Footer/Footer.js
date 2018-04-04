@@ -5,15 +5,10 @@ import { NavLink } from "react-router-dom";
 import axios from "axios";
 //Sweetalert2
 import swal from "sweetalert2";
+//Font-awesome
+import "font-awesome/css/font-awesome.min.css";
 //Local
 import "./Footer.css";
-import facebook from "./facebook.png";
-import instagram from "./instagram.png";
-import twitter from "./twitter.png";
-import ae from "./ae.svg";
-import discover from "./discover.svg";
-import mastercard from "./mc.svg";
-import visa from "./visa.svg";
 
 class Footer extends Component {
   constructor(props) {
@@ -80,23 +75,9 @@ class Footer extends Component {
           <div className="links-sub">
             <h3 className="links-header">SOCIAL NETWORKS</h3>
             <div className="icon-container">
-              <a
-                href="https://www.facebook.com"
-                alt=""
-                className="social-links"
-              >
-                <img src={facebook} alt="" />
-              </a>
-              <a
-                href="https://www.instagram.com"
-                alt=""
-                className="social-links"
-              >
-                <img src={instagram} alt="" />
-              </a>
-              <a href="https://www.twitter.com" alt="" className="social-links">
-                <img src={twitter} alt="" />
-              </a>
+              <i className="fa fa-facebook fa" />
+              <i className="fa fa-instagram fa" />
+              <i className="fa fa-twitter fa" />
             </div>
           </div>
 
@@ -120,13 +101,10 @@ class Footer extends Component {
           <div className="disclaimer-container">
             <p className="footer-company">2017 Pandamonium Sports Nutrition.</p>
             <div className="footer-payments-wrapper">
-              <img src={ae} alt="" className="payments" />
-
-              <img src={discover} alt="" className="payments" />
-
-              <img src={mastercard} alt="" className="payments" />
-
-              <img src={visa} alt="" className="payments" />
+              <i className="fa fa-cc-amex fa" />
+              <i className="fa fa-cc-discover fa" />
+              <i className="fa fa-cc-mastercard fa" />
+              <i className="fa fa-cc-visa fa" />
             </div>
           </div>
         </div>
