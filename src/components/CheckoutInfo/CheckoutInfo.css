@@ -2,7 +2,6 @@
   padding: 0;
   margin: 0;
   background: rgb(235, 235, 235);
-  width: 100vw;
 }
 
 .checkout-options-container {
@@ -65,6 +64,7 @@
   margin: 0;
   padding: 0;
 }
+
 .checkout-whole-container {
   display: flex;
   flex-direction: column;
@@ -149,7 +149,7 @@
 
 .stepper {
   width: 90vw;
-  padding: 0 5vw 0 5vw;
+  max-width: 450px;
   margin: auto;
 }
 
@@ -192,11 +192,9 @@
     font-size: 14px;
     letter-spacing: 0.5px;
   }
-
   .back-stepper {
     width: 150px !important;
   }
-
   .next-stepper {
     width: 150px !important;
   }
