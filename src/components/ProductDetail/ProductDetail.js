@@ -13,6 +13,8 @@ import {
 import RaisedButton from "material-ui/RaisedButton";
 import ActionAddShoppingCart from "material-ui/svg-icons/action/add-shopping-cart";
 import ActionCheckCircle from "material-ui/svg-icons/action/check-circle";
+import ContentRemoveCircle from "material-ui/svg-icons/content/remove-circle";
+import ContentAddCircle from "material-ui/svg-icons/content/add-circle";
 import { Card, CardHeader, CardText } from "material-ui/Card";
 import { orangeA700 } from "material-ui/styles/colors";
 //Sweetalert2
@@ -32,7 +34,7 @@ class ProductDetail extends Component {
 
     this.state = {
       flavor: "",
-      quantity: 0,
+      quantity: 1,
       total: 0,
       name: "",
       email: "",
@@ -45,7 +47,8 @@ class ProductDetail extends Component {
     };
 
     this.handleFlavor = this.handleFlavor.bind(this);
-    this.handleQuantity = this.handleQuantity.bind(this);
+    this.handleAmount = this.handleAmount.bind(this);
+    // this.handleQuantity = this.handleQuantity.bind(this);
     this.handleCart = this.handleCart.bind(this);
     this.handleIcon = this.handleIcon.bind(this);
     this.handleLeave = this.handleLeave.bind(this);
@@ -68,11 +71,24 @@ class ProductDetail extends Component {
     });
   }
 
-  handleQuantity(val) {
-    this.setState({
-      quantity: val,
-      total: this.props.productDetail[0].product_price * val
-    });
+  handleAmount(trigger) {
+    const { quantity } = this.state;
+    if (trigger === "deduct" && quantity === 0) {
+      this.setState({
+        quantity: quantity,
+        total: this.props.productDetail[0].product_price * quantity
+      });
+    } else if (trigger === "deduct") {
+      this.setState({
+        quantity: quantity - 1,
+        total: this.props.productDetail[0].product_price * (quantity - 1)
+      });
+    } else if (trigger === "add") {
+      this.setState({
+        quantity: quantity + 1,
+        total: this.props.productDetail[0].product_price * (quantity + 1)
+      });
+    }
   }
 
   handleCart(product, amount, price, single) {
@@ -254,15 +270,14 @@ class ProductDetail extends Component {
               <div className="detail-options-container">
                 <label className="flavor-select-title">QUANTITY</label>
                 <span className="quantity-select-wrapper">
-                  <input
-                    className="quantity-select"
-                    onChange={e =>
-                      this.handleQuantity(
-                        Math.floor(Math.max(0, e.target.value))
-                      )
-                    }
-                    type="number"
-                    value={quantity}
+                  <ContentRemoveCircle
+                    className="subtract-button"
+                    onClick={() => this.handleAmount("deduct")}
+                  />
+                  <div className="quantity-val">{quantity}</div>
+                  <ContentAddCircle
+                    className="add-button"
+                    onClick={() => this.handleAmount("add")}
                   />
                 </span>
               </div>

@@ -142,6 +142,13 @@ export default function product(state = initialState, action) {
         totalAmnt: action.payload
       };
     case `${GET_REVIEWS}_PENDING`:
+    case `${GET_PRODUCTS}_PENDING`:
+    case `${GET_SORTED_PRODUCTS}_PENDING`:
+    case `${GET_PRODUCT_BY_TYPE}_PENDING`:
+    case `${GET_CART}_PENDING`:
+    case `${REMOVE_CART}_PENDING`:
+    case `${ADD_TO_CART}_PENDING`:
+    case `${UPDATE_CART}_PENDING`:
       return {
         ...state,
         loading: true
@@ -153,49 +160,24 @@ export default function product(state = initialState, action) {
         review: action.payload.data
       };
     case `${GET_REVIEWS}_REJECTED`:
+    case `${GET_PRODUCTS}_REJECTED`:
+    case `${GET_SORTED_PRODUCTS}_REJECTED`:
+    case `${GET_PRODUCT_BY_TYPE}_REJECTED`:
+    case `${GET_CART}_REJECTED`:
+    case `${REMOVE_CART}_REJECTED`:
+    case `${ADD_TO_CART}_REJECTED`:
+    case `${UPDATE_CART}_REJECTED`:
       return {
         ...state,
         loading: false,
         error: action.payload
-      };
-    case `${GET_PRODUCTS}_PENDING`:
-      return {
-        ...state,
-        loading: true
       };
     case `${GET_PRODUCTS}_FULFILLED`:
-      return {
-        ...state,
-        loading: false,
-        product: action.payload.data
-      };
-    case `${GET_PRODUCTS}_REJECTED`:
-      return {
-        ...state,
-        loading: false,
-        error: action.payload
-      };
-    case `${GET_SORTED_PRODUCTS}_PENDING`:
-      return {
-        ...state,
-        loading: true
-      };
     case `${GET_SORTED_PRODUCTS}_FULFILLED`:
       return {
         ...state,
         loading: false,
         product: action.payload.data
-      };
-    case `${GET_SORTED_PRODUCTS}_REJECTED`:
-      return {
-        ...state,
-        loading: false,
-        error: action.payload
-      };
-    case `${GET_PRODUCT_BY_TYPE}_PENDING`:
-      return {
-        ...state,
-        loading: true
       };
     case `${GET_PRODUCT_BY_TYPE}_FULFILLED`:
       return {
@@ -203,79 +185,14 @@ export default function product(state = initialState, action) {
         loading: false,
         productDetail: action.payload.data
       };
-    case `${GET_PRODUCT_BY_TYPE}_REJECTED`:
-      return {
-        ...state,
-        loading: false,
-        error: action.payload
-      };
-    case `${GET_CART}_PENDING`:
-      return {
-        ...state,
-        loading: true
-      };
     case `${GET_CART}_FULFILLED`:
-      return {
-        ...state,
-        loading: false,
-        cart: action.payload.data
-      };
-    case `${GET_CART}_REJECTED`:
-      return {
-        ...state,
-        loading: false,
-        error: action.payload
-      };
-    case `${REMOVE_CART}_PENDING`:
-      return {
-        ...state,
-        loading: true
-      };
     case `${REMOVE_CART}_FULFILLED`:
-      return {
-        ...state,
-        loading: false,
-        cart: action.payload.data
-      };
-    case `${REMOVE_CART}_REJECTED`:
-      return {
-        ...state,
-        loading: false,
-        error: action.payload
-      };
-    case `${ADD_TO_CART}_PENDING`:
-      return {
-        ...state,
-        loading: true
-      };
     case `${ADD_TO_CART}_FULFILLED`:
-      return {
-        ...state,
-        loading: false,
-        cart: action.payload.data
-      };
-    case `${ADD_TO_CART}_REJECTED`:
-      return {
-        ...state,
-        loading: false,
-        error: action.payload
-      };
-    case `${UPDATE_CART}_PENDING`:
-      return {
-        ...state,
-        loading: true
-      };
     case `${UPDATE_CART}_FULFILLED`:
       return {
         ...state,
         loading: false,
         cart: action.payload.data
-      };
-    case `${UPDATE_CART}_REJECTED`:
-      return {
-        ...state,
-        loading: false,
-        error: action.payload
       };
     default:
       return state;

@@ -87,67 +87,25 @@ export function updateBillingAddress(
 export default function user(state = initialState, action) {
   switch (action.type) {
     case `${GET_USER}_PENDING`:
-      return {
-        ...state,
-        loading: true
-      };
-    case `${GET_USER}_FULFILLED`:
-      return {
-        ...state,
-        loading: false,
-        user: action.payload.data
-      };
-    case `${GET_USER}_REJECTED`:
-      return {
-        ...state,
-        loading: false,
-        error: action.payload
-      };
     case `${GET_USER_BY_USER_ID}_PENDING`:
-      return {
-        ...state,
-        loading: true
-      };
-    case `${GET_USER_BY_USER_ID}_FULFILLED`:
-      return {
-        ...state,
-        loading: false,
-        user: action.payload.data[0]
-      };
-    case `${GET_USER_BY_USER_ID}_REJECTED`:
-      return {
-        ...state,
-        loading: false,
-        error: action.payload
-      };
     case `${UPDATE_USER}_PENDING`:
-      return {
-        ...state,
-        loading: true
-      };
-    case `${UPDATE_USER}_FULFILLED`:
-      return {
-        ...state,
-        loading: false,
-        user: action.payload.data
-      };
-    case `${UPDATE_USER}_REJECTED`:
-      return {
-        ...state,
-        loading: false,
-        error: action.payload
-      };
     case `${UPDATE_GUEST_EMAIL}_PENDING`:
       return {
         ...state,
         loading: true
       };
+    case `${GET_USER}_FULFILLED`:
+    case `${GET_USER_BY_USER_ID}_FULFILLED`:
+    case `${UPDATE_USER}_FULFILLED`:
     case `${UPDATE_GUEST_EMAIL}_FULFILLED`:
       return {
         ...state,
         loading: false,
         user: action.payload.data
       };
+    case `${GET_USER}_REJECTED`:
+    case `${GET_USER_BY_USER_ID}_REJECTED`:
+    case `${UPDATE_USER}_REJECTED`:
     case `${UPDATE_GUEST_EMAIL}_REJECTED`:
       return {
         ...state,

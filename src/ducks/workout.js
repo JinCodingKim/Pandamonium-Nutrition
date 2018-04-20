@@ -85,6 +85,9 @@ export function deleteUserExercise(exercise_id) {
 export default function product(state = initialState, action) {
   switch (action.type) {
     case `${GET_EXERCISES}_PENDING`:
+    case `${ADD_EXERCISE}_PENDING`:
+    case `${UPDATE_EXERCISE}_PENDING`:
+    case `${GET_USER_EXERCISES}_PENDING`:
       return {
         ...state,
         loading: true
@@ -96,61 +99,21 @@ export default function product(state = initialState, action) {
         exercises: action.payload.data
       };
     case `${GET_EXERCISES}_REJECTED`:
-      return {
-        ...state,
-        loading: false,
-        error: action.payload
-      };
-    case `${ADD_EXERCISE}_PENDING`:
-      return {
-        ...state,
-        loading: true
-      };
-    case `${ADD_EXERCISE}_FULFILLED`:
-      return {
-        ...state,
-        loading: false,
-        userExercises: action.payload.data
-      };
     case `${ADD_EXERCISE}_REJECTED`:
-      return {
-        ...state,
-        loading: false,
-        error: action.payload
-      };
-    case `${UPDATE_EXERCISE}_PENDING`:
-      return {
-        ...state,
-        loading: true
-      };
-    case `${UPDATE_EXERCISE}_FULFILLED`:
-      return {
-        ...state,
-        loading: false,
-        userExercises: action.payload.data
-      };
     case `${UPDATE_EXERCISE}_REJECTED`:
-      return {
-        ...state,
-        loading: false,
-        error: action.payload
-      };
-    case `${GET_USER_EXERCISES}_PENDING`:
-      return {
-        ...state,
-        loading: true
-      };
-    case `${GET_USER_EXERCISES}_FULFILLED`:
-      return {
-        ...state,
-        loading: false,
-        userExercises: action.payload.data
-      };
     case `${GET_USER_EXERCISES}_REJECTED`:
       return {
         ...state,
         loading: false,
         error: action.payload
+      };
+    case `${ADD_EXERCISE}_FULFILLED`:
+    case `${GET_USER_EXERCISES}_FULFILLED`:
+    case `${UPDATE_EXERCISE}_FULFILLED`:
+      return {
+        ...state,
+        loading: false,
+        userExercises: action.payload.data
       };
     default:
       return state;
