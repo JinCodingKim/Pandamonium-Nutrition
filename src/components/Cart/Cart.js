@@ -27,7 +27,6 @@ class Cart extends Component {
     };
 
     this.handleDelete = this.handleDelete.bind(this);
-    // this.handleQuantity = this.handleQuantity.bind(this);
     this.updateCartValues = this.updateCartValues.bind(this);
     this.removeCart = this.removeCart.bind(this);
   }
@@ -42,33 +41,6 @@ class Cart extends Component {
     removeCart(product);
     getCart(user.user_id);
   }
-
-  // handleQuantity(val, onePrice) {
-  //   this.setState({
-  //     newQuantity: val,
-  //     newTotal: val * onePrice
-  //   });
-  // }
-
-  // handleQuantity(quantity, onePrice) {
-  //     const { quantity } = this.state;
-  //     if (trigger === "deduct" && quantity === 0) {
-  //       this.setState({
-  //         quantity: quantity,
-  //         total: this.props.productDetail[0].product_price * quantity
-  //       });
-  //     } else if (trigger === "deduct") {
-  //       this.setState({
-  //         quantity: quantity - 1,
-  //         total: this.props.productDetail[0].product_price * (quantity - 1)
-  //       });
-  //     } else if (trigger === "add") {
-  //       this.setState({
-  //         quantity: quantity + 1,
-  //         total: this.props.productDetail[0].product_price * (quantity + 1)
-  //       });
-  //     }
-  // }
 
   updateCartValues(product, amount, total) {
     const { user, updateCartItem, getCart } = this.props;
@@ -93,82 +65,6 @@ class Cart extends Component {
           handleDelete={this.handleDelete}
           updateCartValues={this.updateCartValues}
         />
-        // <div className="cart-item-container" key={product.product_id}>
-        //   <div className="cart-item-img-container">
-        //     <img className="cart-item-img" alt="" src={product.product_img} />
-        //   </div>
-        //   <div className="cart-item-description">
-        //     <p className="cart-item-name">
-        //       {product.product_name} - {product.product_flavor}
-        //     </p>
-        //     <div className="cart-item-option">
-        //       <p className="cart-item-price">${product.total_price}</p>
-        //       <div className="quantity-container">
-        //         <label className="cart-item-quantity">Qty:</label>
-        //         <ContentRemoveCircle
-        //             className="subtract-cart"
-        //             onClick={() => this.handleAmount("deduct")}
-        //           />
-        //           <div className="cart-val">{product.quantity}</div>
-        //           <ContentAddCircle
-        //             className="add-cart "
-        //             onClick={() => this.handleAmount("add")}
-        //           />
-
-        //         <input
-        //           className="quantity-reselect"
-        //           onChange={e =>
-        //             this.handleQuantity(
-        //               Math.floor(Math.max(1, e.target.value)),
-        //               product.single_price
-        //             )
-        //           }
-        //           type="number"
-        //           placeholder={product.quantity}
-        //         />
-
-        //       </div>
-        //       <div className="buttons-cart-wrapper">
-        //         <RaisedButton
-        //           label="Update"
-        //           primary={true}
-        //           labelPosition="after"
-        //           className="update-order-button"
-        //           icon={<ActionUpdate />}
-        //           onClick={() => {
-        //             this.updateCartValues(
-        //               product.product_id,
-        //               newQuantity,
-        //               newTotal
-        //             );
-        //             swal({
-        //               title: `Item has been updated!`,
-        //               type: "success",
-        //               confirmButtonText: "Back to Cart",
-        //               confirmButtonColor: "#ff6d00"
-        //             });
-        //           }}
-        //         />
-        //         <RaisedButton
-        //           label="Remove"
-        //           primary={true}
-        //           labelPosition="after"
-        //           className="remove-order-button"
-        //           icon={<ActionDelete />}
-        //           onClick={() => {
-        //             this.handleDelete(product.product_id);
-        //             swal({
-        //               title: `Item has been removed!`,
-        //               type: "success",
-        //               confirmButtonText: "Back to Cart",
-        //               confirmButtonColor: "#ff6d00"
-        //             });
-        //           }}
-        //         />
-        //       </div>
-        //     </div>
-        //   </div>
-        // </div>
       );
     });
 

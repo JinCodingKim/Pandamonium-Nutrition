@@ -66,18 +66,6 @@ class CartProduct extends Component {
                 className="add-cart "
                 onClick={() => this.handleQuantity("add", product.single_price)}
               />
-
-              {/* <input
-                className="quantity-reselect"
-                onChange={e =>
-                  this.handleQuantity(
-                    Math.floor(Math.max(1, e.target.value)),
-                    product.single_price
-                  )
-                }
-                type="number"
-                placeholder={product.quantity}
-              /> */}
             </div>
             <div className="buttons-cart-wrapper">
               <RaisedButton
