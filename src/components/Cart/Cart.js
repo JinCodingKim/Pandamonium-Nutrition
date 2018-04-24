@@ -21,9 +21,7 @@ class Cart extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      cartTotal: 0,
-      newQuantity: 0,
-      newTotal: 0
+      cartTotal: 0
     };
 
     this.handleDelete = this.handleDelete.bind(this);
@@ -55,7 +53,7 @@ class Cart extends Component {
 
   render() {
     const { cart = [], loading, updateTotalAmnt } = this.props;
-    const { cartTotal, newQuantity, newTotal } = this.state;
+    const { cartTotal } = this.state;
     if (loading) return <div />;
     let cartList = cart.map(product => {
       return (

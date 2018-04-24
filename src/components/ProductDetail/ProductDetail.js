@@ -35,7 +35,9 @@ class ProductDetail extends Component {
     this.state = {
       flavor: "",
       quantity: 1,
-      total: 0,
+      total:
+        this.props.productDetail[0] &&
+        this.props.productDetail[0].product_price,
       name: "",
       email: "",
       rating: 0,
@@ -48,7 +50,6 @@ class ProductDetail extends Component {
 
     this.handleFlavor = this.handleFlavor.bind(this);
     this.handleAmount = this.handleAmount.bind(this);
-    // this.handleQuantity = this.handleQuantity.bind(this);
     this.handleCart = this.handleCart.bind(this);
     this.handleIcon = this.handleIcon.bind(this);
     this.handleLeave = this.handleLeave.bind(this);
@@ -92,6 +93,7 @@ class ProductDetail extends Component {
   }
 
   handleCart(product, amount, price, single) {
+    console.log(amount);
     const { cart = [], addToCart, updateCart } = this.props;
     if (cart.length === 0) {
       addToCart(product, amount, price, single);
@@ -142,6 +144,7 @@ class ProductDetail extends Component {
   }
 
   render() {
+    console.log(this.props);
     const { productDetail = [], review = [], loading, match } = this.props;
 
     const {
@@ -157,12 +160,13 @@ class ProductDetail extends Component {
       iconTwo,
       iconThree
     } = this.state;
-    if (loading || !productDetail[0])
+    if (loading) {
       return (
         <div className="loader-container">
           <img className="loader" src={LoaderSVG} alt="Loader" />
         </div>
       );
+    }
     let reviewsList = review.map(review => {
       return (
         <div className="reviewed-wrapper" key={review.review_id}>
@@ -379,7 +383,7 @@ class ProductDetail extends Component {
                 />
               )}
             </div>
-            {!productDetail[0].icon_one ? null : (
+            {productDetail[0].icon_one && (
               <div className="icons-container">
                 <div className="icon-wrapper">
                   <img

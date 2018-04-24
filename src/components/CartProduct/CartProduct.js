@@ -41,6 +41,7 @@ class CartProduct extends Component {
   }
   render() {
     const { product, updateCartValues, handleDelete } = this.props;
+    console.log(product);
     const { newQuantity, newTotal } = this.state;
     return (
       <div className="cart-item-container" key={product.product_id}>
