@@ -4,10 +4,9 @@ import { NavLink } from "react-router-dom";
 //Redux
 import { connect } from "react-redux";
 import { getProducts, getSortedProducts } from "../../ducks/product";
-//Loader
-import LoaderSVG from "../../ball-triangle.svg";
 //Local
 import BreadCrumb from "../BreadCrumb/BreadCrumb";
+import Loader from "../Loader/Loader";
 import "./Shop.css";
 
 class Shop extends Component {
@@ -48,12 +47,7 @@ class Shop extends Component {
   render() {
     const { product = [], loading } = this.props;
     const { search, sort } = this.state;
-    if (loading)
-      return (
-        <div className="loader-container">
-          <img className="loader" src={LoaderSVG} alt="Loader" />
-        </div>
-      );
+    if (loading) return <Loader />;
     let productsList = product
       .filter(item => {
         return (

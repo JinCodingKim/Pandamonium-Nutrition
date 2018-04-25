@@ -9,6 +9,7 @@ import {
 } from "../../../ducks/workout";
 //Local
 import PersonalExerciseDetail from "./PersonalExerciseDetail/PersonalExerciseDetail";
+import Loader from "../../Loader/Loader";
 import "./PersonalExercises.css";
 
 class PersonalExercises extends Component {
@@ -83,7 +84,7 @@ class PersonalExercises extends Component {
   render() {
     const { userExercises = [], loading } = this.props;
     const { bodyPart } = this.state;
-    if (loading) return <div />;
+    if (loading) return <Loader />;
     let personalList = userExercises
       .filter(ex => {
         return JSON.stringify(ex.category) === bodyPart || bodyPart === "";

@@ -21,11 +21,9 @@ import { orangeA700 } from "material-ui/styles/colors";
 import swal from "sweetalert2";
 //React-star-ratings
 import StarRatings from "react-star-ratings";
-//Loader
-import LoaderSVG from "../../ball-triangle.svg";
 //Local
 import BreadCrumb from "../BreadCrumb/BreadCrumb";
-//Local
+import Loader from "../Loader/Loader";
 import "./ProductDetail.css";
 
 class ProductDetail extends Component {
@@ -167,11 +165,7 @@ class ProductDetail extends Component {
       iconThree
     } = this.state;
     if (loading || !productDetail[0]) {
-      return (
-        <div className="loader-container">
-          <img className="loader" src={LoaderSVG} alt="Loader" />
-        </div>
-      );
+      return <Loader />;
     }
     let reviewsList = review.map(review => {
       return (

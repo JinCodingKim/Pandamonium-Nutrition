@@ -14,6 +14,7 @@ import ActionPayment from "material-ui/svg-icons/action/payment";
 //React-Router
 import { NavLink } from "react-router-dom";
 //Local
+import Loader from "../Loader/Loader";
 import CartProduct from "../CartProduct/CartProduct";
 import "./Cart.css";
 
@@ -54,7 +55,7 @@ class Cart extends Component {
   render() {
     const { cart = [], loading, updateTotalAmnt } = this.props;
     const { cartTotal } = this.state;
-    if (loading) return <div />;
+    if (loading) return <Loader />;
     let cartList = cart.map(product => {
       return (
         <CartProduct
@@ -69,14 +70,15 @@ class Cart extends Component {
     let totalAmnt = cart.reduce((acc, curr) => {
       return acc + curr.total_price;
     }, cartTotal);
-
     return (
       <div className="cart-main-container">
-        {cartList || <div>Cart is empty.</div>}
+        {!cartList.length && <div className="cart-empty">Cart is empty.</div>}
         <div className="order-container">
           <div className="order-total">
-            Order Total:{" "}
-            <span>${Number.parseFloat(totalAmnt).toFixed(2) || "0.00"}</span>
+            Order Total:
+            <span className="indent">
+              ${Number.parseFloat(totalAmnt).toFixed(2) || "0.00"}
+            </span>
           </div>
           <div className="checkout-container" onClick={this.removeCart}>
             <NavLink to="/checkout" className="checkout-button">

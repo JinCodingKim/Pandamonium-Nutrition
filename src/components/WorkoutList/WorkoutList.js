@@ -2,9 +2,8 @@ import React, { Component } from "react";
 //Redux
 import { connect } from "react-redux";
 import { getExercises, addExercise, updateExercise } from "../../ducks/workout";
-//Loader
-import LoaderSVG from "../../ball-triangle.svg";
 //Local
+import Loader from "../Loader/Loader";
 import Workout from "./Workout/Workout";
 import "./WorkoutList.css";
 
@@ -53,12 +52,7 @@ class WorkoutList extends Component {
     const { exercises = [], loading } = this.props;
     const { bodyPart } = this.state;
 
-    if (loading)
-      return (
-        <div className="loader-container">
-          <img className="loader" src={LoaderSVG} alt="Loader" />
-        </div>
-      );
+    if (loading) return <Loader />;
     const exerciseList = exercises
       .filter(ex => {
         return JSON.stringify(ex.category) === bodyPart || bodyPart === "";

@@ -5,6 +5,7 @@ import { getExercises } from "../../ducks/workout";
 //Local
 import MWFList from "./MWFList/MWFList";
 import MTTFList from "./MTTFList/MTTFList";
+import Loader from "../Loader/Loader";
 import "./CreateWorkout.css";
 
 class CreateWorkout extends Component {
@@ -34,7 +35,7 @@ class CreateWorkout extends Component {
 
   threeDays() {
     const { exercises, loading } = this.props;
-    if (loading) return <div />;
+    if (loading) return <Loader />;
     let mwfWorkouts = exercises.filter(
       exercise =>
         exercise.category === 11 ||
@@ -55,7 +56,7 @@ class CreateWorkout extends Component {
 
   fourDays() {
     const { exercises, loading } = this.props;
-    if (loading) return <div />;
+    if (loading) return <Loader />;
     let mttfWorkouts = exercises.filter(
       exercise =>
         exercise.category === 11 ||
