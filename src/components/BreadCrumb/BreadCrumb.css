@@ -1,29 +1,31 @@
 .crumbs-container {
-  width: 100%;
+  width: 320px;
   background-color: #eeeeee;
   display: flex;
   flex-direction: row;
-  align-items: center;
-  box-sizing: border-box;
+  margin: 0;
   padding: 0 0 0 5vw;
+  align-items: center;
 }
 
 .crumbs-sub-container {
   display: flex;
   flex-direction: row;
   align-items: center;
+  margin: 0;
 }
 
 .crumb-name,
 .crumb-name-link {
   font-weight: bold;
-  box-sizing: border-box;
   text-decoration: none;
   color: black;
+  transition: 250ms ease-in-out;
 }
 
 .crumb-name {
   padding: 12px 0 0 0;
+  margin: 0;
 }
 
 .crumb-name-link {
@@ -49,8 +51,15 @@
 
 @media (min-width: 991px) {
   .crumbs-container {
-    width: 100%;
+    width: 290px;
+    margin: 0 0 0 0.704vw;
     padding: 10px 0 0 10px;
     font-size: 20px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .crumbs-container {
+    margin: 0 0 0 2.5vw;
   }
 }

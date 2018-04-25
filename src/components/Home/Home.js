@@ -75,13 +75,21 @@ class Home extends Component {
     };
 
     const actions = [
-      <div className="modal-buttons">
+      <div>
         <RaisedButton
+          labelStyle={{ fontSize: "10px" }}
+          className="modal-button"
           label="Don't Show Again"
           primary={true}
           onClick={this.handleShow}
         />,
-        <RaisedButton label="Close" primary={true} onClick={this.handleClose} />
+        <RaisedButton
+          labelStyle={{ fontSize: "10px" }}
+          className="modal-button"
+          label="Close"
+          primary={true}
+          onClick={this.handleClose}
+        />
       </div>
     ];
 

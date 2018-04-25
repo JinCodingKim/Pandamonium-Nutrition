@@ -53,19 +53,11 @@ class Workout extends Component {
         >
           <div className="modal-view">
             {images.map((image, index) => {
-              if (index === images.length - 1) {
-                return (
-                  <div key={image.id} className="image-container">
-                    <img src={image.image} alt="Exercise" className="image" />
-                  </div>
-                );
-              } else {
-                return (
-                  <div key={image.id} className="image-container">
-                    <img src={image.image} alt="Exercise" className="image" />
-                  </div>
-                );
-              }
+              return (
+                <div key={image.id} className="image-container">
+                  <img src={image.image} alt="Exercise" className="image" />
+                </div>
+              );
             })}
           </div>
           )}

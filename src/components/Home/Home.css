@@ -6,17 +6,11 @@
   width: 100%;
 }
 
-.modal-buttons {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-}
-
 .modal-dialog {
   color: black;
 }
 
-.modal-dialog > h4 {
+.modal-dialog>h4 {
   font-size: 14px;
   color: #ff6d00;
 }
@@ -34,10 +28,22 @@
   font-size: 10px;
 }
 
-.modal-list > li {
+.modal-list>li {
   padding: 5px 0 0 0;
   margin: 0 0 0 17.5px;
   height: 12.5px;
+}
+
+.modal-button {
+  width: 107.5px !important;
+}
+
+.modal-button span {
+  padding: 0 !important;
+}
+
+.slick-slider {
+  margin: 0;
 }
 
 .slider-container {
@@ -66,18 +72,22 @@
   .featured-banner-wrapper {
     padding: 10px 0 10px 0;
   }
-  .modal-dialog > h4 {
+  .modal-button {
+    width: 140px !important;
+    margin: 0 2.5px 0 2.5px !important;
+  }
+  .modal-button span {
+    padding: 0 6px 0 6px !important;
+  }
+  .modal-dialog>h4 {
     font-size: 20px;
   }
-
   .modal-notice {
     font-size: 15px;
   }
-
   .modal-details {
     font-size: 13px;
   }
-
   .modal-list {
     font-size: 12px;
   }

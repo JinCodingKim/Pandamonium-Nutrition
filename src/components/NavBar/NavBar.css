@@ -110,11 +110,23 @@
     padding-left: 61.5px;
   }
 
+  .nav-logged-left {
+    margin: 0 0 0 10px;
+  }
+
+  .nav-logged-right {
+    margin: 0 10px 0 0;
+  }
+
+  .nav-out-container a {
+    margin: 0;
+  }
+
   .desktop-icons {
     height: 32.5px !important;
     width: 32.5px !important;
-    margin-left: 15px !important;
-    margin-right: 15px !important;
+    margin-left: 12.5px !important;
+    margin-right: 12.5px !important;
     padding-top: 12px !important;
     transition: 250ms ease-in-out !important;
   }
