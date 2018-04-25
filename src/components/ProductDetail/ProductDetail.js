@@ -35,9 +35,7 @@ class ProductDetail extends Component {
     this.state = {
       flavor: "",
       quantity: 1,
-      total:
-        this.props.productDetail[0] &&
-        this.props.productDetail[0].product_price,
+      total: 0,
       name: "",
       email: "",
       rating: 0,
@@ -64,6 +62,14 @@ class ProductDetail extends Component {
       getReviews(this.props.productDetail[0].product_id);
     });
     getCart(user.user_id);
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (prevProps.productDetail[0] !== this.props.productDetail[0]) {
+      this.setState({
+        total: this.props.productDetail[0].product_price
+      });
+    }
   }
 
   handleFlavor(val) {
@@ -94,6 +100,7 @@ class ProductDetail extends Component {
 
   handleCart(product, amount, price, single) {
     console.log(amount);
+    console.log(price);
     const { cart = [], addToCart, updateCart } = this.props;
     if (cart.length === 0) {
       addToCart(product, amount, price, single);
@@ -144,9 +151,8 @@ class ProductDetail extends Component {
   }
 
   render() {
-    console.log(this.props);
     const { productDetail = [], review = [], loading, match } = this.props;
-
+    console.log(this.state.total);
     const {
       flavor,
       quantity,
@@ -160,7 +166,7 @@ class ProductDetail extends Component {
       iconTwo,
       iconThree
     } = this.state;
-    if (loading) {
+    if (loading || !productDetail[0]) {
       return (
         <div className="loader-container">
           <img className="loader" src={LoaderSVG} alt="Loader" />
