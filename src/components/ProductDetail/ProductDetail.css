@@ -90,6 +90,7 @@
 .flavor-select,
 .item-count {
   letter-spacing: 0.5px;
+  margin: 0;
 }
 
 .detail-price {
@@ -118,7 +119,6 @@
 }
 
 .quantity-select-wrapper {
-  width: 150px;
   height: 50px;
   margin: 0 0 5px 0;
   display: flex;
@@ -127,9 +127,12 @@
 
 .subtract-button,
 .add-button {
+  margin: 0 !important;
   width: 38px !important;
   height: 38px !important;
   cursor: pointer !important;
+  opacity: 1 !important;
+  transition: 250ms ease-in-out !important;
 }
 
 .subtract-button {
@@ -140,7 +143,13 @@
   color: #ff6d00 !important;
 }
 
+.add-button:hover,
+.subtract-button:hover {
+  opacity: 0.5 !important;
+}
+
 .quantity-val {
+  margin: 0;
   height: 40px;
   width: 40px;
   font-size: 24px;

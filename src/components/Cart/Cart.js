@@ -72,7 +72,11 @@ class Cart extends Component {
     }, cartTotal);
     return (
       <div className="cart-main-container">
-        {!cartList.length && <div className="cart-empty">Cart is empty.</div>}
+        {!cartList.length ? (
+          <div className="cart-empty">Cart is empty.</div>
+        ) : (
+          <div>{cartList}</div>
+        )}
         <div className="order-container">
           <div className="order-total">
             Order Total:

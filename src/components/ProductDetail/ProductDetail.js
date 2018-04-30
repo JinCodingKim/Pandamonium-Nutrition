@@ -150,7 +150,6 @@ class ProductDetail extends Component {
 
   render() {
     const { productDetail = [], review = [], loading, match } = this.props;
-    console.log(this.state.total);
     const {
       flavor,
       quantity,
