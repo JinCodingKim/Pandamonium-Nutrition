@@ -89,6 +89,7 @@ class Cart extends Component {
               <RaisedButton
                 label="Checkout"
                 primary={true}
+                disabled={!cartList.length}
                 labelPosition="after"
                 className="checkout-button"
                 onClick={() => updateTotalAmnt(totalAmnt)}
