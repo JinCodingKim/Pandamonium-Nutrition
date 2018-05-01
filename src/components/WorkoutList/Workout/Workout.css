@@ -54,7 +54,7 @@
 
 .image-photo {
   color: black !important;
-  width: 5% !important;
+  width: 25px !important;
   margin: 0 0 0 5px !important;
   cursor: pointer !important;
 }
@@ -70,7 +70,15 @@
   text-align: left;
   font-size: 15px;
   letter-spacing: 0.5px;
-  width: 90%;
+
+  margin: 0;
+}
+
+.exercise-icon-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  width: 60px;
   margin: 0;
 }
 
@@ -85,30 +93,21 @@
 .exercise-description:hover {
   color: black;
 }
-
 .favorites-button {
-  width: 100% !important;
-  background-color: #ff6d00 !important;
+  display: none !important;
 }
-
 .favorites-desktop {
-  display: none;
+  color: black !important;
+  width: 25px !important;
+  margin: 0 0 0 5px !important;
+  cursor: pointer !important;
+}
+.favorites-desktop:hover {
+  color: #ff6d00 !important;
 }
 
 @media (min-width: 991px) {
   .exercise {
     padding: 25px 0 0 0;
-  }
-  .favorites-button {
-    display: none !important;
-  }
-  .favorites-desktop {
-    color: black !important;
-    width: 5% !important;
-    margin: 0 0 0 5px !important;
-    cursor: pointer !important;
-  }
-  .favorites-desktop:hover {
-    color: #ff6d00 !important;
   }
 }

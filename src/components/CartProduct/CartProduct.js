@@ -2,7 +2,6 @@ import React, { Component } from "react";
 //Material-ui
 import ContentRemoveCircle from "material-ui/svg-icons/content/remove-circle";
 import ContentAddCircle from "material-ui/svg-icons/content/add-circle";
-import RaisedButton from "material-ui/RaisedButton";
 import ActionDelete from "material-ui/svg-icons/action/delete";
 //Sweetalert2
 import swal from "sweetalert2";
@@ -51,8 +50,8 @@ class CartProduct extends Component {
     }
   }
   render() {
-    const { product, updateCartValues, handleDelete } = this.props;
-    const { newQuantity, newTotal } = this.state;
+    const { product, handleDelete } = this.props;
+    const { newQuantity } = this.state;
     return (
       <div className="cart-item-container" key={product.product_id}>
         <div className="cart-item-img-container">
@@ -62,7 +61,6 @@ class CartProduct extends Component {
           <p className="cart-item-name">
             {product.product_name} - {product.product_flavor}
           </p>
-          {/* <div className="cart-item-option"> */}
           <p className="cart-item-price">${product.total_price}</p>
           <div className="quantity-container">
             <ContentRemoveCircle
@@ -87,7 +85,6 @@ class CartProduct extends Component {
               }
             />
           </div>
-
           <ActionDelete
             className="remove-order-button"
             onClick={() => {
@@ -100,7 +97,6 @@ class CartProduct extends Component {
               });
             }}
           />
-          {/* </div> */}
         </div>
       </div>
     );

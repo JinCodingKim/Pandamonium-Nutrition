@@ -27,6 +27,7 @@
   width: 90%;
   height: 100%;
   padding: 0 5% 0 5%;
+  margin: 0;
 }
 
 .company-name,
@@ -243,12 +244,13 @@
 
 .review-card-text {
   width: 90% !important;
+  margin: 0 !important;
 }
 
 .card-container {
   display: flex;
   flex-direction: column;
-  width: 86.5vw;
+  width: 100%;
 }
 
 .review-title {
@@ -262,7 +264,7 @@
 .review-email,
 .review-title-input {
   height: 30px;
-  width: 85%;
+  width: 97%;
   border: 1px solid #757575;
   padding: 0 0 0 5px;
   margin: 5px 0 5px 0;
@@ -272,12 +274,13 @@
 .rate-stars {
   display: flex;
   justify-content: center;
-  width: 88%;
+  width: 100%;
+  transition: 250ms fade-in-out;
 }
 
 .review-description {
   height: 100px;
-  width: 85%;
+  width: 97%;
   padding: 5px 0 0 5px;
   border: 1px solid #757575;
   outline: none;
@@ -285,7 +288,7 @@
 }
 
 .submit-review-button {
-  width: 87.5% !important;
+  width: 100% !important;
   margin: 10px 0 0 0 !important;
   background-color: #ff6d00 !important;
 }
@@ -354,21 +357,15 @@
   color: black;
 }
 
-@media (min-width: 372px) {
-  .card-container {
-    width: 89vw;
-  }
-  .submit-review-button {
-    width: 87% !important;
-  }
-}
-
 @media (min-width: 413px) {
-  .card-container {
-    width: 91vw;
+  .review-name,
+  .review-email,
+  .review-title-input {
+    width: 99%;
   }
-  .submit-review-button {
-    width: 86.75% !important;
+
+  .review-description {
+    width: 99%;
   }
   .icon-name {
     font-size: 12px;
@@ -383,11 +380,20 @@
 }
 
 @media (min-width: 500px) {
-  .card-container {
-    width: 94vw;
+  .review-card-text {
+    width: 92% !important;
+  }
+  .review-name,
+  .review-email,
+  .review-title-input {
+    width: 100%;
+  }
+
+  .review-description {
+    width: 100%;
   }
   .submit-review-button {
-    width: 86.25% !important;
+    width: 101.5% !important;
   }
   .icons-container {
     width: 100%;
@@ -406,17 +412,17 @@
 }
 
 @media (min-width: 620px) {
-  .card-container {
-    width: 96.5vw;
+  .review-card-text {
+    width: 93.5% !important;
   }
 }
 
 @media (min-width: 768px) {
-  .card-container {
-    width: 98.5vw;
+  .review-card-text {
+    width: 95% !important;
   }
   .submit-review-button {
-    width: 85.9% !important;
+    width: 101% !important;
   }
 }
 
@@ -464,28 +470,13 @@
     width: 99% !important;
   }
   .review-card-text {
-    width: 95% !important;
+    width: 93% !important;
   }
   .card-container {
     align-items: center;
-    width: 100%;
   }
   .review-title {
     align-self: left;
-  }
-  .review-name,
-  .review-email,
-  .review-title-input {
-    width: 100%;
-  }
-  .rate-stars {
-    width: 100%;
-  }
-  .review-description {
-    width: 100%;
-  }
-  .submit-review-button {
-    width: 101% !important;
   }
   .detail-description {
     width: 100%;

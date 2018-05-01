@@ -22,6 +22,7 @@ class CheckoutInfo extends Component {
 
     this.state = {
       email: "",
+      validEmail: false,
       shippingFirstName: "",
       shippingLastName: "",
       shippingAddress: "",
@@ -54,12 +55,19 @@ class CheckoutInfo extends Component {
   }
 
   handleEmail(val) {
-    this.setState({
-      email: val
-    });
+    const regex = /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
+    return regex.test(val)
+      ? this.setState({
+          email: val,
+          validEmail: true
+        })
+      : this.setState({
+          validEmail: false
+        });
   }
 
   submitEmail() {
+    console.log("hit");
     const { getUserByUserId, updateGuestEmail } = this.props;
     const { email } = this.state;
     updateGuestEmail(email)
@@ -350,7 +358,9 @@ class CheckoutInfo extends Component {
   }
 
   render() {
-    const { finished, stepIndex, email } = this.state;
+    const { finished, stepIndex, validEmail } = this.state;
+    console.log(this.state.email);
+    console.log(this.props.user);
     const { user = {}, totalAmnt } = this.props;
     return (
       <div className="checkout-main-container">
@@ -369,21 +379,19 @@ class CheckoutInfo extends Component {
             <div className="guest-checkout-wrapper">
               <label className="guest-checkout-title">Guest Checkout</label>
               <TextField
-                floatingLabelText="E-mail Address"
+                floatingLabelText="Email"
                 floatingLabelFixed={true}
-                type="email"
-                value={email}
                 hintText="billy.bob@example.com"
-                errorText="This field is required"
+                errorText={validEmail ? null : "Enter a valid email address"}
                 className="guest-textfield"
                 inputStyle={{ color: "#212121" }}
-                onChange={e => this.handleEmail(e.target.value)}
+                onChange={(event, val) => this.handleEmail(val)}
               />
               <RaisedButton
                 label="Submit"
                 primary={true}
                 className="submit-guest"
-                disabled={!email}
+                disabled={!validEmail}
                 onClick={this.submitEmail}
               />
             </div>

@@ -2,7 +2,6 @@ import React, { Component } from "react";
 //Sweetalert2
 import swal from "sweetalert2";
 //Material-ui
-import RaisedButton from "material-ui/RaisedButton";
 import Dialog from "material-ui/Dialog";
 import ActionFavorite from "material-ui/svg-icons/action/favorite";
 import ImagePhoto from "material-ui/svg-icons/image/photo";
@@ -64,22 +63,24 @@ class Workout extends Component {
         </Dialog>
         <div className="title-image">
           <h2 className="exercise-title">{name}</h2>
-          {!images.length ? null : (
-            <ImagePhoto onClick={this.viewModal} className="image-photo" />
-          )}
-          <ActionFavorite
-            onClick={() => {
-              handleExercise(id, name, category, description);
+          <div className="exercise-icon-wrapper">
+            {!images.length ? null : (
+              <ImagePhoto onClick={this.viewModal} className="image-photo" />
+            )}
+            <ActionFavorite
+              onClick={() => {
+                handleExercise(id, name, category, description);
 
-              swal({
-                title: `${name} added to Favorites!`,
-                type: "success",
-                confirmButtonText: "Back to List",
-                confirmButtonColor: "#ff6d00"
-              });
-            }}
-            className="favorites-desktop"
-          />
+                swal({
+                  title: `${name} added to Favorites!`,
+                  type: "success",
+                  confirmButtonText: "Back to List",
+                  confirmButtonColor: "#ff6d00"
+                });
+              }}
+              className="favorites-desktop"
+            />
+          </div>
         </div>
         <p className="exercise-description">
           {description
@@ -90,23 +91,6 @@ class Workout extends Component {
             .replace(/(<em[^>]+?>|<em>|<\/em>)/gim, "")
             .replace(/(<strong[^>]+?>|<strong>|<\/strong>)/gim, "")}
         </p>
-        <RaisedButton
-          label="Add to Favorites"
-          primary={true}
-          labelPosition="after"
-          className="favorites-button"
-          icon={<ActionFavorite />}
-          onClick={() => {
-            handleExercise(id, name, category, description);
-
-            swal({
-              title: `${name} added to Favorites!`,
-              type: "success",
-              confirmButtonText: "Back to List",
-              confirmButtonColor: "#ff6d00"
-            });
-          }}
-        />
         <br />
       </div>
     );
