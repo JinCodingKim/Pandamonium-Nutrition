@@ -7,7 +7,7 @@
 }
 
 .cart-empty {
-  height: 30.8vh;
+  height: 38.2vh;
   text-align: center;
   box-sizing: border-box;
   padding: 100px 0 0 0;
@@ -50,8 +50,7 @@
 
 @media (min-width: 768px) {
   .cart-empty {
-    height: 19.2vh;
-    padding: 80px 0 0 0;
+    height: 30.3vh;
   }
   .order-container {
     width: 90%;
@@ -76,12 +75,12 @@
 
 @media (min-width: 991px) {
   .cart-empty {
-    height: 24.7vh;
+    height: 35.7vh;
   }
 }
 
 @media (min-width: 1200px) {
   .cart-empty {
-    height: 21vh;
+    height: 32vh;
   }
 }

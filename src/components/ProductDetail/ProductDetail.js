@@ -97,19 +97,14 @@ class ProductDetail extends Component {
   }
 
   handleCart(product, amount, price, single) {
-    console.log(amount);
-    console.log(price);
-    const { cart = [], addToCart, updateCart } = this.props;
-    if (cart.length === 0) {
-      addToCart(product, amount, price, single);
+    const { cart, addToCart, updateCart, getCart, user } = this.props;
+    let index = cart.findIndex(e => e.product_id == product);
+    if (index === -1) {
+      addToCart(product, amount, price, single).then(() =>
+        getCart(user.user_id)
+      );
     } else {
-      for (let i = 0; i < cart.length; i++) {
-        if (cart[i].product_id === product) {
-          updateCart(product, amount, price);
-        } else {
-          addToCart(product, amount, price, single);
-        }
-      }
+      updateCart(product, amount, price).then(() => getCart(user.user_id));
     }
   }
 

@@ -10,6 +10,7 @@ import {
 } from "../../ducks/user";
 //Material-ui
 import { Step, Stepper, StepLabel } from "material-ui/Stepper";
+import Checkbox from "material-ui/Checkbox";
 import TextField from "material-ui/TextField";
 import RaisedButton from "material-ui/RaisedButton";
 //Local
@@ -22,7 +23,6 @@ class CheckoutInfo extends Component {
 
     this.state = {
       email: "",
-      validEmail: false,
       shippingFirstName: "",
       shippingLastName: "",
       shippingAddress: "",
@@ -37,9 +37,12 @@ class CheckoutInfo extends Component {
       billingState: "",
       billingCountry: "",
       billingZip: "",
+      validEmail: false,
       finished: false,
-      stepIndex: 0
+      stepIndex: 0,
+      checked: false
     };
+    this.handleCheck = this.handleCheck.bind(this);
     this.handleEmail = this.handleEmail.bind(this);
     this.submitEmail = this.submitEmail.bind(this);
     this.handlePrev = this.handlePrev.bind(this);
@@ -52,6 +55,12 @@ class CheckoutInfo extends Component {
   componentDidMount() {
     const { getUser } = this.props;
     getUser();
+  }
+
+  handleCheck() {
+    this.setState({
+      checked: !this.state.checked
+    });
   }
 
   handleEmail(val) {
@@ -164,34 +173,33 @@ class CheckoutInfo extends Component {
       billingCity,
       billingState,
       billingCountry,
-      billingZip
+      billingZip,
+      checked
     } = this.state;
 
     let caseZero = (
       <div className="check-whole-container">
-        <div className="checkout-info-container">
-          <div className="first-name-container">
-            <label className="info-labels">First Name</label>
-            <input
-              className="first-name-input"
-              placeholder="First Name"
-              value={shippingFirstName}
-              onChange={e =>
-                this.handleAddressChange("shippingFirstName", e.target.value)
-              }
-            />
-          </div>
-          <div className="last-name-container">
-            <label className="info-labels">Last Name</label>
-            <input
-              className="last-name-input"
-              placeholder="Last Name"
-              value={shippingLastName}
-              onChange={e =>
-                this.handleAddressChange("shippingLastName", e.target.value)
-              }
-            />
-          </div>
+        <div className="first-name-container">
+          <label className="info-labels">First Name</label>
+          <input
+            className="first-name-input"
+            placeholder="First Name"
+            value={shippingFirstName}
+            onChange={e =>
+              this.handleAddressChange("shippingFirstName", e.target.value)
+            }
+          />
+        </div>
+        <div className="last-name-container">
+          <label className="info-labels">Last Name</label>
+          <input
+            className="last-name-input"
+            placeholder="Last Name"
+            value={shippingLastName}
+            onChange={e =>
+              this.handleAddressChange("shippingLastName", e.target.value)
+            }
+          />
         </div>
 
         <div className="address-container">
@@ -205,83 +213,85 @@ class CheckoutInfo extends Component {
             }
           />
         </div>
-        <div className="checkout-info-container">
-          <div className="city-container">
-            <label className="info-labels">City</label>
-            <input
-              className="city-input"
-              placeholder="City"
-              value={shippingCity}
-              onChange={e =>
-                this.handleAddressChange("shippingCity", e.target.value)
-              }
-            />
-          </div>
-          <div className="state-container">
-            <label className="info-labels">State</label>
-            <input
-              className="state-input"
-              placeholder="State"
-              value={shippingState}
-              onChange={e =>
-                this.handleAddressChange("shippingState", e.target.value)
-              }
-            />
-          </div>
+        <div className="city-container">
+          <label className="info-labels">City</label>
+          <input
+            className="city-input"
+            placeholder="City"
+            value={shippingCity}
+            onChange={e =>
+              this.handleAddressChange("shippingCity", e.target.value)
+            }
+          />
+        </div>
+        <div className="state-container">
+          <label className="info-labels">State</label>
+          <input
+            className="state-input"
+            placeholder="State"
+            value={shippingState}
+            onChange={e =>
+              this.handleAddressChange("shippingState", e.target.value)
+            }
+          />
         </div>
 
-        <div className="checkout-info-container">
-          <div className="country-container">
-            <label className="info-labels">Country</label>
-            <input
-              className="country-input"
-              placeholder="Country"
-              value={shippingCountry}
-              onChange={e =>
-                this.handleAddressChange("shippingCountry", e.target.value)
-              }
-            />
-          </div>
-          <div className="zip-container">
-            <label className="info-labels">Zip</label>
-            <input
-              className="zip-input"
-              placeholder="Zip Code"
-              value={shippingZip}
-              onChange={e =>
-                this.handleAddressChange("shippingZip", e.target.value)
-              }
-            />
-          </div>
+        <div className="country-container">
+          <label className="info-labels">Country</label>
+          <input
+            className="country-input"
+            placeholder="Country"
+            value={shippingCountry}
+            onChange={e =>
+              this.handleAddressChange("shippingCountry", e.target.value)
+            }
+          />
+        </div>
+        <div className="zip-container">
+          <label className="info-labels">Zip</label>
+          <input
+            className="zip-input"
+            placeholder="Zip Code"
+            value={shippingZip}
+            onChange={e =>
+              this.handleAddressChange("shippingZip", e.target.value)
+            }
+          />
         </div>
       </div>
     );
 
     let caseOne = (
       <div className="check-whole-container">
-        <div className="checkout-info-container">
-          <div className="first-name-container">
-            <label className="info-labels">First Name</label>
-            <input
-              className="first-name-input"
-              placeholder="First Name"
-              value={billingFirstName}
-              onChange={e =>
-                this.handleAddressChange("billingFirstName", e.target.value)
-              }
-            />
-          </div>
-          <div className="last-name-container">
-            <label className="info-labels">Last Name</label>
-            <input
-              className="last-name-input"
-              placeholder="Last Name"
-              value={billingLastName}
-              onChange={e =>
-                this.handleAddressChange("billingLastName", e.target.value)
-              }
-            />
-          </div>
+        <div className="checkbox-container">
+          <label className="info-labels">Same as shipping information</label>
+          <Checkbox
+            iconStyle={{ fill: "ff6d00" }}
+            checked={checked}
+            onCheck={this.handleCheck}
+          />
+        </div>
+        <div className="first-name-container">
+          <label className="info-labels">First Name</label>
+          <input
+            className="first-name-input"
+            placeholder="First Name"
+            value={checked ? shippingFirstName : billingFirstName}
+            onChange={e =>
+              this.handleAddressChange("billingFirstName", e.target.value)
+            }
+          />
+        </div>
+        <div className="last-name-container">
+          <label className="info-labels">Last Name</label>
+          <input
+            className="last-name-input"
+            placeholder="Last Name"
+            value={checked ? shippingLastName : billingLastName}
+            onChange={e =>
+              this.handleAddressChange("billingLastName", e.target.value)
+            }
+          />
         </div>
 
         <div className="address-container">
@@ -289,60 +299,56 @@ class CheckoutInfo extends Component {
           <input
             className="address-input"
             placeholder="Address (Optional: Apt,Suite,Etc.)"
-            value={billingAddress}
+            value={checked ? shippingAddress : billingAddress}
             onChange={e =>
               this.handleAddressChange("billingAddress", e.target.value)
             }
           />
         </div>
-        <div className="checkout-info-container">
-          <div className="city-container">
-            <label className="info-labels">City</label>
-            <input
-              className="city-input"
-              placeholder="City"
-              value={billingCity}
-              onChange={e =>
-                this.handleAddressChange("billingCity", e.target.value)
-              }
-            />
-          </div>
-          <div className="state-container">
-            <label className="info-labels">State</label>
-            <input
-              className="state-input"
-              placeholder="State"
-              value={billingState}
-              onChange={e =>
-                this.handleAddressChange("billingState", e.target.value)
-              }
-            />
-          </div>
+        <div className="city-container">
+          <label className="info-labels">City</label>
+          <input
+            className="city-input"
+            placeholder="City"
+            value={checked ? shippingCity : billingCity}
+            onChange={e =>
+              this.handleAddressChange("billingCity", e.target.value)
+            }
+          />
+        </div>
+        <div className="state-container">
+          <label className="info-labels">State</label>
+          <input
+            className="state-input"
+            placeholder="State"
+            value={checked ? shippingState : billingState}
+            onChange={e =>
+              this.handleAddressChange("billingState", e.target.value)
+            }
+          />
         </div>
 
-        <div className="checkout-info-container">
-          <div className="country-container">
-            <label className="info-labels">Country</label>
-            <input
-              className="country-input"
-              placeholder="Country"
-              value={billingCountry}
-              onChange={e =>
-                this.handleAddressChange("billingCountry", e.target.value)
-              }
-            />
-          </div>
-          <div className="zip-container">
-            <label className="info-labels">Zip</label>
-            <input
-              className="zip-input"
-              placeholder="Zip Code"
-              value={billingZip}
-              onChange={e =>
-                this.handleAddressChange("billingZip", e.target.value)
-              }
-            />
-          </div>
+        <div className="country-container">
+          <label className="info-labels">Country</label>
+          <input
+            className="country-input"
+            placeholder="Country"
+            value={checked ? shippingCountry : billingCountry}
+            onChange={e =>
+              this.handleAddressChange("billingCountry", e.target.value)
+            }
+          />
+        </div>
+        <div className="zip-container">
+          <label className="info-labels">Zip</label>
+          <input
+            className="zip-input"
+            placeholder="Zip Code"
+            value={checked ? shippingZip : billingZip}
+            onChange={e =>
+              this.handleAddressChange("billingZip", e.target.value)
+            }
+          />
         </div>
       </div>
     );
@@ -358,9 +364,8 @@ class CheckoutInfo extends Component {
   }
 
   render() {
+    console.log(this.state);
     const { finished, stepIndex, validEmail } = this.state;
-    console.log(this.state.email);
-    console.log(this.props.user);
     const { user = {}, totalAmnt } = this.props;
     return (
       <div className="checkout-main-container">
@@ -413,7 +418,9 @@ class CheckoutInfo extends Component {
                 </div>
               ) : (
                 <div className="step-content">
-                  <div>{this.getStepContent(stepIndex)}</div>
+                  <div className="step-content-wrapper">
+                    {this.getStepContent(stepIndex)}
+                  </div>
                   <div className="stepper-buttons-wrapper">
                     <RaisedButton
                       label="Back"

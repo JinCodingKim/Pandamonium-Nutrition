@@ -64,13 +64,6 @@ class NavBar extends Component {
         marginTop: 8.75,
         marginRight: "4.5vw"
       }
-      // desktopIcons: {
-      //   height: 32.5,
-      //   width: 32.5,
-      //   marginLeft: 15,
-      //   marginRight: 15,
-      //   paddingTop: 12
-      // }
     };
 
     return (
@@ -83,7 +76,7 @@ class NavBar extends Component {
               <NavigationMenu style={navStyles.mobileIconLeft} />
             }
             iconElementRight={
-              <NavLink to="/cart">
+              <NavLink to="/cart" onClick={this.toggleDrawer}>
                 <ActionShoppingCart style={navStyles.mobileIconRight} />
               </NavLink>
             }
@@ -95,22 +88,38 @@ class NavBar extends Component {
             onRequestChange={() => this.toggleDrawer()}
           >
             <MenuItem leftIcon={<ActionHome />}>
-              <NavLink className="menu-item-wrapper" to="/">
+              <NavLink
+                className="menu-item-wrapper"
+                to="/"
+                onClick={this.toggleDrawer}
+              >
                 <p className="menu-item"> Home </p>
               </NavLink>
             </MenuItem>
             <MenuItem leftIcon={<ActionShop />}>
-              <NavLink className="menu-item-wrapper" to="/shop">
+              <NavLink
+                className="menu-item-wrapper"
+                to="/shop"
+                onClick={this.toggleDrawer}
+              >
                 <p className="menu-item"> Shop </p>
               </NavLink>
             </MenuItem>
             <MenuItem leftIcon={<CommunicationBusiness />}>
-              <NavLink className="menu-item-wrapper" to="/about">
+              <NavLink
+                className="menu-item-wrapper"
+                to="/about"
+                onClick={this.toggleDrawer}
+              >
                 <p className="menu-item"> About </p>
               </NavLink>
             </MenuItem>
             <MenuItem leftIcon={<CommunicationPhone />}>
-              <NavLink className="menu-item-wrapper" to="/contact">
+              <NavLink
+                className="menu-item-wrapper"
+                to="/contact"
+                onClick={this.toggleDrawer}
+              >
                 <p className="menu-item"> Contact </p>
               </NavLink>
             </MenuItem>
@@ -126,18 +135,30 @@ class NavBar extends Component {
             ) : (
               <div>
                 <MenuItem leftIcon={<PlacesFitnessCenter />}>
-                  <NavLink className="menu-item-wrapper" to="/exercises">
+                  <NavLink
+                    className="menu-item-wrapper"
+                    to="/exercises"
+                    onClick={this.toggleDrawer}
+                  >
                     <p className="menu-item"> Workout List </p>
                   </NavLink>
                 </MenuItem>
                 <MenuItem leftIcon={<ContentContentPaste />}>
-                  <NavLink className="menu-item-wrapper" to="/create">
+                  <NavLink
+                    className="menu-item-wrapper"
+                    to="/create"
+                    onClick={this.toggleDrawer}
+                  >
                     <p className="menu-item"> Workout Plan </p>
                   </NavLink>
                 </MenuItem>
 
                 <MenuItem leftIcon={<ActionFace />}>
-                  <NavLink className="menu-item-wrapper" to="/profile">
+                  <NavLink
+                    className="menu-item-wrapper"
+                    to="/profile"
+                    onClick={this.toggleDrawer}
+                  >
                     <p className="menu-item"> View Profile </p>
                   </NavLink>
                 </MenuItem>
@@ -164,14 +185,14 @@ class NavBar extends Component {
                 <NavLink to="/">
                   <img className="top-img" alt="" src={fullLogo} />
                 </NavLink>
-                <NavLink to="/cart">
+                <NavLink to="/cart" onClick={this.toggleDrawer}>
                   <ActionShoppingCart className="desktop-icons" />
                 </NavLink>
               </div>
             ) : (
               <div className="nav-logged-container">
                 <div className="nav-logged-left">
-                  <NavLink to="/profile">
+                  <NavLink to="/profile" onClick={this.toggleDrawer}>
                     <ActionFace className="desktop-icons" />
                   </NavLink>
                   <a href={process.env.REACT_APP_LOGOUT}>
@@ -182,15 +203,15 @@ class NavBar extends Component {
                   <img className="top-img-logged" alt="" src={fullLogo} />
                 </NavLink>
                 <div className="nav-logged-right">
-                  <NavLink to="/exercises">
+                  <NavLink to="/exercises" onClick={this.toggleDrawer}>
                     <PlacesFitnessCenter className="desktop-icons" />
                   </NavLink>
 
-                  <NavLink to="/create">
+                  <NavLink to="/create" onClick={this.toggleDrawer}>
                     <ContentContentPaste className="desktop-icons" />
                   </NavLink>
 
-                  <NavLink to="/cart">
+                  <NavLink to="/cart" onClick={this.toggleDrawer}>
                     <ActionShoppingCart className="desktop-icons" />
                   </NavLink>
                 </div>
@@ -198,16 +219,32 @@ class NavBar extends Component {
             )}
           </div>
           <div className="bottom-bar">
-            <NavLink className="desktop-navlink-wrapper" to="/">
+            <NavLink
+              className="desktop-navlink-wrapper"
+              to="/"
+              onClick={this.toggleDrawer}
+            >
               <p className="desktop-navlink"> HOME </p>
             </NavLink>
-            <NavLink className="desktop-navlink-wrapper" to="/shop">
+            <NavLink
+              className="desktop-navlink-wrapper"
+              to="/shop"
+              onClick={this.toggleDrawer}
+            >
               <p className="desktop-navlink"> SHOP </p>
             </NavLink>
-            <NavLink className="desktop-navlink-wrapper" to="/about">
+            <NavLink
+              className="desktop-navlink-wrapper"
+              to="/about"
+              onClick={this.toggleDrawer}
+            >
               <p className="desktop-navlink"> ABOUT </p>
             </NavLink>
-            <NavLink className="desktop-navlink-wrapper" to="/contact">
+            <NavLink
+              className="desktop-navlink-wrapper"
+              to="/contact"
+              onClick={this.toggleDrawer}
+            >
               <p className="desktop-navlink"> CONTACT </p>
             </NavLink>
           </div>
@@ -222,23 +259,24 @@ class NavBar extends Component {
             <NavLink className="full-navlink-wrapper" to="/shop">
               <p className="full-navlink"> SHOP </p>
             </NavLink>
-            {!user || user.user_id === 1 ? null : (
-              <div className="full-navlink-wrapper">
-                <button className="full-dropdown-button">
-                  {" "}
-                  WORKOUT
-                  <i className="fa fa-caret-down" />
-                </button>
-                <div className="dropdown-content">
-                  <NavLink className="dropdown-link-one" to="/exercises">
-                    <p className="full-navlink"> LIST </p>
-                  </NavLink>
-                  <NavLink className="dropdown-link" to="/create">
-                    <p className="full-navlink"> PLAN </p>
-                  </NavLink>
+            {user &&
+              user.user_id !== 1 && (
+                <div className="full-navlink-wrapper">
+                  <button className="full-dropdown-button">
+                    {" "}
+                    WORKOUT
+                    <i className="fa fa-caret-down" />
+                  </button>
+                  <div className="dropdown-content">
+                    <NavLink className="dropdown-link-one" to="/exercises">
+                      <p className="full-navlink"> LIST </p>
+                    </NavLink>
+                    <NavLink className="dropdown-link" to="/create">
+                      <p className="full-navlink"> PLAN </p>
+                    </NavLink>
+                  </div>
                 </div>
-              </div>
-            )}
+              )}
             <NavLink className="full-navlink-wrapper" to="/about">
               <p className="full-navlink"> ABOUT </p>
             </NavLink>

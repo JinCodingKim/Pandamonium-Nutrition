@@ -84,19 +84,20 @@ class Cart extends Component {
               ${Number.parseFloat(totalAmnt).toFixed(2) || "0.00"}
             </span>
           </div>
-          <div className="checkout-container" onClick={this.removeCart}>
-            <NavLink to="/checkout" className="checkout-button">
-              <RaisedButton
-                label="Checkout"
-                primary={true}
-                disabled={!cartList.length}
-                labelPosition="after"
-                className="checkout-button"
-                onClick={() => updateTotalAmnt(totalAmnt)}
-                icon={<ActionPayment />}
-              />
-            </NavLink>
-          </div>
+          {cartList.length ? (
+            <div className="checkout-container" onClick={this.removeCart}>
+              <NavLink to="/checkout" className="checkout-button">
+                <RaisedButton
+                  label="Checkout"
+                  primary={true}
+                  labelPosition="after"
+                  className="checkout-button"
+                  onClick={() => updateTotalAmnt(totalAmnt)}
+                  icon={<ActionPayment />}
+                />
+              </NavLink>
+            </div>
+          ) : null}
         </div>
       </div>
     );
