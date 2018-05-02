@@ -15,7 +15,7 @@ import PlacesFitnessCenter from "material-ui/svg-icons/places/fitness-center";
 import ContentContentPaste from "material-ui/svg-icons/content/content-paste";
 import NavigationMenu from "material-ui/svg-icons/navigation/menu";
 //React-Router
-import { NavLink } from "react-router-dom";
+import { NavLink, withRouter } from "react-router-dom";
 //Redux
 import { connect } from "react-redux";
 import { getUser } from "../../ducks/user";
@@ -48,6 +48,7 @@ class NavBar extends Component {
 
   render() {
     const { user = [] } = this.props.user;
+    const { pathname } = this.props.location;
     const { opened } = this.state;
 
     const img = <img className="logo-img" alt="" src={logo} />;
@@ -76,18 +77,31 @@ class NavBar extends Component {
               <NavigationMenu style={navStyles.mobileIconLeft} />
             }
             iconElementRight={
-              <NavLink to="/cart" onClick={this.toggleDrawer}>
-                <ActionShoppingCart style={navStyles.mobileIconRight} />
+              <NavLink to="/cart" onClick={opened && this.toggleDrawer}>
+                <ActionShoppingCart
+                  style={{
+                    ...navStyles.mobileIconRight,
+                    color: pathname === "/cart" ? "black" : "#eee"
+                  }}
+                />
               </NavLink>
             }
-            onLeftIconButtonClick={() => this.toggleDrawer()}
+            onLeftIconButtonClick={this.toggleDrawer}
           />
           <Drawer
             open={opened}
             docked={false}
-            onRequestChange={() => this.toggleDrawer()}
+            onRequestChange={this.toggleDrawer}
           >
-            <MenuItem leftIcon={<ActionHome />}>
+            <MenuItem
+              leftIcon={
+                <ActionHome
+                  style={{
+                    fill: pathname === "/" ? "#ff6d00" : "rgb(117, 117, 117)"
+                  }}
+                />
+              }
+            >
               <NavLink
                 className="menu-item-wrapper"
                 to="/"
@@ -96,7 +110,18 @@ class NavBar extends Component {
                 <p className="menu-item"> Home </p>
               </NavLink>
             </MenuItem>
-            <MenuItem leftIcon={<ActionShop />}>
+            <MenuItem
+              leftIcon={
+                <ActionShop
+                  style={{
+                    fill:
+                      pathname === "/shop" || pathname.includes("/product")
+                        ? "#ff6d00"
+                        : "rgb(117, 117, 117)"
+                  }}
+                />
+              }
+            >
               <NavLink
                 className="menu-item-wrapper"
                 to="/shop"
@@ -105,7 +130,16 @@ class NavBar extends Component {
                 <p className="menu-item"> Shop </p>
               </NavLink>
             </MenuItem>
-            <MenuItem leftIcon={<CommunicationBusiness />}>
+            <MenuItem
+              leftIcon={
+                <CommunicationBusiness
+                  style={{
+                    fill:
+                      pathname === "/about" ? "#ff6d00" : "rgb(117, 117, 117)"
+                  }}
+                />
+              }
+            >
               <NavLink
                 className="menu-item-wrapper"
                 to="/about"
@@ -114,7 +148,16 @@ class NavBar extends Component {
                 <p className="menu-item"> About </p>
               </NavLink>
             </MenuItem>
-            <MenuItem leftIcon={<CommunicationPhone />}>
+            <MenuItem
+              leftIcon={
+                <CommunicationPhone
+                  style={{
+                    fill:
+                      pathname === "/contact" ? "#ff6d00" : "rgb(117, 117, 117)"
+                  }}
+                />
+              }
+            >
               <NavLink
                 className="menu-item-wrapper"
                 to="/contact"
@@ -134,7 +177,18 @@ class NavBar extends Component {
               </MenuItem>
             ) : (
               <div>
-                <MenuItem leftIcon={<PlacesFitnessCenter />}>
+                <MenuItem
+                  leftIcon={
+                    <PlacesFitnessCenter
+                      style={{
+                        fill:
+                          pathname === "/exercises"
+                            ? "#ff6d00"
+                            : "rgb(117, 117, 117)"
+                      }}
+                    />
+                  }
+                >
                   <NavLink
                     className="menu-item-wrapper"
                     to="/exercises"
@@ -143,7 +197,18 @@ class NavBar extends Component {
                     <p className="menu-item"> Workout List </p>
                   </NavLink>
                 </MenuItem>
-                <MenuItem leftIcon={<ContentContentPaste />}>
+                <MenuItem
+                  leftIcon={
+                    <ContentContentPaste
+                      style={{
+                        fill:
+                          pathname === "/create"
+                            ? "#ff6d00"
+                            : "rgb(117, 117, 117)"
+                      }}
+                    />
+                  }
+                >
                   <NavLink
                     className="menu-item-wrapper"
                     to="/create"
@@ -153,7 +218,18 @@ class NavBar extends Component {
                   </NavLink>
                 </MenuItem>
 
-                <MenuItem leftIcon={<ActionFace />}>
+                <MenuItem
+                  leftIcon={
+                    <ActionFace
+                      style={{
+                        fill:
+                          pathname === "/profile"
+                            ? "#ff6d00"
+                            : "rgb(117, 117, 117)"
+                      }}
+                    />
+                  }
+                >
                   <NavLink
                     className="menu-item-wrapper"
                     to="/profile"
@@ -186,14 +262,24 @@ class NavBar extends Component {
                   <img className="top-img" alt="" src={fullLogo} />
                 </NavLink>
                 <NavLink to="/cart" onClick={this.toggleDrawer}>
-                  <ActionShoppingCart className="desktop-icons" />
+                  <ActionShoppingCart
+                    className="desktop-icons"
+                    style={{
+                      color: pathname === "/cart" ? "#ff6d00" : "#eee"
+                    }}
+                  />
                 </NavLink>
               </div>
             ) : (
               <div className="nav-logged-container">
                 <div className="nav-logged-left">
                   <NavLink to="/profile" onClick={this.toggleDrawer}>
-                    <ActionFace className="desktop-icons" />
+                    <ActionFace
+                      className="desktop-icons"
+                      style={{
+                        color: pathname === "/profile" ? "#ff6d00" : "#eee"
+                      }}
+                    />
                   </NavLink>
                   <a href={process.env.REACT_APP_LOGOUT}>
                     <ActionExitToApp className="desktop-icons" />
@@ -204,15 +290,30 @@ class NavBar extends Component {
                 </NavLink>
                 <div className="nav-logged-right">
                   <NavLink to="/exercises" onClick={this.toggleDrawer}>
-                    <PlacesFitnessCenter className="desktop-icons" />
+                    <PlacesFitnessCenter
+                      className="desktop-icons"
+                      style={{
+                        color: pathname === "/exercises" ? "#ff6d00" : "#eee"
+                      }}
+                    />
                   </NavLink>
 
                   <NavLink to="/create" onClick={this.toggleDrawer}>
-                    <ContentContentPaste className="desktop-icons" />
+                    <ContentContentPaste
+                      className="desktop-icons"
+                      style={{
+                        color: pathname === "/create" ? "#ff6d00" : "#eee"
+                      }}
+                    />
                   </NavLink>
 
                   <NavLink to="/cart" onClick={this.toggleDrawer}>
-                    <ActionShoppingCart className="desktop-icons" />
+                    <ActionShoppingCart
+                      className="desktop-icons"
+                      style={{
+                        color: pathname === "/cart" ? "#ff6d00" : "#eee"
+                      }}
+                    />
                   </NavLink>
                 </div>
               </div>
@@ -224,28 +325,63 @@ class NavBar extends Component {
               to="/"
               onClick={this.toggleDrawer}
             >
-              <p className="desktop-navlink"> HOME </p>
+              <p
+                className="desktop-navlink"
+                style={{
+                  color: pathname === "/" ? "#eee" : "black"
+                }}
+              >
+                {" "}
+                HOME{" "}
+              </p>
             </NavLink>
             <NavLink
               className="desktop-navlink-wrapper"
               to="/shop"
               onClick={this.toggleDrawer}
             >
-              <p className="desktop-navlink"> SHOP </p>
+              <p
+                className="desktop-navlink"
+                style={{
+                  color:
+                    pathname === "/shop" || pathname.includes("/product")
+                      ? "#eee"
+                      : "black"
+                }}
+              >
+                {" "}
+                SHOP{" "}
+              </p>
             </NavLink>
             <NavLink
               className="desktop-navlink-wrapper"
               to="/about"
               onClick={this.toggleDrawer}
             >
-              <p className="desktop-navlink"> ABOUT </p>
+              <p
+                className="desktop-navlink"
+                style={{
+                  color: pathname === "/about" ? "#eee" : "black"
+                }}
+              >
+                {" "}
+                ABOUT{" "}
+              </p>
             </NavLink>
             <NavLink
               className="desktop-navlink-wrapper"
               to="/contact"
               onClick={this.toggleDrawer}
             >
-              <p className="desktop-navlink"> CONTACT </p>
+              <p
+                className="desktop-navlink"
+                style={{
+                  color: pathname === "/contact" ? "#eee" : "black"
+                }}
+              >
+                {" "}
+                CONTACT{" "}
+              </p>
             </NavLink>
           </div>
         </div>
@@ -254,34 +390,93 @@ class NavBar extends Component {
           <img className="full-img" alt="" src={fullLogo} />
           <div className="full-navlink-container">
             <NavLink className="full-navlink-wrapper" to="/">
-              <p className="full-navlink"> HOME </p>
+              <p
+                className="full-navlink"
+                style={{
+                  color: pathname === "/" ? "#ff6d00" : "#eee"
+                }}
+              >
+                {" "}
+                HOME{" "}
+              </p>
             </NavLink>
             <NavLink className="full-navlink-wrapper" to="/shop">
-              <p className="full-navlink"> SHOP </p>
+              <p
+                className="full-navlink"
+                style={{
+                  color:
+                    pathname === "/shop" || pathname.includes("/product")
+                      ? "#ff6d00"
+                      : "#eee"
+                }}
+              >
+                {" "}
+                SHOP{" "}
+              </p>
             </NavLink>
             {user &&
               user.user_id !== 1 && (
                 <div className="full-navlink-wrapper">
-                  <button className="full-dropdown-button">
+                  <button
+                    className="full-dropdown-button"
+                    style={{
+                      color:
+                        pathname === "/exercises" || pathname === "/create"
+                          ? "#ff6d00"
+                          : "#eee"
+                    }}
+                  >
                     {" "}
                     WORKOUT
                     <i className="fa fa-caret-down" />
                   </button>
                   <div className="dropdown-content">
                     <NavLink className="dropdown-link-one" to="/exercises">
-                      <p className="full-navlink"> LIST </p>
+                      <p
+                        className="full-navlink"
+                        style={{
+                          color: pathname === "/exercises" ? "#ff6d00" : "#eee"
+                        }}
+                      >
+                        {" "}
+                        LIST{" "}
+                      </p>
                     </NavLink>
                     <NavLink className="dropdown-link" to="/create">
-                      <p className="full-navlink"> PLAN </p>
+                      <p
+                        className="full-navlink"
+                        style={{
+                          color: pathname === "/create" ? "#ff6d00" : "#eee"
+                        }}
+                      >
+                        {" "}
+                        PLAN{" "}
+                      </p>
                     </NavLink>
                   </div>
                 </div>
               )}
             <NavLink className="full-navlink-wrapper" to="/about">
-              <p className="full-navlink"> ABOUT </p>
+              <p
+                className="full-navlink"
+                style={{
+                  color: pathname === "/about" ? "#ff6d00" : "#eee"
+                }}
+              >
+                {" "}
+                ABOUT{" "}
+              </p>
             </NavLink>
             <NavLink className="full-navlink-wrapper" to="/contact">
-              <p className="full-navlink"> CONTACT </p>
+              <p
+                className="full-navlink"
+                style={{
+                  color: pathname === "/contact" ? "#ff6d00" : "#eee"
+                }}
+              >
+                {" "}
+                CONTACT{" "}
+              </p>
             </NavLink>
           </div>
           {!user || user.user_id === 1 ? (
@@ -290,19 +485,34 @@ class NavBar extends Component {
                 <ActionAccountBox className="desktop-icons" />
               </a>
               <NavLink to="/cart">
-                <ActionShoppingCart className="desktop-icons" />
+                <ActionShoppingCart
+                  className="desktop-icons"
+                  style={{
+                    color: pathname === "/cart" ? "#ff6d00" : "#eee"
+                  }}
+                />
               </NavLink>
             </div>
           ) : (
             <div className="full-right-in-container">
               <NavLink to="/profile">
-                <ActionFace className="desktop-icons" />
+                <ActionFace
+                  className="desktop-icons"
+                  style={{
+                    color: pathname === "/profile" ? "#ff6d00" : "#eee"
+                  }}
+                />
               </NavLink>
               <a href={process.env.REACT_APP_LOGOUT}>
                 <ActionExitToApp className="desktop-icons" />
               </a>
               <NavLink to="/cart">
-                <ActionShoppingCart className="desktop-icons" />
+                <ActionShoppingCart
+                  className="desktop-icons"
+                  style={{
+                    color: pathname === "/cart" ? "#ff6d00" : "#eee"
+                  }}
+                />
               </NavLink>
             </div>
           )}
@@ -318,6 +528,8 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps, {
-  getUser
-})(NavBar);
+export default withRouter(
+  connect(mapStateToProps, {
+    getUser
+  })(NavBar)
+);

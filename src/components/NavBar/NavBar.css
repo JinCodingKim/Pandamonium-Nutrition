@@ -148,11 +148,9 @@
     letter-spacing: 0.5px;
     font-size: 13px;
     font-weight: bolder;
-    color: black;
     line-height: 65px;
   }
   .desktop-navlink {
-    color: black;
     transition: 250ms ease-in-out;
   }
   .desktop-navlink:hover {
@@ -214,7 +212,7 @@
   .dropdown-content:hover {
     visibility: visible;
     opacity: 1;
-    height: 125px;
+    height: 120px;
   }
 
   .fa-caret-down {
@@ -239,13 +237,15 @@
 
   .dropdown-link,
   .dropdown-link-one {
-    color: #eeeeee;
-    padding: 0px 5px 0px 15px;
     text-decoration: none;
     display: block;
   }
 
+  .dropdown-link {
+    padding: 0px 5px 0px 15px;
+  }
   .dropdown-link-one {
+    padding: 0 5px 20px 15px;
     border-bottom: 1px solid #eeeeee;
   }
 
@@ -272,7 +272,10 @@
     letter-spacing: 0.5px;
     font-size: 16px;
     font-weight: bolder;
-    color: #eeeeee;
+  }
+
+  .full-navlink {
+    height: 40px;
   }
 
   .full-navlink,

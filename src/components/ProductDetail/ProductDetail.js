@@ -98,7 +98,7 @@ class ProductDetail extends Component {
 
   handleCart(product, amount, price, single) {
     const { cart, addToCart, updateCart, getCart, user } = this.props;
-    let index = cart.findIndex(e => e.product_id == product);
+    let index = cart.findIndex(e => e.product_id === product);
     if (index === -1) {
       addToCart(product, amount, price, single).then(() =>
         getCart(user.user_id)
